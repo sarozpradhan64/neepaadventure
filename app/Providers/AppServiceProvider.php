@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use Blaze\AdminCore\Models\ContactInformation;
+use Blaze\AdminCore\Models\Project;
+use Blaze\AdminCore\Models\Service;
+use Blaze\AdminCore\Models\SocialLink;
+use Blaze\AdminCore\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
