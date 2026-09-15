@@ -1,0 +1,3 @@
+[submodule "packages/blaze/admin-core"]
+	path = packages/blaze/admin-core
+	url = https://github.com/sarozpradhan64/blaze-admin-core.git
