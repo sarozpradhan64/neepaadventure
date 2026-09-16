@@ -1,15 +1,15 @@
 ---
 name: blaze-admin-core
 description: >-
-  Use this skill whenever working with, extending, integrating, or reusing the
-  blaze/admin-core package — the shared admin panel for all Blaze-managed Laravel
-  websites. Covers installation, namespace conventions, routing, models, views,
-  extending for site-specific features, and the Git submodule workflow.
+    Use this skill whenever working with, extending, integrating, or reusing the
+    blaze/admin-core package — the shared admin panel for all Blaze-managed Laravel
+    websites. Covers installation, namespace conventions, routing, models, views,
+    extending for site-specific features, and the Git submodule workflow.
 ---
 
 # Blaze Admin Core — Skill Guide
 
-The `blaze/admin-core` package is a **reusable Laravel admin panel** extracted from the Atlas Finish Group project and hosted at [github.com/sarozpradhan64/blaze-admin-core](https://github.com/sarozpradhan64/blaze-admin-core).
+The `blaze/admin-core` package is a **reusable Laravel admin panel** extracted from the Blaze Admin project and hosted at [github.com/sarozpradhan64/blaze-admin-core](https://github.com/sarozpradhan64/blaze-admin-core).
 
 It provides a ready-made, authentication-protected admin dashboard with core CMS features that every website needs (Team, Testimonials, Gallery, Enquiries, Contact, Settings, SEO). Each individual site repo only adds its own domain-specific resources on top.
 
@@ -17,50 +17,52 @@ It provides a ready-made, authentication-protected admin dashboard with core CMS
 
 ## 1. Package Overview
 
-| Aspect | Detail |
-|---|---|
-| **Package Name** | `blaze/admin-core` |
-| **Namespace** | `Blaze\AdminCore` |
-| **View Namespace** | `admin-core::` |
-| **Route Prefix** | `/admin` |
-| **Route Name Prefix** | `admin.` |
-| **GitHub Repo** | https://github.com/sarozpradhan64/blaze-admin-core |
-| **ServiceProvider** | `Blaze\AdminCore\Providers\AdminCoreServiceProvider` |
-| **Auto-discovered** | Yes — via `extra.laravel.providers` in `composer.json` |
+| Aspect                | Detail                                                 |
+| --------------------- | ------------------------------------------------------ |
+| **Package Name**      | `blaze/admin-core`                                     |
+| **Namespace**         | `Blaze\AdminCore`                                      |
+| **View Namespace**    | `admin-core::`                                         |
+| **Route Prefix**      | `/admin`                                               |
+| **Route Name Prefix** | `admin.`                                               |
+| **GitHub Repo**       | https://github.com/sarozpradhan64/blaze-admin-core     |
+| **ServiceProvider**   | `Blaze\AdminCore\Providers\AdminCoreServiceProvider`   |
+| **Auto-discovered**   | Yes — via `extra.laravel.providers` in `composer.json` |
 
 ---
 
 ## 2. What's Included (Core Modules)
 
 ### Models (`Blaze\AdminCore\Models\*`)
-| Model | Table | Purpose |
-|---|---|---|
-| `ContactInformation` | `contact_information` | Company address, phone, email, maps |
-| `SocialLink` | `social_links` | Social media links with icon + sort order |
-| `WebsiteSetting` | `website_settings` | Key-value CMS settings (logo, hero, about) |
-| `HomepageSection` | `homepage_sections` | Flexible homepage content blocks |
-| `SeoMetadata` | `seo_metadata` | Polymorphic SEO tags for any model |
-| `Testimonial` | `testimonials` | Client testimonials with rating |
-| `TeamMember` | `team_members` | Staff profiles |
-| `GalleryAlbum` | `gallery_albums` | Photo/video album groupings |
-| `GalleryItem` | `gallery_items` | Individual gallery photos/videos |
-| `Download` | `downloads` | Downloadable files (PDFs, brochures) |
-| `Enquiry` | `enquiries` | Lead enquiries from public forms |
-| `ContactMessage` | `contact_messages` | Contact form submissions |
-| `SpamLog` | `spam_logs` | Spam detection audit trail |
-| `Project` | `projects` | Portfolio projects |
-| `ProjectCategory` | `project_categories` | Categories for projects |
-| `ProjectImage` | `project_images` | Gallery images for a specific project |
-| `ProjectVideo` | `project_videos` | Video links for a specific project |
-| `ProjectStatistic` | `project_statistics` | Key metrics/stats for a project |
-| `Service` | `services` | Offered services |
-| `ServiceCategory` | `service_categories` | Categories for services |
-| `ServiceFeature` | `service_features` | Features/highlights for a service |
-| `AuditLog` | `audit_logs` | Generic tracking logs |
-| `Media` | `media` | Shared media attachments |
-| `Page` | `pages` | Custom static pages |
+
+| Model                | Table                 | Purpose                                    |
+| -------------------- | --------------------- | ------------------------------------------ |
+| `ContactInformation` | `contact_information` | Company address, phone, email, maps        |
+| `SocialLink`         | `social_links`        | Social media links with icon + sort order  |
+| `WebsiteSetting`     | `website_settings`    | Key-value CMS settings (logo, hero, about) |
+| `HomepageSection`    | `homepage_sections`   | Flexible homepage content blocks           |
+| `SeoMetadata`        | `seo_metadata`        | Polymorphic SEO tags for any model         |
+| `Testimonial`        | `testimonials`        | Client testimonials with rating            |
+| `TeamMember`         | `team_members`        | Staff profiles                             |
+| `GalleryAlbum`       | `gallery_albums`      | Photo/video album groupings                |
+| `GalleryItem`        | `gallery_items`       | Individual gallery photos/videos           |
+| `Download`           | `downloads`           | Downloadable files (PDFs, brochures)       |
+| `Enquiry`            | `enquiries`           | Lead enquiries from public forms           |
+| `ContactMessage`     | `contact_messages`    | Contact form submissions                   |
+| `SpamLog`            | `spam_logs`           | Spam detection audit trail                 |
+| `Project`            | `projects`            | Portfolio projects                         |
+| `ProjectCategory`    | `project_categories`  | Categories for projects                    |
+| `ProjectImage`       | `project_images`      | Gallery images for a specific project      |
+| `ProjectVideo`       | `project_videos`      | Video links for a specific project         |
+| `ProjectStatistic`   | `project_statistics`  | Key metrics/stats for a project            |
+| `Service`            | `services`            | Offered services                           |
+| `ServiceCategory`    | `service_categories`  | Categories for services                    |
+| `ServiceFeature`     | `service_features`    | Features/highlights for a service          |
+| `AuditLog`           | `audit_logs`          | Generic tracking logs                      |
+| `Media`              | `media`               | Shared media attachments                   |
+| `Page`               | `pages`               | Custom static pages                        |
 
 ### Controllers (`Blaze\AdminCore\Http\Controllers\*`)
+
 - `AuthController` — Login / Logout
 - `WebsiteSettingController` — Settings (homepage, about, SEO tabs)
 - `SeoSettingController` — SEO metadata management
@@ -83,25 +85,27 @@ It provides a ready-made, authentication-protected admin dashboard with core CMS
 - `ReorderController` — Universal drag-to-reorder endpoint
 
 ### Routes (all under `/admin`)
-| URL | Name | Access |
-|---|---|---|
-| `GET /admin/login` | `admin.login` | Guest only |
-| `POST /admin/login` | — | Guest only |
-| `POST /admin/logout` | `admin.logout` | Auth |
-| `GET /admin/` | `admin.dashboard` | Auth |
-| `GET /admin/settings` | `admin.settings.index` | Auth |
-| `GET /admin/company-info` | `admin.company-info.index` | Auth |
-| `GET /admin/team-members` | `admin.team-members.index` | Auth |
-| `GET /admin/testimonials` | `admin.testimonials.index` | Auth |
-| `GET /admin/gallery-albums` | `admin.gallery-albums.index` | Auth |
-| `GET /admin/downloads` | `admin.downloads.index` | Auth |
-| `GET /admin/enquiries` | `admin.enquiries.index` | Auth |
-| `GET /admin/contact-messages` | `admin.contact-messages.index` | Auth |
-| `GET /admin/projects` | `admin.projects.index` | Auth |
-| `GET /admin/services` | `admin.services.index` | Auth |
-| `POST /admin/reorder/{resource}` | `admin.reorder` | Auth |
+
+| URL                              | Name                           | Access     |
+| -------------------------------- | ------------------------------ | ---------- |
+| `GET /admin/login`               | `admin.login`                  | Guest only |
+| `POST /admin/login`              | —                              | Guest only |
+| `POST /admin/logout`             | `admin.logout`                 | Auth       |
+| `GET /admin/`                    | `admin.dashboard`              | Auth       |
+| `GET /admin/settings`            | `admin.settings.index`         | Auth       |
+| `GET /admin/company-info`        | `admin.company-info.index`     | Auth       |
+| `GET /admin/team-members`        | `admin.team-members.index`     | Auth       |
+| `GET /admin/testimonials`        | `admin.testimonials.index`     | Auth       |
+| `GET /admin/gallery-albums`      | `admin.gallery-albums.index`   | Auth       |
+| `GET /admin/downloads`           | `admin.downloads.index`        | Auth       |
+| `GET /admin/enquiries`           | `admin.enquiries.index`        | Auth       |
+| `GET /admin/contact-messages`    | `admin.contact-messages.index` | Auth       |
+| `GET /admin/projects`            | `admin.projects.index`         | Auth       |
+| `GET /admin/services`            | `admin.services.index`         | Auth       |
+| `POST /admin/reorder/{resource}` | `admin.reorder`                | Auth       |
 
 ### Views (all via `admin-core::` namespace)
+
 ```
 admin-core::auth.login
 admin-core::dashboard
@@ -139,11 +143,13 @@ composer require blaze/admin-core "*@dev"
 ```
 
 > **Important:** When cloning a site repo that uses this submodule, always run:
+>
 > ```bash
 > git submodule update --init --recursive
 > ```
 
 ### Method B — Direct Composer (when published to Packagist)
+
 ```bash
 composer require blaze/admin-core
 ```
@@ -166,7 +172,7 @@ public function boot(): void
             $contact        = \Blaze\AdminCore\Models\ContactInformation::first();
             $socials        = \Blaze\AdminCore\Models\SocialLink::where('status', true)->orderBy('sort_order')->get();
             $websiteSettings = \Blaze\AdminCore\Models\WebsiteSetting::pluck('value', 'key')->toArray();
-            
+
             // Site-specific / Nav models
             $navServices = \Blaze\AdminCore\Models\Service::where('status', true)->orderBy('sort_order')->take(5)->get();
             $navProjects = \Blaze\AdminCore\Models\Project::where('status', true)->orderBy('sort_order')->take(4)->get();
@@ -224,6 +230,7 @@ resources/views/admin/bookings/index.blade.php
 ```
 
 Reference the shared admin layout which is already provided by the package:
+
 ```blade
 {{-- resources/views/admin/treks/index.blade.php --}}
 <x-admin-layout> {{-- or whatever layout the package provides --}}

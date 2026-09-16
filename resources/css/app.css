@@ -2,6 +2,11 @@
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
+@source '../views';
+@source '../../packages/blaze/admin-core/resources/views';
+
+/* resources/css/app.css */
+@import "./blatui.css";
 
 
 :root {
