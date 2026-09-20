@@ -12,6 +12,9 @@ Route::get('/contact', fn() => view('contact'))->name('contact');
 Route::get('/community', fn() => view('community'))->name('community');
 Route::get('/projects', fn() => view('projects'))->name('projects');
 
+Route::get('/blog', fn() => view('blog'))->name('blog');
+Route::get('/blog/{slug}', fn() => view('blog-detail'))->name('blog-detail');
+
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('lucide-icon/{icon}', function (string $icon) {
         abort_unless(preg_match('/^[a-z0-9\-]+$/', $icon), 404);
