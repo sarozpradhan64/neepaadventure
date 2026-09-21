@@ -1,4 +1,7 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/dm-sans";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -8,72 +11,196 @@
 /* resources/css/app.css */
 @import "./blatui.css";
 
-
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.852 0.199 91.936);
-  --primary-foreground: oklch(0.421 0.095 57.708);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.681 0.162 75.834);
-  --sidebar-primary-foreground: oklch(0.987 0.026 102.212);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.852 0.199 91.936);
+    --primary-foreground: oklch(0.421 0.095 57.708);
+    --secondary: oklch(0.967 0.001 286.375);
+    --secondary-foreground: oklch(0.21 0.006 285.885);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.681 0.162 75.834);
+    --sidebar-primary-foreground: oklch(0.987 0.026 102.212);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.795 0.184 86.047);
-  --primary-foreground: oklch(0.421 0.095 57.708);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.795 0.184 86.047);
-  --sidebar-primary-foreground: oklch(0.987 0.026 102.212);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.795 0.184 86.047);
+    --primary-foreground: oklch(0.421 0.095 57.708);
+    --secondary: oklch(0.274 0.006 286.033);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.795 0.184 86.047);
+    --sidebar-primary-foreground: oklch(0.987 0.026 102.212);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+@theme {
+        --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    -- color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-on-secondary-fixed: #0e1d2a;
+    --color-alpine-snow: #f7f9fa;
+    --color-on-primary-fixed: #261a00;
+    --color-secondary-fixed: #d5e4f7;
+    --color-primary-fixed-dim: #f9bd1e;
+    --color-outline-variant: #d3c5ac;
+    --color-on-primary-container: #684c00;
+    --color-summit-white: #ffffff;
+    --color-inverse-on-surface: #e7f2ff;
+    --color-surface-container: #e4effc;
+    --color-surface: #f7f9ff;
+    --color-secondary-fixed-dim: #b9c8da;
+    --color-on-tertiary-fixed-variant: #364959;
+    --color-secondary-container: #d5e4f7;
+    --color-amber-flare: #d49806;
+    --color-mist-slate: #e2e7ec;
+    --color-surface-bright: #f7f9ff;
+    --color-primary-container: #f6ba1a;
+    --color-background: #f7f9ff;
+    --color-tertiary: #4d6072;
+    --color-ridge-deep: #0f1821;
+    --color-surface-variant: #d8e4f1;
+    --color-glacier-border: #d2dce4;
+    --color-error-container: #ffdad6;
+    --color-surface-container-lowest: #ffffff;
+    --color-on-secondary-fixed-variant: #3a4857;
+    --color-surface-container-high: #dee9f7;
+    --color-on-error-container: #93000a;
+    --color-inverse-primary: #f9bd1e;
+    --color-on-error: #ffffff;
+    --color-on-tertiary: #ffffff;
+    --color-on-primary-fixed-variant: #5c4300;
+    --color-on-surface-variant: #4f4633;
+    --color-inverse-surface: #27323b;
+    --color-on-secondary-container: #586676;
+    --color-surface-container-low: #ecf4ff;
+    --color-surface-tint: #795900;
+    --color-surface-dim: #d0dbe8;
+    --color-surface-container-highest: #d8e4f1;
+    --color-tertiary-fixed: #d1e5f9;
+    --color-on-tertiary-container: #405363;
+    --color-on-tertiary-fixed: #081d2c;
+    --color-tertiary-container: #b2c6da;
+    --color-secondary: #526070;
+    --color-primary-fixed: #ffdf9f;
+    --color-tertiary-fixed-dim: #b5c9dd;
+    --color-error: #ba1a1a;
+    --color-on-secondary: #ffffff;
+    --color-on-surface: #121d26;
+    --color-on-primary: #ffffff;
+    --color-outline: #827660;
+    --color-on-background: #121d26;
+    --spacing-gutter-mobile: 1rem;
+    --spacing-space-4xl: 6rem;
+    --spacing-space-2xl: 3rem;
+    --spacing-max-content-width: 1280px;
+    --spacing-space-xs: 0.5rem;
+    --spacing-space-xl: 2rem;
+    --spacing-gutter-desktop: 2rem;
+    --spacing-space-3xl: 4.5rem;
+    --spacing-space-sm: 0.75rem;
+    --spacing-gutter-tablet: 1.5rem;
+    --spacing-space-lg: 1.5rem;
+    --spacing-space-2xs: 0.25rem;
+    --spacing-space-md: 1rem;
+    --font-body-lg: "DM Sans";
+    --font-body-md: "DM Sans";
+    --font-body-sm: "DM Sans";
+    --font-headline-lg-mobile: "Manrope";
+    --font-headline-sm: "Manrope";
+    --font-headline-lg: "Manrope";
+    --font-display-xl-mobile: "Manrope";
+    --font-badge-caption: "Manrope";
+    --font-display-xl: "Manrope";
+    --font-headline-md: "Manrope";
+    --font-label-md: "Manrope";
+    --font-label-sm: "Manrope";
+
+    /* Typography scale from design */
+    --text-body-lg: 18px;
+    --text-body-md: 15px;
+    --text-body-sm: 13px;
+    --text-headline-sm: 20px;
+    --text-headline-md: 26px;
+    --text-headline-lg: 36px;
+    --text-display-xl: 56px;
+    --text-badge-caption: 11px;
+    --text-label-md: 14px;
+    --text-label-sm: 12px;
+}
+
+html {
+    font-family: "DM Sans", "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display-xl,
+.font-display-xl-mobile,
+.font-headline-lg,
+.font-headline-md,
+.font-headline-sm,
+.font-badge-caption,
+.font-label-md,
+.font-label-sm {
+    font-family: "Manrope", "Segoe UI", sans-serif;
 }

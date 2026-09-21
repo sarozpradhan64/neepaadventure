@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cd00121b99bb4493ef36ae1c7c82dd41",
+    "content-hash": "a442356bd0155365e9d73a7d0924e971",
     "packages": [
         {
             "name": "anousss007/blatui",
@@ -2367,16 +2367,16 @@
         },
         {
             "name": "mallardduck/blade-lucide-icons",
-            "version": "2.0.18",
+            "version": "2.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mallardduck/blade-lucide-icons.git",
-                "reference": "337812f82346b3f019c57f605c1c360ac19c6990"
+                "reference": "56a8735a7faeca6a2073a826fd07b8a2bf120ef3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mallardduck/blade-lucide-icons/zipball/337812f82346b3f019c57f605c1c360ac19c6990",
-                "reference": "337812f82346b3f019c57f605c1c360ac19c6990",
+                "url": "https://api.github.com/repos/mallardduck/blade-lucide-icons/zipball/56a8735a7faeca6a2073a826fd07b8a2bf120ef3",
+                "reference": "56a8735a7faeca6a2073a826fd07b8a2bf120ef3",
                 "shasum": ""
             },
             "require": {
@@ -2421,9 +2421,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mallardduck/blade-lucide-icons/issues",
-                "source": "https://github.com/mallardduck/blade-lucide-icons/tree/2.0.18"
+                "source": "https://github.com/mallardduck/blade-lucide-icons/tree/2.0.19"
             },
-            "time": "2026-09-15T03:10:38+00:00"
+            "time": "2026-09-18T02:58:44+00:00"
         },
         {
             "name": "monolog/monolog",

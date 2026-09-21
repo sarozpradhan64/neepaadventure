@@ -8,8 +8,8 @@ use Blaze\AdminCore\Models\Service;
 use Blaze\AdminCore\Models\SocialLink;
 use Blaze\AdminCore\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,28 +34,28 @@ class AppServiceProvider extends ServiceProvider
             $navProjects = collect();
 
             if (Schema::hasTable('contact_information')) {
-                $contact = \Blaze\AdminCore\Models\ContactInformation::first();
+                $contact = ContactInformation::first();
             }
 
             if (Schema::hasTable('social_links')) {
-                $socials = \Blaze\AdminCore\Models\SocialLink::where('status', true)
+                $socials = SocialLink::where('status', true)
                     ->orderBy('sort_order')
                     ->get();
             }
 
             if (Schema::hasTable('website_settings')) {
-                $websiteSettings = \Blaze\AdminCore\Models\WebsiteSetting::pluck('value', 'key')->toArray();
+                $websiteSettings = WebsiteSetting::pluck('value', 'key')->toArray();
             }
 
             if (Schema::hasTable('services')) {
-                $navServices = \Blaze\AdminCore\Models\Service::where('status', true)
+                $navServices = Service::where('status', true)
                     ->orderBy('sort_order')
                     ->take(5)
                     ->get();
             }
 
             if (Schema::hasTable('projects')) {
-                $navProjects = \Blaze\AdminCore\Models\Project::where('status', true)
+                $navProjects = Project::where('status', true)
                     ->orderBy('sort_order')
                     ->take(4)
                     ->get();

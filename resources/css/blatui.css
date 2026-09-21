@@ -4,7 +4,7 @@
 @source '../../vendor/mallardduck/blade-lucide-icons/resources/svg/*.svg';
 @source '../../storage/framework/views/*.php';
 @source '../views';
-@source '../../packages/blaze/admin-core/resources/views';
+@source '../../packages/blaze/admin-core/resources/views/**/*.blade.php';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -1471,3 +1471,5 @@
 /* Marquee (<x-ui.marquee>): seamless infinite scroll of two duplicated content groups. */
 @keyframes blat-marquee-x { to { transform: translateX(-50%); } }
 @keyframes blat-marquee-y { to { transform: translateY(-50%); } }
+
+@source '../../packages/blaze/admin-core/src/**/*.php';
