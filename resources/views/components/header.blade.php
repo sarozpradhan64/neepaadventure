@@ -43,12 +43,14 @@
         <nav class="hidden xl:flex items-center gap-space-md">
             <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('treks*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
                 href="{{ route('treks') }}">Treks</a>
-            <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('peak-climbing') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                href="{{ route('peak-climbing') }}">Peak Climbing</a>
+            {{-- <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('peak-climbing') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
+                href="{{ route('peak-climbing') }}">Peak Climbing</a> --}}
             <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('projects') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
                 href="{{ route('projects') }}">Projects</a>
                 <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('gallery') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
                     href="{{ route('gallery') }}">Gallery</a>
+            <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('blog') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
+                href="{{ route('blog') }}">Blogs</a>
             <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('about') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
                 href="{{ route('about') }}">About Us</a>
             <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('contact') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"

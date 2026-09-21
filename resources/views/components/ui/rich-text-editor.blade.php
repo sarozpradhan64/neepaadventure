@@ -83,14 +83,14 @@
             const cols = window.prompt('Number of columns', '3');
             
             if (rows && cols) {
-                let html = '<table class="w-full border-collapse border border-border my-4">';
+                let html = '<table class=\'w-full border-collapse border border-border my-4\'>';
                 for (let i = 0; i < parseInt(rows); i++) {
                     html += '<tr>';
                     for (let j = 0; j < parseInt(cols); j++) {
                         if (i === 0) {
-                            html += '<th class="border border-border p-2 bg-muted/50">Header</th>';
+                            html += '<th class=\'border border-border p-2 bg-muted/50\'>Header</th>';
                         } else {
-                            html += '<td class="border border-border p-2">Cell</td>';
+                            html += '<td class=\'border border-border p-2\'>Cell</td>';
                         }
                     }
                     html += '</tr>';

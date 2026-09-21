@@ -36,38 +36,26 @@
 </div>
 <!-- Search & Category Bar -->
 <div class="flex flex-col gap-space-md pt-space-xs">
-<div class="relative w-full max-w-2xl">
+<form action="{{ route('blog') }}" method="GET" class="relative w-full max-w-2xl">
 <span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-secondary text-[20px]">search</span>
-<input class="w-full pl-12 pr-space-md py-3.5 bg-surface-container-low rounded-lg text-on-surface placeholder:text-secondary font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm transition-all" placeholder="Search 120+ expedition logs, packing checklists, pass guides..." type="text"/>
-</div>
+<input name="search" value="{{ request('search') }}" class="w-full pl-12 pr-space-md py-3.5 bg-surface-container-low rounded-lg text-on-surface placeholder:text-secondary font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest shadow-sm transition-all" placeholder="Search blog posts..." type="text"/>
+</form>
 <!-- Filter Pills -->
 <div class="flex items-center gap-space-xs overflow-x-auto pb-space-2xs no-scrollbar">
-<button class="px-space-md py-space-xs rounded bg-ridge-deep text-summit-white font-label-sm text-label-sm whitespace-nowrap shadow-sm">
-            All Dispatches (48)
-          </button>
-<button class="px-space-md py-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap transition-colors">
-            Altitude Medicine &amp; Safety
-          </button>
-<button class="px-space-md py-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap transition-colors">
-            Route Dossiers &amp; Passes
-          </button>
-<button class="px-space-md py-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap transition-colors">
-            Sherpa Culture &amp; Heritage
-          </button>
-<button class="px-space-md py-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap transition-colors">
-            Technical Gear Field Tests
-          </button>
-<button class="px-space-md py-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap transition-colors">
-            Expedition Photo Essays
-          </button>
-<button class="px-space-md py-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm whitespace-nowrap transition-colors">
-            Climber Preparation
-          </button>
+<a href="{{ route('blog', request()->except('category')) }}" class="px-space-md py-space-xs rounded font-label-sm text-label-sm whitespace-nowrap shadow-sm transition-colors {{ !request('category') ? 'bg-ridge-deep text-summit-white' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant' }}">
+    All Posts ({{ $blogs->total() }})
+</a>
+@foreach ($categories as $cat)
+<a href="{{ route('blog', array_merge(request()->except('category'), ['category' => $cat->slug])) }}" class="px-space-md py-space-xs rounded font-label-sm text-label-sm whitespace-nowrap transition-colors {{ request('category') === $cat->slug ? 'bg-ridge-deep text-summit-white' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant' }}">
+    {{ $cat->name }}
+</a>
+@endforeach
 </div>
 </div>
 </div>
 </section>
 <!-- Featured Lead Dossier -->
+@if($featured)
 <section class="w-full bg-surface px-gutter-desktop py-space-2xl">
 <div class="max-w-max-content-width mx-auto">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl bg-surface-container-lowest rounded-xl shadow-md overflow-hidden">
@@ -78,59 +66,33 @@
 <span class="px-space-xs py-space-2xs rounded bg-primary-container text-on-primary-container font-badge-caption text-badge-caption uppercase">
                 Featured Field Essay
               </span>
+@if($featured->category)
 <span class="px-space-xs py-space-2xs rounded bg-surface-container-high text-secondary font-badge-caption text-badge-caption uppercase">
-                14 Min Read
+                {{ $featured->category->name }}
               </span>
-<span class="px-space-xs py-space-2xs rounded bg-surface-container-high text-secondary font-badge-caption text-badge-caption uppercase">
-                Altitude Physiology
-              </span>
+@endif
 </div>
 <h2 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">
-              The 4,000m Threshold: Managing Hypoxia, Acetazolamide Protocols, and Lake Louise Scoring on Khumbu Traverses
+              {{ $featured->title }}
             </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
-              Why the gradual ascent through Namche (3,440m) to Dingboche (4,410m) dictates 95% of summit and pass success. Written by Dr. Nima Tshering, MD (Neepa Chief High-Altitude Medical Advisor) &amp; Lead Sirdar Dawa Tenzing.
+              {{ $featured->excerpt }}
             </p>
-<!-- Key Takeaways Metric Strip -->
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-space-xs">
-<div class="bg-surface-container p-space-sm rounded-lg flex flex-col gap-space-2xs">
-<div class="flex items-center gap-space-2xs text-primary">
-<span class="material-symbols-outlined text-[18px]">bedtime</span>
-<span class="font-badge-caption text-badge-caption uppercase">Acclimatization</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">Rest Day at 3,440m</span>
-<span class="font-body-sm text-body-sm text-secondary">Non-negotiable 48h profile</span>
-</div>
-<div class="bg-surface-container p-space-sm rounded-lg flex flex-col gap-space-2xs">
-<div class="flex items-center gap-space-2xs text-primary">
-<span class="material-symbols-outlined text-[18px]">water_drop</span>
-<span class="font-badge-caption text-badge-caption uppercase">Hydration Metric</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">4.5 Liters / Day</span>
-<span class="font-body-sm text-body-sm text-secondary">Including oral rehydration salts</span>
-</div>
-<div class="bg-surface-container p-space-sm rounded-lg flex flex-col gap-space-2xs">
-<div class="flex items-center gap-space-2xs text-primary">
-<span class="material-symbols-outlined text-[18px]">ecg_heart</span>
-<span class="font-badge-caption text-badge-caption uppercase">Oxygen Target</span>
-</div>
-<span class="font-label-md text-label-md text-on-surface">&gt; 82% at 4,900m</span>
-<span class="font-body-sm text-body-sm text-secondary">Evening oximetry baseline</span>
-</div>
-</div>
 </div>
 <!-- Lead Meta & Button -->
-<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md pt-space-md">
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md pt-space-md mt-auto">
 <div class="flex items-center gap-space-sm">
+@if($featured->author)
 <div class="w-10 h-10 rounded-full bg-ridge-deep text-summit-white flex items-center justify-center font-bold text-sm">
-                NT
+                {{ strtoupper(substr($featured->author->name, 0, 2)) }}
               </div>
 <div class="flex flex-col">
-<span class="font-label-md text-label-md text-on-surface">Dr. Nima Tshering, MD</span>
-<span class="font-body-sm text-body-sm text-secondary">Verified by Himalayan Rescue Association • 4.8k reads</span>
+<span class="font-label-md text-label-md text-on-surface">{{ $featured->author->name }}</span>
+<span class="font-body-sm text-body-sm text-secondary">{{ $featured->created_at->format('M d, Y') }}</span>
 </div>
+@endif
 </div>
-<a class="inline-flex items-center gap-space-xs px-space-lg py-3 bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md uppercase tracking-wider rounded transition-colors" href="#">
+<a class="inline-flex items-center gap-space-xs px-space-lg py-3 bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md uppercase tracking-wider rounded transition-colors" href="{{ route('blog-detail', $featured->slug) }}">
 <span>Read Full Dossier</span>
 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
 </a>
@@ -138,39 +100,17 @@
 </div>
 <!-- Graphic / Visual Card (5 Cols) -->
 <div class="lg:col-span-5 relative flex flex-col justify-between bg-surface-container-high overflow-hidden min-h-[380px]">
-<img class="absolute inset-0 w-full h-full object-cover" data-alt="Rugged high Himalayan mountains surrounding the Khumbu valley near Dingboche with snowy summits Ama Dablam and Tawoche glowing in crisp morning sun, high contrast alpine landscape with deep slate shadows and radiant golden light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALQ_S9CCMvSA-FZuBzzINcsIcXx6g4jnLYXDfipFRFz2C-bcpQdIj7I9gJGzkcXaLtBj3Fi8xmgvRN9m4OCllBw1ojpljdL70-AsF1Ohiy3EXQdrEqBBT0_wuXYxTFDGXCrmzFRhRs9B1O-7lXpz3zrRPk5CeNrROKPnrwb8NNbcq0591rxg_rC16OuhIaIc1qcGVECKVvYn1t8rmQ4VO9g5juFJkU73afGYtNVmrTkwfBGXRwb-Pg"/>
+@if($featured->featured_image)
+<img class="absolute inset-0 w-full h-full object-cover" alt="{{ $featured->title }}" src="{{ Storage::url($featured->featured_image) }}"/>
+@else
+<div class="absolute inset-0 w-full h-full bg-surface-variant"></div>
+@endif
 <div class="absolute inset-0 bg-gradient-to-t from-ridge-deep via-ridge-deep/40 to-transparent"></div>
-<!-- Top Badge -->
-<div class="relative z-10 p-space-md flex justify-end">
-<span class="px-space-xs py-space-2xs rounded bg-ridge-deep/80 backdrop-blur text-summit-white font-badge-caption text-badge-caption tracking-widest uppercase flex items-center gap-space-2xs">
-<span class="material-symbols-outlined text-[14px] text-primary-container">verified</span> HRA Peer-Reviewed
-            </span>
-</div>
-<!-- Elevation Trajectory Card -->
-<div class="relative z-10 p-space-md m-space-md bg-surface-container-lowest/90 backdrop-blur rounded-lg shadow-sm">
-<div class="flex items-center justify-between mb-space-2xs">
-<span class="font-badge-caption text-badge-caption uppercase text-on-surface">Khumbu Acclimatization Gradient</span>
-<span class="font-label-sm text-label-sm text-primary font-bold">5,364m Target</span>
-</div>
-<!-- Elevation Sparkline SVG -->
-<svg class="w-full h-16 text-primary" fill="none" viewbox="0 0 300 60" xmlns="http://www.w3.org/2000/svg">
-<path d="M5 50 L 60 42 L 120 38 L 170 36 L 220 22 L 280 10" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
-<circle class="fill-ridge-deep" cx="5" cy="50" r="3.5"></circle>
-<circle class="fill-primary" cx="60" cy="42" r="3.5"></circle>
-<circle class="fill-amber-flare" cx="120" cy="38" r="3.5"></circle>
-<circle class="fill-amber-flare" cx="170" cy="36" r="3.5"></circle>
-<circle class="fill-primary" cx="220" cy="22" r="3.5"></circle>
-<circle class="fill-primary-container" cx="280" cy="10" r="4.5"></circle>
-<text fill="#526070" font-family="Work Sans" font-size="8" x="6" y="58">Lukla 2,860m</text>
-<text fill="#526070" font-family="Work Sans" font-size="8" x="50" y="34">Namche 3,440m</text>
-<text fill="#526070" font-family="Work Sans" font-size="8" x="155" y="48">Dingboche 4,410m</text>
-<text fill="#526070" font-family="Work Sans" font-size="8" x="240" y="20">EBC 5,364m</text>
-</svg>
-</div>
 </div>
 </div>
 </div>
 </section>
+@endif
 <!-- Curated Dispatches & Field Notes Strip Section -->
 <section class="w-full bg-surface-container-low px-gutter-desktop py-space-3xl">
 <div class="max-w-max-content-width mx-auto flex flex-col gap-space-2xl">
@@ -184,170 +124,43 @@
 </div>
 <!-- Main Layout: 8 cols Articles + 4 cols Sticky Field Notes -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
-<!-- 6 Articles Grid (8 cols) -->
+<!-- Articles Grid (8 cols) -->
 <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-space-lg">
-<!-- Article 1: Route Dossier -->
+@foreach($blogs as $post)
 <article class="flex flex-col bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden">
 <div class="relative h-48 w-full">
-<img class="w-full h-full object-cover" data-alt="Turquoise waters of Gokyo fourth lake reflecting snowcapped peaks under clear Himalayan high-altitude sky with rocky moraine trails and prayer flags fluttering on a pass cairn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu3n3GpgmP_diBZstjNuGFQjRK00Jdo6mwoMJaT1aFQNW9ZqfF2KjZc7HSdP3Gz14l5ENW5KQQHtFfCqwYhvZKd7klVNnMFiSTv5CFcR6UeNfTMBBvw0xqnzI76M0yr_LCnoo8Zpr2giGZlT2HPx-8GEg-MJ1Ew8KlBC5vxtRWqp3tKWnIf4Sfcs3ktCgGSV2XodfJUH2V6_U_qOuThHluTL_jz5A3y6v0XtJOVjzBORHs33h2-rWV"/>
+@if($post->featured_image)
+<img class="w-full h-full object-cover" alt="{{ $post->title }}" src="{{ Storage::url($post->featured_image) }}"/>
+@else
+<div class="w-full h-full bg-surface-variant flex items-center justify-center">
+    <span class="material-symbols-outlined text-4xl text-surface-dim">image</span>
+</div>
+@endif
+@if($post->category)
 <span class="absolute top-space-sm left-space-sm px-space-xs py-space-2xs rounded bg-ridge-deep text-summit-white font-badge-caption text-badge-caption uppercase">
-                Route Dossier
+                {{ $post->category->name }}
               </span>
-<span class="absolute bottom-space-sm right-space-sm px-space-xs py-space-2xs rounded bg-surface-container-lowest/90 font-badge-caption text-badge-caption text-on-surface">
-                5,420m Alt
-              </span>
+@endif
 </div>
 <div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
 <div class="flex flex-col gap-space-xs">
-<span class="font-badge-caption text-badge-caption uppercase text-secondary">High Khumbu Traverses</span>
+@if($post->category)
+<span class="font-badge-caption text-badge-caption uppercase text-secondary">{{ $post->category->name }}</span>
+@endif
 <h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors line-clamp-2">
-<a href="#">Cho La vs. Renjo La: Choosing Your High Khumbu Pass in Spring &amp; Autumn</a>
+<a href="{{ route('blog-detail', $post->slug) }}">{{ $post->title }}</a>
 </h3>
 <p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                  Comparing technical exposure, microspike necessity, moraine stability, and sunrise vistas over Gokyo sacred lakes. Detailed waypoint logs from our October 2024 crossing.
+                  {{ $post->excerpt }}
                 </p>
 </div>
 <div class="pt-space-sm flex items-center justify-between font-body-sm text-body-sm text-secondary">
-<span>Mingma Norbu Sherpa</span>
-<span>8 min read</span>
+<span>{{ $post->author?->name ?? 'Admin' }}</span>
+<span>{{ $post->created_at->format('M d, Y') }}</span>
 </div>
 </div>
 </article>
-<!-- Article 2: Gear Field Test -->
-<article class="flex flex-col bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden">
-<div class="relative h-48 w-full">
-<img class="w-full h-full object-cover" data-alt="Mountaineer in red technical alpine down jacket inspecting gear at snowy high camp against towering glaciated peaks during freezing twilight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6oykhW89BNgePD6FrTjU5KSE2_CNPkF_mozjFG5iZRV5QiKve2FLvCpBSMP0OK77hWTY_E4nwD-WIe4cWFXWdaoCVA0uTdTnanFA_XT6UHsBK37Pl7XbaGIYi6QePb9el-tVpht9TV9HugEcR9AOOn7bInmds1EANcz6MZ91n7amYE3ft4gBMfRnp-ZQcu8eB9p_UjhvaNvOGfx4QGmi47FlW_RnQbncvFZJVDwO2m7jfHwP3ybJK"/>
-<span class="absolute top-space-sm left-space-sm px-space-xs py-space-2xs rounded bg-primary-container text-on-primary-container font-badge-caption text-badge-caption uppercase">
-                Gear Field Test
-              </span>
-<span class="absolute bottom-space-sm right-space-sm px-space-xs py-space-2xs rounded bg-surface-container-lowest/90 font-badge-caption text-badge-caption text-on-surface">
-                -25°C Windchill
-              </span>
-</div>
-<div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
-<div class="flex flex-col gap-space-xs">
-<span class="font-badge-caption text-badge-caption uppercase text-secondary">Apparel Science</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors line-clamp-2">
-<a href="#">The Layering Doctrine: 8,000m Down vs. Primaloft in Negative 25°C Windchill</a>
-</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                  Real data on moisture management and loft preservation across 16 days in the Annapurna Sanctuary and Everest Camp II. Why synthetic mid-layers save expeditions when ice fog rolls in.
-                </p>
-</div>
-<div class="pt-space-sm flex items-center justify-between font-body-sm text-body-sm text-secondary">
-<span>Tashi Gyalzen Sherpa</span>
-<span>11 min read</span>
-</div>
-</div>
-</article>
-<!-- Article 3: Cultural Heritage -->
-<article class="flex flex-col bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden">
-<div class="relative h-48 w-full">
-<img class="w-full h-full object-cover" data-alt="Tibetan Buddhist monastery altar with glowing butter lamps juniper incense smoke swirling around intricate thangka paintings and golden Buddha statues in the Khumbu region" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-w1SJDNC_JVhGbwDSTXxjTgNZtfr1WGJWp7DMb0_ng-Qm4UQkioto3ikE-iexL45aN5dojeV2wtEPLyh_3soXa9JLpiS0Ipss6a-KKkgb_DGhyC9jzsBR5Oybjwo8la_GKzngw8esmmPt3nUPbiDtaq13P_oWTgokaxLecwmholXSechQPBAFBUAnbY99KBxJgnQqc5rppHXxc90oP4A-NNSAiv5-RUxsSbl4B-VJxrKjL61ba0Do"/>
-<span class="absolute top-space-sm left-space-sm px-space-xs py-space-2xs rounded bg-ridge-deep text-summit-white font-badge-caption text-badge-caption uppercase">
-                Cultural Heritage
-              </span>
-<span class="absolute bottom-space-sm right-space-sm px-space-xs py-space-2xs rounded bg-surface-container-lowest/90 font-badge-caption text-badge-caption text-on-surface">
-                Solukhumbu Archive
-              </span>
-</div>
-<div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
-<div class="flex flex-col gap-space-xs">
-<span class="font-badge-caption text-badge-caption uppercase text-secondary">Sherpa Cosmology</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors line-clamp-2">
-<a href="#">The Sacred Puja Ceremony: Why We Never Touch the Mountain Without Permission</a>
-</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                  Juniper smoke, tsampa flour, and prayer flags before stepping onto the Khumbu Icefall. An intimate look inside the spiritual cosmology that keeps our Sherpa teams grounded.
-                </p>
-</div>
-<div class="pt-space-sm flex items-center justify-between font-body-sm text-body-sm text-secondary">
-<span>Pasang Lhamu Sherpa</span>
-<span>6 min read</span>
-</div>
-</div>
-</article>
-<!-- Article 4: Climber Preparation -->
-<article class="flex flex-col bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden">
-<div class="relative h-48 w-full">
-<img class="w-full h-full object-cover" data-alt="Trekker with heavy expedition backpack ascending steep ancient stone steps through rhododendron and mossy alpine forest in Nepal mountains" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwQvttBeAJZd_3tRbmUS4JFDOZXITcHh0i3oCEAQe0VWpMarMwcFCBOcgto_seYRS0B5v4lb6jaIkOGVGMDjnLqyemvKn9df2uXYcl5LHKB5JCOejYt-09Yw_ATV1Q-OYYrub1AMKPAo_bZjxZi4xYhAtGPz3mWERAp71FDePYbH1CU23T_UU62cfQ8skRInelVmKRcG_xdJdvUPcYLndSr175EEG7auGxVUOTBR7SIAc-sgLzVinE"/>
-<span class="absolute top-space-sm left-space-sm px-space-xs py-space-2xs rounded bg-primary-container text-on-primary-container font-badge-caption text-badge-caption uppercase">
-                Training &amp; Fitness
-              </span>
-<span class="absolute bottom-space-sm right-space-sm px-space-xs py-space-2xs rounded bg-surface-container-lowest/90 font-badge-caption text-badge-caption text-on-surface">
-                12-Week Sheet
-              </span>
-</div>
-<div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
-<div class="flex flex-col gap-space-xs">
-<span class="font-badge-caption text-badge-caption uppercase text-secondary">Cardiovascular Conditioning</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors line-clamp-2">
-<a href="#">Building Eccentric Leg Strength &amp; VO2 Max for 3,000 Stone Steps: The 12-Week Protocol</a>
-</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                  Standard gym cardio will not prepare your quadriceps for the brutal Ulleri or Namche staircases. Our certified athletic conditioning guide tailored for sea-level hikers.
-                </p>
-</div>
-<div class="pt-space-sm flex items-center justify-between font-body-sm text-body-sm text-secondary">
-<span>Anton V. (Fitness Liaison)</span>
-<span>9 min read</span>
-</div>
-</div>
-</article>
-<!-- Article 5: High-Altitude Nutrition -->
-<article class="flex flex-col bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden">
-<div class="relative h-48 w-full">
-<img class="w-full h-full object-cover" data-alt="Traditional Sherpa teahouse interior with hot steaming bowl of garlic soup, lentils, rice and hot tea in copper cup beside rustic wooden dining table overlooking Himalayan snow outside window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXN2nBhwWypprbT5Hn9eT6NvB0fb3c898bSlOmGsf6df-xq4_EkD6eQnWnfFjUEVzd8eq1VpyadMNzYghKn22Tu6bhrYaudZsWniWhNCbNRsBfuBhr3br0zct83pN9iUv3FalMcMS4QsLdl1-0RSkPki0uWvop7HP2SZKZiXQJGlIocqhfVhjv_J_8QR9F989lnd5rbGtaG6kjG-l1Yx1rvfor84M25G8lwXY2dbYJ3TtCXLnlsG-3"/>
-<span class="absolute top-space-sm left-space-sm px-space-xs py-space-2xs rounded bg-surface-container-high text-on-surface-variant font-badge-caption text-badge-caption uppercase">
-                High-Altitude Nutrition
-              </span>
-<span class="absolute bottom-space-sm right-space-sm px-space-xs py-space-2xs rounded bg-surface-container-lowest/90 font-badge-caption text-badge-caption text-on-surface">
-                Metabolism
-              </span>
-</div>
-<div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
-<div class="flex flex-col gap-space-xs">
-<span class="font-badge-caption text-badge-caption uppercase text-secondary">Teahouse Science</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors line-clamp-2">
-<a href="#">Fueling Above 5,000m: Why Your Body Craves Carbohydrates Over Fats at High Altitude</a>
-</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                  The metabolic science of Sherpa Dal Bhat, garlic soup for arterial vasodilation, and the best caloric hacks for suppressed appetite in sub-zero camps.
-                </p>
-</div>
-<div class="pt-space-sm flex items-center justify-between font-body-sm text-body-sm text-secondary">
-<span>Dr. Nima &amp; Pemba Sherpa</span>
-<span>7 min read</span>
-</div>
-</div>
-</article>
-<!-- Article 6: Alpine Stewardship -->
-<article class="flex flex-col bg-surface-container-lowest rounded-lg shadow-sm hover:shadow-md transition-all overflow-hidden">
-<div class="relative h-48 w-full">
-<img class="w-full h-full object-cover" data-alt="Sherpa ecological clean-up team weighing recovered recyclable sacks at high glacial pass under pristine snowy Himalayan mountain cirque" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKhRzIt9nwo7pctPlfvs8iVIpHIqry2ODclO18DDsgOpcoCFkaFpctHY9RpxWXiazyIZPfEiEVhztb1XsrBvia1n_5P--0DxhEgOLO28SQnTNF2l31zaOzNJwd2ij5XRAxG-f6GLUXk-ahQ1UVEpztqc1maLq6I5CLSsutnlLqEvj4I3Vk8C3OczQU-KFuj6ovzkhSQW75rjxvzk-D4KqUsQIulpQDrospD2TUqlBQ0b870g67Z6HE"/>
-<span class="absolute top-space-sm left-space-sm px-space-xs py-space-2xs rounded bg-ridge-deep text-summit-white font-badge-caption text-badge-caption uppercase">
-                Alpine Stewardship
-              </span>
-<span class="absolute bottom-space-sm right-space-sm px-space-xs py-space-2xs rounded bg-surface-container-lowest/90 font-badge-caption text-badge-caption text-on-surface">
-                4.2 Tons Cleaned
-              </span>
-</div>
-<div class="p-space-lg flex flex-col justify-between flex-grow gap-space-md">
-<div class="flex flex-col gap-space-xs">
-<span class="font-badge-caption text-badge-caption uppercase text-secondary">IMEC Verified</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors line-clamp-2">
-<a href="#">Beyond Leave No Trace: How We Removed 4.2 Tons of Legacy Glacial Waste in 2024</a>
-</h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-                  A transparent audit of the Neepa Clean-Pass Initiative across Cho La and Thorong La, with GPS waypoint tracking and porter compensation metrics.
-                </p>
-</div>
-<div class="pt-space-sm flex items-center justify-between font-body-sm text-body-sm text-secondary">
-<span>Dawa Tenzing Sherpa</span>
-<span>5 min read</span>
-</div>
-</div>
-</article>
+@endforeach
 </div>
 <!-- Sidebar: Field Notes & Quick Wisdom (4 cols) -->
 <aside class="lg:col-span-4 flex flex-col gap-space-lg">
@@ -441,22 +254,9 @@
 <a class="px-space-xs py-space-2xs rounded bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm transition-colors" href="#">#LuklaFlights</a>
 <a class="px-space-xs py-space-2xs rounded bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm transition-colors" href="#">#PermitRules2025</a>
 </div>
-<!-- Numeric Pagination Bar -->
-<div class="flex items-center justify-between bg-surface-container-lowest p-space-md rounded-lg shadow-sm">
-<div class="flex items-center gap-space-xs">
-<button aria-label="Previous Page" class="w-9 h-9 flex items-center justify-center rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">
-<span class="material-symbols-outlined text-[18px]">chevron_left</span>
-</button>
-<span class="w-9 h-9 flex items-center justify-center rounded bg-ridge-deep text-summit-white font-label-sm text-label-sm">1</span>
-<button class="w-9 h-9 flex items-center justify-center rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">2</button>
-<button class="w-9 h-9 flex items-center justify-center rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">3</button>
-<span class="text-secondary px-space-2xs">•••</span>
-<button class="w-9 h-9 flex items-center justify-center rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm transition-colors">8</button>
-<button aria-label="Next Page" class="w-9 h-9 flex items-center justify-center rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">
-<span class="material-symbols-outlined text-[18px]">chevron_right</span>
-</button>
-</div>
-<span class="font-body-sm text-body-sm text-secondary hidden sm:inline">Page 1 of 8 dispatches</span>
+<!-- Pagination -->
+<div class="mt-space-md">
+{{ $blogs->links() }}
 </div>
 </div>
 </div>

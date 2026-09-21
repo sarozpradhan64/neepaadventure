@@ -13,20 +13,20 @@
                     <div
                         class="flex flex-wrap items-center justify-between gap-space-sm pb-space-md font-label-sm text-label-sm text-secondary">
                         <nav aria-label="Breadcrumbs" class="flex items-center gap-space-2xs">
-                            <a class="hover:text-primary transition-colors" href="#">Home</a>
+                            <a class="hover:text-primary transition-colors" href="{{ route('home') }}">Home</a>
                             <span>/</span>
-                            <a class="hover:text-primary transition-colors" href="#">blog &amp; Field Blog</a>
+                            <a class="hover:text-primary transition-colors" href="{{ route('blog') }}">Journal</a>
                             <span>/</span>
-                            <a class="hover:text-primary transition-colors" href="#">Altitude Medicine &amp;
-                                Safety</a>
+                            <a class="hover:text-primary transition-colors" href="{{ route('blog', ['category' => $blog->category?->slug]) }}">
+                                {{ $blog->category?->name ?? 'Uncategorized' }}
+                            </a>
                             <span>/</span>
-                            <span class="text-on-surface font-semibold truncate max-w-xs md:max-w-md">Khumbu Science
-                                4,000m Threshold</span>
+                            <span class="text-on-surface font-semibold truncate max-w-xs md:max-w-md">{{ $blog->title }}</span>
                         </nav>
                         <div
                             class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1 rounded-full text-on-surface text-badge-caption font-badge-caption">
                             <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary-container"></span>
-                            <span>WMS COMPLIANT • HRA FIELD CERTIFIED</span>
+                            <span>VERIFIED FIELD LOG</span>
                         </div>
                     </div>
                     <!-- Category Alpine Tag -->
@@ -34,20 +34,17 @@
                         <span
                             class="inline-flex items-center gap-space-2xs px-space-sm py-1 rounded bg-primary-container/15 text-on-primary-container font-badge-caption text-badge-caption tracking-widest uppercase">
                             <span class="material-symbols-outlined text-[14px]">vital_signs</span>
-                            Altitude Medicine • Clinical Field Dossier
+                            {{ $blog->category?->name ?? 'Dossier' }}
                         </span>
                     </div>
                     <!-- Master Article Headline & Subtitle -->
                     <div class="max-w-4xl flex flex-col gap-space-sm">
                         <h1
                             class="font-display-xl text-headline-lg md:text-display-xl text-on-surface tracking-tight leading-tight">
-                            The 4,000m Threshold: Managing Hypoxia, Acetazolamide (Diamox) Protocols, and Lake Louise
-                            Scoring on Khumbu Traverses
+                            {{ $blog->title }}
                         </h1>
                         <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                            Why the physiological acclimatization pause between Namche Bazaar (3,440m) and Dingboche
-                            (4,410m) dictates 95% of summit and pass success—backed by empirical data from 420+ Neepa
-                            expeditions and Himalayan Rescue Association clinical research.
+                            {{ $blog->excerpt }}
                         </p>
                     </div>
                     <!-- Dual Author Metadata & Audio Player Strip -->
@@ -55,41 +52,17 @@
                         class="mt-space-xl pt-space-lg flex flex-col xl:flex-row xl:items-center justify-between gap-space-lg bg-surface-container-lowest rounded-xl p-space-md shadow-sm">
                         <!-- Authors -->
                         <div class="flex flex-wrap items-center gap-space-lg">
-                            <!-- Dr Nima -->
                             <div class="flex items-center gap-space-sm">
-                                <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-dim shrink-0">
-                                    <img class="w-full h-full object-cover"
-                                        data-alt="Portrait of Dr Nima Tshering wearing high-altitude mountaineering shell jacket and medical stethoscope against alpine background"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVCjrnVgR2mga8yujlRHCE66jXY_DTZnWLY104iraax2c8X033l4rfwLI8CIItIFAUjamg0k2Z7P_0V9OdO5gioCVhdBhNP6GsvtPxfDDY4aCF-vOItHJy3W3Y5qI__T_0kfmjeYJ9BiwKltM5j8KjSqjhuaiUG-xRC-VaeDfH24BoDYjz9J1-jvlyKQsekOJogb9M2D0CDOr-fNXPaWvEHM43fRZFgHRNzg4G2gDikpgNpqDlh_Ce" />
+                                <div class="w-12 h-12 rounded-full overflow-hidden bg-ridge-deep text-summit-white flex items-center justify-center shrink-0">
+                                    <span class="font-bold">{{ strtoupper(substr($blog->author?->name ?? 'NA', 0, 2)) }}</span>
                                 </div>
                                 <div class="flex flex-col">
                                     <div class="flex items-center gap-space-2xs">
-                                        <span class="font-label-md text-label-md text-on-surface">Dr. Nima Tshering,
-                                            MD</span>
+                                        <span class="font-label-md text-label-md text-on-surface">{{ $blog->author?->name ?? 'Neepa Team' }}</span>
                                         <span class="material-symbols-outlined text-primary text-[16px]"
-                                            title="Wilderness Medical Society Certified">verified</span>
+                                            title="Verified Author">verified</span>
                                     </div>
-                                    <span class="font-body-sm text-body-sm text-secondary">Chief Medical Advisor •
-                                        Former Pheriche Clinic</span>
-                                </div>
-                            </div>
-                            <div class="hidden sm:block w-px h-8 bg-surface-variant"></div>
-                            <!-- Dawa Tenzing -->
-                            <div class="flex items-center gap-space-sm">
-                                <div class="w-12 h-12 rounded-full overflow-hidden bg-surface-dim shrink-0">
-                                    <img class="w-full h-full object-cover"
-                                        data-alt="Portrait of Dawa Tenzing Sherpa with mountaineering sunglasses on forehead, weathered face, yellow down suit collar visible"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAXTtlQfHBpRSOk3o-tO6GzSOauycQtfkGmXgpovVi_INXMjLMqR652QmbvYSziEZ4AGTPxTnkboPahp8MbLuEPg2y6Uzg9BNk9PGCZ0HvELupZS3u2zLJ3Is7SieoX3zO2e-qeOAQVjNZPPd-nZrj33D0SxeeDZr1Knqqw7A8mTcOQeb3bHAeez3O0zc_kBOrwgsR810H1u65sh9AFHyIuxR_f7YPUMdMIjQoesiTntBCCBuRKA0O" />
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="flex items-center gap-space-2xs">
-                                        <span class="font-label-md text-label-md text-on-surface">Dawa Tenzing
-                                            Sherpa</span>
-                                        <span class="material-symbols-outlined text-primary text-[16px]"
-                                            title="IFMGA Certified Mountain Guide">military_tech</span>
-                                    </div>
-                                    <span class="font-body-sm text-body-sm text-secondary">Lead Sirdar • 14x Everest
-                                        Summits • IFMGA</span>
+                                    <span class="font-body-sm text-body-sm text-secondary">Author • Field Expert</span>
                                 </div>
                             </div>
                         </div>
@@ -97,15 +70,7 @@
                         <div class="flex flex-wrap items-center gap-space-md font-body-sm text-body-sm text-secondary">
                             <div class="flex items-center gap-space-2xs">
                                 <span class="material-symbols-outlined text-[16px] text-tertiary">calendar_today</span>
-                                <span>March 12, 2025</span>
-                            </div>
-                            <div class="flex items-center gap-space-2xs">
-                                <span class="material-symbols-outlined text-[16px] text-tertiary">schedule</span>
-                                <span>14 min read</span>
-                            </div>
-                            <div class="flex items-center gap-space-2xs">
-                                <span class="material-symbols-outlined text-[16px] text-tertiary">visibility</span>
-                                <span>12,450 field views</span>
+                                <span>{{ $blog->created_at->format('F d, Y') }}</span>
                             </div>
                             <!-- Audio Listen Pill -->
                             <button
@@ -113,12 +78,10 @@
                                 id="audioPlayBtn">
                                 <span class="material-symbols-outlined text-[18px] text-primary"
                                     id="playIcon">play_circle</span>
-                                <span id="audioText">Listen (18m)</span>
+                                <span id="audioText">Listen</span>
                             </button>
                         </div>
                     </div>
-                    <!-- Quick Action Utilities Strip -->
-                    <div
                         class="mt-space-md flex flex-wrap items-center justify-between gap-space-sm pt-space-xs text-secondary font-label-sm text-label-sm">
                         <div class="flex items-center gap-space-xs">
                             <span class="text-on-surface-variant font-medium">Field Toolkit:</span>
@@ -226,48 +189,28 @@
                                 <svg class="w-full h-auto text-on-surface" fill="none" viewbox="0 0 860 220"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <defs>
-                                        <lineargradient id="altitudeGradient" x1="0" x2="0"
-                                            y1="0" y2="1">
-                                            <stop offset="0%" stop-color="#f6ba1a" stop-opacity="0.35"></stop>
-                                            <stop offset="100%" stop-color="#dee9f7" stop-opacity="0.05"></stop>
-                                        </lineargradient>
-                                        <lineargradient id="pressureCurve" x1="0" x2="1"
-                                            y1="0" y2="0">
-                                            <stop offset="0%" stop-color="#526070"></stop>
-                                            <stop offset="100%" stop-color="#ba1a1a"></stop>
-                                        </lineargradient>
-                                    </defs>
-                                    <!-- Axis Guidelines & Elevation Ticks -->
-                                    <line stroke="#E2E7EC" stroke-dasharray="4 4" stroke-width="1" x1="60"
-                                        x2="820" y1="20" y2="20"></line>
-                                    <text class="text-[10px] fill-secondary font-mono" text-anchor="end" x="50"
-                                        y="24">5,545m</text>
-                                    <line stroke="#E2E7EC" stroke-dasharray="4 4" stroke-width="1" x1="60"
-                                        x2="820" y1="70" y2="70"></line>
-                                    <text class="text-[10px] fill-secondary font-mono" text-anchor="end" x="50"
-                                        y="74">4,410m</text>
-                                    <!-- 4,000m Threshold Danger Line -->
-                                    <line stroke="#d49806" stroke-dasharray="3 3" stroke-width="1.5" x1="60"
-                                        x2="820" y1="92" y2="92"></line>
-                                    <text class="text-[11px] font-bold fill-primary" x="825" y="96">4,000m CRITICAL
-                                        THRESHOLD</text>
-                                    <line stroke="#E2E7EC" stroke-dasharray="4 4" stroke-width="1" x1="60"
-                                        x2="820" y1="125" y2="125"></line>
-                                    <text class="text-[10px] fill-secondary font-mono" text-anchor="end" x="50"
-                                        y="129">3,440m</text>
-                                    <line stroke="#E2E7EC" stroke-width="1" x1="60" x2="820"
-                                        y1="170" y2="170"></line>
-                                    <text class="text-[10px] fill-secondary font-mono" text-anchor="end" x="50"
-                                        y="174">2,600m</text>
-                                    <!-- Terrain Filled Area -->
-                                    <path
-                                        d="M 70,158 L 160,172 L 260,125 L 320,125 L 420,105 L 530,70 L 590,70 L 690,46 L 760,30 L 810,18 L 810,195 L 70,195 Z"
-                                        fill="url(#altitudeGradient)"></path>
-                                    <!-- Terrain Ascent Contour Path -->
-                                    <path
-                                        d="M 70,158 L 160,172 L 260,125 L 320,125 L 420,105 L 530,70 L 590,70 L 690,46 L 760,30 L 810,18"
-                                        stroke="#795900" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="3"></path>
+                    <!-- Immersive Expedition Image -->
+                    <div
+                        class="relative w-full h-[380px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl mt-space-md">
+                        @if($blog->featured_image)
+                        <div class="w-full h-full bg-cover bg-center"
+                            style="background-image: url('{{ Storage::url($blog->featured_image) }}')">
+                        </div>
+                        @else
+                        <div class="w-full h-full bg-surface-variant flex items-center justify-center">
+                            <span class="material-symbols-outlined text-6xl text-surface-dim">image</span>
+                        </div>
+                        @endif
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-ridge-deep/80 via-transparent to-transparent">
+                        </div>
+                        <div
+                            class="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-space-md text-summit-white">
+                            <div>
+                                <h2 class="font-headline-md text-headline-md text-summit-white mt-1">{{ $blog->title }}</h2>
+                            </div>
+                        </div>
+                    </div>
                                     <!-- Rest / Acclimatization Flat Plateau Callouts -->
                                     <rect fill="#f6ba1a" fill-opacity="0.25" height="20" rx="4"
                                         width="80" x="250" y="115"></rect>
@@ -364,388 +307,10 @@
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
                         <!-- LEFT EDITORIAL CONTENT (8 cols on lg) -->
                         <article class="lg:col-span-8 flex flex-col gap-space-2xl min-w-0">
-                            <!-- SECTION 1 -->
-                            <section class="scroll-mt-28 flex flex-col gap-space-md" id="biology">
-                                <div
-                                    class="flex items-center gap-space-xs font-badge-caption text-badge-caption text-primary tracking-widest uppercase">
-                                    <span>Section 01</span>
-                                    <span>•</span>
-                                    <span>Respiratory Physiology</span>
-                                </div>
-                                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                    The Biology of Thin Air: What Happens to Blood Plasma and Chemoreceptors at 3,500m
-                                </h2>
-                                <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                                    When ascending into the high Khumbu valley, the ambient air still contains exactly
-                                    20.94% oxygen by chemical volume. The adversary is not oxygen dilution; it is
-                                    <strong class="text-on-surface font-semibold">barometric decompression</strong>. As
-                                    atmospheric pressure plummets from 101.3 kPa at sea level to 67 kPa in Namche
-                                    Bazaar, the pressure gradient forcing oxygen through your alveolar capillary
-                                    membranes into red blood cell hemoglobin collapses.
-                                </p>
-                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                                    Your peripheral carotid body chemoreceptors immediately sense arterial hypoxemia
-                                    ($PaO_2 &lt; 60\text{ mmHg}$). The immediate reflex is <em
-                                        class="italic text-on-surface">hyperventilation</em>. While hyperventilation
-                                    draws in more oxygen molecules, it triggers an involuntary biochemical side-effect:
-                                    excessive exhalation of carbon dioxide ($CO_2$).
-                                </p>
-                                <!-- Anatomical Insight Callout Grid -->
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md my-space-sm">
-                                    <div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-xs">
-                                        <div
-                                            class="flex items-center gap-space-2xs text-on-surface font-label-md text-label-md">
-                                            <span
-                                                class="material-symbols-outlined text-primary text-[20px]">science</span>
-                                            Respiratory Alkalosis
-                                        </div>
-                                        <p class="font-body-sm text-body-sm text-secondary">
-                                            Lowered $CO_2$ causes blood pH to spike from normal 7.40 toward 7.48. This
-                                            alkaline state inhibits brainstem respiratory drive during sleep, prompting
-                                            erratic Cheyne-Stokes breathing cycles where climbers wake gasping for air.
-                                        </p>
-                                    </div>
-                                    <div class="bg-surface-container rounded-xl p-space-md flex flex-col gap-space-xs">
-                                        <div
-                                            class="flex items-center gap-space-2xs text-on-surface font-label-md text-label-md">
-                                            <span
-                                                class="material-symbols-outlined text-primary text-[20px]">water_drop</span>
-                                            Renal Bicarbonate Excretion
-                                        </div>
-                                        <p class="font-body-sm text-body-sm text-secondary">
-                                            To restore equilibrium, your kidneys must excrete alkaline bicarbonate
-                                            ($HCO_3^-$) through urine over 48 to 72 hours. This biochemical
-                                            recalibration is non-negotiable and cannot be accelerated by sheer will.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="p-space-lg bg-surface-container-high rounded-xl">
-                                    <p class="font-headline-sm text-headline-sm text-on-surface italic leading-snug">
-                                        “The acclimatization curve is purely biochemical, not mental grit. You cannot
-                                        negotiate with hemoglobin saturation through willpower.”
-                                    </p>
-                                    <span
-                                        class="block mt-space-xs font-label-sm text-label-sm text-secondary font-semibold">—
-                                        Dr. Nima Tshering, MD</span>
-                                </div>
-                            </section>
-                            <!-- SECTION 2 -->
-                            <section class="scroll-mt-28 flex flex-col gap-space-md" id="diamox-protocols">
-                                <div
-                                    class="flex items-center gap-space-xs font-badge-caption text-badge-caption text-primary tracking-widest uppercase">
-                                    <span>Section 02</span>
-                                    <span>•</span>
-                                    <span>Pharmacological Standards</span>
-                                </div>
-                                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                    Clinical Acetazolamide (Diamox) Protocol: Myths vs. Evidence
-                                </h2>
-                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                                    Acetazolamide (marketed globally as Diamox) is a carbonic anhydrase inhibitor. In
-                                    the words of high-altitude physicians, <strong
-                                        class="text-on-surface font-semibold">Diamox does not mask symptoms of Acute
-                                        Mountain Sickness (AMS)</strong>; it actively accelerates natural biochemical
-                                    acclimatization by forcing renal bicarbonate dump, thereby acidifying the blood and
-                                    stimulating your respiratory drive to breathe deeper at night.
-                                </p>
-                                <!-- Protocol Comparison Table -->
-                                <div class="overflow-x-auto rounded-xl bg-surface-container-lowest shadow-sm">
-                                    <table class="w-full text-left font-body-sm text-body-sm">
-                                        <thead
-                                            class="bg-surface-container font-label-sm text-label-sm text-on-surface uppercase">
-                                            <tr>
-                                                <th class="p-space-sm">Parameter</th>
-                                                <th class="p-space-sm">Standard WMS / Neepa Protocol</th>
-                                                <th class="p-space-sm">Outdated Common Practice</th>
-                                                <th class="p-space-sm">Clinical Notes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-surface-container">
-                                            <tr class="hover:bg-surface-container-low transition-colors">
-                                                <td class="p-space-sm font-semibold text-on-surface">Prophylactic Dose
-                                                </td>
-                                                <td class="p-space-sm font-bold text-primary">125 mg every 12 hours
-                                                </td>
-                                                <td class="p-space-sm text-secondary">250 mg every 12 hours</td>
-                                                <td class="p-space-sm text-on-surface-variant">125mg achieves
-                                                    equivalent gas exchange with 60% fewer paresthesias.</td>
-                                            </tr>
-                                            <tr class="hover:bg-surface-container-low transition-colors">
-                                                <td class="p-space-sm font-semibold text-on-surface">Initiation Timing
-                                                </td>
-                                                <td class="p-space-sm font-bold text-primary">24h prior to crossing
-                                                    3,000m</td>
-                                                <td class="p-space-sm text-secondary">Only after headache begins</td>
-                                                <td class="p-space-sm text-on-surface-variant">Start at Phakding
-                                                    (2,610m) before ascending Namche hill.</td>
-                                            </tr>
-                                            <tr class="hover:bg-surface-container-low transition-colors">
-                                                <td class="p-space-sm font-semibold text-on-surface">Known Side Effects
-                                                </td>
-                                                <td class="p-space-sm text-on-surface">Paresthesia (finger tingling),
-                                                    altered CO2 taste</td>
-                                                <td class="p-space-sm text-secondary">Mistaken for freezing injury</td>
-                                                <td class="p-space-sm text-on-surface-variant">Tingly toes and fizzy
-                                                    beer tasting flat are normal carbonic inhibition.</td>
-                                            </tr>
-                                            <tr class="hover:bg-surface-container-low transition-colors">
-                                                <td class="p-space-sm font-semibold text-on-surface">Absolute
-                                                    Contraindication</td>
-                                                <td class="p-space-sm font-bold text-error">Sulfa Drug Allergy</td>
-                                                <td class="p-space-sm text-secondary">Ignoring penicillin cross-check
-                                                </td>
-                                                <td class="p-space-sm text-on-surface-variant">Severe anaphylactic
-                                                    risk. Never prescribe without allergy screening.</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- EMERGENCY MOUNTAIN GOLD CALLOUT -->
-                                <div class="bg-primary-container/20 rounded-2xl p-space-lg text-on-surface shadow-sm">
-                                    <div
-                                        class="flex items-center gap-space-xs text-primary font-badge-caption text-badge-caption uppercase tracking-wider mb-space-xs">
-                                        <span class="material-symbols-outlined text-[20px]">warning</span>
-                                        Neepa Field Doctrine: The Himalayan Golden Rules
-                                    </div>
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">The Three
-                                        Non-Negotiable Axioms of High Altitude</h3>
-                                    <ol
-                                        class="mt-space-sm space-y-space-xs font-body-md text-body-md text-on-surface-variant list-decimal list-inside">
-                                        <li><strong class="text-on-surface font-semibold">Any sickness above 3,000
-                                                meters is Altitude Illness</strong> until thoroughly proven otherwise by
-                                            clinical examination.</li>
-                                        <li><strong class="text-on-surface font-semibold">Never ascend to a higher
-                                                sleeping elevation</strong> with lingering symptoms of Acute Mountain
-                                            Sickness (AMS).</li>
-                                        <li><strong class="text-on-surface font-semibold">If symptoms deteriorate,
-                                                DESCEND IMMEDIATELY.</strong> Descending 500 meters is clinically more
-                                            therapeutic than 100 medicine bottles or supplemental oxygen canisters.</li>
-                                    </ol>
-                                </div>
-                            </section>
-                            <!-- SECTION 3 -->
-                            <section class="scroll-mt-28 flex flex-col gap-space-md" id="lake-louise">
-                                <div
-                                    class="flex items-center gap-space-xs font-badge-caption text-badge-caption text-primary tracking-widest uppercase">
-                                    <span>Section 03</span>
-                                    <span>•</span>
-                                    <span>Diagnostic Diagnostic Matrix</span>
-                                </div>
-                                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                    The Lake Louise Acute Mountain Sickness (AMS) Scoring Protocol
-                                </h2>
-                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                                    Developed by the International Hypoxia Symposium in Lake Louise, Canada, and revised
-                                    in 2018, this score is the worldwide standard used by Himalayan Rescue Association
-                                    clinicians and Neepa expedition leaders. The presence of headache is required,
-                                    combined with a composite score across four cardinal symptom categories.
-                                </p>
-                                <!-- Interactive Lake Louise Self-Assessment Calculator / Matrix -->
-                                <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
-                                    <div class="flex items-center justify-between pb-space-sm">
-                                        <span class="font-label-md text-label-md text-on-surface">Field AMS Evaluation
-                                            Sheet (2018 Revision)</span>
-                                        <span
-                                            class="font-badge-caption text-badge-caption bg-surface-container px-2 py-1 rounded text-secondary">MANDATORY
-                                            MORNING LOG</span>
-                                    </div>
-                                    <div class="space-y-space-md mt-space-xs">
-                                        <!-- Row 1 Headache -->
-                                        <div class="bg-surface-container-low p-space-sm rounded-xl">
-                                            <div class="flex justify-between items-center mb-1">
-                                                <span class="font-label-md text-label-md text-on-surface">1. Headache
-                                                    (Obligate Symptom)</span>
-                                                <span class="text-xs text-primary font-bold" id="headacheVal">0
-                                                    pts</span>
-                                            </div>
-                                            <input class="w-full accent-primary cursor-pointer" id="headacheSlider"
-                                                max="3" min="0" step="1" type="range"
-                                                value="0" />
-                                            <div class="flex justify-between text-[11px] text-secondary mt-1">
-                                                <span>0: None</span>
-                                                <span>1: Mild</span>
-                                                <span>2: Moderate</span>
-                                                <span>3: Severe / Incapacitating</span>
-                                            </div>
-                                        </div>
-                                        <!-- Row 2 GI -->
-                                        <div class="bg-surface-container-low p-space-sm rounded-xl">
-                                            <div class="flex justify-between items-center mb-1">
-                                                <span class="font-label-md text-label-md text-on-surface">2.
-                                                    Gastrointestinal Symptoms</span>
-                                                <span class="text-xs text-primary font-bold" id="giVal">0
-                                                    pts</span>
-                                            </div>
-                                            <input class="w-full accent-primary cursor-pointer" id="giSlider"
-                                                max="3" min="0" step="1" type="range"
-                                                value="0" />
-                                            <div class="flex justify-between text-[11px] text-secondary mt-1">
-                                                <span>0: Good appetite</span>
-                                                <span>1: Poor appetite</span>
-                                                <span>2: Moderate nausea</span>
-                                                <span>3: Severe nausea/vomiting</span>
-                                            </div>
-                                        </div>
-                                        <!-- Row 3 Fatigue -->
-                                        <div class="bg-surface-container-low p-space-sm rounded-xl">
-                                            <div class="flex justify-between items-center mb-1">
-                                                <span class="font-label-md text-label-md text-on-surface">3. Fatigue /
-                                                    Weakness</span>
-                                                <span class="text-xs text-primary font-bold" id="fatigueVal">0
-                                                    pts</span>
-                                            </div>
-                                            <input class="w-full accent-primary cursor-pointer" id="fatigueSlider"
-                                                max="3" min="0" step="1" type="range"
-                                                value="0" />
-                                            <div class="flex justify-between text-[11px] text-secondary mt-1">
-                                                <span>0: Normal energy</span>
-                                                <span>1: Mild fatigue</span>
-                                                <span>2: Moderate weakness</span>
-                                                <span>3: Severe / Bedridden</span>
-                                            </div>
-                                        </div>
-                                        <!-- Row 4 Dizziness -->
-                                        <div class="bg-surface-container-low p-space-sm rounded-xl">
-                                            <div class="flex justify-between items-center mb-1">
-                                                <span class="font-label-md text-label-md text-on-surface">4. Dizziness
-                                                    / Lightheadedness</span>
-                                                <span class="text-xs text-primary font-bold" id="dizzinessVal">0
-                                                    pts</span>
-                                            </div>
-                                            <input class="w-full accent-primary cursor-pointer" id="dizzinessSlider"
-                                                max="3" min="0" step="1" type="range"
-                                                value="0" />
-                                            <div class="flex justify-between text-[11px] text-secondary mt-1">
-                                                <span>0: None</span>
-                                                <span>1: Mild</span>
-                                                <span>2: Moderate</span>
-                                                <span>3: Severe dizziness</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Live Score Result Box -->
-                                    <div
-                                        class="mt-space-md p-space-md rounded-xl bg-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-md">
-                                        <div>
-                                            <div
-                                                class="font-badge-caption text-badge-caption text-secondary uppercase">
-                                                Calculated Lake Louise Score</div>
-                                            <div class="flex items-baseline gap-space-xs">
-                                                <span
-                                                    class="font-display-xl text-headline-lg font-bold text-on-surface"
-                                                    id="totalScore">0</span>
-                                                <span class="font-body-sm text-body-sm text-secondary">/ 12 Total
-                                                    Points</span>
-                                            </div>
-                                        </div>
-                                        <div class="text-right sm:text-right w-full sm:w-auto">
-                                            <span
-                                                class="inline-block px-space-sm py-1 rounded font-label-md text-label-md bg-secondary-container text-on-secondary-container"
-                                                id="scoreBadge">
-                                                Normal Acclimatization Status
-                                            </span>
-                                            <p class="font-body-sm text-body-sm text-secondary mt-1 max-w-sm"
-                                                id="scoreAction">
-                                                Clear for scheduled elevation gain. Continue twice-daily telemetry
-                                                logging.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <!-- SECTION 4 -->
-                            <section class="scroll-mt-28 flex flex-col gap-space-md" id="pulse-oximetry">
-                                <div
-                                    class="flex items-center gap-space-xs font-badge-caption text-badge-caption text-primary tracking-widest uppercase">
-                                    <span>Section 04</span>
-                                    <span>•</span>
-                                    <span>Diagnostic Traps</span>
-                                </div>
-                                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                    Pulse Oximetry Field Calibration: Understanding the SpO2 Fallacy
-                                </h2>
-                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                                    Every morning at 07:00 and evening at 19:00 inside Neepa tea house dining halls, our
-                                    lead guides perform pulse oximetry. However, an uncalibrated fingertip sensor at
-                                    sub-zero temperatures generates alarming false positives.
-                                </p>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-                                    <div class="relative h-64 rounded-xl overflow-hidden shadow-sm">
-                                        <img class="w-full h-full object-cover"
-                                            data-alt="Close up shot of an expedition guide measuring a trekker's finger pulse oximeter inside a wood-lined Sherpa lodge in Namche Bazaar, glowing red LED sensor reading SpO2 88 percent"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKIPLySIKQfmjpky8ZzczsHkd4BvROMedFBZ90zgXCNivLcXXiWzcuMP9eAr-aO7yFhoGfySto6oSaAe94E0I7egSktsg3oEaJShj8jN-geg6pnPzu54rBDx2h8PFdNExvkUfIbKVrmLTKQLUKvMft5d6hn6ru0IAv1edSojbqV43HxopNvuwyBPhnI9kFXACrrrOyWQmc3oTPku5RSVi9xiTy0z9f3DHcuN9CvAkwXbIEVqbamJl7" />
-                                        <div
-                                            class="absolute bottom-2 left-2 bg-ridge-deep/80 backdrop-blur-sm px-2 py-1 rounded text-xs text-summit-white">
-                                            Namche Lodge (3,440m) • Standard Calibration
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="flex flex-col justify-center gap-space-xs bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
-                                        <h4 class="font-headline-sm text-headline-sm text-on-surface">The
-                                            Vasoconstriction Pitfall</h4>
-                                        <p class="font-body-sm text-body-sm text-on-surface-variant">
-                                            When fingers are cold, peripheral arterioles clamp down. The
-                                            photoplethysmographic sensor reads this low capillary pulse amplitude as
-                                            severe desaturation (e.g., reading 64% when true central venous saturation
-                                            is 88%).
-                                        </p>
-                                        <div
-                                            class="mt-space-xs bg-surface-container p-space-xs rounded font-label-sm text-label-sm text-on-surface">
-                                            <strong>The 5-Minute Neepa Warm-Up Protocol:</strong>
-                                            Trekkers place fingers in down mittens with body heat for 300 seconds before
-                                            sampling. If pulse waveform is erratic, oximetry is disregarded.
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <!-- SECTION 5 -->
-                            <section class="scroll-mt-28 flex flex-col gap-space-md" id="hydration">
-                                <div
-                                    class="flex items-center gap-space-xs font-badge-caption text-badge-caption text-primary tracking-widest uppercase">
-                                    <span>Section 05</span>
-                                    <span>•</span>
-                                    <span>Metabolism &amp; Nutrition</span>
-                                </div>
-                                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                    The Hydration Paradox &amp; High-Carb Caloric Demand
-                                </h2>
-                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                                    In cold, desert-dry Himalayan air, water is stripped from your bloodstream with
-                                    every respiratory cycle. At 4,000m, a mountaineer loses upwards of <strong
-                                        class="text-on-surface font-semibold">1,200 mL of fluid solely through
-                                        hyperventilation</strong> before taking a single walking stride.
-                                </p>
-                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                                    Target fluid turnover is 4.0 to 4.5 liters daily. However, drinking pure snowmelt
-                                    devoid of minerals creates dangerous exercise-associated hyponatremia. Neepa kitchen
-                                    sirdars integrate traditional high-potassium garlic broth (which Sherpas have
-                                    leveraged for four centuries to stimulate circulation) and warm lemon ginger honey
-                                    infusions at every rest checkpoint.
-                                </p>
-                                <!-- Quote Block Lead Sirdar -->
-                                <div
-                                    class="mt-space-md p-space-lg rounded-2xl bg-surface-container-high relative overflow-hidden">
-                                    <div class="flex items-start gap-space-md">
-                                        <span
-                                            class="material-symbols-outlined text-primary text-[40px] shrink-0">format_quote</span>
-                                        <div class="flex flex-col gap-space-xs">
-                                            <p class="font-body-lg text-body-lg text-on-surface italic">
-                                                “In Sherpa culture, the physical body is sacred and Chomolungma is
-                                                mother. Rushing the mountain is not courage; it is ego clashing with
-                                                biology. When the morning breath test says stay, we stay. The mountain
-                                                will wait for your blood to rise.”
-                                            </p>
-                                            <div class="mt-space-xs flex items-center gap-space-xs">
-                                                <span
-                                                    class="font-label-md text-label-md text-on-surface font-bold">Dawa
-                                                    Tenzing Sherpa</span>
-                                                <span class="text-secondary font-label-sm text-label-sm">• Neepa Lead
-                                                    Sirdar, 14x Everest Summits</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
+                            <!-- DYNAMIC ARTICLE CONTENT -->
+                            <div class="prose prose-slate lg:prose-lg max-w-none text-on-surface-variant mb-space-2xl">
+                                {!! $blog->content !!}
+                            </div>
                             <!-- AUTHOR DETAILED PROFILE BOX -->
                             <div class="mt-space-xl p-space-lg bg-surface-container-lowest rounded-2xl shadow-sm">
                                 <div
@@ -1169,107 +734,47 @@
                                     </h4>
                                     <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
                                         Conditioning quadriceps and stabilizing tendons for the jarring descents from
-                                        Tengboche and Namche.
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+                        @foreach($relatedBlogs as $related)
+                        <article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
+                            <div class="h-48 w-full overflow-hidden relative">
+                                @if($related->featured_image)
+                                <img class="w-full h-full object-cover"
+                                    alt="{{ $related->title }}"
+                                    src="{{ Storage::url($related->featured_image) }}" />
+                                @else
+                                <div class="w-full h-full bg-surface-variant flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-4xl text-surface-dim">image</span>
+                                </div>
+                                @endif
+                                @if($related->category)
+                                <span
+                                    class="absolute top-3 left-3 px-2 py-0.5 rounded bg-ridge-deep/80 text-primary-container font-badge-caption text-badge-caption uppercase">{{ $related->category->name }}</span>
+                                @endif
+                            </div>
+                            <div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
+                                <div>
+                                    <div
+                                        class="flex items-center gap-space-2xs text-secondary font-body-sm text-body-sm mb-1">
+                                        <span>{{ $related->created_at->format('M d, Y') }}</span>
+                                    </div>
+                                    <h4
+                                        class="font-headline-sm text-headline-sm text-on-surface font-semibold hover:text-primary transition-colors">
+                                        <a href="{{ route('blog-detail', $related->slug) }}">{{ $related->title }}</a>
+                                    </h4>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-2 line-clamp-2">
+                                        {{ $related->excerpt }}
                                     </p>
                                 </div>
                                 <a class="font-label-sm text-label-sm text-primary font-bold hover:underline flex items-center gap-1"
-                                    href="#">
+                                    href="{{ route('blog-detail', $related->slug) }}">
                                     Read Field Guide <span
                                         class="material-symbols-outlined text-[14px]">arrow_forward</span>
                                 </a>
                             </div>
                         </article>
+                        @endforeach
                     </div>
-                </div>
-            </section>
-            <!-- EXPEDITION CONVERSION CTA BANNER -->
-            <section class="w-full bg-ridge-deep text-summit-white py-space-3xl relative overflow-hidden">
-                <!-- Subtle Background Glow -->
-                <div
-                    class="absolute -right-20 -top-20 w-96 h-96 rounded-full bg-primary/20 blur-3xl pointer-events-none">
-                </div>
-                <div class="max-w-max-content-width mx-auto px-gutter-desktop relative z-10">
-                    <div class="flex flex-col lg:flex-row items-center justify-between gap-space-xl">
-                        <div class="max-w-2xl flex flex-col gap-space-sm">
-                            <span
-                                class="font-badge-caption text-badge-caption text-primary-container uppercase tracking-widest">
-                                Expedition Application • Autumn 2025 &amp; Spring 2026
-                            </span>
-                            <h2
-                                class="font-display-xl text-headline-lg md:text-headline-lg font-bold text-summit-white leading-tight">
-                                Ready to Put This Acclimatization Science Into Practice on Trail?
-                            </h2>
-                            <p class="font-body-lg text-body-lg text-surface-dim">
-                                Our Everest Base Camp &amp; Gokyo Ri itineraries feature built-in dual acclimatization
-                                buffer days, twice-daily pulse-oximetry monitoring, and 1:1 Sherpa guide safety
-                                oversight for complete peace of mind.
-                            </p>
-                            <div
-                                class="flex flex-wrap items-center gap-space-md text-surface-dim font-label-sm text-label-sm pt-space-xs">
-                                <span class="flex items-center gap-1"><span
-                                        class="material-symbols-outlined text-primary-container text-[16px]">verified</span>
-                                    100% Sherpa Guided</span>
-                                <span class="flex items-center gap-1"><span
-                                        class="material-symbols-outlined text-primary-container text-[16px]">verified</span>
-                                    Medical Sat-Comms Ready</span>
-                                <span class="flex items-center gap-1"><span
-                                        class="material-symbols-outlined text-primary-container text-[16px]">verified</span>
-                                    Max 8 Climbers Per Group</span>
-                            </div>
-                        </div>
-                        <div class="flex flex-col sm:flex-row lg:flex-col gap-space-sm w-full lg:w-auto shrink-0">
-                            <a class="px-space-xl py-3.5 rounded-lg bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md uppercase tracking-wider text-center font-bold transition-colors shadow-lg"
-                                href="#">
-                                Explore Everest Base Camp &amp; Gokyo Ri (16 Days)
-                            </a>
-                            <a class="px-space-xl py-3.5 rounded-lg bg-secondary hover:bg-tertiary text-summit-white font-label-md text-label-md uppercase tracking-wider text-center font-bold transition-colors"
-                                href="#">
-                                Schedule Medical &amp; Itinerary Briefing
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- INLINE CLIENT SCRIPT: Reading Progress & Lake Louise Matrix Calculator -->
-            <script>
-                // Reading Progress Indicator
-                window.addEventListener('scroll', () => {
-                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                    const scrolled = window.scrollY;
-                    const pct = (scrolled / docHeight) * 100;
-                    const bar = document.getElementById('readProgress');
-                    if (bar) {
-                        bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
-                    }
-                });
-
-                // Audio Play Toggle Simulation
-                const audioBtn = document.getElementById('audioPlayBtn');
-                const playIcon = document.getElementById('playIcon');
-                const audioText = document.getElementById('audioText');
-                let isPlaying = false;
-                if (audioBtn) {
-                    audioBtn.addEventListener('click', () => {
-                        isPlaying = !isPlaying;
-                        if (isPlaying) {
-                            playIcon.textContent = 'pause_circle';
-                            audioText.textContent = 'Playing (18m)...';
-                            audioBtn.classList.add('bg-primary-container', 'text-on-primary-container');
-                        } else {
-                            playIcon.textContent = 'play_circle';
-                            audioText.textContent = 'Listen (18m)';
-                            audioBtn.classList.remove('bg-primary-container', 'text-on-primary-container');
-                        }
-                    });
-                }
-
-                // Lake Louise Interactive Scoring Logic
-                const hSlider = document.getElementById('headacheSlider');
-                const gSlider = document.getElementById('giSlider');
-                const fSlider = document.getElementById('fatigueSlider');
-                const dSlider = document.getElementById('dizzinessSlider');
-
-                const hVal = document.getElementById('headacheVal');
                 const gVal = document.getElementById('giVal');
                 const fVal = document.getElementById('fatigueVal');
                 const dVal = document.getElementById('dizzinessVal');
@@ -1327,3 +832,7 @@
     </main>
     <x-footer />
 </x-layouts.app>
+
+
+
+

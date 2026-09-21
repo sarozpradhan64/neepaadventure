@@ -18,25 +18,33 @@
                 </div>
                 <div
                     class="relative max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop z-10 flex flex-col items-center text-center">
-                    <!-- Eyebrow Badge -->
-                    <div
-                        class="inline-flex items-center gap-space-xs px-space-md py-space-2xs rounded-full bg-summit-white/10 backdrop-blur-md border border-summit-white/20 mb-space-lg shadow-lg animate-pulse">
-                        <span class="w-2 h-2 rounded-full bg-primary-container"></span>
-                        <span
-                            class="font-badge-caption text-badge-caption text-primary-fixed uppercase tracking-widest">Nepal's
-                            Leading High-Altitude Specialists • Since 2012</span>
-                    </div>
+                    @php
+                        $heroTitle = $websiteSettings['hero_title'] ?? "Conquer the World's Highest Peaks with Sherpa Mastery";
+                        $heroText = $websiteSettings['hero_text'] ?? "Pioneering 100% safety records across Nepal's 8,000m trails. Led by certified IFMGA/NNMGA Sherpa leaders with sustainable zero-plastic ethics and intimate small expedition teams.";
+                        $highlightText = $websiteSettings['hero_highlighted_text'] ?? '';
+                        
+                        if ($highlightText) {
+                            $words = array_filter(array_map('trim', explode(',', $highlightText)));
+                            foreach ($words as $word) {
+                                if (str_contains($heroTitle, $word)) {
+                                    $heroTitle = str_replace(
+                                        $word, 
+                                        '<span class="text-primary-container inline-block">' . $word . '</span>', 
+                                        $heroTitle
+                                    );
+                                }
+                            }
+                        }
+                    @endphp
                     <!-- Main Headline -->
                     <h1
                         class="font-display-xl text-display-xl text-summit-white max-w-4xl tracking-tight leading-[1.08] mb-space-md">
-                        Conquer the World's Highest Peaks with <span class="text-primary-container inline-block">Sherpa
-                            Mastery</span>
+                        {!! $heroTitle !!}
                     </h1>
                     <!-- Subheadline -->
                     <p
                         class="font-body-lg text-body-lg text-surface-container max-w-2xl mx-auto mb-space-xl opacity-90">
-                        Pioneering 100% safety records across Nepal's 8,000m trails. Led by certified IFMGA/NNMGA Sherpa
-                        leaders with sustainable zero-plastic ethics and intimate small expedition teams.
+                        {{ $heroText }}
                     </p>
                     <!-- Quick Trust Proof Badges -->
                     <div
@@ -63,7 +71,7 @@
                         </div>
                     </div>
                     <!-- Interactive Floating Trip Search & Filter Bar -->
-                    <div
+                    {{-- <div
                         class="w-full max-w-5xl bg-surface-container-lowest shadow-2xl rounded-xl p-space-md lg:p-space-lg text-left -mb-16 relative z-20">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md items-end">
                             <!-- Destination Field -->
@@ -143,7 +151,7 @@
                                 <span>Explore</span>
                             </button>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </section>
             <!-- REPUTATION STRIP (Elevation Transition) -->

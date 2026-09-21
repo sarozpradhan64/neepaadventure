@@ -18,4 +18,16 @@ class BlogCrudTest extends TestCase
             ->get('/admin/blogs')
             ->assertOk();
     }
+
+    public function test_admin_blog_create_page_renders_interactive_select_controls(): void
+    {
+        $user = User::factory()->create();
+
+        $this->actingAs($user)
+            ->get('/admin/blogs/create')
+            ->assertOk()
+            ->assertSee('role="combobox"', false)
+            ->assertSee('aria-haspopup="listbox"', false)
+            ->assertSee('Select a category', false);
+    }
 }
