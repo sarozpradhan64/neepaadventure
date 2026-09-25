@@ -312,3 +312,33 @@ use Blaze\AdminCore\Http\Controllers\ReorderController;
 4. **DO add** truly site-specific, non-reusable resources (e.g., `Treks`, `Bookings` for a trekking site) to the site's own `app/Http/Controllers/Admin/` and `resources/views/admin/`.
 5. **DO run** `git submodule update --init --recursive` after cloning any site that uses this package.
 6. When referencing package views in controllers, always use the `admin-core::` view namespace prefix: `view('admin-core::dashboard')`.
+
+---
+
+## 9. Extending Core Forms (Form Builder Pattern)
+
+When you need to add **site-specific fields** (e.g., `duration`, `maximum_altitude`, `inclusions`) to a core model like `Service`, do **not** modify the admin-core migrations or views directly. 
+
+Instead, use the **Form Builder Hook**:
+
+1. **Database:** Create a project-level `alter` migration to add the columns to the existing core table:
+   ```bash
+   php artisan make:migration add_new_fields_to_services_table --table=services
+   ```
+2. **Configuration Hook:** Define the fields in the project's `app/Providers/AdminCoreConfiguration.php`:
+   ```php
+   use Blaze\AdminCore\Support\ServiceFormField;
+
+   public function serviceFormFields(): array
+   {
+       return [
+           ServiceFormField::make(
+               name: 'duration',
+               type: 'text', // Supported: text, number, textarea, richtext, select, checkbox, file
+               label: 'Duration',
+               validationRule: 'nullable|string|max:255',
+           ),
+       ];
+   }
+   ```
+3. **Automatic UI:** The `admin-core` package automatically reads this configuration and renders the appropriate input fields in the create/edit forms, handles validation, and saves the data.

@@ -337,251 +337,48 @@
                         </p>
                     </div>
                     <div class="space-y-space-md">
-                        <!-- Milestone 1: Days 1-2 -->
-                        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
-                                <div class="flex items-center gap-space-sm">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-bold text-headline-sm font-headline-sm">01</span>
+                        @forelse($trek->features as $index => $feature)
+                        <!-- Day {{ $index + 1 }} -->
+                        <div class="flex gap-space-md group">
+                            <div class="flex flex-col items-center mt-2">
+                                <div class="w-10 h-10 rounded-full bg-surface-container border-2 border-primary text-primary flex items-center justify-center font-bold text-label-md transition-colors group-hover:bg-primary group-hover:text-summit-white">
+                                    {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                </div>
+                                @if(!$loop->last)
+                                <div class="w-0.5 h-full bg-border-subtle mt-2 group-hover:bg-primary/30 transition-colors"></div>
+                                @endif
+                            </div>
+                            <div class="bg-surface-container-lowest rounded-xl p-space-md border border-border-subtle hover:border-primary/50 transition-all flex-1 shadow-sm hover:shadow-md">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm border-b border-border-subtle mb-space-sm">
                                     <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Kathmandu
-                                            Briefing &amp; Twin Otter Flight to Lukla (2,846m)</h3>
-                                        <span
-                                            class="font-badge-caption text-badge-caption text-tertiary uppercase">Days
-                                            1 – 2 • Dudh Koshi Valley Trek to Phakding</span>
+                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">{{ $feature->title }}</h3>
+                                        <span class="font-badge-caption text-badge-caption text-tertiary uppercase font-bold">{{ $feature->day_label ?? 'Day ' . ($index + 1) }}</span>
+                                    </div>
+                                    <div class="flex items-center gap-space-sm text-label-sm text-tertiary bg-surface-container px-space-sm py-space-2xs rounded-lg">
+                                        <span class="flex items-center gap-1" title="Max Altitude"><x-lucide-mountain class="size-4" /> {{ number_format((float)$feature->altitude) }}m</span>
+                                        <span class="text-border-subtle">|</span>
+                                        <span class="flex items-center gap-1" title="Trekking Distance"><x-lucide-map class="size-4" /> {{ $feature->distance }}</span>
+                                        <span class="text-border-subtle">|</span>
+                                        <span class="flex items-center gap-1" title="Walking Hours"><x-lucide-clock class="size-4" /> {{ $feature->walking_time }}</span>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-space-md text-body-sm text-tertiary">
-                                    <span class="flex items-center gap-1"><x-lucide-footprints class="size-[16px]" />
-                                        4 Hours Walking</span>
-                                    <span class="flex items-center gap-1"><x-lucide-arrow-up class="size-[16px]" />
-                                        2,846m Lukla / 2,610m Phakding</span>
+                                <div class="font-body-md text-body-md text-on-surface-variant mb-space-md leading-relaxed prose prose-sm max-w-none">
+                                    {!! $feature->description !!}
                                 </div>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                Full expedition equipment check at the Neepa Adventure Kathmandu headquarters. Morning
-                                scenic flight into Lukla's dramatic mountain runway. Meet the Sherpa support team,
-                                assemble duffels, and start descending gently through pine forests and mani walls into
-                                the Dudh Koshi gorge.
-                            </p>
-                            <div class="mt-space-sm flex flex-wrap gap-space-xs font-badge-caption text-badge-caption">
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Stay:
-                                    Mountain Lodge</span>
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Meals: B,
-                                    L, D</span>
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Lukla
-                                    Airstrip Briefing</span>
-                            </div>
-                        </div>
-                        <!-- Milestone 2: Days 3-4 -->
-                        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
-                                <div class="flex items-center gap-space-sm">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-bold text-headline-sm font-headline-sm">02</span>
-                                    <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Ascent to Namche
-                                            Bazaar &amp; Acclimatization Hike</h3>
-                                        <span
-                                            class="font-badge-caption text-badge-caption text-tertiary uppercase">Days
-                                            3 – 4 • Gateway of Khumbu &amp; Everest View Hotel (3,880m)</span>
+                                <div class="bg-surface-container rounded-lg p-space-sm flex flex-wrap gap-space-md text-label-sm">
+                                    <div class="flex items-center gap-2 text-on-surface">
+                                        <x-lucide-home class="size-[16px] text-tertiary" /> <span class="font-semibold">Stay:</span> {{ $feature->accommodation ?? 'Tea House' }}
+                                    </div>
+                                    <div class="flex items-center gap-2 text-on-surface">
+                                        <x-lucide-utensils class="size-[16px] text-tertiary" /> <span class="font-semibold">Meals:</span> {{ $feature->meals ?? 'B, L, D' }}
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-space-md text-body-sm text-tertiary">
-                                    <span class="flex items-center gap-1"><x-lucide-footprints class="size-[16px]" />
-                                        5.5 Hours Walking</span>
-                                    <span class="flex items-center gap-1"><x-lucide-arrow-up class="size-[16px]" />
-                                        3,440m Namche / 3,880m Acclimatization</span>
-                                </div>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                Cross the legendary Hillary suspension bridge hung high above the roaring river. Ascend
-                                the steep pine switchbacks into the amphitheater of Namche Bazaar. Day 4 is an active
-                                acclimatization day: ascend to the Everest View Hotel for the first majestic glimpse of
-                                Ama Dablam, Lhotse, and Everest, followed by a visit to the Sherpa Culture Museum.
-                            </p>
-                            <div class="mt-space-sm flex flex-wrap gap-space-xs font-badge-caption text-badge-caption">
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Stay:
-                                    Panorama Sherpa Lodge</span>
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Altitude
-                                    Check: Baseline Blood Oxygen Established</span>
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Wi-Fi
-                                    &amp; Charging Available</span>
                             </div>
                         </div>
-                        <!-- Milestone 3: Days 5-7 -->
-                        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
-                                <div class="flex items-center gap-space-sm">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-bold text-headline-sm font-headline-sm">03</span>
-                                    <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Gokyo Valley
-                                            Trail: Dole to Machhermo</h3>
-                                        <span
-                                            class="font-badge-caption text-badge-caption text-tertiary uppercase">Days
-                                            5 – 7 • Diverging from the standard route into the quiet alpine
-                                            valley</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-space-md text-body-sm text-tertiary">
-                                    <span class="flex items-center gap-1"><x-lucide-footprints class="size-[16px]" />
-                                        5 Hours / Day</span>
-                                    <span class="flex items-center gap-1"><x-lucide-arrow-up class="size-[16px]" />
-                                        4,110m Dole • 4,470m Machhermo</span>
-                                </div>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                We break off the crowded primary highway at Sanasa, climbing toward the Mong La pass
-                                with vistas of Phortse village. Traverse through silent lichen-draped dwarf rhododendron
-                                forests. At Machhermo, we attend the volunteer Himalayan Rescue Association (HRA)
-                                high-altitude safety seminar.
-                            </p>
-                            <div class="mt-space-sm flex flex-wrap gap-space-xs font-badge-caption text-badge-caption">
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">HRA
-                                    Physician Clinic Check</span>
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Yeti
-                                    Legend Heritage Site</span>
-                            </div>
-                        </div>
-                        <!-- Milestone 4: Day 8 Highlight -->
-                        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
-                                <div class="flex items-center gap-space-sm">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-amber-flare text-on-primary-fixed flex items-center justify-center font-bold text-headline-sm font-headline-sm">04</span>
-                                    <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Gokyo Sacred
-                                            Lakes &amp; Gokyo Ri Summit (5,357m)</h3>
-                                        <span
-                                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold">Day
-                                            8 • Summit Panorama of 4x 8,000m Peaks</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-space-md text-body-sm text-tertiary">
-                                    <span class="flex items-center gap-1"><x-lucide-footprints class="size-[16px]" />
-                                        6.5 Hours</span>
-                                    <span class="flex items-center gap-1"><x-lucide-mountain-snow
-                                            class="size-[16px]" /> 5,357m Summit Ridge</span>
-                                </div>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                Trek past the first and second cobalt lakes of Gokyo along the lateral moraine of the
-                                massive Ngozumpa Glacier—the longest in the Nepal Himalayas. Pre-dawn headlamp push up
-                                the grassy ridge of Gokyo Ri to behold a 360-degree panorama: Everest, Lhotse, Makalu,
-                                and Cho Oyu ignited in early morning amber light.
-                            </p>
-                            <div class="mt-space-sm flex flex-wrap gap-space-xs font-badge-caption text-badge-caption">
-                                <span
-                                    class="bg-primary-container/20 text-on-primary-container px-2 py-1 rounded font-bold">Key
-                                    Photo Milestone</span>
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Dudh
-                                    Pokhari (Lake III)</span>
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Technical
-                                    Trekking Poles Essential</span>
-                            </div>
-                        </div>
-                        <!-- Milestone 5: Day 9 High Pass -->
-                        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
-                                <div class="flex items-center gap-space-sm">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-ridge-deep text-summit-white flex items-center justify-center font-bold text-headline-sm font-headline-sm">05</span>
-                                    <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Crossing
-                                            Technical Cho La Pass (5,420m) to Dzongla</h3>
-                                        <span
-                                            class="font-badge-caption text-badge-caption text-error uppercase font-bold">Day
-                                            9 • Glacial Snowfield &amp; Scree Traverse</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-space-md text-body-sm text-tertiary">
-                                    <span class="flex items-center gap-1"><x-lucide-timer class="size-[16px]" /> 8–9
-                                        Hours</span>
-                                    <span class="flex items-center gap-1"><x-lucide-triangle-alert
-                                            class="size-[16px]" /> Microspikes / Crampons Required</span>
-                                </div>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                The crucibles of the circuit. We depart Thagnak before sunrise to negotiate loose
-                                boulders and reach the glacier base. Don microspikes to march steadily across the
-                                snowline ice crest of Cho La Pass, flanked by sheer granite spires. Careful descent down
-                                the eastern gully into the remote hamlet of Dzongla.
-                            </p>
-                            <div class="mt-space-sm flex flex-wrap gap-space-xs font-badge-caption text-badge-caption">
-                                <span
-                                    class="bg-surface-container-high px-2 py-1 rounded text-on-surface font-semibold">1:2
-                                    Rope Assistance if Iced</span>
-                                <span class="bg-surface-container-high px-2 py-1 rounded text-on-surface">Dzongla
-                                    Teahouse Stay</span>
-                            </div>
-                        </div>
-                        <!-- Milestone 6: Days 10-12 -->
-                        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
-                                <div class="flex items-center gap-space-sm">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-bold text-headline-sm font-headline-sm">06</span>
-                                    <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Everest Base Camp
-                                            (5,364m) &amp; Kala Patthar (5,545m)</h3>
-                                        <span
-                                            class="font-badge-caption text-badge-caption text-tertiary uppercase">Days
-                                            10 – 12 • Reaching the Khumbu Glacier Core</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-space-md text-body-sm text-tertiary">
-                                    <span class="flex items-center gap-1"><x-lucide-flag class="size-[16px]" />
-                                        Pinnacle Goal</span>
-                                    <span class="flex items-center gap-1"><x-lucide-arrow-up class="size-[16px]" />
-                                        5,545m Kala Patthar Sunrise</span>
-                                </div>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                Advance via Lobuche to Gorak Shep. Drop heavy gear and trek across moraine ridges to the
-                                official Everest Base Camp boulder, standing at the snout of the deadly Khumbu Icefall.
-                                The following morning, climb Kala Patthar at dawn for the closest unobstructed view of
-                                Everest's south face and Nuptse ridge.
-                            </p>
-                            <div class="mt-space-sm flex flex-wrap gap-space-xs font-badge-caption text-badge-caption">
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Gorak Shep
-                                    Highest Lodging</span>
-                                <span class="bg-surface-container px-2 py-1 rounded text-on-surface-variant">Khumbu
-                                    Moraine Trekking</span>
-                            </div>
-                        </div>
-                        <!-- Milestone 7: Days 13-16 -->
-                        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm">
-                                <div class="flex items-center gap-space-sm">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-bold text-headline-sm font-headline-sm">07</span>
-                                    <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">Descent through
-                                            Tengboche Monastery, Lukla &amp; KTM Return</h3>
-                                        <span
-                                            class="font-badge-caption text-badge-caption text-tertiary uppercase">Days
-                                            13 – 16 • Monastic Blessing &amp; Celebration Dinner</span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-space-md text-body-sm text-tertiary">
-                                    <span class="flex items-center gap-1"><x-lucide-plane class="size-[16px]" />
-                                        Helicopter / Fixed Wing Flight</span>
-                                </div>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                Retrace through Pheriche, pausing at the renowned Tengboche Buddhist Monastery to
-                                receive blessings from the Rinpoche. Celebrate expedition completion at Lukla's Irish
-                                Pub with the Sherpa guides and porters before our return flight to Kathmandu.
-                            </p>
-                        </div>
+                        @empty
+                            <p class="text-tertiary text-center p-space-md">Detailed itinerary is not available yet.</p>
+                        @endforelse
+</div>
                     </div>
                 </div>
             </section>
@@ -602,43 +399,7 @@
                                 <x-lucide-circle-check class="text-primary size-[28px]" />
                                 <h3 class="font-headline-sm text-headline-sm uppercase">What Is Fully Covered</h3>
                             </div>
-                            <ul class="space-y-space-sm font-body-md text-body-md text-tertiary">
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-check class="text-primary size-[18px] shrink-0 mt-1" />
-                                    <span>Round-trip domestic flights (Kathmandu/Manthali to Lukla) including 15kg
-                                        duffel allowance</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-check class="text-primary size-[18px] shrink-0 mt-1" />
-                                    <span>Sagarmatha National Park entry permit, Pasang Lhamu Rural Municipality entry
-                                        fee &amp; TIMS card</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-check class="text-primary size-[18px] shrink-0 mt-1" />
-                                    <span>Lead IFMGA/NNMGA certified English-speaking Sherpa Guide &amp; assistant
-                                        guides (1:4 ratio)</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-check class="text-primary size-[18px] shrink-0 mt-1" />
-                                    <span>Licensed Sherpa porters (1 porter for 2 trekkers, max 20kg combined porter
-                                        load limit)</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-check class="text-primary size-[18px] shrink-0 mt-1" />
-                                    <span>All teahouse mountain lodge accommodation (twin share) throughout 16
-                                        days</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-check class="text-primary size-[18px] shrink-0 mt-1" />
-                                    <span>Full board meals on trek: 3 cooked meals per day plus seasonal fresh fruit
-                                        dessert nightly</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-check class="text-primary size-[18px] shrink-0 mt-1" />
-                                    <span>Garmin inReach Explorer+ live satellite tracking &amp; team high-altitude
-                                        oxygen cylinder</span>
-                                </li>
-                            </ul>
+                            <div class="prose prose-sm max-w-none prose-li:text-tertiary prose-p:text-tertiary text-tertiary">{!! $trek->inclusions !!}</div>
                         </div>
                         <!-- Exclusions Box -->
                         <div class="bg-surface-container rounded-xl p-space-xl shadow-sm space-y-space-md">
@@ -646,38 +407,7 @@
                                 <x-lucide-x class="text-tertiary size-[28px]" />
                                 <h3 class="font-headline-sm text-headline-sm uppercase">What Trekkers Cover</h3>
                             </div>
-                            <ul class="space-y-space-sm font-body-md text-body-md text-tertiary">
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-x class="text-tertiary size-[18px] shrink-0 mt-1" />
-                                    <span>International flights to/from Tribhuvan International Airport (KTM) &amp;
-                                        Nepal tourist entry visa ($50 USD)</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-x class="text-tertiary size-[18px] shrink-0 mt-1" />
-                                    <span>Mandatory high-altitude emergency medical &amp; helicopter evacuation
-                                        insurance (minimum 6,000m rider)</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-x class="text-tertiary size-[18px] shrink-0 mt-1" />
-                                    <span>Hot showers, battery recharging, device battery packs, and Wi-Fi cards at
-                                        mountain lodges ($3–$8 each)</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-x class="text-tertiary size-[18px] shrink-0 mt-1" />
-                                    <span>Bottled water, carbonated soft beverages, craft beer, and alcoholic
-                                        drinks</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-x class="text-tertiary size-[18px] shrink-0 mt-1" />
-                                    <span>Personal gear (crampons, technical boots, -20C down sleeping bag — available
-                                        for rent in Thamel)</span>
-                                </li>
-                                <li class="flex items-start gap-space-xs">
-                                    <x-lucide-x class="text-tertiary size-[18px] shrink-0 mt-1" />
-                                    <span>Sherpa guide and porter tips (industry standard recommendation: $150–$200
-                                        total pooled per trekker)</span>
-                                </li>
-                            </ul>
+                            <div class="prose prose-sm max-w-none prose-li:text-tertiary prose-p:text-tertiary text-tertiary">{!! $trek->exclusions !!}</div>
                         </div>
                     </div>
                 </div>

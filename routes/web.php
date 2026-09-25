@@ -3,10 +3,12 @@
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Frontend\TrekController;
+
 Route::get('/', fn () => view('welcome'))->name('home');
 Route::get('/about', fn () => view('about'))->name('about');
-Route::get('/treks', fn () => view('treks'))->name('treks');
-Route::get('/treks/{slug}', fn () => view('trek-detail'))->name('trek-detail');
+Route::get('/treks', [TrekController::class, 'index'])->name('treks');
+Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 Route::get('/peak-climbing', fn () => view('peak-climbing'))->name('peak-climbing');
 Route::get('/gallery', fn () => view('gallery'))->name('gallery');
 Route::get('/contact', fn () => view('contact'))->name('contact');
@@ -40,4 +42,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
         return response()->json($icons, 200, ['Cache-Control' => 'public, max-age=3600']);
     })->name('lucide-icons');
+
+    Route::resource('service-departures', \App\Http\Controllers\ServiceDepartureController::class)->except(['show']);
 });
