@@ -36,15 +36,14 @@
                 <span
                     class="font-headline-sm text-headline-sm font-bold tracking-tight text-on-surface uppercase">{{ $contact?->company_name ?? config('app.name') }}</span>
                 <span
-                    class="font-badge-caption text-badge-caption text-primary tracking-[0.2em] uppercase font-bold">{{ $websiteSettings['slogan'] ?? 'Expeditions &bull; Nepal' }}</span>
+                    class="font-badge-caption text-badge-caption text-primary tracking-[0.2em] uppercase font-bold">{{ $websiteSettings['slogan'] ?? 'Treks &bull; Nepal' }}</span>
             </a>
         </div>
 
         <nav class="hidden xl:flex items-center gap-space-md">
             <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('treks*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
                 href="{{ route('treks') }}">Treks</a>
-            {{-- <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('peak-climbing') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                href="{{ route('peak-climbing') }}">Peak Climbing</a> --}}
+
             <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('projects') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
                 href="{{ route('projects') }}">Projects</a>
                 <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('gallery') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
@@ -58,7 +57,7 @@
         </nav>
 
         <div class="flex items-center gap-space-sm">
-            <button aria-label="Search Expeditions"
+            <button aria-label="Search Treks"
                 class="w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors">
                 <x-lucide-search class="size-4" />
             </button>

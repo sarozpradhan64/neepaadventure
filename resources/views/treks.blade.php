@@ -10,7 +10,7 @@
                         class="flex items-center gap-space-xs font-label-sm text-label-sm text-tertiary">
                         <a class="hover:text-primary transition-colors" data-path="home" href="#">Home</a>
                         <x-lucide-chevron-right class="size-[14px]" />
-                        <span class="text-on-surface font-semibold">Treks &amp; Expeditions</span>
+                        <span class="text-on-surface font-semibold">Treks</span>
                         <x-lucide-chevron-right class="size-[14px]" />
                         <span class="text-on-surface-variant">2025/2026 Himalayan Catalog</span>
                     </nav>
@@ -37,7 +37,7 @@
                                 Authentic Sherpa-Led Circuits &amp; High Passes
                             </div>
                             <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                Nepal Trekking Expeditions &amp; Classic High Passes
+                                Nepal Trekking Treks &amp; Classic High Passes
                             </h1>
                             <p class="font-body-lg text-body-lg text-tertiary">
                                 Curated, low-impact alpine journeys through sacred glacial basins, ancient
@@ -56,7 +56,7 @@
                                     class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">
                                     Current Window</div>
                                 <div class="font-headline-sm text-headline-sm font-semibold text-on-surface">Spring
-                                    &amp; Autumn Peak</div>
+                                    &amp; Autumn Pass</div>
                                 <div class="font-body-sm text-body-sm text-tertiary" id="catalog-count-indicator">
                                     Showing 6 verified routes (18 total)</div>
                             </div>
@@ -114,7 +114,7 @@
                                 class="absolute left-3 top-1/2 -translate-y-1/2 text-tertiary size-[20px]" />
                             <input
                                 class="w-full pl-10 pr-space-md py-2.5 bg-surface rounded-lg text-body-md text-on-surface placeholder:text-tertiary focus:outline-none focus:bg-surface-container-low transition-all"
-                                id="search-input" placeholder="Search passes, valleys, peaks (e.g. Larkya La, Gokyo)..."
+                                id="search-input" placeholder="Search passes, valleys, passes (e.g. Larkya La, Gokyo)..."
                                 type="text" />
                         </div>
                         <!-- Filter Selectors -->
@@ -223,7 +223,7 @@
                                 <div
                                     class="inline-flex items-center gap-space-2xs text-primary font-label-sm text-label-sm font-bold uppercase tracking-wider">
                                     <x-lucide-compass class="size-[18px]" />
-                                    Interactive Expedition Matcher
+                                    Interactive Trek Matcher
                                 </div>
                                 <h2 class="font-headline-md text-headline-md text-on-surface font-bold">
                                     Find My Perfect Trek
@@ -248,7 +248,7 @@
                                         id="quiz-experience">
                                         <option value="first">First Himalayan Trek</option>
                                         <option value="regular">Multi-Day Hiker (Up to 4,000m)</option>
-                                        <option value="hardcore">Experienced Mountaineer / High Passes</option>
+                                        <option value="hardcore">Experienced Trekker / High Passes</option>
                                     </select>
                                 </div>
                                 <!-- Step 2 -->
@@ -310,7 +310,7 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-lg">
                         <div>
                             <span class="font-headline-sm text-headline-sm font-bold text-on-surface">Curated Trekking
-                                Expeditions</span>
+                                Treks</span>
                             <span class="ml-2 font-body-sm text-body-sm text-tertiary">(Standard &amp; Luxury Teahouse
                                 Treks)</span>
                         </div>
@@ -397,7 +397,7 @@
                         <x-lucide-map class="size-[54px] text-tertiary" />
                         <div class="max-w-md mx-auto space-y-space-xs">
                             <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">No matching
-                                expeditions found</h3>
+                                treks found</h3>
                             <p class="font-body-md text-body-md text-tertiary">
                                 Try loosening your altitude or duration filters, or request a custom bespoke itinerary
                                 crafted by our Sherpa team.
@@ -419,12 +419,12 @@
                     <div class="flex items-start justify-between">
                         <div>
                             <span
-                                class="font-badge-caption text-badge-caption text-primary font-bold uppercase">Expedition
+                                class="font-badge-caption text-badge-caption text-primary font-bold uppercase">Trek
                                 Reservation</span>
                             <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface"
                                 id="modal-trek-name">Select Departure Dates</h3>
                             <p class="font-body-sm text-body-sm text-tertiary">Fixed group departures with maximum 8
-                                mountaineers per team.</p>
+                                trekkers per team.</p>
                         </div>
                         <button
                             class="p-1.5 rounded-lg text-tertiary hover:text-on-surface hover:bg-surface-container transition-colors"
@@ -507,7 +507,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Custom Tailored Expedition Consultation Strip -->
+            <!-- Custom Tailored Trek Consultation Strip -->
             <section class="w-full bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop py-space-2xl">
                 <div class="max-w-max-content-width mx-auto">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
@@ -520,7 +520,7 @@
                             </h2>
                             <p class="font-body-lg text-body-lg text-tertiary max-w-2xl">
                                 We regularly curate bespoke high passes, luxury heli-out charters, and custom
-                                acclimatization timelines for private parties, climbing clubs, and solo alpine
+                                acclimatization timelines for private parties, trekking clubs, and solo alpine
                                 photographers.
                             </p>
                             <div
@@ -546,7 +546,7 @@
                             <a class="flex items-center justify-center gap-space-xs px-space-lg py-3 rounded bg-surface-container-highest hover:bg-surface-container text-on-surface font-label-md text-label-md font-bold uppercase tracking-wider transition-colors text-center"
                                 data-path="about-us" href="#">
                                 <x-lucide-handshake class="size-[18px]" />
-                                Consult Sherpa Expedition Lead
+                                Consult Sherpa Trek Lead
                             </a>
                         </div>
                     </div>

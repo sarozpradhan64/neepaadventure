@@ -31,7 +31,7 @@
           Stories from the Ridge, High Science &amp; Route Archives
         </h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
-          Deep-dive route briefings, altitude physiology protocols, cultural heritage from Solukhumbu, and unvarnished gear tests written by veteran IFMGA/NNMGA Sherpa guides, expedition doctors, and high-altitude navigators.
+          Deep-dive route briefings, altitude physiology protocols, cultural heritage from Solukhumbu, and unvarnished gear tests written by veteran IFMGA/NNMGA Sherpa guides, trek doctors, and high-altitude navigators.
         </p>
 </div>
 <!-- Search & Category Bar -->
@@ -194,7 +194,7 @@
 </div>
 <h4 class="font-label-md text-label-md text-summit-white">The 10:00 AM Cloud Inversion Rule</h4>
 <p class="font-body-sm text-body-sm text-surface-dim">
-                Thermal valley updrafts push cloud cover over passes like Cho La and Larkya La by mid-morning. Always clear high col summits before 09:30.
+                Thermal valley updrafts push cloud cover over passes like Cho La and Larkya La by mid-morning. Always clear high col destinations before 09:30.
               </p>
 </div>
 <!-- Wisdom Item 3 -->
@@ -231,7 +231,7 @@
 </div>
 <!-- Featured Author Badge -->
 <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center gap-space-md">
-<img alt="Neepa Adventure Expeditions" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W3yQM8xHQjX2E5zFU6iD06bZt4OesA5A7xOgHv015jEqcfcZZ7HE_Hi2o8cpyIdFgrjO4RN7wgTRlrcHuP9UqSEdMBfQRkV-W4iLCDj5kA6yJRSDIcuUz5LDMX_7nIHPn7Z7NsgWAgM2MhXip9R99L0Ag18lYrFMd1bCYwmMS3sHb8Cl6_AXzosDe6CPqFc2XukhSPja8i9PivwzMEhd1eDcGrGiBpkzSMjPB_Jdom9ughkHb76SIb6g"/>
+<img alt="Neepa Adventure Treks" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W3yQM8xHQjX2E5zFU6iD06bZt4OesA5A7xOgHv015jEqcfcZZ7HE_Hi2o8cpyIdFgrjO4RN7wgTRlrcHuP9UqSEdMBfQRkV-W4iLCDj5kA6yJRSDIcuUz5LDMX_7nIHPn7Z7NsgWAgM2MhXip9R99L0Ag18lYrFMd1bCYwmMS3sHb8Cl6_AXzosDe6CPqFc2XukhSPja8i9PivwzMEhd1eDcGrGiBpkzSMjPB_Jdom9ughkHb76SIb6g"/>
 <div class="flex flex-col">
 <span class="font-label-sm text-label-sm font-bold text-on-surface">Editorial Standards</span>
 <span class="font-body-sm text-body-sm text-secondary">Every article vetted by certified IFMGA Sherpas &amp; wilderness doctors.</span>
@@ -261,7 +261,7 @@
 </div>
 </div>
 </section>
-<!-- Editorial Newsletter / Expedition Briefing Box -->
+<!-- Editorial Newsletter / Trek Briefing Box -->
 <section class="w-full bg-surface-container-highest px-gutter-desktop py-space-3xl">
 <div class="max-w-max-content-width mx-auto">
 <div class="bg-ridge-deep text-summit-white rounded-2xl p-space-xl lg:p-space-3xl shadow-xl flex flex-col lg:flex-row items-center justify-between gap-space-2xl relative overflow-hidden">
@@ -284,7 +284,7 @@
             Join 14,000+ Himalayan Trekkers &amp; Climbers
           </h2>
 <p class="font-body-md text-body-md text-surface-dim">
-            Receive seasonal permit bulletins, route conditions reports, and exclusive expedition case dossiers straight from our Kathmandu operations room.
+            Receive seasonal permit bulletins, route conditions reports, and exclusive trek case dossiers straight from our Kathmandu operations room.
           </p>
 <div class="flex items-center gap-space-md text-[12px] text-surface-dim pt-space-xs">
 <span class="flex items-center gap-space-2xs"><span class="material-symbols-outlined text-[16px] text-primary-container">check_circle</span>No spam</span>

@@ -52,15 +52,15 @@
                             CONNECT WITH OUR <span class="text-primary-container">BASECAMP</span> HEADQUARTERS
                         </h1>
                         <p class="font-body-lg text-body-lg text-mist-slate font-normal leading-relaxed max-w-3xl">
-                            Whether planning a high-altitude traverse, seeking technical climbing advice, inquiring
-                            about private club expeditions, or requiring 24/7 satellite dispatch assistance, our
+                            Whether planning a high-altitude traverse, seeking technical trekking advice, inquiring
+                            about private club treks, or requiring 24/7 satellite dispatch assistance, our
                             Kathmandu and Khumbu operations team is at your service.
                         </p>
                     </div>
                     <!-- Quick Action Jump Grid -->
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-xs">
                         <a class="flex items-center gap-space-xs p-space-sm rounded-lg bg-surface-container-lowest/5 hover:bg-surface-container-lowest/15 transition-all shadow-sm"
-                            href="#expedition-form">
+                            href="#trek-form">
                             <x-lucide-calendar-plus class="text-primary-container size-[20px]" />
                             <div class="flex flex-col min-w-0">
                                 <span class="font-label-md text-label-md font-bold text-summit-white truncate">Trip
@@ -102,9 +102,9 @@
             <!-- Two-Column Operations & Consultation Hub -->
             <section class="w-full max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop py-space-3xl">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-start">
-                    <!-- Column 1: Custom Expedition Briefing & Inquiry Form -->
+                    <!-- Column 1: Custom Trek Briefing & Inquiry Form -->
                     <div class="lg:col-span-7 flex flex-col gap-space-lg bg-surface-container-lowest p-space-lg sm:p-space-xl rounded-xl shadow-md"
-                        id="expedition-form">
+                        id="trek-form">
                         <div class="flex flex-col gap-space-2xs">
                             <div class="flex items-center justify-between">
                                 <span
@@ -116,13 +116,13 @@
                                 </span>
                             </div>
                             <h2 class="font-headline-lg text-headline-md sm:text-headline-lg font-bold text-on-surface">
-                                Expedition Inquiry &amp; Custom Route Briefing</h2>
+                                Trek Inquiry &amp; Custom Route Briefing</h2>
                             <p class="font-body-md text-body-md text-tertiary">
-                                Submit your alpine profile and itinerary targets. Our licensed Expedition Directors
+                                Submit your alpine profile and itinerary targets. Our licensed Trek Directors
                                 calculate logistics, guide ratios, acclimatization profiles, and permit windows.
                             </p>
                         </div>
-                        <!-- Expedition Type Pill Selector -->
+                        <!-- Trek Type Pill Selector -->
                         <div class="flex flex-col gap-space-xs">
                             <label
                                 class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-on-surface">Trip
@@ -136,7 +136,7 @@
                                 <button
                                     class="trip-pill py-space-xs px-space-sm rounded-lg font-label-sm text-label-sm font-semibold transition-all text-center bg-surface-container-high text-on-surface hover:bg-surface-container"
                                     type="button">
-                                    Peak Climbing
+                                    High Altitude Trekking
                                 </button>
                                 <button
                                     class="trip-pill py-space-xs px-space-sm rounded-lg font-label-sm text-label-sm font-semibold transition-all text-center bg-surface-container-high text-on-surface hover:bg-surface-container"
@@ -172,7 +172,7 @@
                                         <x-lucide-mail class="absolute left-space-sm text-tertiary size-[18px]" />
                                         <input
                                             class="w-full pl-10 pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all"
-                                            placeholder="arthur.hansen@expedition.org" required="" type="email">
+                                            placeholder="arthur.hansen@trek.org" required="" type="email">
                                     </div>
                                 </div>
                             </div>
@@ -214,9 +214,9 @@
                                             <option>Annapurna Sanctuary &amp; Thorong La (5,416m)</option>
                                             <option>Manaslu Circuit &amp; Larkya La (5,106m)</option>
                                             <option>Upper Mustang &amp; Lo Manthang Kingdom</option>
-                                            <option>Island Peak / Imja Tse (6,189m Summit)</option>
-                                            <option>Mera Peak High Altitude Ascent (6,476m)</option>
-                                            <option>Ama Dablam Technical Expedition (6,812m)</option>
+                                            <option>Island Pass / Imja Tse (6,189m Destination)</option>
+                                            <option>Mera Pass High Altitude Ascent (6,476m)</option>
+                                            <option>Ama Dablam Technical Trek (6,812m)</option>
                                             <option>Langtang Valley &amp; Gosaikunda Holy Lakes</option>
                                         </select>
                                         <x-lucide-chevron-down
@@ -248,7 +248,7 @@
                                             <option>Solo Alpine Trekker (1:1 Sherpa)</option>
                                             <option>Couple / Pair (2 Pax)</option>
                                             <option>Private Small Party (3 – 5 Pax)</option>
-                                            <option>Expedition Team (6 – 10 Pax)</option>
+                                            <option>Trek Team (6 – 10 Pax)</option>
                                             <option>Alpine Club / University Group (10+ Pax)</option>
                                         </select>
                                         <x-lucide-chevron-down
@@ -258,7 +258,7 @@
                                 <div class="flex flex-col gap-space-2xs">
                                     <label
                                         class="font-label-sm text-label-sm font-bold text-on-surface uppercase">High-Altitude
-                                        Mountaineering Experience</label>
+                                        Trekking Experience</label>
                                     <div class="relative flex items-center">
                                         <x-lucide-footprints
                                             class="absolute left-space-sm text-tertiary size-[18px]" />
@@ -266,7 +266,7 @@
                                             class="w-full pl-10 pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md rounded-lg shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-primary-container transition-all cursor-pointer">
                                             <option>First time in the Himalaya (Beginner to Altitude)</option>
                                             <option>Experienced up to 4,000m - 5,000m (Kilimanjaro/Alps)</option>
-                                            <option>High Peak Ascent completed (6,000m / Mera / Island)</option>
+                                            <option>High Pass Ascent completed (6,000m / Mera / Island)</option>
                                             <option>Technical Multi-Pitch / 7,000m+ Veteran</option>
                                         </select>
                                         <x-lucide-chevron-down
@@ -312,11 +312,11 @@
                             <!-- Message Area -->
                             <div class="flex flex-col gap-space-2xs pt-space-xs">
                                 <label
-                                    class="font-label-sm text-label-sm font-bold text-on-surface uppercase">Expedition
+                                    class="font-label-sm text-label-sm font-bold text-on-surface uppercase">Trek
                                     Objectives &amp; Medical Notes</label>
                                 <textarea
                                     class="w-full p-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-container transition-all"
-                                    placeholder="Detail your fitness background, summit ambitions, preferred gear requirements, or any specific acclimatization pace adjustments needed..."
+                                    placeholder="Detail your fitness background, destination ambitions, preferred gear requirements, or any specific acclimatization pace adjustments needed..."
                                     rows="4"></textarea>
                             </div>
                             <!-- Submit CTA -->
@@ -325,7 +325,7 @@
                                     class="w-full py-space-md px-space-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-headline-sm text-headline-sm uppercase tracking-wider font-bold rounded-lg shadow-md transition-all flex items-center justify-center gap-space-xs"
                                     type="submit">
                                     <x-lucide-send class="size-4" />
-                                    <span class="">Submit Expedition Brief &amp; Request Itinerary Call</span>
+                                    <span class="">Submit Trek Brief &amp; Request Itinerary Call</span>
                                 </button>
                                 <div
                                     class="flex items-center justify-center gap-space-xs text-tertiary font-body-sm text-body-sm text-center">
@@ -450,7 +450,7 @@
                                 </div>
                             </div>
                             <p class="font-body-sm text-body-sm text-tertiary">
-                                Our permanent staging depot for Khumbu Icefall expeditions, Gokyo Ri acclimatization,
+                                Our permanent staging depot for Khumbu Icefall treks, Gokyo Ri acclimatization,
                                 and high-altitude porter equipment staging.
                             </p>
                             <div
@@ -554,7 +554,7 @@
                                         <span class="font-label-md text-label-md font-bold text-on-surface block">Khata
                                             Scarf Welcome &amp; Espresso</span>
                                         <span class="font-body-sm text-body-sm text-tertiary">Traditional Buddhist
-                                            blessing by our lead Sirdars and detailed expedition route folder
+                                            blessing by our lead Sirdars and detailed trek route folder
                                             presentation.</span>
                                     </div>
                                 </div>
@@ -627,7 +627,7 @@
                         <button
                             class="faq-toggle w-full p-space-md flex items-center justify-between text-left font-headline-sm text-headline-sm font-semibold text-on-surface hover:text-primary"
                             type="button">
-                            <span class="">How soon before departure must climbing &amp; trekking permits be
+                            <span class="">How soon before departure must trekking &amp; trekking permits be
                                 finalized?</span>
                             <x-lucide-chevron-down
                                 class="transform transition-transform duration-200 text-tertiary size-4" />
@@ -635,8 +635,8 @@
                         <div
                             class="faq-content hidden px-space-md pb-space-md text-tertiary font-body-md text-body-md">
                             Standard trekking permits (TIMS, Sagarmatha, ACAP) take 24–48 hours to stamp at Nepal
-                            Tourism Board. For restricted zones (Manaslu, Upper Mustang, Nar Phu, Dolpo) and NMA Peak
-                            Climbing permits (Island Peak, Mera, Lobuche), we require your passport scans and
+                            Tourism Board. For restricted zones (Manaslu, Upper Mustang, Nar Phu, Dolpo) and NMA Pass
+                            Trekking permits (Island Pass, Mera, Lobuche), we require your passport scans and
                             high-resolution photos at least 15 business days in advance to secure government officer
                             assignments.
                         </div>
@@ -671,11 +671,11 @@
                         </button>
                         <div
                             class="faq-content hidden px-space-md pb-space-md text-tertiary font-body-md text-body-md">
-                            A 25% deposit secures your expedition slots, peak permits, and domestic Lukla/Pokhara flight
+                            A 25% deposit secures your trek slots, pass permits, and domestic Lukla/Pokhara flight
                             reservations via direct bank wire transfer or major credit card through Nepal Investment
                             Mega Bank (NIMB) secure gateway. The remaining balance can be settled in Kathmandu before
                             departure. We also coordinate cashless medical evacuation guarantees directly with your
-                            mountaineering travel insurance provider (e.g., Ripcord, Global Rescue, Allianz).
+                            trekking travel insurance provider (e.g., Ripcord, Global Rescue, Allianz).
                         </div>
                     </div>
                     <!-- Item 4 -->
@@ -690,7 +690,7 @@
                         </button>
                         <div
                             class="faq-content hidden px-space-md pb-space-md text-tertiary font-body-md text-body-md">
-                            Yes. On Day 1 in Kathmandu, our official Expedition Welcome Dinner &amp; Strategy Briefing
+                            Yes. On Day 1 in Kathmandu, our official Trek Welcome Dinner &amp; Strategy Briefing
                             introduces you directly to your assigned Lead Guide, Sirdar, and Assistant Guides. You will
                             review maps, discuss pacing, adjust individual preferences, and conduct an intimate
                             equipment Q&amp;A session together.
@@ -709,7 +709,7 @@
                                 class="font-badge-caption text-badge-caption text-primary font-bold uppercase tracking-wider block">Official
                                 Alpine Governance</span>
                             <span class="font-headline-sm text-headline-sm font-bold text-on-surface">Registered &amp;
-                                Fully Licensed Expedition Operator</span>
+                                Fully Licensed Trek Operator</span>
                         </div>
                         <span class="text-body-sm text-tertiary font-body-sm">Govt. License No: 89432/071/072 • Central
                             Bank Foreign Exchange Authorized</span>
@@ -738,7 +738,7 @@
                             class="flex flex-col items-center justify-center p-space-sm rounded-lg bg-surface-container-low text-center shadow-xs">
                             <span class="font-headline-sm text-headline-sm font-bold text-on-surface">NMA</span>
                             <span
-                                class="font-badge-caption text-badge-caption text-tertiary uppercase mt-1">Mountaineering
+                                class="font-badge-caption text-badge-caption text-tertiary uppercase mt-1">Trekking
                                 Assoc.</span>
                         </div>
                         <div
@@ -768,12 +768,12 @@
                     </div>
                     <div class="space-y-space-2xs">
                         <span
-                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest">Expedition
+                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest">Trek
                             Brief Logged</span>
                         <h3 class="font-headline-lg text-headline-md font-bold text-on-surface">Transmission Received
                             at Basecamp HQ</h3>
                         <p class="font-body-md text-body-md text-tertiary">
-                            Your route inquiry has been assigned to our Lead Expeditions Officer in Kathmandu. You will
+                            Your route inquiry has been assigned to our Lead Treks Officer in Kathmandu. You will
                             receive an initial alpine briefing dossier and WhatsApp call invitation within 4 hours.
                         </p>
                     </div>

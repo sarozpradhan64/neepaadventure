@@ -31,8 +31,7 @@
                 </div>
                 <ul class="space-y-space-xs font-body-md text-body-md text-tertiary">
                     <li><a class="hover:text-primary transition-colors" href="{{ route('treks') }}">Treks</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="{{ route('peak-climbing') }}">Peak
-                            Climbing</a></li>
+
                     <li><a class="hover:text-primary transition-colors" href="{{ route('about') }}">About Us</a></li>
                     <li><a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a></li>
                 </ul>

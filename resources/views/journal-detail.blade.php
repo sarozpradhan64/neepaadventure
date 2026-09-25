@@ -119,11 +119,11 @@
             <!-- LEAD VISUAL & TOPOGRAPHICAL ACCLIMATIZATION MATRIX -->
             <section class="w-full bg-surface pb-space-3xl">
                 <div class="max-w-max-content-width mx-auto px-gutter-desktop">
-                    <!-- Immersive Expedition Image -->
+                    <!-- Immersive Trek Image -->
                     <div
                         class="relative w-full h-[380px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl mt-space-md">
                         <div class="w-full h-full bg-cover bg-center"
-                            data-alt="Panoramic photograph of the High Khumbu valley trail in Nepal, surrounded by dry alpine tundra, juniper shrubs, with the jagged sharp summit of Ama Dablam soaring into a deep cobalt blue sky under brilliant morning sun"
+                            data-alt="Panoramic photograph of the High Khumbu valley trail in Nepal, surrounded by dry alpine tundra, juniper shrubs, with the jagged sharp destination of Ama Dablam soaring into a deep cobalt blue sky under brilliant morning sun"
                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAS-57qM1U6N-NiVlYr3SQoNo-BWY7YPzr8GhUtEELiGNRq-A_WoXJhvu6gNU-iyBcHPmtE8kd9SUPXLLicJOGH9_z8aCFYfpsUkbrE2WbdITfF2eQHIPVFHY3nNdDkxr1uar8cLTAxuICzDg7G8QKEO8gm_FaTfH7ORU5EVmY2AvjVqp1HvwrLgDfGKGlarWyUt2t8t_zUKlP7qqfwjeTe-cw4yLmtRNDeNrf1_pA_9o6aGvYzIUl5')">
                         </div>
                         <div
@@ -189,7 +189,7 @@
                                 <svg class="w-full h-auto text-on-surface" fill="none" viewbox="0 0 860 220"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <defs>
-                    <!-- Immersive Expedition Image -->
+                    <!-- Immersive Trek Image -->
                     <div
                         class="relative w-full h-[380px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl mt-space-md">
                         @if($blog->featured_image)
@@ -315,7 +315,7 @@
                             <div class="mt-space-xl p-space-lg bg-surface-container-lowest rounded-2xl shadow-sm">
                                 <div
                                     class="font-badge-caption text-badge-caption text-primary uppercase tracking-wider mb-space-sm">
-                                    Expedition Medical Board • Peer Reviewed
+                                    Trek Medical Board • Peer Reviewed
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
                                     <div class="flex gap-space-sm">
@@ -337,7 +337,7 @@
                                     <div class="flex gap-space-sm">
                                         <div class="w-16 h-16 rounded-full overflow-hidden bg-surface-dim shrink-0">
                                             <img class="w-full h-full object-cover"
-                                                data-alt="Portrait photo of Dawa Tenzing Sherpa holding climbing ice axe on Himalayan pass with prayer flags"
+                                                data-alt="Portrait photo of Dawa Tenzing Sherpa holding trekking ice axe on Himalayan pass with prayer flags"
                                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuANbuXHTk1Pc2rVHtdMeHg6BwsjMQUtZmGU9Ny7iLBGSp0illyazH3zLcn9nvkZ-Gx_096Uk98dJTKt9-EtsW95ysU36qe0dGxGJgJhtv4fPeqxUBS20HRQlMRLWunOKJZGmjzmHpA6IaEwiwoJphIgVdxOzheT-k3mFdLUZI2tYNSInzUTo51D0bpMse4khqH0wGZzqz6KTTWWqehyzY9OWWxuYxFwpbomVyc-4xAkhaPeaxrEn5oK" />
                                         </div>
                                         <div class="flex flex-col">
@@ -346,8 +346,8 @@
                                             <span class="font-label-sm text-label-sm text-primary font-semibold">IFMGA
                                                 / UIAGM Certified Guide</span>
                                             <p class="font-body-sm text-body-sm text-secondary mt-1">Khangba native, 14
-                                                Everest summits, pioneer of standard Khumbu acclimatization schedules
-                                                across 420 Neepa expeditions.</p>
+                                                Everest destinations, pioneer of standard Khumbu acclimatization schedules
+                                                across 420 Neepa treks.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -371,7 +371,7 @@
                                         <h4 class="font-headline-sm text-headline-sm text-on-surface">Was this field
                                             dossier clinically helpful?</h4>
                                         <p class="font-body-sm text-body-sm text-secondary">98% of high-altitude
-                                            mountaineers found this article actionable (1,842 ratings).</p>
+                                            trekkers found this article actionable (1,842 ratings).</p>
                                     </div>
                                     <div class="flex items-center gap-space-xs">
                                         <button
@@ -386,7 +386,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <!-- 4 Verified Mountaineer Comments -->
+                                <!-- 4 Verified Trekker Comments -->
                                 <div class="space-y-space-md">
                                     <span
                                         class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Field
@@ -543,10 +543,10 @@
                                         class="font-label-md text-label-md text-on-surface uppercase tracking-wider flex items-center gap-space-2xs">
                                         <span
                                             class="material-symbols-outlined text-primary text-[18px]">medical_information</span>
-                                        Neepa Expedition Med-Kit
+                                        Neepa Trek Med-Kit
                                     </h3>
                                     <p class="font-body-sm text-body-sm text-secondary mt-1">Carried on every guided
-                                        summit group:</p>
+                                        destination group:</p>
                                     <ul
                                         class="mt-space-sm space-y-space-xs font-body-sm text-body-sm text-on-surface-variant">
                                         <li class="flex items-center gap-2">
@@ -601,7 +601,7 @@
                                     <a class="inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-lg bg-ridge-deep text-summit-white font-label-sm text-label-sm uppercase tracking-wider hover:bg-secondary transition-colors"
                                         href="#">
                                         <span class="material-symbols-outlined text-[16px]">stethoscope</span>
-                                        Consult Expedition Medical Desk
+                                        Consult Trek Medical Desk
                                     </a>
                                 </div>
                                 <!-- Downloadable Asset Banner -->
@@ -626,7 +626,7 @@
                     </div>
                 </div>
             </section>
-            <!-- RELATED EXPEDITION GUIDES & DOSSIERS (3 CARDS) -->
+            <!-- RELATED TREK GUIDES & DOSSIERS (3 CARDS) -->
             <section class="w-full bg-surface-container-low py-space-3xl">
                 <div class="max-w-max-content-width mx-auto px-gutter-desktop">
                     <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-xl">
@@ -682,10 +682,10 @@
                             class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
                             <div class="h-48 w-full overflow-hidden relative">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="Mountaineering technical gear layout flat lay with 800 fill down parka, Gore-Tex shell, ice axes and alpine boots on rustic wood table"
+                                    data-alt="Trekking technical gear layout flat lay with 800 fill down parka, Gore-Tex shell, ice axes and alpine boots on rustic wood table"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyaufqKvW_j0-Io8lgubsHS4-HC-G60EZYh_o8hgkr6d1oDGf74DnOSZ3xTvc2xJkY4w37aMCbGUqUkhuXuskQrHyYaH8xqUmS2ypZSBVZ05nr9HCUjvmdWnWF081E_kvSy-fbfcIEXDzjnmAe78enksnQklh2bZzzBWMrav6jxlN-W5vIaOJinn58GO8Qcmv6n1cqDL2MJv1VKadydQBqQVrMTSlDJsk4gcicRfvI9LIXZkUdEyL0" />
                                 <span
-                                    class="absolute top-3 left-3 px-2 py-0.5 rounded bg-ridge-deep/80 text-primary-container font-badge-caption text-badge-caption uppercase">Expedition
+                                    class="absolute top-3 left-3 px-2 py-0.5 rounded bg-ridge-deep/80 text-primary-container font-badge-caption text-badge-caption uppercase">Trek
                                     Gear</span>
                             </div>
                             <div class="p-space-md flex flex-col flex-1 justify-between gap-space-sm">
@@ -700,7 +700,7 @@
                                             Negative 25°C</a>
                                     </h4>
                                     <p class="font-body-sm text-body-sm text-on-surface-variant mt-2">
-                                        Preventing hypothermia during pre-dawn summit pushes to Kala Patthar and Kongma
+                                        Preventing hypothermia during pre-dawn destination pushes to Kala Patthar and Kongma
                                         La pass.
                                     </p>
                                 </div>
@@ -716,7 +716,7 @@
                             class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
                             <div class="h-48 w-full overflow-hidden relative">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="Trekker climbing steep granite stone steps in the Khumbu forest near Namche Bazaar with trekking poles and heavy backpack"
+                                    data-alt="Trekker trekking steep granite stone steps in the Khumbu forest near Namche Bazaar with trekking poles and heavy backpack"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuwm0AEQjcgEop5nlUbXI2C4ZD2Fj-WN8NTWq_kEQVpLbPIa7Suvp7-gnlUnQ43aiIh0oMZkZP8MYL3hcHyRg5m2MRL2dKp4ka6mMfI3_xI2VciRi415gJ2hruahpudVueB0ozXqcfxVEBkVNZq09Oeis48BWUXuQLtHnNct-qg5z3mMp4q3L72rrMLQpnwSx5A_1tuXJJQNCUR6_yTNdUASdgiAwLV9LiaZu0eBiFkISqLYl8NHaa" />
                                 <span
                                     class="absolute top-3 left-3 px-2 py-0.5 rounded bg-ridge-deep/80 text-primary-container font-badge-caption text-badge-caption uppercase">Conditioning</span>

@@ -6,7 +6,7 @@
             <section class="relative w-full -mt-20 pt-36 pb-24 overflow-hidden bg-ridge-deep">
                 <!-- Hero Background Visual with Atmospheric Gradient Scrim -->
                 <div class="absolute inset-0 w-full h-full bg-cover bg-center opacity-45 mix-blend-luminosity transform scale-105 transition-transform duration-1000"
-                    data-alt="Vast cinematic panorama of Ama Dablam and Mount Everest at golden hour sunrise in Nepal, towering snow-covered jagged peaks against a clear alpine sky with warm golden sun rays hitting pristine glaciers and prayer flags fluttering on an ancient stone ridge, ultra-wide professional landscape photography."
+                    data-alt="Vast cinematic panorama of Ama Dablam and Mount Everest at golden hour sunrise in Nepal, towering snow-covered jagged passes against a clear alpine sky with warm golden sun rays hitting pristine glaciers and prayer flags fluttering on an ancient stone ridge, ultra-wide professional landscape photography."
                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBWm4bd_ZWSqeS4ZDUw6ieD9YH3wcgE-xDdiyCrLoZmNc38H_eVcehQRfzRaWV2oN-t64VYglXgF1h-4DHdB6nMBgmwPowMu-4r9ywUCBGFZjJisMPG4RtnRpF5UPMcIJNyW23CJQSCb9TOEbxfDuGF94E8WzXAW0uWithmsHUIg76y_5CnaMVtehdmjneAMWNTMHBcs6ppEQZqOk3MgezQ92YbpYMIPFMh_GChKQXV_cHcKCDVRVpR')">
                 </div>
                 <!-- Ambient Radial Warmth Gradient -->
@@ -19,8 +19,8 @@
                 <div
                     class="relative max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop z-10 flex flex-col items-center text-center">
                     @php
-                        $heroTitle = $websiteSettings['hero_title'] ?? "Conquer the World's Highest Peaks with Sherpa Mastery";
-                        $heroText = $websiteSettings['hero_text'] ?? "Pioneering 100% safety records across Nepal's 8,000m trails. Led by certified IFMGA/NNMGA Sherpa leaders with sustainable zero-plastic ethics and intimate small expedition teams.";
+                        $heroTitle = $websiteSettings['hero_title'] ?? "Conquer the World's Highest Passes with Sherpa Mastery";
+                        $heroText = $websiteSettings['hero_text'] ?? "Pioneering 100% safety records across Nepal's 8,000m trails. Led by certified IFMGA/NNMGA Sherpa leaders with sustainable zero-plastic ethics and intimate small trek teams.";
                         $highlightText = $websiteSettings['hero_highlighted_text'] ?? '';
                         
                         if ($highlightText) {
@@ -105,7 +105,7 @@
                                         <option value="moderate">Moderate (Grade II)</option>
                                         <option value="challenging">Challenging (Grade III)</option>
                                         <option value="strenuous">Strenuous Alpine (Grade IV)</option>
-                                        <option value="technical">6,000m Peak Climbing</option>
+                                        <option value="technical">6,000m High Altitude Trekking</option>
                                     </select>
                                     <x-lucide-mountain
                                         class="absolute right-space-xs top-2.5 text-tertiary pointer-events-none size-[20px]" />
@@ -138,7 +138,7 @@
                                         <option value="all">Any Duration</option>
                                         <option value="short">7 - 11 Days</option>
                                         <option value="classic">12 - 16 Days</option>
-                                        <option value="epic">17+ Days Expedition</option>
+                                        <option value="epic">17+ Days Trek</option>
                                     </select>
                                     <x-lucide-clock-3
                                         class="absolute right-space-xs top-2.5 text-tertiary pointer-events-none size-[20px]" />
@@ -178,7 +178,7 @@
                     </div>
                 </div>
             </section>
-            <!-- SIGNATURE EXPEDITIONS & TREKS -->
+            <!-- SIGNATURE TREKS -->
             <section class="w-full py-space-3xl bg-surface">
                 <div class="max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop">
                     <!-- Section Header with Categorical Filter Tabs -->
@@ -187,10 +187,9 @@
                             <div
                                 class="font-badge-caption text-badge-caption uppercase tracking-[0.2em] text-primary font-bold mb-space-2xs">
                                 Curated Himalayan Routes</div>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Signature Treks
-                                &amp; Expeditions</h2>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Signature Treks</h2>
                             <p class="font-body-md text-body-md text-tertiary mt-space-2xs max-w-xl">From standard high
-                                passes to technical summits, all journeys feature experienced local leaders, private
+                                passes to technical destinations, all journeys feature experienced local leaders, private
                                 logistics, and satellite rescue systems.</p>
                         </div>
                         <!-- Filter Pill Tabs -->
@@ -198,7 +197,7 @@
                             id="trekTabs">
                             <button
                                 class="px-space-md py-space-2xs rounded-lg font-label-md text-label-md font-bold bg-primary-container text-on-primary-fixed shadow-sm">All
-                                Expeditions</button>
+                                Treks</button>
                             <button
                                 class="px-space-md py-space-2xs rounded-lg font-label-md text-label-md font-medium text-tertiary hover:text-on-surface hover:bg-surface-container-lowest transition-all">Classic
                                 High Passes</button>
@@ -207,10 +206,10 @@
                                 &amp; Forbidden</button>
                             <button
                                 class="px-space-md py-space-2xs rounded-lg font-label-md text-label-md font-medium text-tertiary hover:text-on-surface hover:bg-surface-container-lowest transition-all">6,000m
-                                Summits</button>
+                                Destinations</button>
                         </div>
                     </div>
-                    <!-- 4-Card Expedition Grid -->
+                    <!-- 4-Card Trek Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
                         <!-- CARD 1: EBC & Gokyo Ri -->
                         <x-trek-card title="Everest Base Camp & Gokyo Ri Lakes"
@@ -233,16 +232,16 @@
                             image="https://lh3.googleusercontent.com/aida-public/AB6AXuAMPw5A0GYFgyE8SoATLMIVDSwWNinr21j8Kzk1dp_-FnC3tuXsKMA82YMQyISnVfT2-k2cKxubB636GyLSJNH1zrFSEO2dsLz3WLzURkCoIB4xNkhVHLBhyzd7JtlTa76aMnl9SBBwcT9H4BAGuPm7jP0RCXif5sT8DYhezfqs2kipCDXvSgsqqnn8H5iVRNyuCpkGVeEiL7i6edxsY2ggJJn8ouDb9FGAnr3gCbQxtjJqmSyBH8FE"
                             badge="Low Footfall • Wild" badgeClass="bg-tertiary text-summit-white" altitude="5,106m"
                             duration="14 Days" rating="4.92" reviews="190"
-                            description="Circumnavigate the eighth highest peak on Earth through ancient Tibetan borderlands and over the thrilling Larkya La Pass."
+                            description="Circumnavigate the eighth highest pass on Earth through ancient Tibetan borderlands and over the thrilling Larkya La Pass."
                             :inclusions="['Restricted Area Government Permit', 'Authentic Gurung & Tibetan Villages']" price="$1,680"
                             href="{{ route('trek-detail', ['slug' => 'manaslu-circuit']) }}" />
-                        <!-- CARD 4: Island Peak 6,189m -->
-                        <x-trek-card title="Island Peak (Imja Tse) & EBC"
+                        <!-- CARD 4: Island Pass 6,189m -->
+                        <x-trek-card title="Island Pass (Imja Tse) & EBC"
                             image="https://lh3.googleusercontent.com/aida-public/AB6AXuAlfFCnLWwAdMYDqNOV-XGuUMDBqo6v1AhcTLVRwrG0i3RXCOFbBgj7BocvuHe3_RMec3ZH27kl3HFEVvfTQM-_vtbXlM4AqRY0I7uXbpJnIFPDI8qJjJlF8OfQ4d3y0SEIaHk7eRUPaSjM-KO9RX49kuebgrh-b8-Illrkfi6cWgc1-_20PbX_Q5IHlCl-8O9H4zLnO6EB9OI2Ckr4wPnhEwbuJ6r0XnJ35ih0wKeRMtz8tRYtOkRj"
-                            badge="6000m Peak Climb" badgeClass="bg-primary text-summit-white" altitude="6,189m"
+                            badge="High Altitude Trek" badgeClass="bg-primary text-summit-white" altitude="6,189m"
                             duration="19 Days" rating="4.98" reviews="115"
-                            description="Comprehensive alpine training combined with Everest Base Camp trekking before ascending fixed ropes onto a towering 6,000m summit."
-                            :inclusions="['NMA Climbing Permit & High Camp Tents', '1:1 Climbing Sherpa on Summit Push']" price="$2,450"
+                            description="Comprehensive alpine training combined with Everest Base Camp trekking before ascending fixed ropes onto a towering 6,000m destination."
+                            :inclusions="['NMA Trekking Permit & High Camp Tents', '1:1 Trekking Sherpa on Destination Push']" price="$2,450"
                             href="{{ route('trek-detail', ['slug' => 'island-peak']) }}" />
                     </div>
                 </div>
@@ -258,7 +257,7 @@
                             Profile &amp; Protocol</h2>
                         <p class="font-body-md text-body-md text-surface-container opacity-80 mt-space-2xs">
                             Our calibrated 500m daily ascent thresholds and built-in active rest days ensure maximum
-                            summit success with zero altitude shock.
+                            destination success with zero altitude shock.
                         </p>
                     </div>
                     <!-- Technical SVG Elevation Graphic Strip -->
@@ -325,7 +324,7 @@
                                 <div class="font-body-sm text-body-sm text-surface-container opacity-70">4,410m /
                                     14,468ft</div>
                                 <div class="font-body-sm text-body-sm text-surface-container-low mt-2">Nangkartshang
-                                    Peak day climb.</div>
+                                    Pass day trek.</div>
                             </div>
                             <div class="p-space-sm rounded-lg bg-summit-white/5">
                                 <span
@@ -340,7 +339,7 @@
                             </div>
                             <div class="p-space-sm rounded-lg bg-summit-white/10 ring-1 ring-primary-container">
                                 <span
-                                    class="font-badge-caption text-badge-caption text-primary-container uppercase font-bold block">Summit
+                                    class="font-badge-caption text-badge-caption text-primary-container uppercase font-bold block">Destination
                                     Viewpoint</span>
                                 <div class="font-headline-sm text-headline-sm font-bold text-summit-white mt-1">Kala
                                     Patthar</div>
@@ -363,7 +362,7 @@
                         <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Built on Sherpa
                             Heritage &amp; Clinical Safety</h2>
                         <p class="font-body-md text-body-md text-tertiary mt-space-2xs">We do not outsource your safety
-                            to contractors. Every itinerary is led by our full-time Kathmandu &amp; Khumbu expedition
+                            to contractors. Every itinerary is led by our full-time Kathmandu &amp; Khumbu trek
                             family.</p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-lg">
@@ -378,7 +377,7 @@
                                 <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">Sherpa-Led
                                     Heritage</h3>
                                 <p class="font-body-md text-body-md text-tertiary">
-                                    Our lead expedition sardars boast multiple 8,000m summits and ancestral
+                                    Our lead trek sardars boast multiple 8,000m destinations and ancestral
                                     understanding of weather patterns, snow pack stability, and trail health.
                                 </p>
                             </div>
@@ -454,14 +453,14 @@
                     </div>
                 </div>
             </section>
-            <!-- MEET OUR EXPEDITION LEADERS -->
+            <!-- MEET OUR TREK LEADERS -->
             <section class="w-full py-space-3xl bg-surface">
                 <div class="max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl items-center">
                         <!-- Left: Leader Highlight with Image -->
                         <div class="lg:col-span-6 relative">
                             <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-ridge-deep">
-                                <img alt="Portrait of Dawa Tenzing Sherpa, Senior Expedition Guide"
+                                <img alt="Portrait of Dawa Tenzing Sherpa, Senior Trek Guide"
                                     class="w-full h-auto object-cover max-h-[580px]"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDacVdR5VA8tGaaIOU8DkYpJb4kqOBUqEhRNNZdvOFiYxTom4bM2ebieAgUriYYqW-KVdfcX6vxkBl5Ew4OvWs74tqA4vYaCbaKgmvg_QkDkrKaIEzv1lIRq_w60KQbKsmBDGdn8qOwZKSgrGA7XpwrYehBeNLKCm1sRc0t5Qu8rrgJcjG2y-D8nHkUVrO7JJyALl3aBLxSfmwX96EM7eKsWTkVttaqoZbg252LXTmAN2RFUD893XLz" />
                                 <div
@@ -470,12 +469,12 @@
                                 <div class="absolute bottom-6 left-6 right-6 text-summit-white">
                                     <span
                                         class="px-space-sm py-1 rounded bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption font-bold uppercase tracking-wider">
-                                        Chief Expedition Leader
+                                        Chief Trek Leader
                                     </span>
                                     <h3 class="font-headline-md text-headline-md text-summit-white font-bold mt-2">Dawa
                                         Tenzing Sherpa</h3>
                                     <p class="font-body-sm text-body-sm text-surface-container-high opacity-90 mt-1">
-                                        14x Everest Summits • 4x K2 Climbs • Lead High-Altitude Rescue Trainer</p>
+                                        14x Everest Destinations • 4x K2 Treks • Lead High-Altitude Rescue Trainer</p>
                                 </div>
                             </div>
                             <!-- Floating Micro Credential Card -->
@@ -496,7 +495,7 @@
                                     class="font-badge-caption text-badge-caption uppercase tracking-[0.2em] text-primary font-bold mb-space-2xs">
                                     The Mountain Guardians</div>
                                 <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">You Are in
-                                    the Hands of Nepal's Finest Mountaineers</h2>
+                                    the Hands of Nepal's Finest Trekkers</h2>
                             </div>
                             <p class="font-body-lg text-body-lg text-tertiary">
                                 Every Neepa Adventure trekker is paired with authentic Sherpa guides born and raised in
@@ -556,7 +555,7 @@
                     </div>
                 </div>
             </section>
-            <!-- TRAVELLER REVIEWS & VERIFIED EXPEDITIONS -->
+            <!-- TRAVELLER REVIEWS & VERIFIED TREKS -->
             <section class="w-full py-space-3xl bg-surface-container-low">
                 <div class="max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop">
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-md">
@@ -621,9 +620,9 @@
                                     <x-lucide-star class="size-[18px]" />
                                 </div>
                                 <h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-2xs">"My first
-                                    6,000m summit on Island Peak"</h4>
+                                    6,000m destination on Island Pass"</h4>
                                 <p class="font-body-md text-body-md text-tertiary mb-space-md">
-                                    "The mountaineering refresher at High Camp was thorough. On summit day, my climbing
+                                    "The trekking refresher at High Camp was thorough. On destination day, my trekking
                                     Sherpa Pemba paced me like clockwork up the headwall. Standing at 6,189m at sunrise
                                     is an experience I will cherish forever."
                                 </p>
@@ -632,7 +631,7 @@
                                 <div>
                                     <div class="font-label-md text-label-md font-bold text-on-surface">Dr. Julian
                                         Richter</div>
-                                    <div class="font-body-sm text-body-sm text-tertiary">Island Peak Expedition • Nov
+                                    <div class="font-body-sm text-body-sm text-tertiary">Island Pass Trek • Nov
                                         2024</div>
                                 </div>
                                 <x-lucide-shield-check class="text-primary size-[24px]" />
@@ -684,7 +683,7 @@
                             <div
                                 class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-primary-container/20 text-primary-container font-badge-caption text-badge-caption font-bold uppercase tracking-wider">
                                 <x-lucide-headphones class="size-[16px]" />
-                                Fast Response Expedition Desk
+                                Fast Response Trek Desk
                             </div>
                             <h2
                                 class="font-headline-lg text-headline-lg text-summit-white tracking-tight leading-tight">

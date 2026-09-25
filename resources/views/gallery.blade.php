@@ -17,7 +17,7 @@
                         class="flex flex-wrap items-center justify-between gap-space-sm mb-space-lg text-body-sm text-surface-dim">
                         <div
                             class="flex items-center gap-space-2xs uppercase tracking-widest font-label-sm text-label-sm">
-                            <span class="text-primary-container font-semibold">Expedition Archives</span>
+                            <span class="text-primary-container font-semibold">Trek Archives</span>
                             <span class="text-tertiary">/</span>
                             <span>Visual Chronicles</span>
                             <span class="text-tertiary">/</span>
@@ -43,12 +43,12 @@
                             </div>
                             <h1
                                 class="font-display-xl text-display-xl tracking-tight leading-[1.05] text-summit-white uppercase">
-                                Expedition Visual <span class="text-primary-container">Chronicles</span> &amp; Summit
+                                Trek Visual <span class="text-primary-container">Chronicles</span> &amp; Destination
                                 Moments
                             </h1>
                             <p class="font-body-lg text-body-lg text-surface-dim max-w-2xl font-normal leading-relaxed">
                                 Step onto the sacred ridgelines, glacial passes, and golden sunrise pitches through the
-                                lenses of our Sherpa expedition leaders, visiting alpinists, and mountain visualists.
+                                lenses of our Sherpa trek leaders, visiting alpinists, and mountain visualists.
                             </p>
                         </div>
                         <div
@@ -140,8 +140,8 @@
                         </button>
                         <button
                             class="gallery-pill px-space-md py-space-2xs rounded-lg font-label-md text-label-md transition-all uppercase tracking-wider bg-surface-container hover:bg-surface-container-high text-on-surface-variant"
-                            data-category="summits">
-                            8,000m Summits
+                            data-category="destinations">
+                            8,000m Destinations
                         </button>
                         <button
                             class="gallery-pill px-space-md py-space-2xs rounded-lg font-label-md text-label-md transition-all uppercase tracking-wider bg-surface-container hover:bg-surface-container-high text-on-surface-variant"
@@ -160,7 +160,7 @@
                         <div
                             class="flex items-center gap-space-xs bg-surface-container px-space-sm py-1.5 rounded-lg text-body-sm">
                             <x-lucide-calendar-days class="size-[18px] text-primary" />
-                            <select aria-label="Select Himalayan Expedition Season"
+                            <select aria-label="Select Himalayan Trek Season"
                                 class="bg-transparent text-on-surface font-label-sm text-label-sm uppercase focus:outline-none cursor-pointer"
                                 id="season-select">
                                 <option value="all">Season: All Windows</option>
@@ -209,7 +209,7 @@
                             <div class="relative h-[480px] w-full overflow-hidden">
                                 <img alt="Ama Dablam Golden Ridge"
                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    data-alt="Breathtaking golden morning sunlight hitting the razor-sharp eastern fluted ice ridge of Ama Dablam mountain Nepal, dramatic dark blue high-altitude sky, extreme details on frosted seracs and wind-sculpted snow plumes, warm alpine glow, ultra-wide professional mountaineering photography, 8k resolution"
+                                    data-alt="Breathtaking golden morning sunlight hitting the razor-sharp eastern fluted ice ridge of Ama Dablam mountain Nepal, dramatic dark blue high-altitude sky, extreme details on frosted seracs and wind-sculpted snow plumes, warm alpine glow, ultra-wide professional trekking photography, 8k resolution"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOOjUE5knG2M2kEbVvLC_ttRiTIttbT6VolS0w55kQYM64dx-Lj35wt_-hYQmy4JrgInJfveBWT0RO7vwlB-hFHp7qzbJACcS9oozdoAVHXp1_-0YL2It2J1hTVj4gadGuPsYCXQEZpnEqZDcHuBniSyRdG5OvyCdTwW0_J-apJDHsmaq6j3BNg0jNJM22Iy4bhVWGK_-O6JrNI0qpGtbtVDc9W8uHw5-tuHKQ8FyPG0I41uu-WX7W" />
                                 <!-- Scrim Overlay -->
                                 <div
@@ -219,7 +219,7 @@
                                 <div class="absolute top-space-md left-space-md flex items-center gap-space-xs">
                                     <span
                                         class="bg-ridge-deep/85 backdrop-blur-md text-summit-white px-space-sm py-1 rounded-full font-badge-caption text-badge-caption uppercase tracking-wider flex items-center gap-1">
-                                        <x-lucide-arrow-up class="text-primary-container size-[14px]" /> 6,812m Summit
+                                        <x-lucide-arrow-up class="text-primary-container size-[14px]" /> 6,812m Destination
                                         Target
                                     </span>
                                     <span
@@ -301,7 +301,7 @@
                                 class="group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-[228px]">
                                 <img alt="Gokyo Sacred Lakes Reflection"
                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    data-alt="Sunset evening glow reflecting on the sacred turquoise glacial water of Dudh Pokhari Gokyo Lake 3 Nepal with pristine floating ice sheets, towering massive snow peak Cho Oyu in the background, deep violet shadows and warm ember clouds, serene high-alpine stillness"
+                                    data-alt="Sunset evening glow reflecting on the sacred turquoise glacial water of Dudh Pokhari Gokyo Lake 3 Nepal with pristine floating ice sheets, towering massive snow pass Cho Oyu in the background, deep violet shadows and warm ember clouds, serene high-alpine stillness"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkrFqBEwyEge_eDtoFKUquiVxwGhx_Y5o3f3xx4IjsUZx8fXARsPmAVBtxIg1Kz6aIjsKv2pCP5_qu-Ut3Pd3LoaRzmYfU-F0YSGes7bQf6ozVVTfiScyNr1Aq0AyK-PxzH0q2tylOc7wSUgz3AEzGpwBExfG9JiZQ7yHd0ZYacHyWJ-yabAQtk6ZyA9iq_2dkCqocYbom0q7vPgeATb8R3nPtN_jeYeOTteFwjZ9gvKFnlUMTve2l" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-ridge-deep via-ridge-deep/50 to-transparent">
@@ -342,11 +342,11 @@
                                 class="font-badge-caption text-badge-caption uppercase tracking-widest text-primary font-bold">
                                 The Archive</div>
                             <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">
-                                Expedition Masonry Portfolio</h2>
+                                Trek Masonry Portfolio</h2>
                         </div>
                         <div class="text-body-sm text-tertiary flex items-center gap-space-xs">
                             <span class="w-2 h-2 rounded-full bg-primary-container"></span>
-                            <span>Showing 9 Selected Summit &amp; Trail Captures</span>
+                            <span>Showing 9 Selected Destination &amp; Trail Captures</span>
                         </div>
                     </div>
                     <!-- Asymmetric Responsive Grid (3 Columns on Desktop) -->
@@ -357,7 +357,7 @@
                             <div class="relative h-80 overflow-hidden">
                                 <img alt="Prayer Flags at Thorang La Pass"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Dense bundles of vibrant Buddhist prayer flags dancing in freezing wind at Thorang La Pass summit 5416m Nepal, deep cobalt blue sky, snow clad peaks of Annapurna range, sharp natural contrast, high altitude mountain expedition aesthetic"
+                                    data-alt="Dense bundles of vibrant Buddhist prayer flags dancing in freezing wind at Thorang La Pass destination 5416m Nepal, deep cobalt blue sky, snow clad passes of Annapurna range, sharp natural contrast, high altitude mountain trek aesthetic"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFRniI9Lv4lDicOmRohJ5vECXEwYnVbM6USzGaVher5AEFaXAGBh2iwjRGcipH1kmdtK47z39tIK4EBlRB2MjAy6BXyzXAe4NvfIIRlzrmDEJdVGwaC-nD-XQab83pUzGvko_YACbdV_lVLTpDGJJM79PYaV7FS77O8hSrWkVYKQoCbXh6-oBARUCje5d8rZfKpkF-5yJslrTR9EYWAzeYgo5cv0J7OFeQeuKtEeiys_3BGAxE7tw1" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-ridge-deep/90 via-ridge-deep/30 to-transparent opacity-90 group-hover:opacity-95 transition-opacity">
@@ -391,11 +391,11 @@
                         </div>
                         <!-- Item 2: Sherpa Sirdar Dawa inspecting ropes -->
                         <div class="gallery-item group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-                            data-cat="summits" data-season="autumn">
+                            data-cat="destinations" data-season="autumn">
                             <div class="relative h-96 overflow-hidden">
                                 <img alt="Sherpa Lead Sirdar Dawa Inspecting Ropes"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Sherpa Expedition Lead Sirdar Dawa inspecting high-tensile fixed ropes and carabiners at Camp II on Mount Manaslu 8163m, heavy mountain mountaineering parka with down hood, wind blown snow crystals glistening, rugged high-altitude expedition documentary portrait"
+                                    data-alt="Sherpa Trek Lead Sirdar Dawa inspecting high-tensile fixed ropes and carabiners at Camp II on Mount Manaslu 8163m, heavy mountain trekking parka with down hood, wind blown snow crystals glistening, rugged high-altitude trek documentary portrait"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb739w7li3SLGN7AtwJH_T837iWt-gzjcb_9Kv3qbO2-6hsID2QI2ap6EPmeePpyyoVU-tyQxPrAwEgCwtz8MNH8DWlznQcehGcFcknn5UOXpAjAJYlN0zufdex5SEmY48IBgQjWykCUh5A61kth7O0a-BpZlVdCSHMYxveF7o2syvsfhwNsnUiWlZqM7HWp5ovHE6cstnVrWSh-JaIJctC3polVpk9vU_6BXL8Kj7JY0bUnYvbKZa" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-ridge-deep/90 via-ridge-deep/30 to-transparent opacity-90 group-hover:opacity-95 transition-opacity">
@@ -407,19 +407,19 @@
                                 </div>
                                 <button
                                     class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/80 hover:bg-primary-container text-on-surface flex items-center justify-center transition-colors"
-                                    onclick="openModal('Sherpa Lead Sirdar Dawa inspecting fixed ropes', '6,400m • Mt Manaslu Camp II', 'Autumn Technical Climb')"
+                                    onclick="openModal('Sherpa Lead Sirdar Dawa inspecting fixed ropes', '6,400m • Mt Manaslu Camp II', 'Autumn Technical Trek')"
                                     title="Expand Fullscreen Stills">
                                     <x-lucide-expand class="size-[18px]" />
                                 </button>
                                 <div class="absolute bottom-0 inset-x-0 p-space-md text-summit-white">
                                     <div
                                         class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
-                                        Manaslu 8,000m Expedition</div>
+                                        Manaslu 8,000m Trek</div>
                                     <h3
                                         class="font-headline-sm text-headline-sm text-summit-white font-bold leading-tight">
                                         Sirdar Dawa at Camp II Ropes</h3>
                                     <p class="text-body-sm text-surface-dim mt-1">Validating dynamic line anchors prior
-                                        to the summit push window opening above the Japanese Couloir.</p>
+                                        to the destination push window opening above the Japanese Couloir.</p>
                                     <div
                                         class="flex items-center justify-between pt-space-xs mt-space-xs border-t border-white/10 text-body-sm text-surface-variant">
                                         <span>By Mark Vance, Alpinist</span>
@@ -435,7 +435,7 @@
                             <div class="relative h-80 overflow-hidden">
                                 <img alt="Warm butter tea in Khumjung teahouse"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Cozy interior of an authentic Sherpa stone teahouse in Khumjung village Nepal, steaming brass pots of salted butter tea on an iron central woodstove, warm ember glow lighting weathered wooden benches and wool yak blankets, outside window shows snowy dusk on Everest peaks"
+                                    data-alt="Cozy interior of an authentic Sherpa stone teahouse in Khumjung village Nepal, steaming brass pots of salted butter tea on an iron central woodstove, warm ember glow lighting weathered wooden benches and wool yak blankets, outside window shows snowy dusk on Everest passes"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcCyo7UK6F21-FVksJwoqDUsc_v1UJf-nSmA59CgaWLdkTmnxgLhXHKQkoJh_QEd6LQn5bTuwpKUP5TIcPlGWAz8vA8XxLJtpNdxtC-Nkkb7AwFc8u3tZGWDTylRf9i1K0c2TR_bdY5CgpP7VXhfDoyq6nyRhrnhp_aL-K1rTqRFrV-3eq9JsOY-u5u2LuE5OblobISb8ur-rfNx_0H6BpVJdtSmGCrvv2sAobJdHcNAybEWpRsH8O" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-ridge-deep/90 via-ridge-deep/30 to-transparent opacity-90 group-hover:opacity-95 transition-opacity">
@@ -498,7 +498,7 @@
                                     <h3
                                         class="font-headline-sm text-headline-sm text-summit-white font-bold leading-tight">
                                         3:00 AM Through the Icefall</h3>
-                                    <p class="text-body-sm text-surface-dim mt-1">Climbing in the deepest freeze to
+                                    <p class="text-body-sm text-surface-dim mt-1">Trekking in the deepest freeze to
                                         minimize serac collapse hazards between Base Camp and Camp I.</p>
                                     <div
                                         class="flex items-center justify-between pt-space-xs mt-space-xs border-t border-white/10 text-body-sm text-surface-variant">
@@ -580,7 +580,7 @@
                                         Milky Way Over Kanchenjunga</h3>
                                     <p class="text-body-sm text-surface-dim mt-1">Zero light pollution at Pangpema
                                         North Face sanctuary, revealing the central galactic bulge over the world's
-                                        third highest summit.</p>
+                                        third highest destination.</p>
                                     <div
                                         class="flex items-center justify-between pt-space-xs mt-space-xs border-t border-white/10 text-body-sm text-surface-variant">
                                         <span>By Dr. Arjun Rai</span>
@@ -619,7 +619,7 @@
                                     <h3
                                         class="font-headline-sm text-headline-sm text-summit-white font-bold leading-tight">
                                         Yak Caravans on Hillary Bridge</h3>
-                                    <p class="text-body-sm text-surface-dim mt-1">Carrying expedition supplies toward
+                                    <p class="text-body-sm text-surface-dim mt-1">Carrying trek supplies toward
                                         Namche Bazaar high market across the deep glacial gorge.</p>
                                     <div
                                         class="flex items-center justify-between pt-space-xs mt-space-xs border-t border-white/10 text-body-sm text-surface-variant">
@@ -629,13 +629,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Item 8: Island Peak Headwall Push -->
+                        <!-- Item 8: Island Pass Headwall Push -->
                         <div class="gallery-item group relative bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-                            data-cat="summits" data-season="spring">
+                            data-cat="destinations" data-season="spring">
                             <div class="relative h-96 overflow-hidden">
-                                <img alt="Island Peak Headwall Summit Push"
+                                <img alt="Island Pass Headwall Destination Push"
                                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Roped alpine team ascending steep 50-degree ice headwall with ascenders and ice tools at sunrise on Island Peak Imja Tse 6189m Nepal, warm pink and amber dawn light crowning the sharp summit ridge against sharp Lhotse South Face backdrop"
+                                    data-alt="Roped alpine team ascending steep 50-degree ice headwall with ascenders and ice tools at sunrise on Island Pass Imja Tse 6189m Nepal, warm pink and amber dawn light crowning the sharp destination ridge against sharp Lhotse South Face backdrop"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuArPUFMk0F7u3uCELWqvHwEbjcRnRgO4p4KGDMteODGiNbOZsT-Mx4iB3y9MARrlLzpRkUec5vcLCQMzKfSmHAeLoZpWBKd8Q206U8fZhxpoalq7EgzVjz-cRovSeGuXwGKdty8haxKB3LOa4qePC73P2LMUgicYKsVsFUT_5f1pOj_ehQ7u3IAy87JeScEq3RY3Ivk0QE95CTC7pzZwjkcaODiH2ijoAAQS86IgwUZTX44nwi3-hGM" />
                                 <div
                                     class="absolute inset-0 bg-gradient-to-t from-ridge-deep/90 via-ridge-deep/30 to-transparent opacity-90 group-hover:opacity-95 transition-opacity">
@@ -647,17 +647,17 @@
                                 </div>
                                 <button
                                     class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/80 hover:bg-primary-container text-on-surface flex items-center justify-center transition-colors"
-                                    onclick="openModal('Island Peak headwall push at dawn', '6,189m • Imja Valley Cirque', 'Spring Summit Window')"
+                                    onclick="openModal('Island Pass headwall push at dawn', '6,189m • Imja Valley Cirque', 'Spring Destination Window')"
                                     title="Expand Fullscreen Stills">
                                     <x-lucide-expand class="size-[18px]" />
                                 </button>
                                 <div class="absolute bottom-0 inset-x-0 p-space-md text-summit-white">
                                     <div
                                         class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
-                                        Trekking Peak Technical</div>
+                                        Trekking Pass Technical</div>
                                     <h3
                                         class="font-headline-sm text-headline-sm text-summit-white font-bold leading-tight">
-                                        Island Peak Headwall Push</h3>
+                                        Island Pass Headwall Push</h3>
                                     <p class="text-body-sm text-surface-dim mt-1">Ascending fixed lines on the
                                         150-meter final ice pitch as first sunlight touches the Imja Valley.</p>
                                     <div
@@ -734,7 +734,7 @@
                                 class="font-badge-caption text-badge-caption uppercase tracking-widest text-primary-container font-bold">4K
                                 Cinema &amp; Drones</span>
                             <h2 class="font-headline-lg text-headline-lg text-summit-white uppercase tracking-tight">
-                                Expedition Film Dispatches</h2>
+                                Trek Film Dispatches</h2>
                             <p class="text-surface-dim font-body-md text-body-md max-w-xl mt-1">
                                 Recorded in Apple ProRes 422 HQ and D-Log M across our 2024–2025 seasons. Immersive
                                 soundscapes mixed in Dolby Atmos from high ridge winds.
@@ -756,7 +756,7 @@
                             <div class="relative h-60 w-full overflow-hidden">
                                 <img alt="Gokyo Ri Mini Doc Still"
                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    data-alt="Dramatic drone cinema frame flying over Gokyo Ri mountain summit looking out to four 8000m peaks Everest Lhotse Makalu Cho Oyu surrounded by morning sea of clouds Nepal, cinematic 4k film still with rich golden flare"
+                                    data-alt="Dramatic drone cinema frame flying over Gokyo Ri mountain destination looking out to four 8000m passes Everest Lhotse Makalu Cho Oyu surrounded by morning sea of clouds Nepal, cinematic 4k film still with rich golden flare"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNScL9j19oK8KlqIbIhpOP-aQ0wm26x3a-KgNMeKZLtuiCd0gFKudUK2BpVpLhZ-8q26-68xs3jc6KcXIqGy6h-PLOPZNhjDT2uAM32e6NgJ3VNP38LW0LdgzgxxPGHn9qVTqkLFa0JFj5OOpBkthIBUikkx9kcjIpjdr1-sKu01le7kvFZxVWyA4_kMEPUaS1wgypedTpFFs8HaIYG8cwlzom28Cs0YitBs3GDt3t3KGAmAJe0cN_" />
                                 <div
                                     class="absolute inset-0 bg-ridge-deep/40 group-hover:bg-ridge-deep/20 transition-colors">
@@ -781,7 +781,7 @@
                                 <h3 class="font-headline-sm text-headline-sm text-summit-white font-bold">Beyond the
                                     Cloudline: Gokyo Ri</h3>
                                 <p class="font-body-sm text-body-sm text-surface-dim">
-                                    A 16-day deep expedition over the frozen lakes of Gokyo, high Cho La pass, and the
+                                    A 16-day deep trek over the frozen lakes of Gokyo, high Cho La pass, and the
                                     remote western Khumbu valleys.
                                 </p>
                                 <div
@@ -799,7 +799,7 @@
                             <div class="relative h-60 w-full overflow-hidden">
                                 <img alt="The Porter Path Short Film Still"
                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    data-alt="Intimate cinematic camera portrait of Nepali high-altitude porters and Sherpa guides resting along a mist-shrouded stone staircase in Namche forest Nepal, carrying expedition gear with traditional tump-lines, warm genuine smiles, documentary realism"
+                                    data-alt="Intimate cinematic camera portrait of Nepali high-altitude porters and Sherpa guides resting along a mist-shrouded stone staircase in Namche forest Nepal, carrying trek gear with traditional tump-lines, warm genuine smiles, documentary realism"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyE5DrZVbEZ9Mqaavmj9LsxvLELi2WMLW_1ELngrp0T-KtMYwRq1yagjbAfZFOBP6MgPpkAREhbydew5iaukGLmGkzop5-xKZzd6VEnUO00rKjWNkSCLQ6CkFaCp7Q3G3Vu_JX1NMqCmdzYki6cuIPNb_zojzqvpzNh4J9CtHOXwAVhkEbnNDOpmqwfIzRKZRBw1Y9L867uAi8s3etih7bgLuml0pyYV8EJm74IQELqOjCNEd0v0fn" />
                                 <div
                                     class="absolute inset-0 bg-ridge-deep/40 group-hover:bg-ridge-deep/20 transition-colors">
@@ -838,15 +838,15 @@
                         <div
                             class="group relative bg-surface-container-highest/10 backdrop-blur-md rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
                             <div class="relative h-60 w-full overflow-hidden">
-                                <img alt="Pushing Summit on Mera Peak Still"
+                                <img alt="Pushing Destination on Mera Pass Still"
                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    data-alt="High angle drone aerial shot of mountaineers climbing the snow summit ridge of Mera Peak 6476m Nepal at sunrise, pristine untouched snowfields, sweeping panorama of five 8000 meter giants on the horizon, golden glow and cobalt shadows"
+                                    data-alt="High angle drone aerial shot of trekkers trekking the snow destination ridge of Mera Pass 6476m Nepal at sunrise, pristine untouched snowfields, sweeping panorama of five 8000 meter giants on the horizon, golden glow and cobalt shadows"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI3tQn-492KEdjUUlGxX3SiYcL-xwKozARp4yNM4xLb7QG73_bPHEFhSA_ll4coZLk6ZEFV71U3J6JTaiWh0d-pbr8_9sxecKl2NtrX-EVeRywQgLXgJvvMUu1tpSQk5XiYoodhQjqU4orBfF_NcXLVTxrRcjwrTPAjtKV957e8HNdwmNEh7zhYbH9iaaFyp0-msRMLXj686BU5FDaZ0sc1Y0GfTcAj5EmRuQYWuiZfBVWxWIjQV3q" />
                                 <div
                                     class="absolute inset-0 bg-ridge-deep/40 group-hover:bg-ridge-deep/20 transition-colors">
                                 </div>
                                 <div class="absolute inset-0 flex items-center justify-center">
-                                    <button aria-label="Play Pushing Summit on Mera Peak documentary"
+                                    <button aria-label="Play Pushing Destination on Mera Pass documentary"
                                         class="w-14 h-14 rounded-full bg-primary-container/90 text-on-primary-fixed flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                         <x-lucide-play class="size-[32px] translate-x-0.5" />
                                     </button>
@@ -859,9 +859,9 @@
                             <div class="p-space-lg space-y-space-xs">
                                 <div
                                     class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
-                                    Technical Climbing Diary</div>
+                                    Technical Trekking Diary</div>
                                 <h3 class="font-headline-sm text-headline-sm text-summit-white font-bold">Pushing
-                                    Summit: Mera Peak 6,476m</h3>
+                                    Destination: Mera Pass 6,476m</h3>
                                 <p class="font-body-sm text-body-sm text-surface-dim">
                                     From the lush Hinku valley through high camp crevasse fields to Nepal's most
                                     expansive panoramic viewpoint.
@@ -917,8 +917,8 @@
                                                 class="font-label-md text-label-md font-bold text-on-surface uppercase">
                                                 Photographer Royalties &amp; Accreditation</div>
                                             <div class="font-body-sm text-body-sm text-tertiary">Selected photographers
-                                                receive full global credit and a $500 expedition credit token toward
-                                                future climbs.</div>
+                                                receive full global credit and a $500 trek credit token toward
+                                                future treks.</div>
                                         </div>
                                     </div>
                                 </div>
@@ -927,7 +927,7 @@
                                     <button
                                         class="px-space-xl py-space-sm rounded-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider transition-all shadow-md flex items-center gap-space-2xs">
                                         <x-lucide-upload class="size-[20px]" />
-                                        Submit Expedition Stills
+                                        Submit Trek Stills
                                     </button>
                                     <a class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider hover:underline flex items-center gap-1"
                                         href="#">
@@ -1002,15 +1002,15 @@
                             Ready to Experience These Vistas in Person?
                         </h2>
                         <p class="font-body-lg text-body-lg text-surface-dim font-normal">
-                            Every photo in our archive was captured on active Neepa Adventure expeditions. Stand at the
+                            Every photo in our archive was captured on active Neepa Adventure treks. Stand at the
                             base of the Khumbu icefall, cross Cho La with veteran Sherpa mentors, and log your own
-                            summit dispatches.
+                            destination dispatches.
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row items-center gap-space-md w-full lg:w-auto">
                         <a class="w-full sm:w-auto inline-flex items-center justify-center px-space-xl py-space-md rounded-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider transition-all shadow-lg text-center"
                             data-path="treks" href="#">
-                            Find Your Expedition
+                            Find Your Trek
                         </a>
                         <a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-2xs px-space-xl py-space-md rounded-lg bg-surface-container-highest/20 hover:bg-surface-container-highest/30 text-summit-white font-label-md text-label-md font-bold uppercase tracking-wider transition-all backdrop-blur-md text-center"
                             href="#">
@@ -1045,7 +1045,7 @@
                     <!-- Modal Image Viewport -->
                     <div
                         class="relative w-full bg-ridge-deep flex-1 flex items-center justify-center min-h-[350px] overflow-hidden">
-                        <img alt="Himalayan Expedition Detail" class="max-h-[665px] w-auto object-contain mx-auto"
+                        <img alt="Himalayan Trek Detail" class="max-h-[665px] w-auto object-contain mx-auto"
                             data-alt="High-resolution full-screen alpine documentary shot in ultra clarity with crisp mountain details and vibrant lighting"
                             id="modal-img"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRmUwWUNcS9ZrsGsOHpcc7-8WzOFImj5jDEQQ782vfeNmKTjr6XCmuXP2b-wcG7QqdA3ghemHg9Q0Wo7X3X7bnlDFVAa4mk3K5ZOA7tvxm-rtlu955q3Asr3bBnd8B-6SY06FsO0lLJ5uRXceb60z-fD2F35dO0UBZitBcAWFAFMtGxEh3DlDKFQUZphQVtZeQMF3FPdYc_Knb8Sr4K66B8uSV8OHafBGUel6uOC6w65_4crVVynvK" />

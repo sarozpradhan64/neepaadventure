@@ -75,7 +75,7 @@
                             <div class="font-badge-caption text-badge-caption text-primary-container uppercase">Mastery
                             </div>
                             <div class="font-headline-sm text-headline-sm font-bold text-summit-white">14x</div>
-                            <div class="font-body-sm text-body-sm text-mist-slate">Everest Summits Led by Founder</div>
+                            <div class="font-body-sm text-body-sm text-mist-slate">Everest Destinations Led by Founder</div>
                         </div>
                         <div class="space-y-space-2xs p-space-xs">
                             <div class="font-badge-caption text-badge-caption text-primary-container uppercase">High
@@ -114,7 +114,7 @@
                             <div
                                 class="relative -mt-12 ml-auto w-3/4 overflow-hidden rounded-xl shadow-2xl bg-surface-container-lowest p-space-2xs">
                                 <img class="w-full h-52 object-cover rounded-lg"
-                                    data-alt="Veteran Sherpa expedition leader with windburned skin and radiant welcoming smile holding mountaineering crampons and ice axe, misty mountain pass in background."
+                                    data-alt="Veteran Sherpa trek leader with windburned skin and radiant welcoming smile holding trekking crampons and ice axe, misty mountain pass in background."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD2Z9ekpCwI8kbDV1ICEbQjAVPmphgeA2fPOZk8_2RWjHH3HSDVH6ptyV1mAv6qzvrViIdPPEZWRy1w4Q_nVPdwxKZXjUoQpNzutGwJxb1MEy0MYCTZ2nTtdeDPQvXO9erjef2AKg5dnqtZIViQqxa3XQBpADuge7ofdeukc18ifcJ6K6RJ5DZaavOVQw9BqRdX7FFW7wmM0YGfPwlUTch9NJrS--mhYloViFNHtkb16jkr60wIp46">
                                 <div class="p-space-sm bg-surface-container-lowest">
                                     <div class="font-label-md text-label-md font-bold text-on-surface">Dawa Tenzing
@@ -144,7 +144,7 @@
                                         class="w-8 h-8 rounded-lg bg-primary-container/20 flex items-center justify-center text-on-primary-container font-headline-sm font-bold text-body-md">
                                         01</div>
                                     <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">From Khumbu
-                                        Yak Trails to International Summits</h3>
+                                        Yak Trails to International Destinations</h3>
                                 </div>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">
                                     Before the world flocked to Everest, our elders guided yaks along icy passes into
@@ -154,10 +154,10 @@
                                     Sherpa people.
                                 </p>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">After earning his
-                                    prestigious IFMGA mountain badge and logging 14 summits of Everest, Dawa chose not
+                                    prestigious IFMGA mountain badge and logging 14 destinations of Everest, Dawa chose not
                                     to work for absentee overseas operators. In 2011, alongside brothers and cousins
                                     from Phortse, he established Neepa Adventure to reclaim the narrative of Himalayan
-                                    mountaineering: ethical pay, native equity, and authentic spiritual stewardship.</p>
+                                    trekking: ethical pay, native equity, and authentic spiritual stewardship.</p>
                             </div>
                             <!-- Story 2: Meaning of Neepa -->
                             <div class="space-y-space-xs bg-surface-container-low p-space-xl rounded-xl shadow-sm">
@@ -171,12 +171,12 @@
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">
                                     In Tibetan Buddhism, a <span class="font-semibold text-on-surface">Neepa</span> is a
                                     sacred circumambulation: an act of meditative devotion where pilgrims walk clockwise
-                                    around sacred peaks, ancient stupas, and monasteries. It represents the journey of
+                                    around sacred passes, ancient stupas, and monasteries. It represents the journey of
                                     life, humility in the presence of timeless mountains, and the karmic cycle of giving
                                     back.
                                 </p>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">
-                                    Every expedition we curate follows this spiritual compass. We do not ‘conquer’
+                                    Every trek we curate follows this spiritual compass. We do not ‘conquer’
                                     mountains—we seek permission, honor local customs, perform the sacred Puja before
                                     setting foot on ice, and leave each col cleaner than we found it.
                                 </p>
@@ -294,7 +294,7 @@
                                         Regenerative Tourism</h3>
                                 </div>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    5% of all expedition profits flow into the Khumjung &amp; Phortse Community
+                                    5% of all trek profits flow into the Khumjung &amp; Phortse Community
                                     Education Trust. Furthermore, our teams haul back an average of 4kg of legacy trail
                                     refuse per client on every high pass crossing.
                                 </p>
@@ -317,10 +317,10 @@
                             <div
                                 class="font-badge-caption text-badge-caption text-primary uppercase tracking-[0.2em] font-bold">
                                 The Guardians</div>
-                            <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Expedition
+                            <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Trek
                                 Leadership &amp; High-Altitude Directors</h2>
                             <p class="font-body-md text-body-md text-tertiary">Our operational backbone combines
-                                decades of elite Himalayan summit leadership, wilderness emergency medicine, and
+                                decades of elite Himalayan destination leadership, wilderness emergency medicine, and
                                 international logistics.</p>
                         </div>
                         <div
@@ -339,7 +339,7 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6OLohWYe675toRG4i-Q5KWMCZT1csmglGmBdAhFmmhUKom097ON186aw6DRSxv3PITLYuTRyMcPeyNzgU-LcPxx43DcsYWqVIypjRiaLASw1YhEv25-XsuaYQhOTmNfMIkK5Qq_Zb3ZPr21Z_t8Mojr4fYtOfSd5r2D92eI7H6L7YBkP7GMsd8r3G7-CZBkcdl_Ex96wBAOm8mpaBsP9k6ieaqvJlXSbnOKsh21V4C2bQGF4MM6jH">
                                 <div
                                     class="absolute top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs rounded uppercase tracking-wider">
-                                    14x Everest Summits
+                                    14x Everest Destinations
                                 </div>
                                 <div
                                     class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-on-surface/90 to-transparent p-space-md">
@@ -353,7 +353,7 @@
                                     <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Dawa
                                         Tenzing Sherpa</h3>
                                     <p class="font-label-sm text-label-sm text-primary font-semibold">Founder &amp;
-                                        Head of Expeditions</p>
+                                        Head of Treks</p>
                                 </div>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
                                     Certified IFMGA mountain guide. Oversees all 8,000m ascents and technical pass
@@ -371,11 +371,11 @@
                             class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                             <div class="relative h-64 overflow-hidden">
                                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    data-alt="Portrait of Pasang Lhamu Sherpa, expert female mountaineer in red technical climbing shell holding alpine radio with snowy Himalayan peaks in background."
+                                    data-alt="Portrait of Pasang Lhamu Sherpa, expert female trekker in red technical trekking shell holding alpine radio with snowy Himalayan passes in background."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQsD-a9A3e-33LEVqmrXe7XVJewuY4OgmFaA0gzKNkNOTwkO7XNAKph24NKKLNJ0qFCbReMwHB1MkSz0xPP4U3a3pSCEdc1MUDBK2Hn99PwmOMMa-_YFSzqmd5-BClGlr6I9_AebO4dFxUvLXKLTEOj1N1sn1TUIECS2x7DEKbf808PJPjbw5Nr1oHJYFZjY8kB_pxH70Fk8YjbCL33UbbBRSTzFugqwntZnOlMogX2oJTGuI2liYU">
                                 <div
                                     class="absolute top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs rounded uppercase tracking-wider">
-                                    5x Everest • K2 Summit
+                                    5x Everest • K2 Destination
                                 </div>
                                 <div
                                     class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-on-surface/90 to-transparent p-space-md">
@@ -407,7 +407,7 @@
                             class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                             <div class="relative h-64 overflow-hidden">
                                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    data-alt="Portrait of Mingma Norbu Sherpa, logistics master sitting in high altitude tent with navigation maps and expedition gear, warm atmospheric lighting."
+                                    data-alt="Portrait of Mingma Norbu Sherpa, logistics master sitting in high altitude tent with navigation maps and trek gear, warm atmospheric lighting."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgsNXoODtdirIDtsZemPeVb-t-WnBbD9nLcMeII08RmG6xydcQ9u0XaMeYdacWHkojSs1WE4uxvx21qY1L5GQty1l5dQJmDxVTiAxGnIYySYjN8N6SoTYpP3s5gJid9rLMY9dWgUXvqCt5rtnGKY9XecW1TCgkPNewP-IIARVQ9dRE4gMbgDBqg9JxEsMFbORE1ds4qtRy_qB6PqOYaDslAftAGRy6Uq0a2rpxR_kO3Lnz9Ftk1AO1">
                                 <div
                                     class="absolute top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs rounded uppercase tracking-wider">
@@ -434,7 +434,7 @@
                                 <div
                                     class="flex items-center gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant font-medium">
                                     <x-lucide-route class="size-[16px] text-primary" />
-                                    Specialty: Remote Expedition Caravans &amp; High Passes
+                                    Specialty: Remote Trek Caravans &amp; High Passes
                                 </div>
                             </div>
                         </div>
@@ -443,7 +443,7 @@
                             class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                             <div class="relative h-64 overflow-hidden">
                                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    data-alt="Portrait of Himalayan medical doctor Dr Nima Tshering holding high altitude medical chart, wearing fleece expedition jacket with snow covered Himalayan clinic visible outside."
+                                    data-alt="Portrait of Himalayan medical doctor Dr Nima Tshering holding high altitude medical chart, wearing fleece trek jacket with snow covered Himalayan clinic visible outside."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCesl3ZdhvE3yvOoQz4r5XtIRUl7AsqCZCV9iMfQqYrK7n5MjcA0uajD_FmK1zEvckozleZsZ0hlUDP4pWOXp09ZEAa9TxiOJTBBJ6CSkE5EKJNkB5gECO7smYa088fN8m8Uf4kXt9uyNwM_SANhLl3ZDatal6b1KW9G5hUEjW6Q_WrDlIOfrKA8mzXH_bUHKUrwobv9YosxbnRWElXVa7v74svWel7yiwhClkVZuwE73eOhG_lBvUL">
                                 <div
                                     class="absolute top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs rounded uppercase tracking-wider">
@@ -480,7 +480,7 @@
                             class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                             <div class="relative h-64 overflow-hidden">
                                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    data-alt="Tashi Gyalzen Sherpa ice climbing on blue glacial wall with harness and technical ice axes, focused expression with snow crystals glistening."
+                                    data-alt="Tashi Gyalzen Sherpa ice trekking on blue glacial wall with harness and technical ice axes, focused expression with snow crystals glistening."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU1qjWg7qO6s_FW3MISD9gZF4ZxH6MqPq2JL5QGYfsOIV2N4kRaTL8qE2Y4Y0B4JxtySMRmHifDV8rfLtstwHhHnAiS7dmV2BnHoolTB6y4pWFYhusjDw3WR657G6IB9JxJTeOzSTdEpWnq3a4NDkmhRuRr0pZ7MZ4Y3HQefysMgly75sb1yzZ347prRGIF8tmoYHdaWnPpM0YSwetvPYNW1t13FgUxUmrGeqnlb1_BvFIFvTIfOKQ">
                                 <div
                                     class="absolute top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs rounded uppercase tracking-wider">
@@ -497,11 +497,11 @@
                                     <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Tashi
                                         Gyalzen Sherpa</h3>
                                     <p class="font-label-sm text-label-sm text-primary font-semibold">Technical
-                                        Climbing Director</p>
+                                        Trekking Director</p>
                                 </div>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Steep-angle ice and rock specialist. Leads our technical 6,000m peak teams including
-                                    Island Peak, Mera, and Lobuche East with meticulous anchor systems.
+                                    Steep-angle ice and rock specialist. Leads our technical 6,000m pass teams including
+                                    Island Pass, Mera, and Lobuche East with meticulous anchor systems.
                                 </p>
                                 <div
                                     class="flex items-center gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant font-medium">
@@ -515,7 +515,7 @@
                             class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all group">
                             <div class="relative h-64 overflow-hidden">
                                 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                    data-alt="Anton V. reviewing satellite weather maps and expedition logs on tablet outdoors in Namche Bazaar alpine cafe, peaks visible through window."
+                                    data-alt="Anton V. reviewing satellite weather maps and trek logs on tablet outdoors in Namche Bazaar alpine cafe, passes visible through window."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBigebxnzIzSc0ygcd0LhBxwYuMKpNIh9OtiQ5vi0VQc73R3QeYDuVoJ0YJarDTYfU2QYPT1V7UU-Uxi6lJj4YNQ96Y7BK0K4j-v-LD4mSGkhc1QrB1eRr6AgJoRX_p2LnXu6DVMV1jQhzAfc3DysUHh6RPLKjYMxJHAdDAnwdnRHWqis5o9B3aWgozhGGhp6qYZSkwPCZT0_Idc9MIScPUukP33_S6O535nmnI4dXtVekodL7BpKr2">
                                 <div
                                     class="absolute top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs rounded uppercase tracking-wider">
@@ -555,7 +555,7 @@
                     <div class="space-y-space-2xs max-w-2xl">
                         <div
                             class="font-badge-caption text-badge-caption text-primary uppercase tracking-[0.2em] font-bold">
-                            Expedition Infrastructure</div>
+                            Trek Infrastructure</div>
                         <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface">Where Alpine Discipline
                             Meets Boutique Comfort</h2>
                         <p class="font-body-md text-body-md text-tertiary">Our permanent field facilities ensure you
@@ -566,7 +566,7 @@
                         <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col">
                             <div class="h-48 overflow-hidden relative">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="Modern high altitude gear vault in Kathmandu with neatly organized Petzl harnesses, down sleeping bags, expedition boots, and briefing table."
+                                    data-alt="Modern high altitude gear vault in Kathmandu with neatly organized Petzl harnesses, down sleeping bags, trek boots, and briefing table."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1DfxvgWVd0FB8Ja-0bpI1G8ktZMRKG7iU4ArV6spCSx7dXDKoWi1uHgXYw9nKareoFMfs1zv8zDnlc0H4EjBanPnpigZ7BA48f7DUE-z0PmwmOgeWsNwwq1CCIHEq1AnxeqFgBH6D21EVdrLM84qVqgp1otHQg8lg_InS2Wagt_pPHgZuelFA20JMqFK76U7np0qcCUbnSCYTFz9MW5qrgKAi9nNzj1kSPD5e5G7DCb-nnhs238Xk">
                                 <div
                                     class="absolute top-space-xs left-space-xs bg-ridge-deep/80 text-summit-white px-space-xs py-space-2xs rounded font-badge-caption text-badge-caption uppercase">
@@ -718,7 +718,7 @@
                             <div class="lg:col-span-5 space-y-space-md">
                                 <div class="relative rounded-xl overflow-hidden shadow-xl">
                                     <img class="w-full h-72 object-cover"
-                                        data-alt="Sherpa school children smiling warmly in traditional uniform outside Khumjung Hillary School with prayer flags and snowy peaks in background."
+                                        data-alt="Sherpa school children smiling warmly in traditional uniform outside Khumjung Hillary School with prayer flags and snowy passes in background."
                                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCFz92dIVESoXxKP2XWU9q3XN6t3KqHIgh8Elg91h_GNW7w_OyatAFhiO4cGVRyPc2lRXOkF9CijKSo852fLHOB_ajfEwSYITxRaJ6A2nhFi-r0SmO2ZHFwIPBOwZxLoSCIjmHy4U5iIwWdfG8g8W6GJj53GOUldMZw5ugs_4_g2H1SxWYp2dBcEfRyxuWu2ImCL_0MgklnNSZnJvlVQkmBFWbCobw1FOeOren4K_H83FyNwQCGpIB">
                                     <div
                                         class="absolute inset-0 bg-gradient-to-t from-ridge-deep/90 via-transparent to-transparent">
@@ -735,7 +735,7 @@
                                     class="p-space-md rounded-xl bg-surface-container-lowest/5 backdrop-blur-md flex items-start gap-space-sm">
                                     <x-lucide-quote class="text-primary-container size-[28px] flex-shrink-0" />
                                     <p class="font-body-sm text-body-sm text-mist-slate italic">
-                                        “We do not climb to conquer the peaks. We climb to remind humanity of its
+                                        “We do not trek to conquer the passes. We trek to remind humanity of its
                                         humility, and to preserve the trails our grandfathers carved.”
                                         <span class="block mt-space-2xs text-summit-white font-semibold not-italic">—
                                             Dawa Tenzing Sherpa</span>
@@ -813,7 +813,7 @@
                             </div>
                             <div class="space-y-space-2xs">
                                 <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Satellite
-                                    Telemetry Across All Expedition Passes</h3>
+                                    Telemetry Across All Trek Passes</h3>
                                 <p class="font-body-sm text-body-sm text-tertiary">
                                     Full deployment of Garmin inReach tracking relays, ensuring constant physician
                                     oversight and emergency helicopter positioning on 100% of departures.
@@ -843,17 +843,17 @@
                         </div>
                         <h2
                             class="font-display-xl text-headline-lg lg:text-display-xl font-extrabold text-summit-white leading-tight">
-                            Experience Nepal with the People Who Call These Peaks Home
+                            Experience Nepal with the People Who Call These Passes Home
                         </h2>
                         <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-2xl mx-auto">
                             Whether you seek the tranquil waters of Gokyo Ri, the high crest of Thorong La, or technical
-                            6,000m summits, our indigenous Sherpa team guides you with absolute devotion.
+                            6,000m destinations, our indigenous Sherpa team guides you with absolute devotion.
                         </p>
                     </div>
                     <div class="flex flex-wrap items-center justify-center gap-space-md">
                         <a class="inline-flex items-center justify-center gap-space-xs px-space-xl py-space-md rounded-lg bg-primary-container text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider hover:bg-amber-flare transition-all shadow-xl"
                             data-path="plan-your-trek" href="#">
-                            Plan Your Custom Expedition
+                            Plan Your Custom Trek
                             <x-lucide-arrow-up-right class="size-[18px]" />
                         </a>
                         <a class="inline-flex items-center justify-center gap-space-xs px-space-xl py-space-md rounded-lg bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-summit-white font-label-md text-label-md font-semibold tracking-wider transition-all backdrop-blur-sm"

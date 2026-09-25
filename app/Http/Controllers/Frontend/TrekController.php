@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\ServiceDeparture;
 use Blaze\AdminCore\Models\Service;
-use Illuminate\Http\Request;
+use Blaze\AdminCore\Models\Testimonial;
 
 class TrekController extends Controller
 {
@@ -14,7 +15,7 @@ class TrekController extends Controller
         $treks = Service::where('status', true)
             ->orderBy('sort_order')
             ->get();
-            
+
         return view('treks', compact('treks'));
     }
 
@@ -28,11 +29,13 @@ class TrekController extends Controller
         // Let's also load the departures associated with this trek
         // assuming we have a relation named departures on Service
         // We'll just fetch them via ServiceDeparture model
-        $departures = \App\Models\ServiceDeparture::where('service_id', $trek->id)
+        $departures = ServiceDeparture::where('service_id', $trek->id)
             ->where('status', 'Available')
             ->orderBy('start_date', 'asc')
             ->get();
 
-        return view('trek-detail', compact('trek', 'departures'));
+        $testimonials = Testimonial::where('status', true)->orderBy('sort_order')->get();
+
+        return view('trek-detail', compact('trek', 'departures', 'testimonials'));
     }
 }

@@ -29,7 +29,7 @@
                                 Community &amp; Conservation
                             </h1>
                             <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-2xl leading-relaxed">
-                                Every trek and peak expedition directly fuels local Sherpa education, solar winter
+                                Every trek and pass trek directly fuels local Sherpa education, solar winter
                                 clinics, high-altitude glacier cleanup, and zero-emissions waste management across the
                                 Khumbu, Rolwaling, and Manaslu valleys.
                             </p>
@@ -167,7 +167,7 @@
                         class="bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
                         <div class="lg:col-span-7 relative min-h-[380px] lg:min-h-full">
                             <img class="w-full h-full object-cover"
-                                data-alt="Young Sherpa school children in navy blue school uniforms smiling warmly outside the stone-walled Sir Edmund Hillary School in Khumjung, Nepal. In the sweeping crisp background, the sacred peak of Mount Ama Dablam rises dramatically into a cloudless cobalt Himalayan sky with colorful prayer flags fluttering."
+                                data-alt="Young Sherpa school children in navy blue school uniforms smiling warmly outside the stone-walled Sir Edmund Hillary School in Khumjung, Nepal. In the sweeping crisp background, the sacred pass of Mount Ama Dablam rises dramatically into a cloudless cobalt Himalayan sky with colorful prayer flags fluttering."
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcZ3Tr2Son_QBeDKEUgj-PmNxRQzuIDDvW_x11ZZUeAWMXJZOF43Ajp7lyv1FQKhXNwPmSRYnKLEvGpUnMvPWksh9BFd6VCpVwOm5cEcwgLZr-uqNIpca4q4rnGw2BQGu-eHFfUYNSiPpOUL2FMREWbCb_tFd2Dg3OQALhnOYA00rGjigQ1Q9k-6WyYgNgtKCT4v3n2wr3huoNfr4SpW-GePEjSMmqx6WpMySm15xT-KPr_CwEb6xg" />
                             <div class="absolute top-4 left-4 flex flex-wrap gap-2">
                                 <span
@@ -188,8 +188,8 @@
                                     <span>Partnered with Sir Edmund Hillary Memorial School Khumjung</span>
                                 </div>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">
-                                    When high-altitude mountaineering porters face severe illness or fatal incidents on
-                                    expedition routes, their children often lose access to schooling. Neepa Adventure
+                                    When high-altitude trekking porters face severe illness or fatal incidents on
+                                    trek routes, their children often lose access to schooling. Neepa Adventure
                                     guarantees comprehensive 10-year boarding stipends, warm alpine apparel, tuition,
                                     healthcare, and university entrance coaching.
                                 </p>
@@ -291,7 +291,7 @@
                             data-category="conservation">
                             <div class="relative h-56 w-full">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="Experienced Sherpa mountaineers wearing yellow down suits safely hauling bundled recycled gear and decommissioned oxygen canisters on wooden sledges across the blue seracs of Khumbu Glacier near Everest Base Camp under bright morning alpine sunlight."
+                                    data-alt="Experienced Sherpa trekkers wearing yellow down suits safely hauling bundled recycled gear and decommissioned oxygen canisters on wooden sledges across the blue seracs of Khumbu Glacier near Everest Base Camp under bright morning alpine sunlight."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiAGEahxSdJek9Y070WjXEC-4XB04kBt3nlH1fSZoiFrHG0SeB0xkfE14-Kg5tltXHepyCRCjpew51waoKq-ftMBlGs8tU3HUtTneu3m-9sWJa1b3UJTSeSL6lUOAeY8kAzBkZXPwlzG5wAkuIbo2_ncKtaTL0LhS-NNaNiTFRDJVeLzWI05rSFVQE2Z4C3bvvt9BtoNcdrS2fNGL5QnvoYmcO8rFCUdz2lDE_CAYMmhpiuLWWXJrn" />
                                 <span
                                     class="absolute top-3 left-3 bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption font-bold px-space-sm py-space-2xs rounded-md uppercase tracking-wider">
@@ -376,7 +376,7 @@
                             data-category="welfare">
                             <div class="relative h-56 w-full">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="A sturdy stone and steel reinforced emergency mountain shelter perched beneath high snow-covered peaks on the Larkya La pass in Manaslu, Nepal. Warm interior lights glow from the double-glazed windows where mountain porters rest comfortably."
+                                    data-alt="A sturdy stone and steel reinforced emergency mountain shelter perched beneath high snow-covered passes on the Larkya La pass in Manaslu, Nepal. Warm interior lights glow from the double-glazed windows where mountain porters rest comfortably."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMUK7JMHms9lTE8_cLhwxsKGeO0jTXshkh4EA1F_z0Jk7XyViUiM4hLFZXeLZb2b__liu1Prgd8sjNKzj5rA3XJM2I2sxFRZ6ZvcTWu6r4pntngFsN9gEwrZ8k2XSCS9ixj5k-YKKCKRyQe32pe6pUOCnCm1qqh8P02Jo62U_QD84VLeQZof81OAB4tLIlRONrDsJ_MRMtSo4wxRBV-cge4PpBUm5DK6DNRbomJUIua7XClk9yXARF" />
                                 <span
                                     class="absolute top-3 left-3 bg-primary text-on-primary font-badge-caption text-badge-caption font-bold px-space-sm py-space-2xs rounded-md uppercase tracking-wider">
@@ -561,7 +561,7 @@
                                 Financial Transparency &amp; Public Ledger
                             </h2>
                             <p class="font-body-md text-body-md text-tertiary leading-relaxed">
-                                We operate with strict financial disclosures. Every commercial expedition automatically
+                                We operate with strict financial disclosures. Every commercial trek automatically
                                 contributes 5% of net agency profits to the Neepa Adventure Foundation, pooled alongside
                                 direct client philanthropy.
                             </p>
@@ -597,7 +597,7 @@
                                             class="font-headline-sm text-headline-sm font-extrabold text-secondary">25%</span>
                                     </div>
                                     <p class="font-body-sm text-body-sm text-tertiary">
-                                        Direct porter wages for waste retrieval expeditions, helicopter deadweight
+                                        Direct porter wages for waste retrieval treks, helicopter deadweight
                                         backhauls, and sorting stations.
                                     </p>
                                 </div>
@@ -728,7 +728,7 @@
                             class="font-headline-lg text-headline-lg font-extrabold text-on-surface uppercase tracking-tight">
                             How Trekkers Can Participate</h2>
                         <p class="font-body-md text-body-md text-tertiary">
-                            True stewardship requires conscious expeditioners. Here is how you can directly leave the
+                            True stewardship requires conscious trekkers. Here is how you can directly leave the
                             Himalayas cleaner and more resilient than you found them.
                         </p>
                     </div>
@@ -827,7 +827,7 @@
                     </div>
                     <h2
                         class="font-headline-lg text-headline-lg lg:text-display-xl font-extrabold uppercase tracking-tight text-summit-white max-w-3xl mx-auto leading-tight">
-                        Join a Purpose-Driven Expedition or Sponsor a Himalayan Student
+                        Join a Purpose-Driven Trek or Sponsor a Himalayan Student
                     </h2>
                     <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-2xl mx-auto">
                         Whether you walk beside us on the Gokyo ridges or fund an entire school year for a porter's
@@ -896,7 +896,7 @@
                                 Address</label>
                             <input
                                 class="w-full px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary font-body-md"
-                                placeholder="maya@expedition.org" required="" type="email" />
+                                placeholder="maya@trek.org" required="" type="email" />
                         </div>
                         <div>
                             <label

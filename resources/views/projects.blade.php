@@ -18,20 +18,20 @@
                         class="inline-flex items-center gap-space-xs px-space-md py-space-2xs rounded-full bg-summit-white/10 backdrop-blur-md mb-space-lg shadow-sm">
                         <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
                         <span
-                            class="font-badge-caption text-badge-caption uppercase tracking-[0.14em] text-primary-container">EXPEDITION
+                            class="font-badge-caption text-badge-caption uppercase tracking-[0.14em] text-primary-container">TREK
                             LOGS &amp; SUCCESS STORIES • FIELD ARCHIVE</span>
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
                         <div class="lg:col-span-8 space-y-space-md">
                             <h1
                                 class="font-display-xl text-headline-lg lg:text-display-xl font-extrabold uppercase tracking-tight text-summit-white leading-[1.08]">
-                                Completed Expedition Projects &amp; <span class="text-primary-container">Field Case
+                                Completed Trek Projects &amp; <span class="text-primary-container">Field Case
                                     Studies</span>
                             </h1>
                             <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-2xl leading-relaxed">
-                                Explore real expedition dispatches, international team triumphs, and customized summit
+                                Explore real trek dispatches, international team triumphs, and customized destination
                                 projects orchestrated across Nepal's high Himalaya. From Annapurna Base Camp winter
-                                traverses to 6,000m technical peaks.
+                                traverses to 6,000m technical passes.
                             </p>
                             <div class="flex flex-wrap gap-space-sm pt-space-sm">
                                 <a class="inline-flex items-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider transition-all shadow-md hover:-translate-y-0.5"
@@ -58,12 +58,12 @@
                                 </span>
                             </div>
                             <div class="text-body-sm text-mist-slate/80 leading-relaxed">
-                                Every custom expedition is supported by a dedicated Kathmandu 24/7 Operations Room,
+                                Every custom trek is supported by a dedicated Kathmandu 24/7 Operations Room,
                                 Garmin inReach high-cadence satellite breadcrumbs, and senior certified Sherpa Sirdars.
                             </div>
                             <div class="pt-space-2xs">
                                 <div class="flex justify-between text-body-sm mb-space-2xs">
-                                    <span class="text-mist-slate font-medium">Seasonal Pass &amp; Summit Success</span>
+                                    <span class="text-mist-slate font-medium">Seasonal Pass &amp; Destination Success</span>
                                     <span class="font-bold text-primary-container">98.6%</span>
                                 </div>
                                 <div class="w-full bg-summit-white/10 h-2.5 rounded-full overflow-hidden">
@@ -86,7 +86,7 @@
                                 <div
                                     class="font-display-xl text-headline-lg font-extrabold text-summit-white tracking-tight">
                                     420+</div>
-                                <div class="font-body-sm text-body-sm text-mist-slate/90 mt-space-2xs">Expedition
+                                <div class="font-body-sm text-body-sm text-mist-slate/90 mt-space-2xs">Trek
                                     projects executed seamlessly</div>
                             </div>
                         </div>
@@ -96,13 +96,13 @@
                                 <x-lucide-shield-check class="text-primary-container size-[28px]" />
                                 <span
                                     class="font-badge-caption text-badge-caption uppercase tracking-wider text-mist-slate">High
-                                    Pass &amp; Peak</span>
+                                    Pass &amp; Pass</span>
                             </div>
                             <div>
                                 <div
                                     class="font-display-xl text-headline-lg font-extrabold text-summit-white tracking-tight">
                                     98.6%</div>
-                                <div class="font-body-sm text-body-sm text-mist-slate/90 mt-space-2xs">Team summit &amp;
+                                <div class="font-body-sm text-body-sm text-mist-slate/90 mt-space-2xs">Team destination &amp;
                                     high pass arrival success</div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                     </div>
                 </div>
             </section>
-            <!-- 3. Featured Flagship Project (Spotlight Case Study: Russian ABC Expedition) -->
+            <!-- 3. Featured Flagship Project (Spotlight Case Study: Russian ABC Trek) -->
             <section class="w-full py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface"
                 id="flagship-case-study">
                 <div class="max-w-max-content-width mx-auto">
@@ -154,7 +154,7 @@
                             </div>
                             <h2
                                 class="font-headline-lg text-headline-lg text-on-surface font-extrabold uppercase tracking-tight">
-                                Annapurna Base Camp (ABC) &amp; Machapuchare Sanctuary Winter Expedition
+                                Annapurna Base Camp (ABC) &amp; Machapuchare Sanctuary Winter Trek
                             </h2>
                         </div>
                         <div
@@ -168,7 +168,7 @@
                         class="bg-surface-container-lowest rounded-xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
                         <div class="lg:col-span-7 relative min-h-[420px] lg:min-h-full">
                             <img class="w-full h-full object-cover"
-                                data-alt="Russian Alpine Club expedition team wearing orange and blue mountaineering jackets posing triumphantly with ice axes and Russian and Nepali pennants at Annapurna Base Camp signpost at 4,130m in winter with snow-draped Annapurna South and Machapuchare towering under brilliant morning sun."
+                                data-alt="Russian Alpine Club trek team wearing orange and blue trekking jackets posing triumphantly with ice axes and Russian and Nepali pennants at Annapurna Base Camp signpost at 4,130m in winter with snow-draped Annapurna South and Machapuchare towering under brilliant morning sun."
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAnL9l-H0YfeesYzXkqErSsdW_Va60OZOAQfieyI9Rp_O340YwB1LAc6nWz6j8cywQWouRXZ_nHF_zuouLSOgxkDlVbfo_xFzn5-JLbHbcQfSL0_TbK-DXlgOxAnT47gtEVKhOr1oR9yWfYEImHzJNcpH_OqWj2rYZMJEtkvUoMpJ7F60FZLdtzqi1-49Swk34zYeAEVDTXot5COnjC0gzbrIH2xlPtinHffLBifK4RvNNsrMLWE4m" />
                             <div class="absolute top-4 left-4 flex flex-wrap gap-2">
                                 <span
@@ -232,7 +232,7 @@
                                 <div class="space-y-space-xs text-body-sm">
                                     <div
                                         class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface">
-                                        Expedition Logistics Solved:</div>
+                                        Trek Logistics Solved:</div>
                                     <ul class="space-y-1.5 text-tertiary">
                                         <li class="flex items-start gap-2">
                                             <x-lucide-circle-check class="size-[16px] text-primary mt-0.5" />
@@ -264,7 +264,7 @@
                                         unforgettable dream."
                                     </p>
                                     <div class="mt-2 flex items-center justify-between text-label-sm font-bold">
-                                        <span class="text-on-surface">— Alexey Volkov, Moscow Mountaineering
+                                        <span class="text-on-surface">— Alexey Volkov, Moscow Trekking
                                             Federation</span>
                                         <span class="text-primary flex items-center gap-1"><x-lucide-shield-check
                                                 class="size-[14px]" />Certified Case</span>
@@ -274,33 +274,33 @@
                             <div class="flex flex-wrap gap-space-sm pt-space-xs">
                                 <button
                                     class="flex-1 inline-flex items-center justify-center gap-space-2xs px-space-md py-space-sm rounded-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider transition-all shadow-sm"
-                                    onclick="openProjectModal('Russian Alpine Club - Annapurna Base Camp Winter Expedition', '12 Russian Trekkers • Nayapul to ABC (4,130m) • January 2024')">
+                                    onclick="openProjectModal('Russian Alpine Club - Annapurna Base Camp Winter Trek', '12 Russian Trekkers • Nayapul to ABC (4,130m) • January 2024')">
                                     <x-lucide-file-text class="size-[18px]" />
                                     <span>Read Full Debrief Dossier</span>
                                 </button>
                                 <a class="inline-flex items-center justify-center px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container text-on-surface font-label-md text-label-md font-semibold transition-colors"
                                     href="#custom-project-inquiry">
-                                    <span>Plan Similar Expedition</span>
+                                    <span>Plan Similar Trek</span>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- 2. Categorized Expedition Projects Directory -->
+            <!-- 2. Categorized Trek Projects Directory -->
             <section class="w-full py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface-container-low"
                 id="case-studies-grid">
                 <div class="max-w-max-content-width mx-auto">
                     <div class="text-center max-w-3xl mx-auto mb-space-2xl space-y-space-xs">
                         <span
                             class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Verified
-                            Client Expeditions &amp; Field Reports</span>
+                            Client Treks &amp; Field Reports</span>
                         <h2
                             class="font-headline-lg text-headline-lg font-extrabold text-on-surface uppercase tracking-tight">
-                            Expedition Projects Directory</h2>
+                            Trek Projects Directory</h2>
                         <p class="font-body-md text-body-md text-tertiary">
-                            Discover how international climbing clubs, university alpine teams, and private groups
-                            achieved their dream Himalayan summits and traverses under Neepa Adventure leadership.
+                            Discover how international trekking clubs, university alpine teams, and private groups
+                            achieved their dream Himalayan destinations and traverses under Neepa Adventure leadership.
                         </p>
                         <!-- Dynamic Filter Controls -->
                         <div class="flex flex-wrap items-center justify-center gap-space-xs pt-space-md"
@@ -327,8 +327,8 @@
                             </button>
                             <button
                                 class="filter-btn px-space-md py-space-xs rounded-lg font-label-sm text-label-sm font-bold uppercase tracking-wider transition-all bg-surface-container-lowest text-tertiary hover:text-on-surface shadow-sm"
-                                data-filter="climbing">
-                                Peak Climbing &amp; Summits
+                                data-filter="trekking">
+                                High Altitude Trekking &amp; Destinations
                             </button>
                             <button
                                 class="filter-btn px-space-md py-space-xs rounded-lg font-label-sm text-label-sm font-bold uppercase tracking-wider transition-all bg-surface-container-lowest text-tertiary hover:text-on-surface shadow-sm"
@@ -406,7 +406,7 @@
                                     <div class="grid grid-cols-2 gap-2 text-body-sm">
                                         <div class="text-tertiary">Max Altitude: <strong
                                                 class="text-on-surface">4,130m</strong></div>
-                                        <div class="text-tertiary">Pass/Summit: <strong class="text-primary">100%
+                                        <div class="text-tertiary">Pass/Destination: <strong class="text-primary">100%
                                                 (12/12)</strong></div>
                                         <div class="text-tertiary">Sirdar: <strong class="text-on-surface">Dawa
                                                 Sherpa</strong></div>
@@ -430,7 +430,7 @@
                             data-category="manaslu corporate">
                             <div class="relative h-56 w-full">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="University student mountaineering expedition crossing the high snow pass of Larkya La at 5,106m with Tibetan prayer flags snapping in the wind and Manaslu towering behind."
+                                    data-alt="University student trekking trek crossing the high snow pass of Larkya La at 5,106m with Tibetan prayer flags snapping in the wind and Manaslu towering behind."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsVy3f165iJzvyjJU1JxyUapbOrUtAUD3_55BWm525xfiPGaqkqXl86z5il6lxIQD3Qj6wvT45NFK6ojyk3v72yKoz7slSxvgWfjujurSXDw32SKLi7m5X-s283BQrkDiUytIvJTje635CU0gruKTSO-XdrGfV7xGy2LUvMRj0ggzeDObeGgFFKJ35wUJtM7MMw3VO5Y2BQiM6phwDZWHyyesU9ByQhPfsoP7b0G8twjMf8hFO6Z2a" />
                                 <span
                                     class="absolute top-3 left-3 bg-secondary text-on-secondary font-badge-caption text-badge-caption font-bold px-space-sm py-space-2xs rounded-md uppercase tracking-wider flex items-center gap-1">
@@ -481,12 +481,12 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Project 3: Tokyo Mountaineering Club Island Peak -->
+                        <!-- Project 3: Tokyo Trekking Club Island Pass -->
                         <div class="project-item flex flex-col bg-surface-container-lowest rounded-xl shadow-md overflow-hidden transition-all hover:-translate-y-1"
-                            data-category="climbing everest">
+                            data-category="trekking everest">
                             <div class="relative h-56 w-full">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="Technical climbing team roped up on steep headwall snow with ascenders on fixed lines ascending toward Island Peak Imja Tse summit with Lhotse and Ama Dablam behind."
+                                    data-alt="Technical trekking team roped up on steep headwall snow with ascenders on fixed lines ascending toward Island Pass Imja Tse destination with Lhotse and Ama Dablam behind."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMUK7JMHms9lTE8_cLhwxsKGeO0jTXshkh4EA1F_z0Jk7XyViUiM4hLFZXeLZb2b__liu1Prgd8sjNKzj5rA3XJM2I2sxFRZ6ZvcTWu6r4pntngFsN9gEwrZ8k2XSCS9ixj5k-YKKCKRyQe32pe6pUOCnCm1qqh8P02Jo62U_QD84VLeQZof81OAB4tLIlRONrDsJ_MRMtSo4wxRBV-cge4PpBUm5DK6DNRbomJUIua7XClk9yXARF" />
                                 <span
                                     class="absolute top-3 left-3 bg-primary text-on-primary font-badge-caption text-badge-caption font-bold px-space-sm py-space-2xs rounded-md uppercase tracking-wider flex items-center gap-1">
@@ -494,23 +494,23 @@
                                 </span>
                                 <span
                                     class="absolute bottom-3 right-3 bg-ridge-deep/80 backdrop-blur-md text-summit-white font-label-sm text-label-sm px-space-sm py-space-2xs rounded-md">
-                                    Island Peak Summit (6,189m)
+                                    Island Pass Destination (6,189m)
                                 </span>
                             </div>
                             <div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
                                 <div>
                                     <div
                                         class="text-tertiary font-label-sm text-label-sm font-semibold uppercase tracking-wider mb-space-2xs flex items-center justify-between">
-                                        <span>Khumbu Technical Peak</span>
+                                        <span>Khumbu Technical Pass</span>
                                         <span class="text-primary font-bold">16 Days</span>
                                     </div>
                                     <h3
                                         class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight leading-snug">
-                                        Tokyo Mountaineering Club - Island Peak (Imja Tse, 6,189m) Push
+                                        Tokyo Trekking Club - Island Pass (Imja Tse, 6,189m) Push
                                     </h3>
                                     <p class="font-body-md text-body-md text-tertiary mt-space-xs">
                                         Precision technical push with 1:1 Sherpa guide pairings, crevasse ladder
-                                        training, and pre-rigged fixed lines on the summit headwall for 100% summit
+                                        training, and pre-rigged fixed lines on the destination headwall for 100% destination
                                         completion.
                                     </p>
                                 </div>
@@ -518,7 +518,7 @@
                                     <div class="grid grid-cols-2 gap-2 text-body-sm">
                                         <div class="text-tertiary">Max Altitude: <strong
                                                 class="text-on-surface">6,189m</strong></div>
-                                        <div class="text-tertiary">Summit Success: <strong class="text-primary">100%
+                                        <div class="text-tertiary">Destination Success: <strong class="text-primary">100%
                                                 (6/6)</strong></div>
                                         <div class="text-tertiary">Lead Guide: <strong class="text-on-surface">Mingma
                                                 Nuru</strong></div>
@@ -530,7 +530,7 @@
                                     class="pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-lg flex items-center justify-between">
                                     <button
                                         class="w-full inline-flex items-center justify-center gap-1.5 py-space-2xs px-space-sm rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm font-bold transition-all text-on-surface"
-                                        onclick="openProjectModal('Tokyo Mountaineering Club Island Peak Expedition', '6 Japanese alpinists achieved 100% summit success on Imja Tse 6,189m with 1:1 Sherpa guide support.')">
+                                        onclick="openProjectModal('Tokyo Trekking Club Island Pass Trek', '6 Japanese alpinists achieved 100% destination success on Imja Tse 6,189m with 1:1 Sherpa guide support.')">
                                         <x-lucide-eye class="size-[16px]" />
                                         <span>View Project Case Dossier</span>
                                     </button>
@@ -585,7 +585,7 @@
                                     class="pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-lg flex items-center justify-between">
                                     <button
                                         class="w-full inline-flex items-center justify-center gap-1.5 py-space-2xs px-space-sm rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm font-bold transition-all text-on-surface"
-                                        onclick="openProjectModal('Nordic Explorer EBC &amp; Gokyo Project', '10 climbers from Sweden &amp; Norway completed the Cho La Pass and twin summits of Gokyo Ri and Kala Patthar.')">
+                                        onclick="openProjectModal('Nordic Explorer EBC &amp; Gokyo Project', '10 climbers from Sweden &amp; Norway completed the Cho La Pass and twin destinations of Gokyo Ri and Kala Patthar.')">
                                         <x-lucide-eye class="size-[16px]" />
                                         <span>View Project Case Dossier</span>
                                     </button>
@@ -594,10 +594,10 @@
                         </div>
                         <!-- Project 5: Munich High-Altitude Club Ama Dablam -->
                         <div class="project-item flex flex-col bg-surface-container-lowest rounded-xl shadow-md overflow-hidden transition-all hover:-translate-y-1"
-                            data-category="climbing everest">
+                            data-category="trekking everest">
                             <div class="relative h-56 w-full">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="Technical mountaineers ascending exposed granite and ice knife-edge ridge on Ama Dablam Southwest Ridge with sheer Himalayan drop-offs under twilight alpine glow."
+                                    data-alt="Technical trekkers ascending exposed granite and ice knife-edge ridge on Ama Dablam Southwest Ridge with sheer Himalayan drop-offs under twilight alpine glow."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuASo7cCiURx7ov1b8xDmULKathZfkGk8jduldxi6WRE3nGLEcYXHGFO7TQt_7BENzzj5xOySQM4vEKl5NcetnV0cq9lko1GOgyA4dVYLBGUX9i81iSf924HXalt6gO9zezv5Yze99dKgz3_6kr-C-vbvMN8vkVMkSTE487lQg4MwRiYNd72DVUMKNRzeopSPwD9ljMWqPsvUAUebGytxm7cZwbuRFjl6G8CZvwcFSWMVMYfpyuuqjhS" />
                                 <span
                                     class="absolute top-3 left-3 bg-amber-flare text-on-primary-fixed font-badge-caption text-badge-caption font-bold px-space-sm py-space-2xs rounded-md uppercase tracking-wider flex items-center gap-1">
@@ -605,7 +605,7 @@
                                 </span>
                                 <span
                                     class="absolute bottom-3 right-3 bg-ridge-deep/80 backdrop-blur-md text-summit-white font-label-sm text-label-sm px-space-sm py-space-2xs rounded-md">
-                                    Ama Dablam Summit (6,812m)
+                                    Ama Dablam Destination (6,812m)
                                 </span>
                             </div>
                             <div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
@@ -629,9 +629,9 @@
                                     <div class="grid grid-cols-2 gap-2 text-body-sm">
                                         <div class="text-tertiary">Max Altitude: <strong
                                                 class="text-on-surface">6,812m</strong></div>
-                                        <div class="text-tertiary">Summit Arrival: <strong class="text-primary">100%
+                                        <div class="text-tertiary">Destination Arrival: <strong class="text-primary">100%
                                                 (4/4)</strong></div>
-                                        <div class="text-tertiary">Climbing Sirdar: <strong
+                                        <div class="text-tertiary">Trekking Sirdar: <strong
                                                 class="text-on-surface">Tashi G. Sherpa</strong></div>
                                         <div class="text-tertiary">Season: <strong class="text-on-surface">Late Autumn
                                                 2024</strong></div>
@@ -641,7 +641,7 @@
                                     class="pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-lg flex items-center justify-between">
                                     <button
                                         class="w-full inline-flex items-center justify-center gap-1.5 py-space-2xs px-space-sm rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm font-bold transition-all text-on-surface"
-                                        onclick="openProjectModal('Munich Club Ama Dablam Technical Expedition', '4 German and Austrian alpinists summited 6,812m Ama Dablam via Southwest Ridge with Neepa Adventure fixed lines.')">
+                                        onclick="openProjectModal('Munich Club Ama Dablam Technical Trek', '4 German and Austrian alpinists summited 6,812m Ama Dablam via Southwest Ridge with Neepa Adventure fixed lines.')">
                                         <x-lucide-eye class="size-[16px]" />
                                         <span>View Project Case Dossier</span>
                                     </button>
@@ -653,7 +653,7 @@
                             data-category="corporate">
                             <div class="relative h-56 w-full">
                                 <img class="w-full h-full object-cover"
-                                    data-alt="Corporate trekking team hiking alongside stone mani walls in the open glacial valley of Langtang toward Kyanjin Gompa with towering snowy Langtang Lirung peaks."
+                                    data-alt="Corporate trekking team hiking alongside stone mani walls in the open glacial valley of Langtang toward Kyanjin Gompa with towering snowy Langtang Lirung passes."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcZ7pacaqrBEKy1Q3wLU56Nnaszw4Wb6h7PAkIqcC4v4Bq0v7drudpmnhn6X21ffBwjC5CVRbA5FUPD5Av42ZBnBxRO5OrRC7n3-8Rasbn1EfGTLcWEpjQskHo8KXD08rlC5AnA4jLYX46WrJHGv0linJln7rR3rRB3r_xHAVFf7I-p9vy6lCyktTeGnK1cXiKIf-2cD3SFjhLbngCKO9DcknyB-dhyjiZtBn4Z-ZvaU55Z-E_qtGO" />
                                 <span
                                     class="absolute top-3 left-3 bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption font-bold px-space-sm py-space-2xs rounded-md uppercase tracking-wider flex items-center gap-1">
@@ -661,7 +661,7 @@
                                 </span>
                                 <span
                                     class="absolute bottom-3 right-3 bg-ridge-deep/80 backdrop-blur-md text-summit-white font-label-sm text-label-sm px-space-sm py-space-2xs rounded-md">
-                                    Kyanjin Ri Peak (4,773m)
+                                    Kyanjin Ri Pass (4,773m)
                                 </span>
                             </div>
                             <div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
@@ -677,7 +677,7 @@
                                     </h3>
                                     <p class="font-body-md text-body-md text-tertiary mt-space-xs">
                                         Curated high-comfort alpine leadership retreat combining Starlink connectivity
-                                        at teahouses with 4,773m dawn ridge climbs and local community cheese
+                                        at teahouses with 4,773m dawn ridge treks and local community cheese
                                         cooperative support.
                                     </p>
                                 </div>
@@ -719,7 +719,7 @@
                             How We Structure Your Custom Team Project
                         </h2>
                         <p class="font-body-md text-body-md text-tertiary">
-                            Whether you lead an alpine mountaineering federation, university exploration society, or
+                            Whether you lead an alpine trekking federation, university exploration society, or
                             executive group, our Kathmandu team engineers every logistics layer.
                         </p>
                     </div>
@@ -739,7 +739,7 @@
                                     Modeling</h3>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
                                     Every route is tailored to your team's previous alpine exposure with customized
-                                    sleep-low climb-high profiles and rest buffer days.
+                                    sleep-low trek-high profiles and rest buffer days.
                                 </p>
                             </div>
                             <div
@@ -810,8 +810,8 @@
                                 <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Certificates
                                     &amp; 4K Media</h3>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Official Nepal Mountaineering Association summit badges, high-pass crossing
-                                    credentials, and curated 4K team expedition photo vaults.
+                                    Official Nepal Trekking Association destination badges, high-pass crossing
+                                    credentials, and curated 4K team trek photo vaults.
                                 </p>
                             </div>
                             <div
@@ -833,15 +833,15 @@
                         <x-lucide-handshake class="text-primary-container size-[18px]" />
                         <span
                             class="font-badge-caption text-badge-caption uppercase tracking-wider text-primary-container">Bespoke
-                            Club &amp; Private Expeditions</span>
+                            Club &amp; Private Treks</span>
                     </div>
                     <h2
                         class="font-headline-lg text-headline-lg lg:text-display-xl font-extrabold uppercase tracking-tight text-summit-white max-w-4xl mx-auto leading-tight">
-                        Planning a Private Expedition or Club Project in Nepal?
+                        Planning a Private Trek or Club Project in Nepal?
                     </h2>
                     <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-2xl mx-auto">
                         Whether organizing an Annapurna Base Camp team trek from Russia, a UK university alpine project,
-                        or a bespoke 6,000m climbing push, consult directly with our Chief Expedition Director.
+                        or a bespoke 6,000m trekking push, consult directly with our Chief Trek Director.
                     </p>
                     <div class="flex flex-wrap items-center justify-center gap-space-md pt-space-sm">
                         <button
@@ -853,7 +853,7 @@
                         <a class="inline-flex items-center gap-space-xs px-space-xl py-space-md rounded-lg bg-summit-white/10 hover:bg-summit-white/20 text-summit-white font-label-md text-label-md font-bold uppercase tracking-wider transition-all shadow-md"
                             href="#">
                             <x-lucide-download class="size-[20px]" />
-                            <span>Download Expedition Case Study Guide (PDF)</span>
+                            <span>Download Trek Case Study Guide (PDF)</span>
                         </a>
                     </div>
                     <div
@@ -892,7 +892,7 @@
                     </p>
                     <div class="p-space-md bg-surface-container-low rounded-lg space-y-2 text-body-sm">
                         <div class="flex justify-between border-b border-surface-container-high pb-1">
-                            <span class="text-tertiary">Expedition ID:</span>
+                            <span class="text-tertiary">Trek ID:</span>
                             <span class="font-bold text-on-surface">HK-PROJECT-2024-EXP</span>
                         </div>
                         <div class="flex justify-between border-b border-surface-container-high pb-1">
@@ -943,10 +943,10 @@
                     <div
                         class="flex items-center gap-space-xs text-primary font-label-sm text-label-sm font-bold uppercase tracking-wider">
                         <x-lucide-handshake class="size-[20px]" />
-                        <span>Custom Team Expedition Inquiry</span>
+                        <span>Custom Team Trek Inquiry</span>
                     </div>
                     <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">
-                        Organize a Custom Trek or Peak Project
+                        Organize a Custom Trek or Pass Project
                     </h3>
                     <p class="font-body-sm text-body-sm text-tertiary">
                         Fill out your club or team specifications. Our Chief Operations Sirdar will craft a custom
@@ -989,9 +989,9 @@
                                     <option value="abc">Annapurna Sanctuary (ABC)</option>
                                     <option value="ebc">Everest Base Camp &amp; Gokyo</option>
                                     <option value="manaslu">Manaslu Circuit (Larkya La)</option>
-                                    <option value="island">Island Peak / Mera Summit</option>
+                                    <option value="island">Island Pass / Mera Destination</option>
                                     <option value="amadablam">Ama Dablam Southwest Ridge</option>
-                                    <option value="bespoke">Other / Custom Expedition</option>
+                                    <option value="bespoke">Other / Custom Trek</option>
                                 </select>
                             </div>
                             <div>
@@ -1017,7 +1017,7 @@
                         <button
                             class="w-full py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-lg transition-all shadow-md mt-space-sm"
                             type="submit">
-                            Request Custom Expedition Proposal
+                            Request Custom Trek Proposal
                         </button>
                     </form>
                 </div>

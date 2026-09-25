@@ -6,7 +6,7 @@
             <div class="w-full bg-surface-container-low py-space-sm px-gutter-mobile lg:px-gutter-desktop">
                 <div class="max-w-max-content-width mx-auto flex flex-wrap items-center justify-between gap-space-sm">
                     <div class="flex items-center gap-space-2xs font-label-sm text-label-sm text-tertiary">
-                        <a class="hover:text-primary transition-colors" href="#">Expeditions</a>
+                        <a class="hover:text-primary transition-colors" href="#">Treks</a>
                         <x-lucide-chevron-right class="size-[14px]" />
                         <a class="hover:text-primary transition-colors" href="#">Khumbu &amp; Everest</a>
                         <x-lucide-chevron-right class="size-[14px]" />
@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="h-1/2 rounded-xl overflow-hidden shadow-md relative group">
                                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            data-alt="Everest Base Camp colorful yellow expedition tents pitched on rocky Khumbu Glacier with massive seracs and ice pinnacles looming in background"
+                                            data-alt="Everest Base Camp colorful yellow trek tents pitched on rocky Khumbu Glacier with massive seracs and ice pinnacles looming in background"
                                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK4uDIdZsdTjdxOuKwLRVtlM45dtFab_Uj0dpyR1Qx3USWrX-tPKmTzh5D32NqdDfW-m4OGyIl6tldnKZrf8mApaIXRM1tAbKiPPnevHtVCMF86C22eUAf3gg1Ti-gAr-adVdho5r94sPvqaJcEUd7Gi7Hk4tsXWj7rwTRgEjsLBM-gJ5-rl4q-SONl7STJhvGaX5SbtSGQ2vOx4JjvZQl7dT1NU78SRfg8vxU-g8ie3WgbZhRjBz6" />
                                         <div
                                             class="absolute bottom-2 left-2 bg-ridge-deep/75 px-2 py-0.5 rounded text-summit-white font-label-sm text-label-sm">
@@ -283,7 +283,7 @@
                                     <text class="text-[11px] font-bold" fill="#ba1a1a" text-anchor="middle" x="570"
                                         y="20">Cho La Pass</text>
                                     <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="570"
-                                        y="240">Pass Summit</text>
+                                        y="240">Pass Destination</text>
                                     <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="570"
                                         y="252">5,420m</text>
                                     <!-- Everest Base Camp -->
@@ -296,7 +296,7 @@
                                     <circle cx="720" cy="30" fill="#f6ba1a" r="6" stroke="#795900"
                                         stroke-width="2"></circle>
                                     <text class="text-[11px] font-bold" fill="#795900" text-anchor="middle" x="720"
-                                        y="16">Peak High</text>
+                                        y="16">Pass High</text>
                                     <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="720"
                                         y="240">Kala Patthar</text>
                                     <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="720"
@@ -327,7 +327,7 @@
                 <div class="max-w-max-content-width mx-auto">
                     <div class="max-w-2xl mb-space-xl">
                         <span
-                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Expedition
+                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Trek
                             Milestones</span>
                         <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">The 16-Day High Circuit
                             Itinerary</h2>
@@ -389,7 +389,7 @@
                         <span
                             class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Transparent
                             Operations</span>
-                        <h2 class="font-headline-md text-headline-md text-on-surface uppercase">Expedition Inclusions
+                        <h2 class="font-headline-md text-headline-md text-on-surface uppercase">Trek Inclusions
                             &amp; Logistics</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-space-xl">
@@ -412,14 +412,14 @@
                     </div>
                 </div>
             </section>
-            <!-- Lead Expedition Guide Profile Card (using provided image) -->
+            <!-- Lead Trek Guide Profile Card (using provided image) -->
             <section class="w-full bg-surface-container py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
                 <div class="max-w-max-content-width mx-auto">
                     <div
                         class="bg-surface-container-lowest rounded-2xl p-space-xl shadow-md grid grid-cols-1 md:grid-cols-12 gap-space-xl items-center">
                         <div class="md:col-span-5 flex justify-center">
                             <div class="relative w-full max-w-sm rounded-xl overflow-hidden shadow-lg">
-                                <img alt="Lead Mountain Guide Dawa Tenzing Sherpa in alpine yellow down gear against Himalayan snowy summit peaks"
+                                <img alt="Lead Mountain Guide Dawa Tenzing Sherpa in alpine yellow down gear against Himalayan snowy destination passes"
                                     class="w-full h-96 object-cover object-top"
                                     src="https://lh3.googleusercontent.com/aida/AEtjO1VNGjPQgJtSEnKl7zmmZzJYfc2-mrQtN77I7_Zo0q3gEzI2Z5x0Mh_OQMKMAW_76HUyDq5X7_0BBA17p7KTzJJAsZ92x8NEAFMIYhuu2YI2WG_GB5qRh8-NQzDoptJLfnUTvLhVL0LbVJiiEC1xZ4Jade3ASI7IQXptmn7FXMDCwJqwTgJpIhrTXBd-mGGV41b6WSIPuDu-99EFB_CaiwdCGAD62wUmqyPS2OyVhPrAzTY7dUOqpbq5qA" />
                                 <div
@@ -436,12 +436,12 @@
                                 <h3 class="font-headline-lg text-headline-lg text-on-surface uppercase">Dawa Tenzing
                                     Sherpa</h3>
                                 <p class="font-label-md text-label-md text-tertiary">Senior Sirdar &amp; Wilderness
-                                    Medical Expedition Leader</p>
+                                    Medical Trek Leader</p>
                             </div>
                             <p class="font-body-md text-body-md text-tertiary">
                                 Born and raised in the Khumjung village of Khumbu, Dawa has completed over 35
                                 high-altitude crossings of the Cho La and Renjo La passes, along with 11 successful
-                                summits of Mount Everest (Sagarmatha). Certified by both the Nepal Mountaineering
+                                destinations of Mount Everest (Sagarmatha). Certified by both the Nepal Trekking
                                 Association and the International Federation of Mountain Guides Associations (IFMGA).
                             </p>
                             <div class="grid grid-cols-3 gap-space-sm pt-space-xs">
@@ -573,7 +573,7 @@
                                         <div>
                                             <div class="font-semibold text-on-surface">4-Season Sleeping Bag (-20°C
                                                 Rated)</div>
-                                            <div class="text-tertiary">High-loft goose down or expedition synthetic
+                                            <div class="text-tertiary">High-loft goose down or trek synthetic
                                                 fill</div>
                                         </div>
                                     </div>
@@ -588,7 +588,7 @@
                                         <div>
                                             <div class="font-semibold text-on-surface">800+ Fill Power Down Parka</div>
                                             <div class="text-tertiary">For Gorak Shep evenings and early morning
-                                                summits</div>
+                                                destinations</div>
                                         </div>
                                     </div>
                                     <span
@@ -651,11 +651,11 @@
                 <div class="max-w-max-content-width mx-auto space-y-space-xl">
                     <div class="text-center max-w-xl mx-auto">
                         <span
-                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Expedition
+                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Trek
                             Proof</span>
                         <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Dispatches from Past
                             Trekkers</h2>
-                        <p class="font-body-md text-body-md text-tertiary pt-space-2xs">Real expedition feedback on the
+                        <p class="font-body-md text-body-md text-tertiary pt-space-2xs">Real trek feedback on the
                             Gokyo &amp; Cho La route.</p>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
@@ -675,7 +675,7 @@
                                 <p class="font-body-sm text-body-sm text-tertiary">
                                     Doing standard EBC without Gokyo would be a huge miss. Dawa and his Sherpa team
                                     guided us over the icy Cho La pass with incredible patience and security. The
-                                    sunrise from Gokyo Ri seeing four 8,000-meter peaks is burned into my mind forever.
+                                    sunrise from Gokyo Ri seeing four 8,000-meter passes is burned into my mind forever.
                                 </p>
                             </div>
                             <div class="pt-space-xs flex items-center gap-space-sm">
