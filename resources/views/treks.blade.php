@@ -25,36 +25,41 @@
                 </div>
             </section>
             <!-- Title & High-Altitude Context Banner -->
-            <section class="bg-surface-container-lowest px-gutter-mobile lg:px-gutter-desktop py-space-xl w-full shadow-sm">
-                <div class="max-w-max-content-width mx-auto">
+            <section class="px-gutter-mobile lg:px-gutter-desktop py-space-3xl relative w-full overflow-hidden shadow-md">
+                <div class="absolute inset-0 z-0">
+                    <img src="{{ asset('images/himalaya_hero.jpg') }}" alt="Himalayas Hero" class="h-full w-full object-cover">
+                    <div class="bg-ridge-deep/80 absolute inset-0 mix-blend-multiply"></div>
+                    <div class="bg-gradient-to-t from-surface to-transparent absolute inset-0"></div>
+                </div>
+                <div class="max-w-max-content-width relative z-10 mx-auto">
                     <div class="gap-space-lg flex flex-col justify-between lg:flex-row lg:items-end">
-                        <div class="space-y-space-xs max-w-3xl">
-                            <div class="gap-space-xs text-primary font-label-sm text-label-sm inline-flex items-center tracking-widest uppercase">
+                        <div class="space-y-space-md max-w-3xl">
+                            <div class="gap-space-xs font-label-sm text-label-sm text-amber-flare inline-flex items-center font-bold tracking-widest uppercase">
                                 <x-lucide-mountain class="size-[18px]" />
                                 Authentic Sherpa-Led Circuits &amp; High Passes
                             </div>
-                            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                            <h1 class="font-display-md text-display-md text-summit-white font-extrabold tracking-tight drop-shadow-lg">
                                 Nepal Trekking Treks &amp; Classic High Passes
                             </h1>
-                            <p class="font-body-lg text-body-lg text-tertiary">
+                            <p class="font-body-xl text-body-xl text-mist-slate/90 max-w-2xl drop-shadow">
                                 Curated, low-impact alpine journeys through sacred glacial basins, ancient
                                 trans-Himalayan trade trails, and legendary 5,000m+ passes.
                             </p>
                         </div>
                         <!-- Season & Availability Quick Indicator -->
-                        <div class="bg-surface-container-low p-space-md gap-space-md flex min-w-[280px] items-center rounded-xl">
-                            <div class="bg-primary-container text-on-primary-container flex h-12 w-12 items-center justify-center rounded-lg">
-                                <x-lucide-sun class="size-[26px]" />
+                        <div class="bg-surface-container-lowest/95 p-space-md gap-space-md flex min-w-[280px] items-center rounded-xl shadow-xl backdrop-blur-sm border border-surface-container-high/50">
+                            <div class="bg-amber-flare/20 text-amber-flare flex h-14 w-14 items-center justify-center rounded-xl">
+                                <x-lucide-sun class="size-[28px]" />
                             </div>
                             <div>
-                                <div class="font-label-sm text-label-sm text-primary font-bold tracking-wider uppercase">
+                                <div class="font-label-sm text-label-sm text-tertiary font-bold tracking-wider uppercase">
                                     Current Window
                                 </div>
-                                <div class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+                                <div class="font-headline-sm text-headline-sm text-on-surface font-extrabold">
                                     Spring &amp; Autumn Pass
                                 </div>
-                                <div class="font-body-sm text-body-sm text-tertiary" id="catalog-count-indicator">
-                                    Showing 6 verified routes (18 total)
+                                <div class="font-body-sm text-body-sm text-primary font-medium" id="catalog-count-indicator">
+                                    Showing {{ $treks->count() }} verified routes
                                 </div>
                             </div>
                         </div>
@@ -218,103 +223,6 @@
                         >
                             Monsoon-Proof (Mustang)
                         </button>
-                    </div>
-                </div>
-            </section>
-            <!-- Interactive Trek Recommendation Quiz Banner ("Find My Perfect Trek") -->
-            <section class="px-gutter-mobile lg:px-gutter-desktop py-space-xl w-full">
-                <div class="max-w-max-content-width mx-auto">
-                    <div class="bg-surface-container-lowest p-space-lg lg:p-space-xl relative overflow-hidden rounded-xl shadow-sm">
-                        <div class="bg-primary/5 pointer-events-none absolute -top-16 -right-16 h-64 w-64 rounded-full"></div>
-                        <div class="gap-space-lg grid grid-cols-1 items-center lg:grid-cols-12">
-                            <div class="space-y-space-xs lg:col-span-4">
-                                <div class="gap-space-2xs text-primary font-label-sm text-label-sm inline-flex items-center font-bold tracking-wider uppercase">
-                                    <x-lucide-compass class="size-[18px]" />
-                                    Interactive Trek Matcher
-                                </div>
-                                <h2 class="font-headline-md text-headline-md text-on-surface font-bold">
-                                    Find My Perfect Trek
-                                </h2>
-                                <p class="font-body-md text-body-md text-tertiary">
-                                    Answer 3 quick high-altitude preferences to isolate your optimal trail,
-                                    acclimatization curve, and seasonal timing.
-                                </p>
-                            </div>
-                            <div class="gap-space-md grid grid-cols-1 sm:grid-cols-3 lg:col-span-8">
-                                <!-- Step 1 -->
-                                <div class="bg-surface p-space-md space-y-space-xs rounded-lg">
-                                    <div class="flex items-center justify-between">
-                                        <span class="font-badge-caption text-badge-caption text-primary font-bold">STEP 01</span>
-                                        <x-lucide-footprints class="text-tertiary size-[18px]" />
-                                    </div>
-                                    <label
-                                        class="font-label-md text-label-md text-on-surface block font-bold"
-                                        for="quiz-experience"
-                                    >Alpine Experience</label>
-                                    <select
-                                        class="bg-surface-container-lowest text-body-sm text-on-surface w-full rounded p-2 focus:outline-none"
-                                        id="quiz-experience"
-                                    >
-                                        <option value="first">First Himalayan Trek</option>
-                                        <option value="regular">Multi-Day Hiker (Up to 4,000m)</option>
-                                        <option value="hardcore">Experienced Trekker / High Passes</option>
-                                    </select>
-                                </div>
-                                <!-- Step 2 -->
-                                <div class="bg-surface p-space-md space-y-space-xs rounded-lg">
-                                    <div class="flex items-center justify-between">
-                                        <span class="font-badge-caption text-badge-caption text-primary font-bold">STEP 02</span>
-                                        <x-lucide-calendar-days class="text-tertiary size-[18px]" />
-                                    </div>
-                                    <label
-                                        class="font-label-md text-label-md text-on-surface block font-bold"
-                                        for="quiz-time"
-                                    >Available Days</label>
-                                    <select
-                                        class="bg-surface-container-lowest text-body-sm text-on-surface w-full rounded p-2 focus:outline-none"
-                                        id="quiz-time"
-                                    >
-                                        <option value="under12">Under 12 Days</option>
-                                        <option value="two-weeks">12 to 16 Days</option>
-                                        <option value="three-weeks">17 to 25 Days</option>
-                                    </select>
-                                </div>
-                                <!-- Step 3 -->
-                                <div class="bg-surface p-space-md space-y-space-xs rounded-lg">
-                                    <div class="flex items-center justify-between">
-                                        <span class="font-badge-caption text-badge-caption text-primary font-bold">STEP 03</span>
-                                        <x-lucide-mountain-snow class="text-tertiary size-[18px]" />
-                                    </div>
-                                    <label
-                                        class="font-label-md text-label-md text-on-surface block font-bold"
-                                        for="quiz-scenery"
-                                    >Preferred Vibe</label>
-                                    <select
-                                        class="bg-surface-container-lowest text-body-sm text-on-surface w-full rounded p-2 focus:outline-none"
-                                        id="quiz-scenery"
-                                    >
-                                        <option value="classic-peaks">Dramatic Glaciers &amp; 8,000m Giants</option>
-                                        <option value="isolated-wild">Remote Wilds &amp; Low Footfall</option>
-                                        <option value="culture-monastery">Tibetan Buddhist Enclaves</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-space-md pt-space-md bg-surface-container-low/40 p-space-sm gap-space-sm flex flex-col items-center justify-between rounded-lg sm:flex-row">
-                            <div class="gap-space-xs text-body-sm text-tertiary flex items-center">
-                                <x-lucide-sparkles class="text-primary size-[18px]" />
-                                <span id="quiz-recommendation-text"
-                                    >Based on default inputs:
-                                    <strong>Everest Base Camp &amp; Gokyo Ri (16 Days)</strong> is your top algorithmic
-                                    match.</span>
-                            </div>
-                            <button
-                                class="px-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-sm text-label-sm rounded py-2 font-bold tracking-wider whitespace-nowrap uppercase transition-colors"
-                                id="apply-recommendation-btn"
-                            >
-                                Highlight My Match
-                            </button>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -603,6 +511,81 @@
                 </div>
             </section>
             <!-- Client-side Interactive Filter, Quiz, and Booking Logic -->
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const searchInput = document.getElementById('search-input');
+                    const difficultyPills = document.querySelectorAll('.difficulty-pill');
+                    const trekCards = document.querySelectorAll('.trek-card');
+                    const countIndicator = document.getElementById('catalog-count-indicator');
+                    
+                    const sortSelector = document.getElementById('sort-selector');
+                    const cardsGrid = document.getElementById('trek-cards-grid');
+
+                    function filterTreks() {
+                        const searchTerm = searchInput.value.toLowerCase();
+                        let activeDifficulty = 'all';
+                        difficultyPills.forEach(pill => {
+                            if (pill.classList.contains('active-pill')) {
+                                activeDifficulty = pill.getAttribute('data-difficulty');
+                            }
+                        });
+
+                        let visibleCount = 0;
+
+                        trekCards.forEach(card => {
+                            const title = card.querySelector('.font-headline-sm').innerText.toLowerCase();
+                            const matchesSearch = title.includes(searchTerm);
+                            const cardDifficulty = card.getAttribute('data-difficulty');
+                            
+                            const matchesDifficulty = (activeDifficulty === 'all' || cardDifficulty === activeDifficulty);
+
+                            if (matchesSearch && matchesDifficulty) {
+                                card.style.display = 'flex';
+                                visibleCount++;
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                        
+                        if(countIndicator) {
+                            countIndicator.innerText = `Showing ${visibleCount} verified routes`;
+                        }
+                    }
+
+                    // Event Listeners for Filters
+                    searchInput.addEventListener('input', filterTreks);
+
+                    difficultyPills.forEach(pill => {
+                        pill.addEventListener('click', () => {
+                            difficultyPills.forEach(p => {
+                                p.classList.remove('active-pill', 'bg-surface-container-high', 'text-on-surface', 'font-semibold');
+                                p.classList.add('bg-surface', 'text-tertiary');
+                            });
+                            pill.classList.remove('bg-surface', 'text-tertiary');
+                            pill.classList.add('active-pill', 'bg-surface-container-high', 'text-on-surface', 'font-semibold');
+                            filterTreks();
+                        });
+                    });
+                    
+                    // Simple Sort logic
+                    sortSelector.addEventListener('change', (e) => {
+                        const val = e.target.value;
+                        let cardsArray = Array.from(trekCards);
+                        
+                        if(val === 'price-asc') {
+                            cardsArray.sort((a,b) => parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price')));
+                        } else if(val === 'duration-desc') {
+                            cardsArray.sort((a,b) => parseInt(b.getAttribute('data-duration')) - parseInt(a.getAttribute('data-duration')));
+                        } else if(val === 'altitude-desc') {
+                            cardsArray.sort((a,b) => parseInt(b.getAttribute('data-altitude')) - parseInt(a.getAttribute('data-altitude')));
+                        }
+                        
+                        // re-append in order
+                        cardsArray.forEach(card => cardsGrid.appendChild(card));
+                    });
+
+                });
+            </script>
         </div>
     </main>
     <x-footer />

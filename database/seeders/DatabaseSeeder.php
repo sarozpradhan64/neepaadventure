@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TrekDataSeeder::class,
             TestimonialSeeder::class,
             ProjectSeeder::class,
+            HomePageSettingsSeeder::class,
         ]);
     }
 }
