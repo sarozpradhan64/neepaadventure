@@ -14,7 +14,9 @@ Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail'
 Route::get('/gallery', fn () => view('gallery'))->name('gallery');
 Route::get('/contact', fn () => view('contact'))->name('contact');
 Route::get('/community', fn () => view('community'))->name('community');
-Route::get('/projects', fn () => view('projects'))->name('projects');
+use App\Http\Controllers\Frontend\ProjectController;
+
+Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog-detail');
