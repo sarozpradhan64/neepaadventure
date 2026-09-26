@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Blaze\AdminCore\Models\Project;
 use Illuminate\Database\Seeder;
 
 class ProjectSeeder extends Seeder
@@ -12,9 +12,9 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        \Blaze\AdminCore\Models\Project::truncate();
+        Project::truncate();
 
-        \Blaze\AdminCore\Models\Project::create([
+        Project::create([
             'title' => 'Russian Alpine Club - Annapurna Base Camp',
             'slug' => 'russian-alpine-club-abc',
             'project_status' => 'completed',
@@ -35,7 +35,7 @@ class ProjectSeeder extends Seeder
             'status' => true,
         ]);
 
-        \Blaze\AdminCore\Models\Project::create([
+        Project::create([
             'title' => 'Cambridge Alpine Society Manaslu Project',
             'slug' => 'cambridge-alpine-society-manaslu',
             'project_status' => 'completed',
@@ -56,7 +56,7 @@ class ProjectSeeder extends Seeder
             'status' => true,
         ]);
 
-        \Blaze\AdminCore\Models\Project::create([
+        Project::create([
             'title' => 'Tokyo Trekking Club Island Pass Trek',
             'slug' => 'tokyo-trekking-club-island-pass',
             'project_status' => 'completed',

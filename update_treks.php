@@ -1,4 +1,5 @@
 <?php
+
 $content = file_get_contents('resources/views/treks.blade.php');
 $start_marker = '<!-- Main Cards Container -->';
 $end_marker = '<!-- No Results State (Hidden by default) -->';
@@ -10,7 +11,7 @@ if ($start_pos !== false && $end_pos !== false) {
     $div_start = strpos($content, 'id="trek-cards-grid">', $start_pos) + strlen('id="trek-cards-grid">');
     // Find the closing div of the grid which is just before $end_marker
     $div_end = strrpos(substr($content, 0, $end_pos), '</div>');
-    
+
     $replacement = '
                         @foreach($treks as $trek)
                         <article class="trek-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-altitude="{{ (int) filter_var($trek->maximum_altitude, FILTER_SANITIZE_NUMBER_INT) }}" data-difficulty="{{ $trek->difficulty_level }}" data-duration="{{ (int) filter_var($trek->duration, FILTER_SANITIZE_NUMBER_INT) }}" data-id="{{ $trek->id }}" data-price="{{ $trek->price_from }}">
@@ -79,7 +80,7 @@ if ($start_pos !== false && $end_pos !== false) {
                         @endforeach
                     ';
 
-    $new_content = substr($content, 0, $div_start) . $replacement . substr($content, $div_end);
+    $new_content = substr($content, 0, $div_start).$replacement.substr($content, $div_end);
     file_put_contents('resources/views/treks.blade.php', $new_content);
     echo "Replaced cards.\n";
 } else {

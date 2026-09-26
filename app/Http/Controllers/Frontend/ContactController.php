@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use Blaze\AdminCore\Models\Service;
-use Blaze\AdminCore\Models\Enquiry;
-use Blaze\AdminCore\Models\ContactMessage;
-use Illuminate\Http\Request;
 use Blaze\AdminCore\Models\ContactInformation;
+use Blaze\AdminCore\Models\ContactMessage;
+use Blaze\AdminCore\Models\Enquiry;
+use Blaze\AdminCore\Models\Service;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     public function index()
     {
         $contact = ContactInformation::first();
+
         return view('contact', compact('contact'));
     }
 
@@ -49,6 +50,7 @@ class ContactController extends Controller
     {
         $services = Service::where('status', true)->orderBy('sort_order')->get();
         $contact = ContactInformation::first();
+
         return view('plan-your-trek', compact('services', 'contact'));
     }
 
@@ -61,24 +63,24 @@ class ContactController extends Controller
             'service_id' => 'nullable|exists:services,id',
         ]);
 
-        $message = "";
+        $message = '';
         if ($request->filled('country')) {
-            $message .= "Country: " . $request->country . "\n";
+            $message .= 'Country: '.$request->country."\n";
         }
         if ($request->filled('window')) {
-            $message .= "Estimated Window & Duration: " . $request->window . "\n";
+            $message .= 'Estimated Window & Duration: '.$request->window."\n";
         }
         if ($request->filled('group_size')) {
-            $message .= "Group Size: " . $request->group_size . "\n";
+            $message .= 'Group Size: '.$request->group_size."\n";
         }
         if ($request->filled('experience')) {
-            $message .= "Experience: " . $request->experience . "\n";
+            $message .= 'Experience: '.$request->experience."\n";
         }
         if ($request->filled('logistics')) {
-            $message .= "Logistics: " . implode(", ", (array) $request->logistics) . "\n";
+            $message .= 'Logistics: '.implode(', ', (array) $request->logistics)."\n";
         }
         if ($request->filled('notes')) {
-            $message .= "Notes: " . $request->notes . "\n";
+            $message .= 'Notes: '.$request->notes."\n";
         }
 
         Enquiry::create([

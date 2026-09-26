@@ -41,7 +41,7 @@ return new class extends Migration
                 'nation',
                 'dossier_title',
                 'dossier_description',
-                'inclusions'
+                'inclusions',
             ]);
         });
     }

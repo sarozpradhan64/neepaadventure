@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a442356bd0155365e9d73a7d0924e971",
+    "content-hash": "53694d0912e24d9fab156e13d5af822c",
     "packages": [
         {
             "name": "anousss007/blatui",
@@ -160,11 +160,11 @@
         },
         {
             "name": "blaze/admin-core",
-            "version": "dev-main",
+            "version": "dev-e882aed159bf84165817f6fdb9e2813330c440cd",
             "dist": {
                 "type": "path",
                 "url": "packages/blaze/admin-core",
-                "reference": "77ea8e030faa6e63e724831925ab84a5cd4769df"
+                "reference": "f45306014f7d8d9b0bb92eb786de8c1401c27afb"
             },
             "require": {
                 "illuminate/support": "^11.0|^12.0|^13.0",

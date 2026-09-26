@@ -1,1 +1,3 @@
-<tr {{ $attributes->merge(['class' => 'border-b']) }}>{{ $slot }}</tr>
+<tr {{ $attributes->merge(['class' => 'border-b']) }}>
+    {{ $slot }}
+</tr>

@@ -26,26 +26,26 @@
 
     // Multiple seeds an array of values; single keeps the scalar string.
     $selectedValues = collect(is_array($value) ? $value : ($value === '' || $value === null ? [] : [$value]))
-        ->map(fn($v) => (string) $v)
+        ->map(fn ($v) => (string) $v)
         ->values();
     $initialValue = $multiple ? $selectedValues : (string) $value;
 
     // `color` brands the trigger's focus ring locally (overrides the ring/primary tokens).
-$colorStyle = $color ? "--ring: {$color}; --primary: {$color}; --primary-foreground: #ffffff;" : '';
-$userStyle = (string) $attributes->get('style', '');
-$style = trim($colorStyle . ($colorStyle && $userStyle ? ' ' : '') . $userStyle);
-$attributes = $attributes->except('style');
+    $colorStyle = $color ? "--ring: {$color}; --primary: {$color}; --primary-foreground: #ffffff;" : '';
+    $userStyle = (string) $attributes->get('style', '');
+    $style = trim($colorStyle.($colorStyle && $userStyle ? ' ' : '').$userStyle);
+    $attributes = $attributes->except('style');
 
-// Livewire bridge — the native <select> binds wire:model directly; the custom listbox
-// binds its Alpine value through $blatModel instead (blatui-core.js), with the property path
-// travelling as a data attribute so a morph can re-point it. No-op without Livewire.
-$wireModel = \Illuminate\View\ComponentAttributeBag::hasMacro('wire') ? $attributes->wire('model') : null;
-$hasWire = $wireModel && is_string($wireModel->value()) && $wireModel->value() !== '';
-if (!$native && $hasWire) {
-    $attributes = $attributes->whereDoesntStartWith('wire:model')->merge(
-        array_filter([
-            'data-blat-model' => $wireModel->value(),
-            'data-blat-model-live' => $wireModel->hasModifier('live') ? '1' : null,
+    // Livewire bridge — the native <select> binds wire:model directly; the custom listbox
+    // binds its Alpine value through $blatModel instead (blatui-core.js), with the property path
+    // travelling as a data attribute so a morph can re-point it. No-op without Livewire.
+    $wireModel = \Illuminate\View\ComponentAttributeBag::hasMacro('wire') ? $attributes->wire('model') : null;
+    $hasWire = $wireModel && is_string($wireModel->value()) && $wireModel->value() !== '';
+    if (! $native && $hasWire) {
+        $attributes = $attributes->whereDoesntStartWith('wire:model')->merge(
+            array_filter([
+                'data-blat-model' => $wireModel->value(),
+                'data-blat-model-live' => $wireModel->hasModifier('live') ? '1' : null,
             ]),
         );
     }
@@ -56,12 +56,16 @@ if (!$native && $hasWire) {
         $nativeSizes = ['sm' => 'h-8 text-sm', 'default' => 'h-9', 'lg' => 'h-10'];
         $nativeSize = $nativeSizes[$size] ?? $nativeSizes['default'];
     @endphp
-    <select @if ($name) name="{{ $name }}{{ $multiple ? '[]' : '' }}" @endif
-        @if ($multiple) multiple @endif data-slot="select" data-size="{{ $size }}"
+    <select
+        @if ($name) name="{{ $name }}{{ $multiple ? '[]' : '' }}" @endif
+        @if ($multiple) multiple @endif
+        data-slot="select"
+        data-size="{{ $size }}"
         @if ($style) style="{{ $style }}" @endif
-        {{ $attributes->twMerge('blat-select ' . ($multiple ? 'h-auto min-h-9 py-1' : $nativeSize)) }}>
+        {{ $attributes->twMerge('blat-select ' . ($multiple ? 'h-auto min-h-9 py-1' : $nativeSize)) }}
+    >
         @if ($hasOptions)
-            @if (!$multiple && $placeholder !== '')
+            @if (! $multiple && $placeholder !== '')
                 <option value="" disabled @selected($value === '')>{{ $placeholder }}</option>
             @endif
             @foreach ($normalized as $val => $lab)
@@ -72,19 +76,27 @@ if (!$native && $hasWire) {
         @endif
     </select>
 @else
-    <div data-slot="select" x-data="blatSelect({ model: $blatModel(@js($initialValue)), wired: @js($hasWire), multiple: @js((bool) $multiple) })" x-id="['blat-listbox']"
-        @if ($style) style="{{ $style }}" @endif {{ $attributes->twMerge('relative') }}>
+    <div
+        data-slot="select"
+        x-data="blatSelect({ model: $blatModel(@js($initialValue)), wired: @js($hasWire), multiple: @js((bool) $multiple) })"
+        x-id="['blat-listbox']"
+        @if ($style) style="{{ $style }}" @endif
+        {{ $attributes->twMerge('relative') }}
+    >
         @if ($name)
             @if ($multiple)
                 <template x-for="v in value" :key="v">
-                    <input type="hidden" name="{{ $name }}[]" :value="v">
+                    <input type="hidden" name="{{ $name }}[]" :value="v" />
                 </template>
             @else
-                <input type="hidden" name="{{ $name }}" :value="value">
+                <input type="hidden" name="{{ $name }}" :value="value" />
             @endif
         @endif
         @if ($hasOptions)
-            <x-ui.select-trigger :class="'w-full' . ($multiple ? ' data-[size=default]:h-auto min-h-9 py-1' : '')" :ariaLabel="$placeholder !== '' ? $placeholder : 'Select option'">
+            <x-ui.select-trigger
+                :class="'w-full'.($multiple ? ' data-[size=default]:h-auto min-h-9 py-1' : '')"
+                :ariaLabel="$placeholder !== '' ? $placeholder : 'Select option'"
+            >
                 <x-ui.select-value :placeholder="$placeholder" />
             </x-ui.select-trigger>
             <x-ui.select-content :indicator="$indicator">

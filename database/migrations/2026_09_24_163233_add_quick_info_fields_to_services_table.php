@@ -29,7 +29,7 @@ return new class extends Migration
                 'start_end_point',
                 'support_ratio',
                 'deposit_requirement',
-                'heli_evac_coverage'
+                'heli_evac_coverage',
             ]);
         });
     }

@@ -2,13 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
+use App\Models\ServiceDeparture;
 use Blaze\AdminCore\Models\Service;
 use Blaze\AdminCore\Models\ServiceFeature;
-use App\Models\ServiceDeparture;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class TrekDataSeeder extends Seeder
 {
@@ -50,7 +48,7 @@ class TrekDataSeeder extends Seeder
                 'walking_time' => '3-4 hours',
                 'distance' => '8 km',
                 'accommodation' => 'Tea House',
-                'meals' => 'L, D'
+                'meals' => 'L, D',
             ],
             [
                 'title' => 'Trek to Namche Bazaar',
@@ -59,14 +57,14 @@ class TrekDataSeeder extends Seeder
                 'walking_time' => '5-6 hours',
                 'distance' => '11 km',
                 'accommodation' => 'Tea House',
-                'meals' => 'B, L, D'
-            ]
+                'meals' => 'B, L, D',
+            ],
         ];
 
         foreach ($itinerary as $index => $day) {
             ServiceFeature::updateOrCreate([
                 'service_id' => $ebc->id,
-                'day_label' => 'Day ' . ($index + 1),
+                'day_label' => 'Day '.($index + 1),
             ], array_merge($day, [
                 'sort_order' => $index + 1,
             ]));
@@ -89,8 +87,7 @@ class TrekDataSeeder extends Seeder
                 'status' => 'Available',
             ]);
         }
-        
-        
+
         // 2. Annapurna Circuit
         $abc = Service::updateOrCreate([
             'slug' => 'annapurna-circuit',
@@ -114,7 +111,7 @@ class TrekDataSeeder extends Seeder
             'inclusions' => '<ul><li>ACAP & TIMS Included</li></ul>',
             'exclusions' => '<ul><li>International Flights</li></ul>',
         ]);
-        
+
         ServiceDeparture::updateOrCreate([
             'service_id' => $abc->id,
             'start_date' => Carbon::now()->addDays(20),

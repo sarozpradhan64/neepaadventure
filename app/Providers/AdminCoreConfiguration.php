@@ -183,8 +183,8 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
                     'label' => 'Departures',
                     'route' => 'admin.service-departures.index',
                     'activeRoute' => 'admin.service-departures.*',
-                ]
-            ]
+                ],
+            ],
         ];
     }
 

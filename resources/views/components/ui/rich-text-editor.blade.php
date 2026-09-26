@@ -9,8 +9,8 @@
     // execCommand is deprecated but remains universally supported across every browser
     // and is the standard dependency-free way to build a WYSIWYG. The toolbar maps each
     // button to a command; `block` actions use formatBlock (H1/H2/paragraph).
-    $editorId = $id ?: 'rte-' . \Illuminate\Support\Str::random(8);
-    $labelId = $editorId . '-label';
+    $editorId = $id ?: 'rte-'.\Illuminate\Support\Str::random(8);
+    $labelId = $editorId.'-label';
 
     // Toolbar definition. `cmd` runs execCommand; `block` runs formatBlock with a tag;
     // `link` and `clear` are special-cased in the Alpine handlers. `state` is the
@@ -111,7 +111,7 @@
         refresh() {
             // Only reflect state when the selection is inside this editor.
             const sel = window.getSelection();
-            if (!sel || !sel.rangeCount || !this.$refs.editor.contains(sel.anchorNode)) return;
+            if (! sel || ! sel.rangeCount || ! this.$refs.editor.contains(sel.anchorNode)) return;
             const next = {};
             for (const k of @js(collect($tools)->whereNotNull('state')->pluck('state')->values())) {
                 try { next[k] = document.queryCommandState(k); } catch (e) { next[k] = false; }
@@ -136,35 +136,37 @@
         class="bg-muted/40 flex flex-wrap items-center gap-0.5 border-b p-1"
     >
         @foreach ($tools as $tool)
-            @if (isset($tool['sep']))
-                <span aria-hidden="true" class="bg-border mx-1 h-5 w-px self-center"></span>
-            @else
-                <button
-                    type="button"
-                    data-slot="rich-text-editor-button"
-                    aria-label="{{ $tool['label'] }}"
-                    @if (! empty($tool['state'])) :aria-pressed="!!active['{{ $tool['state'] }}']" @endif
-                    @if (isset($tool['cmd']))
-                        @click="run(@js($tool['cmd']))"
-                    @elseif (isset($tool['block']))
-                        @click="block(@js($tool['block']))"
-                    @elseif (isset($tool['link']))
-                        @click="link()"
-                    @elseif (isset($tool['image']))
-                        @click="image()"
-                    @elseif (isset($tool['table']))
-                        @click="table()"
-                    @elseif (isset($tool['clear']))
-                        @click="clear()"
-                    @endif
-                    @class([
-                        'text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring/50 inline-flex size-8 cursor-pointer items-center justify-center rounded-md outline-none transition-colors focus-visible:ring-[3px]',
-                        'aria-pressed:bg-accent aria-pressed:text-accent-foreground' => ! empty($tool['state']),
-                    ])
-                >
-                    <x-dynamic-component :component="'lucide-'.$tool['icon']" class="size-4" aria-hidden="true" />
-                </button>
+        @if (isset($tool['sep']))
+        <span aria-hidden="true" class="bg-border mx-1 h-5 w-px self-center"></span>
+        @else
+        <button
+            type="button"
+            data-slot="rich-text-editor-button"
+            aria-label="{{ $tool['label'] }}"
+            @if (! empty($tool['state']))
+            :aria-pressed="!!active['{{ $tool['state'] }}']"
             @endif
+            @if (isset($tool['cmd']))
+            @click="run(@js($tool['cmd']))"
+            @elseif (isset($tool['block']))
+            @click="block(@js($tool['block']))"
+            @elseif (isset($tool['link']))
+            @click="link()"
+            @elseif (isset($tool['image']))
+            @click="image()"
+            @elseif (isset($tool['table']))
+            @click="table()"
+            @elseif (isset($tool['clear']))
+            @click="clear()"
+            @endif
+            @class([
+                'text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring/50 inline-flex size-8 cursor-pointer items-center justify-center rounded-md outline-none transition-colors focus-visible:ring-[3px]',
+                'aria-pressed:bg-accent aria-pressed:text-accent-foreground' => ! empty($tool['state']),
+            ])
+        >
+            <x-dynamic-component :component="'lucide-'.$tool['icon']" class="size-4" aria-hidden="true" />
+        </button>
+        @endif
         @endforeach
     </div>
 
@@ -182,13 +184,24 @@
         @keyup="refresh()"
         @mouseup="refresh()"
         @focus="refresh()"
-        class="min-h-40 w-full max-w-none px-3 py-3 text-sm leading-7 outline-none empty:before:text-muted-foreground empty:before:pointer-events-none empty:before:content-[attr(data-placeholder)] [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_h1]:mb-2 [&_h1]:text-2xl [&_h1]:font-semibold [&_h2]:mb-2 [&_h2]:text-xl [&_h2]:font-semibold [&_li]:mt-1 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:ps-6 [&_p]:my-2 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:ps-6"
-    >{!! $value !!}</div>
+        class="empty:before:text-muted-foreground [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_h1]:mb-2 [&_h1]:text-2xl [&_h1]:font-semibold [&_h2]:mb-2 [&_h2]:text-xl [&_h2]:font-semibold [&_li]:mt-1 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:ps-6 [&_p]:my-2 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:ps-6 min-h-40 w-full max-w-none px-3 py-3 text-sm leading-7 outline-none empty:before:pointer-events-none empty:before:content-[attr(data-placeholder)]"
+    >
+        {!! $value !!}
+    </div>
 
     {{-- Accessible name for the textbox; visually hidden (it duplicates the placeholder intent). --}}
     <span id="{{ $labelId }}" class="sr-only">{{ $placeholder }}</span>
 
     @if ($name || $hasWire)
-        <textarea x-ref="input" @if ($name) name="{{ $name }}" @endif {{ $wireAttrs }} class="hidden" aria-hidden="true" tabindex="-1">{!! $value !!}</textarea>
+    <textarea
+        x-ref="input"
+        @if ($name)
+        name="{{ $name }}"
+        @endif
+        {{ $wireAttrs }}
+        class="hidden"
+        aria-hidden="true"
+        tabindex="-1"
+    >{!! $value !!}</textarea>
     @endif
 </div>

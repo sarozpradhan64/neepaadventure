@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Blaze\AdminCore\Models\Service;
 use Illuminate\Database\Eloquent\Model;
 
 class ServiceDeparture extends Model
@@ -22,6 +23,6 @@ class ServiceDeparture extends Model
 
     public function service()
     {
-        return $this->belongsTo(\Blaze\AdminCore\Models\Service::class);
+        return $this->belongsTo(Service::class);
     }
 }
