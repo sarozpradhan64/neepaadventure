@@ -780,7 +780,7 @@
                                 "Cho La Pass was an unforgettable highlight."
                             </h4>
                             <p class="font-body-sm text-body-sm text-tertiary">
-                                Doing standard EBC without Gokyo would be a huge miss. Dawa and his Sherpa team guided
+                                Doing standard EBC without Gokyo would be a huge miss. Dawa and his Guide team guided
                                 us over the icy Cho La pass with incredible patience and security. The sunrise from
                                 Gokyo Ri seeing four 8,000-meter passes is burned into my mind forever.
                             </p>

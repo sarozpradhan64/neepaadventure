@@ -17,8 +17,8 @@
                 <div class="bg-primary-container/20 pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full blur-3xl"></div>
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto flex flex-col items-center text-center">
                     @php
-                        $heroTitle = $websiteSettings['hero_title'] ?? "Conquer the World's Highest Passes with Sherpa Mastery";
-                        $heroText = $websiteSettings['hero_text'] ?? "Pioneering 100% safety records across Nepal's 8,000m trails. Led by certified IFMGA/NNMGA Sherpa leaders with sustainable zero-plastic ethics and intimate small trek teams.";
+                        $heroTitle = $websiteSettings['hero_title'] ?? "Conquer the World's Highest Passes with Guide Mastery";
+                        $heroText = $websiteSettings['hero_text'] ?? "Pioneering 100% safety records across Nepal's 8,000m trails. Led by certified IFMGA/NNMGA Guide leaders with sustainable zero-plastic ethics and intimate small trek teams.";
                         $highlightText = $websiteSettings['hero_highlighted_text'] ?? '';
 
                         if ($highlightText) {
@@ -27,7 +27,7 @@
                                 if (str_contains($heroTitle, $word)) {
                                     $heroTitle = str_replace(
                                         $word,
-                                        '<span class="text-primary-container inline-block">'.$word.'</span>',
+                                        '<span class="text-primary-container inline-block font-black drop-shadow-lg">'.$word.'</span>',
                                         $heroTitle
                                     );
                                 }
@@ -35,7 +35,7 @@
                         }
                     @endphp
                     <!-- Main Headline -->
-                    <h1 class="font-display-xl text-display-xl text-summit-white mb-space-md max-w-4xl leading-[1.08] tracking-tight">
+                    <h1 class="font-display-xl text-display-xl font-extrabold text-summit-white mb-space-md max-w-4xl leading-[1.08] tracking-tight drop-shadow-md">
                         {!! $heroTitle !!}
                     </h1>
                     <!-- Subheadline -->
@@ -155,7 +155,7 @@
                         </div>
                         <div class="gap-space-xs flex items-center">
                             <x-lucide-users class="text-primary size-[24px]" />
-                            <span>Sherpa-to-Guest Ratio 1:3 Maximum</span>
+                            <span>Guide-to-Guest Ratio 1:3 Maximum</span>
                         </div>
                         <div class="gap-space-xs flex items-center">
                             <x-lucide-briefcase-medical class="text-primary size-[24px]" />
@@ -217,7 +217,7 @@
                             rating="4.9"
                             reviews="340"
                             description="Cross the famed Cho La Pass, stand alongside the turquoise high-altitude sacred lakes, and witness uncrowded Everest sunrises."
-                            :inclusions="['Sherpa Guide & 2:1 Porter Ratio', 'Oxygen & Sat-Com Tracking Included']"
+                            :inclusions="['Guide & 2:1 Porter Ratio', 'Oxygen & Sat-Com Tracking Included']"
                             price="$1,750"
                             href="{{ route('trek-detail', ['slug' => 'ebc-gokyo-ri']) }}"
                         />
@@ -262,7 +262,7 @@
                             rating="4.98"
                             reviews="115"
                             description="Comprehensive alpine training combined with Everest Base Camp trekking before ascending fixed ropes onto a towering 6,000m destination."
-                            :inclusions="['NMA Trekking Permit & High Camp Tents', '1:1 Trekking Sherpa on Destination Push']"
+                            :inclusions="['NMA Trekking Permit & High Camp Tents', '1:1 Trekking Guide on Destination Push']"
                             price="$2,450"
                             href="{{ route('trek-detail', ['slug' => 'island-peak']) }}"
                         />
@@ -337,7 +337,7 @@
                                 </div>
                             </div>
                             <div class="p-space-sm bg-summit-white/5 rounded-lg">
-                                <span class="font-badge-caption text-badge-caption text-primary-container block font-bold uppercase">Sherpa Capital</span>
+                                <span class="font-badge-caption text-badge-caption text-primary-container block font-bold uppercase">Guide Capital</span>
                                 <div class="font-headline-sm text-headline-sm text-summit-white mt-1 font-bold">
                                     Namche Bazaar
                                 </div>
@@ -396,7 +396,7 @@
                             The Neepa Standard
                         </div>
                         <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                            Built on Sherpa Heritage &amp; Clinical Safety
+                            Built on Guide Heritage &amp; Clinical Safety
                         </h2>
                         <p class="font-body-md text-body-md text-tertiary mt-space-2xs">
                             We do not outsource your safety to contractors. Every itinerary is led by our full-time
@@ -411,7 +411,7 @@
                                     <x-lucide-mountain class="size-[28px]" />
                                 </div>
                                 <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">
-                                    Sherpa-Led Heritage
+                                    Guide-Led Heritage
                                 </h3>
                                 <p class="font-body-md text-body-md text-tertiary">
                                     Our lead trek sardars boast multiple 8,000m destinations and ancestral understanding
@@ -530,7 +530,7 @@
                                 </h2>
                             </div>
                             <p class="font-body-lg text-body-lg text-tertiary">
-                                Every Neepa Adventure trekker is paired with authentic Sherpa guides born and raised in
+                                Every Neepa Adventure trekker is paired with authentic Guides born and raised in
                                 high-altitude Khumbu, Rolwaling, or Dolpo valleys. Their physiological adaptation is
                                 matched with world-standard certifications in wilderness trauma, high-angle rescue, and
                                 weather modeling.
@@ -664,7 +664,7 @@
                                 </h4>
                                 <p class="font-body-md text-body-md text-tertiary mb-space-md">
                                     "The trekking refresher at High Camp was thorough. On destination day, my trekking
-                                    Sherpa Pemba paced me like clockwork up the headwall. Standing at 6,189m at sunrise
+                                    Guide Pemba paced me like clockwork up the headwall. Standing at 6,189m at sunrise
                                     is an experience I will cherish forever."
                                 </p>
                             </div>
@@ -694,7 +694,7 @@
                                     "Untamed beauty around Manaslu"
                                 </h4>
                                 <p class="font-body-md text-body-md text-tertiary mb-space-md">
-                                    "No crowd jams, raw Tibetan culture, and incredible Sherpa care. Even when my bag
+                                    "No crowd jams, raw Tibetan culture, and incredible Guide care. Even when my bag
                                     zipper tore, our porter carried special repair tape. Outstanding logistics from
                                     Kathmandu airport to the mountain and back."
                                 </p>

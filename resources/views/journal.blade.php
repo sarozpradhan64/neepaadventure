@@ -17,7 +17,7 @@
                         </h1>
                         <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
                             Deep-dive route briefings, altitude physiology protocols, cultural heritage from Solukhumbu,
-                            and unvarnished gear tests written by veteran IFMGA/NNMGA Sherpa guides, trek doctors, and
+                            and unvarnished gear tests written by veteran IFMGA/NNMGA Guides, trek doctors, and
                             high-altitude navigators.
                         </p>
                     </div>

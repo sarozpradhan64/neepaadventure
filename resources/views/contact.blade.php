@@ -428,7 +428,7 @@
                             <x-lucide-chevron-down class="text-tertiary size-4 transform transition-transform duration-200" />
                         </button>
                         <div class="faq-content px-space-md pb-space-md text-tertiary font-body-md text-body-md hidden">
-                            Absolutely. Safety is our non-negotiable metric. Every lead Sherpa guide is equipped with
+                            Absolutely. Safety is our non-negotiable metric. Every lead Guide is equipped with
                             pulse oximeters, Lake Louise Acute Mountain Sickness (AMS) score sheets, and Garmin inReach
                             satellite devices. If weather conditions close high passes (such as Cho La or Thorong La) or
                             acclimatization requires extra rest days, our operations desk dynamically recalibrates your
@@ -458,7 +458,7 @@
                             class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
                             type="button"
                         >
-                            <span class="">Can we meet our Lead Sherpa Sirdar before heading to Lukla or Pokhara?</span>
+                            <span class="">Can we meet our Lead Guide Sirdar before heading to Lukla or Pokhara?</span>
                             <x-lucide-chevron-down class="text-tertiary size-4 transform transition-transform duration-200" />
                         </button>
                         <div class="faq-content px-space-md pb-space-md text-tertiary font-body-md text-body-md hidden">

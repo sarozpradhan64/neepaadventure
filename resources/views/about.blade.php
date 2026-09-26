@@ -21,7 +21,7 @@
                         <div class="gap-space-xs px-space-sm py-space-2xs bg-surface-container-lowest/10 inline-flex items-center rounded-lg shadow-sm backdrop-blur-md">
                             <span class="bg-primary-container inline-block h-2 w-2 animate-pulse rounded-full"></span>
                             <span class="font-badge-caption text-badge-caption text-primary-container font-bold tracking-[0.2em] uppercase">
-                                BORN ON THE HIGH PASSES • INDIGENOUS SHERPA FOUNDED
+                                BORN ON THE HIGH PASSES • INDIGENOUS Guide FOUNDED
                             </span>
                         </div>
                         <h1 class="font-display-xl text-headline-lg lg:text-display-xl text-summit-white leading-tight font-extrabold tracking-tight">
@@ -76,7 +76,7 @@
                             </div>
                             <div class="font-headline-sm text-headline-sm text-summit-white font-bold">100%</div>
                             <div class="font-body-sm text-body-sm text-mist-slate">
-                                Indigenous Sherpa Owned &amp; Run
+                                Indigenous Guide Owned &amp; Run
                             </div>
                         </div>
                         <div class="space-y-space-2xs p-space-xs">
@@ -114,7 +114,7 @@
                             <div class="relative overflow-hidden rounded-xl shadow-xl">
                                 <img
                                     class="h-80 w-full transform object-cover transition-transform duration-700 hover:scale-105 lg:h-96"
-                                    data-alt="Traditional stone sherpa lodge in Khumjung village with majestic Ama Dablam mountain towering under bright crisp skies, colorful prayer flags hanging along the stone terrace."
+                                    data-alt="Traditional stone Guide lodge in Khumjung village with majestic Ama Dablam mountain towering under bright crisp skies, colorful prayer flags hanging along the stone terrace."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH-T_vvEFdoqOoZOBFTvoDElAEOrBl2nCqehW5vdVes7CS0Ev4wPgcXWPtSHXQC5MQVCbTl5rLVPi3CE3Jei4Y4t69UHHGUb5DVNRi07EtBhAUyGWWMVgz3hcgMpAVgrgedsLsTKApZq9OtW7tCtmTCMZ1v9GgBpXWYLljR-hl89xy83ZmZfUzOCXb4uxE-cKGJ3o6Ph8TjCIUf4dke1y44J6Y2zLMm7oYDNr4TPlYaNilVlL_ZLHo"
                                 />
                                 <div class="bottom-space-sm left-space-sm bg-ridge-deep/85 px-space-md py-space-xs text-summit-white absolute rounded-lg backdrop-blur-md">
@@ -125,7 +125,7 @@
                             <div class="bg-surface-container-lowest p-space-2xs relative -mt-12 ml-auto w-3/4 overflow-hidden rounded-xl shadow-2xl">
                                 <img
                                     class="h-52 w-full rounded-lg object-cover"
-                                    data-alt="Veteran Sherpa trek leader with windburned skin and radiant welcoming smile holding trekking crampons and ice axe, misty mountain pass in background."
+                                    data-alt="Veteran Guide trek leader with windburned skin and radiant welcoming smile holding trekking crampons and ice axe, misty mountain pass in background."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD2Z9ekpCwI8kbDV1ICEbQjAVPmphgeA2fPOZk8_2RWjHH3HSDVH6ptyV1mAv6qzvrViIdPPEZWRy1w4Q_nVPdwxKZXjUoQpNzutGwJxb1MEy0MYCTZ2nTtdeDPQvXO9erjef2AKg5dnqtZIViQqxa3XQBpADuge7ofdeukc18ifcJ6K6RJ5DZaavOVQw9BqRdX7FFW7wmM0YGfPwlUTch9NJrS--mhYloViFNHtkb16jkr60wIp46"
                                 />
                                 <div class="p-space-sm bg-surface-container-lowest">
@@ -164,7 +164,7 @@
                                     Tibet, learning navigation not from GPS receivers but from the shifts of alpine
                                     wind, snow drifts, and glacier seracs. Dawa Tenzing grew up herding in Khumjung,
                                     learning rope craft under the gaze of Mount Khumbila—the sacred protector of the
-                                    Sherpa people.
+                                    Guide people.
                                 </p>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">
                                     After earning his prestigious IFMGA mountain badge and logging 14 destinations of
@@ -231,7 +231,7 @@
                                     </h3>
                                 </div>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    100% of our trip leaders are indigenous Sherpas holding IFMGA, UIAGM, or NNMGA
+                                    100% of our trip leaders are indigenous Guides holding IFMGA, UIAGM, or NNMGA
                                     certifications. Generational acclimation combined with elite technical rescue
                                     training ensures supreme leadership at all elevations.
                                 </p>
@@ -405,12 +405,12 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Profile 3: Mingma Norbu Sherpa -->
+                        <!-- Profile 3: Mingma Norbu Guide -->
                         <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
                             <div class="relative h-64 overflow-hidden">
                                 <img
                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Portrait of Mingma Norbu Sherpa, logistics master sitting in high altitude tent with navigation maps and trek gear, warm atmospheric lighting."
+                                    data-alt="Portrait of Mingma Norbu Guide, logistics master sitting in high altitude tent with navigation maps and trek gear, warm atmospheric lighting."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgsNXoODtdirIDtsZemPeVb-t-WnBbD9nLcMeII08RmG6xydcQ9u0XaMeYdacWHkojSs1WE4uxvx21qY1L5GQty1l5dQJmDxVTiAxGnIYySYjN8N6SoTYpP3s5gJid9rLMY9dWgUXvqCt5rtnGKY9XecW1TCgkPNewP-IIARVQ9dRE4gMbgDBqg9JxEsMFbORE1ds4qtRy_qB6PqOYaDslAftAGRy6Uq0a2rpxR_kO3Lnz9Ftk1AO1"
                                 />
                                 <div class="top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs absolute rounded tracking-wider uppercase">
@@ -423,7 +423,7 @@
                             <div class="p-space-lg space-y-space-sm">
                                 <div>
                                     <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Mingma Norbu Sherpa
+                                        Mingma Norbu Guide
                                     </h3>
                                     <p class="font-label-sm text-label-sm text-primary font-semibold">
                                         Chief Logistics Sirdar
@@ -474,12 +474,12 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Profile 5: Tashi Gyalzen Sherpa -->
+                        <!-- Profile 5: Tashi Gyalzen Guide -->
                         <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
                             <div class="relative h-64 overflow-hidden">
                                 <img
                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Tashi Gyalzen Sherpa ice trekking on blue glacial wall with harness and technical ice axes, focused expression with snow crystals glistening."
+                                    data-alt="Tashi Gyalzen Guide ice trekking on blue glacial wall with harness and technical ice axes, focused expression with snow crystals glistening."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU1qjWg7qO6s_FW3MISD9gZF4ZxH6MqPq2JL5QGYfsOIV2N4kRaTL8qE2Y4Y0B4JxtySMRmHifDV8rfLtstwHhHnAiS7dmV2BnHoolTB6y4pWFYhusjDw3WR657G6IB9JxJTeOzSTdEpWnq3a4NDkmhRuRr0pZ7MZ4Y3HQefysMgly75sb1yzZ347prRGIF8tmoYHdaWnPpM0YSwetvPYNW1t13FgUxUmrGeqnlb1_BvFIFvTIfOKQ"
                                 />
                                 <div class="top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs absolute rounded tracking-wider uppercase">
@@ -492,7 +492,7 @@
                             <div class="p-space-lg space-y-space-sm">
                                 <div>
                                     <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Tashi Gyalzen Sherpa
+                                        Tashi Gyalzen Guide
                                     </h3>
                                     <p class="font-label-sm text-label-sm text-primary font-semibold">
                                         Technical Trekking Director
@@ -669,7 +669,7 @@
                                     </h2>
                                     <p class="font-body-md text-body-md text-mist-slate leading-relaxed">
                                         Tourism in the Nepal Himalaya has historically extracted value while leaving
-                                        Sherpa communities exposed to trail erosion, glacial retreat, and underfunded
+                                        Guide communities exposed to trail erosion, glacial retreat, and underfunded
                                         schools. We take pride in our open-book model: every trekker can trace their
                                         contribution directly to village projects.
                                     </p>
@@ -718,7 +718,7 @@
                                 <div class="relative overflow-hidden rounded-xl shadow-xl">
                                     <img
                                         class="h-72 w-full object-cover"
-                                        data-alt="Sherpa school children smiling warmly in traditional uniform outside Khumjung Hillary School with prayer flags and snowy passes in background."
+                                        data-alt="Guide school children smiling warmly in traditional uniform outside Khumjung Hillary School with prayer flags and snowy passes in background."
                                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCFz92dIVESoXxKP2XWU9q3XN6t3KqHIgh8Elg91h_GNW7w_OyatAFhiO4cGVRyPc2lRXOkF9CijKSo852fLHOB_ajfEwSYITxRaJ6A2nhFi-r0SmO2ZHFwIPBOwZxLoSCIjmHy4U5iIwWdfG8g8W6GJj53GOUldMZw5ugs_4_g2H1SxWYp2dBcEfRyxuWu2ImCL_0MgklnNSZnJvlVQkmBFWbCobw1FOeOren4K_H83FyNwQCGpIB"
                                     />
                                     <div class="from-ridge-deep/90 absolute inset-0 bg-gradient-to-t via-transparent to-transparent"></div>
@@ -769,7 +769,7 @@
                                 </h3>
                                 <p class="font-body-sm text-body-sm text-tertiary">
                                     Dawa Tenzing and three cousin guides register Neepa Adventure in Kathmandu, pledging
-                                    an all-Sherpa lead guide roster and strict 20kg porter load caps.
+                                    an all-Guide lead guide roster and strict 20kg porter load caps.
                                 </p>
                             </div>
                         </div>
@@ -845,7 +845,7 @@
                         </h2>
                         <p class="font-body-lg text-body-lg text-mist-slate/90 mx-auto max-w-2xl">
                             Whether you seek the tranquil waters of Gokyo Ri, the high crest of Thorong La, or technical
-                            6,000m destinations, our indigenous Sherpa team guides you with absolute devotion.
+                            6,000m destinations, our indigenous Guide team guides you with absolute devotion.
                         </p>
                     </div>
                     <div class="gap-space-md flex flex-wrap items-center justify-center">

@@ -36,7 +36,7 @@
                         <div class="space-y-space-md max-w-3xl">
                             <div class="gap-space-xs font-label-sm text-label-sm text-amber-flare inline-flex items-center font-bold tracking-widest uppercase">
                                 <x-lucide-mountain class="size-[18px]" />
-                                Authentic Sherpa-Led Circuits &amp; High Passes
+                                Authentic Guide-Led Circuits &amp; High Passes
                             </div>
                             <h1 class="font-display-md text-display-md text-summit-white font-extrabold tracking-tight drop-shadow-lg">
                                 Nepal Trekking Treks &amp; Classic High Passes
@@ -343,7 +343,7 @@
                             </h3>
                             <p class="font-body-md text-body-md text-tertiary">
                                 Try loosening your altitude or duration filters, or request a custom bespoke itinerary
-                                crafted by our Sherpa team.
+                                crafted by our Guide team.
                             </p>
                             <button
                                 class="mt-space-sm px-space-lg py-space-xs bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-sm text-label-sm rounded font-bold"
@@ -445,7 +445,7 @@
                         </div>
                         <div class="gap-space-xs text-badge-caption text-badge-caption text-primary flex items-center">
                             <x-lucide-lock-keyhole class="size-[16px]" />
-                            Zero charge until your Sherpa Lead confirms medical suitability.
+                            Zero charge until your Guide Lead confirms medical suitability.
                         </div>
                     </div>
                     <div class="gap-space-sm pt-space-xs flex items-center justify-end">
@@ -504,7 +504,7 @@
                                 href="#"
                             >
                                 <x-lucide-handshake class="size-[18px]" />
-                                Consult Sherpa Trek Lead
+                                Consult Guide Trek Lead
                             </a>
                         </div>
                     </div>

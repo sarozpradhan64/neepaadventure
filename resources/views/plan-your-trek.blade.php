@@ -121,8 +121,8 @@
                                     name="group_size"
                                     class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full cursor-pointer appearance-none rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                 >
-                                    <option value="Solo Alpine Trekker (1:1 Sherpa)">
-                                        Solo Alpine Trekker (1:1 Sherpa)
+                                    <option value="Solo Alpine Trekker (1:1 Guide)">
+                                        Solo Alpine Trekker (1:1 Guide)
                                     </option>
                                     <option value="Couple / Pair (2 Pax)">Couple / Pair (2 Pax)</option>
                                     <option value="Private Small Party (3 – 5 Pax)">

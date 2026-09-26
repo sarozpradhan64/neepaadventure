@@ -15,7 +15,7 @@ class HomePageSettingsSeeder extends Seeder
         $settings = [
             [
                 'key' => 'hero_title',
-                'value' => 'Experience the Ultimate Himalayan Trekking Adventure',
+                'value' => 'Conquer the World\'s Highest Passes with Guide Mastery',
                 'group' => 'homepage',
                 'type' => 'text',
             ],
@@ -27,7 +27,7 @@ class HomePageSettingsSeeder extends Seeder
             ],
             [
                 'key' => 'hero_text',
-                'value' => 'Embark on an unforgettable journey through the heart of the Himalayas. We offer expertly guided treks, authentic cultural experiences, and unparalleled safety. Start planning your lifetime adventure today.',
+                'value' => 'Pioneering 100% safety records across Nepal\'s 8,000m trails. Led by certified IFMGA/NNMGA Guide leaders with sustainable zero-plastic ethics and intimate small trek teams.',
                 'group' => 'homepage',
                 'type' => 'textarea',
             ],

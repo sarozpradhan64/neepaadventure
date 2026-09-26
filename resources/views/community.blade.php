@@ -20,7 +20,7 @@
                                 Community &amp; Conservation
                             </h1>
                             <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-2xl leading-relaxed">
-                                Every trek and pass trek directly fuels local Sherpa education, solar winter clinics,
+                                Every trek and pass trek directly fuels local Guide education, solar winter clinics,
                                 high-altitude glacier cleanup, and zero-emissions waste management across the Khumbu,
                                 Rolwaling, and Manaslu valleys.
                             </p>
@@ -147,7 +147,7 @@
                         <div class="relative min-h-[380px] lg:col-span-7 lg:min-h-full">
                             <img
                                 class="h-full w-full object-cover"
-                                data-alt="Young Sherpa school children in navy blue school uniforms smiling warmly outside the stone-walled Sir Edmund Hillary School in Khumjung, Nepal. In the sweeping crisp background, the sacred pass of Mount Ama Dablam rises dramatically into a cloudless cobalt Himalayan sky with colorful prayer flags fluttering."
+                                data-alt="Young Guide school children in navy blue school uniforms smiling warmly outside the stone-walled Sir Edmund Hillary School in Khumjung, Nepal. In the sweeping crisp background, the sacred pass of Mount Ama Dablam rises dramatically into a cloudless cobalt Himalayan sky with colorful prayer flags fluttering."
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcZ3Tr2Son_QBeDKEUgj-PmNxRQzuIDDvW_x11ZZUeAWMXJZOF43Ajp7lyv1FQKhXNwPmSRYnKLEvGpUnMvPWksh9BFd6VCpVwOm5cEcwgLZr-uqNIpca4q4rnGw2BQGu-eHFfUYNSiPpOUL2FMREWbCb_tFd2Dg3OQALhnOYA00rGjigQ1Q9k-6WyYgNgtKCT4v3n2wr3huoNfr4SpW-GePEjSMmqx6WpMySm15xT-KPr_CwEb6xg"
                             />
                             <div class="absolute top-4 left-4 flex flex-wrap gap-2">
@@ -281,7 +281,7 @@
                             <div class="relative h-56 w-full">
                                 <img
                                     class="h-full w-full object-cover"
-                                    data-alt="Experienced Sherpa trekkers wearing yellow down suits safely hauling bundled recycled gear and decommissioned oxygen canisters on wooden sledges across the blue seracs of Khumbu Glacier near Everest Base Camp under bright morning alpine sunlight."
+                                    data-alt="Experienced Guide trekkers wearing yellow down suits safely hauling bundled recycled gear and decommissioned oxygen canisters on wooden sledges across the blue seracs of Khumbu Glacier near Everest Base Camp under bright morning alpine sunlight."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiAGEahxSdJek9Y070WjXEC-4XB04kBt3nlH1fSZoiFrHG0SeB0xkfE14-Kg5tltXHepyCRCjpew51waoKq-ftMBlGs8tU3HUtTneu3m-9sWJa1b3UJTSeSL6lUOAeY8kAzBkZXPwlzG5wAkuIbo2_ncKtaTL0LhS-NNaNiTFRDJVeLzWI05rSFVQE2Z4C3bvvt9BtoNcdrS2fNGL5QnvoYmcO8rFCUdz2lDE_CAYMmhpiuLWWXJrn"
                                 />
                                 <span class="bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption px-space-sm py-space-2xs absolute top-3 left-3 rounded-md font-bold tracking-wider uppercase">
@@ -323,7 +323,7 @@
                             <div class="relative h-56 w-full">
                                 <img
                                     class="h-full w-full object-cover"
-                                    data-alt="Solar photovoltaic panels mounted on the weathered stone roof of a remote high-altitude stone clinic at Pheriche village in Nepal, surrounded by snowy Himalayan ridges with medical team inside treating local Sherpas with clean electric heat."
+                                    data-alt="Solar photovoltaic panels mounted on the weathered stone roof of a remote high-altitude stone clinic at Pheriche village in Nepal, surrounded by snowy Himalayan ridges with medical team inside treating local Guides with clean electric heat."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsVy3f165iJzvyjJU1JxyUapbOrUtAUD3_55BWm525xfiPGaqkqXl86z5il6lxIQD3Qj6wvT45NFK6ojyk3v72yKoz7slSxvgWfjujurSXDw32SKLi7m5X-s283BQrkDiUytIvJTje635CU0gruKTSO-XdrGfV7xGy2LUvMRj0ggzeDObeGgFFKJ35wUJtM7MMw3VO5Y2BQiM6phwDZWHyyesU9ByQhPfsoP7b0G8twjMf8hFO6Z2a"
                                 />
                                 <span class="bg-surface-container-highest text-on-surface font-badge-caption text-badge-caption px-space-sm py-space-2xs absolute top-3 left-3 rounded-md font-bold tracking-wider uppercase">
@@ -409,7 +409,7 @@
                             <div class="relative h-56 w-full">
                                 <img
                                     class="h-full w-full object-cover"
-                                    data-alt="Young Sherpa men and women participating in rigorous wilderness first responder training on a grassy terrace in Namche Bazaar, practicing high-altitude hypothermia wrap and portable hyperbaric Gamow bag inflation with instructors."
+                                    data-alt="Young Guide men and women participating in rigorous wilderness first responder training on a grassy terrace in Namche Bazaar, practicing high-altitude hypothermia wrap and portable hyperbaric Gamow bag inflation with instructors."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAnL9l-H0YfeesYzXkqErSsdW_Va60OZOAQfieyI9Rp_O340YwB1LAc6nWz6j8cywQWouRXZ_nHF_zuouLSOgxkDlVbfo_xFzn5-JLbHbcQfSL0_TbK-DXlgOxAnT47gtEVKhOr1oR9yWfYEImHzJNcpH_OqWj2rYZMJEtkvUoMpJ7F60FZLdtzqi1-49Swk34zYeAEVDTXot5COnjC0gzbrIH2xlPtinHffLBifK4RvNNsrMLWE4m"
                                 />
                                 <span class="bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption px-space-sm py-space-2xs absolute top-3 left-3 rounded-md font-bold tracking-wider uppercase">
@@ -425,7 +425,7 @@
                                         Education &amp; Youth
                                     </div>
                                     <h3 class="font-headline-sm text-headline-sm text-on-surface leading-snug font-bold tracking-tight">
-                                        Indigenous Sherpa Wilderness First Responder (WFR) Certification
+                                        Indigenous Guide Wilderness First Responder (WFR) Certification
                                     </h3>
                                     <p class="font-body-md text-body-md text-tertiary mt-space-xs">
                                         Fully funding 80-hour international Wilderness Medical Associates certifications
@@ -435,7 +435,7 @@
                                 </div>
                                 <div class="pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-lg space-y-space-xs">
                                     <div class="font-body-sm text-body-sm flex justify-between">
-                                        <span class="text-tertiary">Sherpas Certified</span>
+                                        <span class="text-tertiary">Guides Certified</span>
                                         <span class="text-on-surface font-bold">54 Guides in 2024</span>
                                     </div>
                                     <div class="bg-surface-container-high h-1.5 w-full overflow-hidden rounded-full">
@@ -452,7 +452,7 @@
                             <div class="relative h-56 w-full">
                                 <img
                                     class="h-full w-full object-cover"
-                                    data-alt="A modern commercial kitchen inside an alpine stone Sherpa teahouse in Dingboche featuring bright stainless steel induction cooktops powered by rooftop solar battery banks, eliminating wood smoke with snowy Nuptse visible outside."
+                                    data-alt="A modern commercial kitchen inside an alpine stone Guide teahouse in Dingboche featuring bright stainless steel induction cooktops powered by rooftop solar battery banks, eliminating wood smoke with snowy Nuptse visible outside."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuASo7cCiURx7ov1b8xDmULKathZfkGk8jduldxi6WRE3nGLEcYXHGFO7TQt_7BENzzj5xOySQM4vEKl5NcetnV0cq9lko1GOgyA4dVYLBGUX9i81iSf924HXalt6gO9zezv5Yze99dKgz3_6kr-C-vbvMN8vkVMkSTE487lQg4MwRiYNd72DVUMKNRzeopSPwD9ljMWqPsvUAUebGytxm7cZwbuRFjl6G8CZvwcFSWMVMYfpyuuqjhS"
                                 />
                                 <span class="bg-secondary text-on-secondary font-badge-caption text-badge-caption px-space-sm py-space-2xs absolute top-3 left-3 rounded-md font-bold tracking-wider uppercase">
@@ -557,7 +557,7 @@
                                     <div class="mb-space-2xs flex items-center justify-between">
                                         <div class="gap-space-xs flex items-center">
                                             <span class="bg-primary h-3.5 w-3.5 rounded"></span>
-                                            <span class="font-label-md text-label-md text-on-surface font-bold">Direct Sherpa Boarding &amp; Education</span>
+                                            <span class="font-label-md text-label-md text-on-surface font-bold">Direct Guide Boarding &amp; Education</span>
                                         </div>
                                         <span class="font-headline-sm text-headline-sm text-primary font-extrabold">45%</span>
                                     </div>
@@ -763,7 +763,7 @@
                                     Carbon In-Valley Offset
                                 </h3>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Offset your domestic Lukla/Jomsom flights directly through verified local Sherpa
+                                    Offset your domestic Lukla/Jomsom flights directly through verified local Guide
                                     clean-energy microgrids instead of opaque third-party international schemes.
                                 </p>
                             </div>

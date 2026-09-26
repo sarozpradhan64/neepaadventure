@@ -264,7 +264,7 @@
                         </div>
                         <div class="gap-space-2xs flex items-center">
                             <x-lucide-headphones class="text-primary-container size-[18px]" />
-                            <span>Direct Consultation with Lead Sherpa Operations Desk</span>
+                            <span>Direct Consultation with Lead Guide Operations Desk</span>
                         </div>
                     </div>
                 </div>
@@ -302,7 +302,7 @@
                         <div class="border-surface-container-high flex justify-between border-b pb-1">
                             <span class="text-tertiary">Lead By:</span>
                             <span class="text-primary font-bold" id="modal-lead-by-name">Certified IFMGA / NMA
-                                Sherpa</span>
+                                Guide</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-tertiary">Medical Evacuations:</span>
@@ -441,7 +441,7 @@
                         if (clientEl) clientEl.innerText = client || 'International Club Registry';
 
                         const sirdarEl = document.getElementById('modal-lead-by-name');
-                        if (sirdarEl) sirdarEl.innerText = lead_by || 'Certified IFMGA / NMA Sherpa';
+                        if (sirdarEl) sirdarEl.innerText = lead_by || 'Certified IFMGA / NMA Guide';
 
                         modal.classList.remove('hidden');
                     }
