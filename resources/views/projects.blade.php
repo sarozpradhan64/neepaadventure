@@ -473,9 +473,9 @@
                             // Update active state
                             filterBtns.forEach(b => {
                                 b.classList.remove('bg-ridge-deep', 'text-summit-white', 'active');
-                                b.classList.add('bg-surface-container-lowest', 'text-tertiary');
+                                b.classList.add('bg-surface-container-lowest', 'text-tertiary', 'hover:text-on-surface');
                             });
-                            btn.classList.remove('bg-surface-container-lowest', 'text-tertiary');
+                            btn.classList.remove('bg-surface-container-lowest', 'text-tertiary', 'hover:text-on-surface');
                             btn.classList.add('bg-ridge-deep', 'text-summit-white', 'active');
 
                             const filterValue = btn.getAttribute('data-filter');
