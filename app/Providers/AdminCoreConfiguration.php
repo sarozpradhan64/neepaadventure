@@ -187,4 +187,79 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
             ]
         ];
     }
+
+    public function projectFormFields(): array
+    {
+        return [
+            ServiceFormField::make(
+                name: 'duration',
+                type: 'text',
+                label: 'Duration',
+                placeholder: 'e.g. 11 Days',
+                validationRule: 'nullable|string|max:255',
+            ),
+            ServiceFormField::make(
+                name: 'max_altitude',
+                type: 'text',
+                label: 'Maximum Altitude',
+                placeholder: 'e.g. 4,130m',
+                validationRule: 'nullable|string|max:255',
+            ),
+            ServiceFormField::make(
+                name: 'destination_success',
+                type: 'text',
+                label: 'Destination Success / Team Completion',
+                placeholder: 'e.g. 100% (12/12)',
+                validationRule: 'nullable|string|max:255',
+            ),
+            ServiceFormField::make(
+                name: 'lead_by',
+                type: 'text',
+                label: 'Lead By',
+                placeholder: 'e.g. Dawa Sherpa',
+                validationRule: 'nullable|string|max:255',
+            ),
+            ServiceFormField::make(
+                name: 'season',
+                type: 'text',
+                label: 'Season',
+                placeholder: 'e.g. Winter 2024',
+                validationRule: 'nullable|string|max:255',
+            ),
+            ServiceFormField::make(
+                name: 'team_size',
+                type: 'text',
+                label: 'Team Size',
+                placeholder: 'e.g. 12 Climbers',
+                validationRule: 'nullable|string|max:255',
+            ),
+            ServiceFormField::make(
+                name: 'nation',
+                type: 'text',
+                label: 'Nation Name',
+                placeholder: 'e.g. Russia',
+                validationRule: 'nullable|string|max:255',
+            ),
+            ServiceFormField::make(
+                name: 'dossier_title',
+                type: 'text',
+                label: 'Dossier Title',
+                placeholder: 'e.g. Russian Alpine Club - Annapurna Base Camp',
+                validationRule: 'nullable|string|max:255',
+            ),
+            ServiceFormField::make(
+                name: 'dossier_description',
+                type: 'textarea',
+                label: 'Dossier Description',
+                placeholder: 'e.g. Complete operational debrief...',
+                validationRule: 'nullable|string',
+            ),
+            ServiceFormField::make(
+                name: 'inclusions',
+                type: 'richtext',
+                label: 'Logistical Feats / Inclusions',
+                validationRule: 'nullable|string',
+            ),
+        ];
+    }
 }
