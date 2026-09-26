@@ -21,6 +21,10 @@ class BlogController extends Controller
             $blogsQuery->whereHas('category', fn ($q) => $q->where('slug', $request->category));
         }
 
+        if ($request->filled('tag')) {
+            $blogsQuery->whereHas('tags', fn ($q) => $q->where('slug', $request->tag));
+        }
+
         if ($request->filled('search')) {
             $search = $request->search;
             $blogsQuery->where(function ($q) use ($search) {
@@ -36,7 +40,11 @@ class BlogController extends Controller
             ->orderByDesc('created_at')
             ->first();
 
-        return view('journal', compact('blogs', 'categories', 'featured'));
+        $popularTags = \Blaze\AdminCore\Models\Tag::whereHas('blogs', function ($q) {
+            $q->where('status', true);
+        })->orderByDesc('usage_count')->take(10)->get();
+
+        return view('journal', compact('blogs', 'categories', 'featured', 'popularTags'));
     }
 
     public function show(string $slug): View

@@ -179,45 +179,17 @@
                     <!-- Pagination & Popular Topic Tags -->
                     <div class="gap-space-lg pt-space-md flex flex-col">
                         <!-- Tag Cloud -->
-                        <div class="gap-space-xs flex flex-wrap items-center justify-center sm:justify-start">
-                            <span class="font-label-sm text-label-sm text-secondary mr-space-xs">Index Tags:</span>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#EverestBaseCamp</a>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#Acclimatization</a>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#AnnapurnaCircuit</a>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#DiamoxProtocol</a>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#SherpaLineage</a>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#GokyoLakes</a>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#WinterTrekking</a>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#LuklaFlights</a>
-                            <a
-                                class="px-space-xs py-space-2xs bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface font-body-sm text-body-sm rounded transition-colors"
-                                href="#"
-                            >#PermitRules2025</a>
-                        </div>
+                        @if($popularTags->isNotEmpty())
+                            <div class="gap-space-xs flex flex-wrap items-center justify-center sm:justify-start">
+                                <span class="font-label-sm text-label-sm text-secondary mr-space-xs">Index Tags:</span>
+                                @foreach($popularTags as $tag)
+                                    <a
+                                        class="px-space-xs py-space-2xs rounded transition-colors {{ request('tag') === $tag->slug ? 'bg-ridge-deep text-summit-white' : 'bg-surface-container hover:bg-surface-container-high text-secondary hover:text-on-surface' }} font-body-sm text-body-sm"
+                                        href="{{ route('blog', array_merge(request()->except(['tag', 'page']), ['tag' => $tag->slug])) }}"
+                                    >#{{ $tag->name }}</a>
+                                @endforeach
+                            </div>
+                        @endif
                         <!-- Pagination -->
                         <div class="mt-space-md">{{ $blogs->links() }}</div>
                     </div>
