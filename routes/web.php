@@ -11,7 +11,10 @@ Route::get('/about', fn () => view('about'))->name('about');
 Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 
-Route::get('/gallery', fn () => view('gallery'))->name('gallery');
+use App\Http\Controllers\Frontend\GalleryController;
+
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::get('/gallery/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
 use App\Http\Controllers\Frontend\ContactController;
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
