@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="w-full pt-20 bg-surface">
+    <main class="w-full pt-48  bg-surface">
         <div class="flex flex-col w-full">
             <!-- Immersive Cinematic Hero: Bleeds cleanly beneath header -->
             <section class="relative w-full -mt-20 pt-28 pb-20 bg-ridge-deep text-summit-white overflow-hidden">
@@ -75,7 +75,8 @@
                             <div class="font-badge-caption text-badge-caption text-primary-container uppercase">Mastery
                             </div>
                             <div class="font-headline-sm text-headline-sm font-bold text-summit-white">14x</div>
-                            <div class="font-body-sm text-body-sm text-mist-slate">Everest Destinations Led by Founder</div>
+                            <div class="font-body-sm text-body-sm text-mist-slate">Everest Destinations Led by Founder
+                            </div>
                         </div>
                         <div class="space-y-space-2xs p-space-xs">
                             <div class="font-badge-caption text-badge-caption text-primary-container uppercase">High
@@ -154,7 +155,8 @@
                                     Sherpa people.
                                 </p>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">After earning his
-                                    prestigious IFMGA mountain badge and logging 14 destinations of Everest, Dawa chose not
+                                    prestigious IFMGA mountain badge and logging 14 destinations of Everest, Dawa chose
+                                    not
                                     to work for absentee overseas operators. In 2011, alongside brothers and cousins
                                     from Phortse, he established Neepa Adventure to reclaim the narrative of Himalayan
                                     trekking: ethical pay, native equity, and authentic spiritual stewardship.</p>

@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="w-full pt-20 bg-surface">
+    <main class="w-full pt-48  bg-surface">
         <div class="flex flex-col w-full">
             <!-- Immersive Editorial Hero -->
             <section
@@ -662,24 +662,23 @@
                             <div class="relative w-64 h-64 flex items-center justify-center">
                                 <svg class="w-full h-full -rotate-90 transform" viewbox="0 0 100 100">
                                     <!-- Background Circle -->
-                                    <circle class="text-surface-container-high" cx="50" cy="50"
-                                        fill="transparent" r="38" stroke="currentColor" stroke-width="12"></circle>
+                                    <circle class="text-surface-container-high" cx="50" cy="50" fill="transparent"
+                                        r="38" stroke="currentColor" stroke-width="12"></circle>
                                     <!-- 45% Direct Education (Primary #795900) -->
-                                    <circle class="text-primary" cx="50" cy="50" fill="transparent"
-                                        r="38" stroke="currentColor" stroke-dasharray="107.44 238.76"
-                                        stroke-dashoffset="0" stroke-width="12"></circle>
+                                    <circle class="text-primary" cx="50" cy="50" fill="transparent" r="38"
+                                        stroke="currentColor" stroke-dasharray="107.44 238.76" stroke-dashoffset="0"
+                                        stroke-width="12"></circle>
                                     <!-- 25% Environmental Waste (Secondary #526070) -->
-                                    <circle class="text-secondary" cx="50" cy="50" fill="transparent"
-                                        r="38" stroke="currentColor" stroke-dasharray="59.69 238.76"
+                                    <circle class="text-secondary" cx="50" cy="50" fill="transparent" r="38"
+                                        stroke="currentColor" stroke-dasharray="59.69 238.76"
                                         stroke-dashoffset="-107.44" stroke-width="12"></circle>
                                     <!-- 20% Medical Clinics (Amber Flare #D49806) -->
-                                    <circle class="text-amber-flare" cx="50" cy="50"
-                                        fill="transparent" r="38" stroke="currentColor"
-                                        stroke-dasharray="47.75 238.76" stroke-dashoffset="-167.13"
-                                        stroke-width="12"></circle>
+                                    <circle class="text-amber-flare" cx="50" cy="50" fill="transparent" r="38"
+                                        stroke="currentColor" stroke-dasharray="47.75 238.76"
+                                        stroke-dashoffset="-167.13" stroke-width="12"></circle>
                                     <!-- 10% Porter Gear (Tertiary #4d6072) -->
-                                    <circle class="text-tertiary" cx="50" cy="50" fill="transparent"
-                                        r="38" stroke="currentColor" stroke-dasharray="23.88 238.76"
+                                    <circle class="text-tertiary" cx="50" cy="50" fill="transparent" r="38"
+                                        stroke="currentColor" stroke-dasharray="23.88 238.76"
                                         stroke-dashoffset="-214.88" stroke-width="12"></circle>
                                 </svg>
                                 <div class="absolute flex flex-col items-center justify-center text-center">
@@ -915,7 +914,8 @@
                                 Message or Valley Preference</label>
                             <textarea
                                 class="w-full px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary font-body-md"
-                                placeholder="e.g., preference for Khumjung or Phortse village students..." rows="2"></textarea>
+                                placeholder="e.g., preference for Khumjung or Phortse village students..."
+                                rows="2"></textarea>
                         </div>
                         <button
                             class="w-full py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-lg transition-all shadow-md mt-space-sm"

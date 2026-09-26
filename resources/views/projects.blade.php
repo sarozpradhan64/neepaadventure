@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="w-full pt-20 bg-surface">
+    <main class="w-full pt-48  bg-surface">
         <div class="flex flex-col w-full">
             <!-- 1. Immersive Editorial Hero -->
             <section
@@ -63,7 +63,8 @@
                             </div>
                             <div class="pt-space-2xs">
                                 <div class="flex justify-between text-body-sm mb-space-2xs">
-                                    <span class="text-mist-slate font-medium">Seasonal Pass &amp; Destination Success</span>
+                                    <span class="text-mist-slate font-medium">Seasonal Pass &amp; Destination
+                                        Success</span>
                                     <span class="font-bold text-primary-container">98.6%</span>
                                 </div>
                                 <div class="w-full bg-summit-white/10 h-2.5 rounded-full overflow-hidden">
@@ -102,7 +103,8 @@
                                 <div
                                     class="font-display-xl text-headline-lg font-extrabold text-summit-white tracking-tight">
                                     98.6%</div>
-                                <div class="font-body-sm text-body-sm text-mist-slate/90 mt-space-2xs">Team destination &amp;
+                                <div class="font-body-sm text-body-sm text-mist-slate/90 mt-space-2xs">Team destination
+                                    &amp;
                                     high pass arrival success</div>
                             </div>
                         </div>
@@ -370,49 +372,58 @@
                     <!-- Project Cards Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="projects-grid">
                         @forelse($projects as $project)
-                        <div class="project-item flex flex-col bg-surface-container-lowest rounded-xl shadow-md overflow-hidden transition-all hover:-translate-y-1"
-                            data-category="{{ strtolower($project->category->name ?? '') }}">
-                            <div class="relative h-56 w-full">
-                                <img class="w-full h-full object-cover"
-                                    alt="{{ $project->title }}"
-                                    src="{{ $project->featured_image ? asset('storage/' . $project->featured_image) : asset('images/placeholder.jpg') }}" />
-                                <span class="absolute top-3 left-3 bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption font-bold px-space-sm py-space-2xs rounded-md uppercase tracking-wider flex items-center gap-1">
-                                    Team {{ $project->nation }} &bull; {{ $project->team_size }}
-                                </span>
-                                <span class="absolute bottom-3 right-3 bg-ridge-deep/80 backdrop-blur-md text-summit-white font-label-sm text-label-sm px-space-sm py-space-2xs rounded-md">
-                                    {{ $project->location ?? '' }}
-                                </span>
-                            </div>
-                            <div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
-                                <div>
-                                    <div class="text-tertiary font-label-sm text-label-sm font-semibold uppercase tracking-wider mb-space-2xs flex items-center justify-between">
-                                        <span>{{ $project->category->name ?? '' }}</span>
-                                        <span class="text-primary font-bold">{{ $project->duration }}</span>
+                            <div class="project-item flex flex-col bg-surface-container-lowest rounded-xl shadow-md overflow-hidden transition-all hover:-translate-y-1"
+                                data-category="{{ strtolower($project->category->name ?? '') }}">
+                                <div class="relative h-56 w-full">
+                                    <img class="w-full h-full object-cover" alt="{{ $project->title }}"
+                                        src="{{ $project->featured_image ? asset('storage/' . $project->featured_image) : asset('images/placeholder.jpg') }}" />
+                                    <span
+                                        class="absolute top-3 left-3 bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption font-bold px-space-sm py-space-2xs rounded-md uppercase tracking-wider flex items-center gap-1">
+                                        Team {{ $project->nation }} &bull; {{ $project->team_size }}
+                                    </span>
+                                    <span
+                                        class="absolute bottom-3 right-3 bg-ridge-deep/80 backdrop-blur-md text-summit-white font-label-sm text-label-sm px-space-sm py-space-2xs rounded-md">
+                                        {{ $project->location ?? '' }}
+                                    </span>
+                                </div>
+                                <div class="p-space-lg flex-1 flex flex-col justify-between space-y-space-md">
+                                    <div>
+                                        <div
+                                            class="text-tertiary font-label-sm text-label-sm font-semibold uppercase tracking-wider mb-space-2xs flex items-center justify-between">
+                                            <span>{{ $project->category->name ?? '' }}</span>
+                                            <span class="text-primary font-bold">{{ $project->duration }}</span>
+                                        </div>
+                                        <h3
+                                            class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight leading-snug">
+                                            {{ $project->title }}
+                                        </h3>
+                                        <p class="font-body-md text-body-md text-tertiary mt-space-xs">
+                                            {{ $project->short_description }}
+                                        </p>
                                     </div>
-                                    <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface tracking-tight leading-snug">
-                                        {{ $project->title }}
-                                    </h3>
-                                    <p class="font-body-md text-body-md text-tertiary mt-space-xs">
-                                        {{ $project->short_description }}
-                                    </p>
-                                </div>
-                                <div class="space-y-2 pt-2 border-t border-surface-container-high">
-                                    <div class="grid grid-cols-2 gap-2 text-body-sm">
-                                        <div class="text-tertiary">Max Altitude: <strong class="text-on-surface">{{ $project->max_altitude }}</strong></div>
-                                        <div class="text-tertiary">Destination Success: <strong class="text-primary">{{ $project->destination_success }}</strong></div>
-                                        <div class="text-tertiary">Lead By: <strong class="text-on-surface">{{ $project->lead_by }}</strong></div>
-                                        <div class="text-tertiary">Season: <strong class="text-on-surface">{{ $project->season }}</strong></div>
+                                    <div class="space-y-2 pt-2 border-t border-surface-container-high">
+                                        <div class="grid grid-cols-2 gap-2 text-body-sm">
+                                            <div class="text-tertiary">Max Altitude: <strong
+                                                    class="text-on-surface">{{ $project->max_altitude }}</strong></div>
+                                            <div class="text-tertiary">Destination Success: <strong
+                                                    class="text-primary">{{ $project->destination_success }}</strong></div>
+                                            <div class="text-tertiary">Lead By: <strong
+                                                    class="text-on-surface">{{ $project->lead_by }}</strong></div>
+                                            <div class="text-tertiary">Season: <strong
+                                                    class="text-on-surface">{{ $project->season }}</strong></div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-lg flex items-center justify-between">
+                                        <button
+                                            class="w-full inline-flex items-center justify-center gap-1.5 py-space-2xs px-space-sm rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm font-bold transition-all text-on-surface"
+                                            onclick="openProjectModal('{{ addslashes($project->dossier_title ?? $project->title) }}', '{{ addslashes($project->dossier_description ?? $project->short_description) }}', '{{ addslashes($project->client_name ?? '') }}', '{{ addslashes($project->lead_by ?? '') }}', '{{ addslashes($project->inclusions ?? '') }}')">
+                                            <x-lucide-eye class="size-[16px]" />
+                                            <span>View Project Case Dossier</span>
+                                        </button>
                                     </div>
                                 </div>
-                                <div class="pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-lg flex items-center justify-between">
-                                    <button class="w-full inline-flex items-center justify-center gap-1.5 py-space-2xs px-space-sm rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm font-bold transition-all text-on-surface"
-                                        onclick="openProjectModal('{{ addslashes($project->dossier_title ?? $project->title) }}', '{{ addslashes($project->dossier_description ?? $project->short_description) }}', '{{ addslashes($project->client_name ?? '') }}', '{{ addslashes($project->lead_by ?? '') }}', '{{ addslashes($project->inclusions ?? '') }}')">
-                                        <x-lucide-eye class="size-[16px]" />
-                                        <span>View Project Case Dossier</span>
-                                    </button>
-                                </div>
                             </div>
-                        </div>
                         @empty
                             <div class="col-span-full py-12 text-center text-tertiary">
                                 No projects found.
@@ -456,8 +467,7 @@
                                     sleep-low trek-high profiles and rest buffer days.
                                 </p>
                             </div>
-                            <div
-                                class="font-label-sm text-label-sm font-semibold text-primary flex items-center gap-1">
+                            <div class="font-label-sm text-label-sm font-semibold text-primary flex items-center gap-1">
                                 <span>Custom Route Maps &amp; GPX</span>
                                 <x-lucide-circle-check class="size-[16px]" />
                             </div>
@@ -615,7 +625,8 @@
                         </div>
                         <div class="flex justify-between border-b border-surface-container-high pb-1">
                             <span class="text-tertiary">Lead By:</span>
-                            <span class="font-bold text-primary" id="modal-lead-by-name">Certified IFMGA / NMA Sherpa</span>
+                            <span class="font-bold text-primary" id="modal-lead-by-name">Certified IFMGA / NMA
+                                Sherpa</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-tertiary">Medical Evacuations:</span>
@@ -673,8 +684,7 @@
                                 Organizer / Contact Name</label>
                             <input
                                 class="w-full px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary font-body-md"
-                                placeholder="e.g. Alexey Volkov or Dr. Sarah Jenkins" required=""
-                                type="text" />
+                                placeholder="e.g. Alexey Volkov or Dr. Sarah Jenkins" required="" type="text" />
                         </div>
                         <div class="grid grid-cols-2 gap-space-sm">
                             <div>
@@ -726,7 +736,8 @@
                                 Language, Nutrition, or Timing Needs</label>
                             <textarea
                                 class="w-full px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary font-body-md"
-                                placeholder="e.g., Russian-speaking guide required, high-protein menu, January winter dates..." rows="2"></textarea>
+                                placeholder="e.g., Russian-speaking guide required, high-protein menu, January winter dates..."
+                                rows="2"></textarea>
                         </div>
                         <button
                             class="w-full py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-lg transition-all shadow-md mt-space-sm"
@@ -743,15 +754,15 @@
                     if (modal) {
                         document.getElementById('modal-project-title').innerText = title || '';
                         document.getElementById('modal-project-desc').innerText = desc || '';
-                        
+
                         // Let's populate the dynamic info list if it exists
                         // You can extend the modal HTML to include these fields with IDs
                         const clientEl = document.getElementById('modal-client-name');
                         if (clientEl) clientEl.innerText = client || 'International Club Registry';
-                        
+
                         const sirdarEl = document.getElementById('modal-lead-by-name');
                         if (sirdarEl) sirdarEl.innerText = lead_by || 'Certified IFMGA / NMA Sherpa';
-                        
+
                         modal.classList.remove('hidden');
                     }
                 }

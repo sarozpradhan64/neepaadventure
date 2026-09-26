@@ -4,15 +4,26 @@
     <div class="bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop">
         <div class="max-w-max-content-width mx-auto h-9 flex items-center justify-between text-body-sm">
             <div class="flex items-center gap-space-md">
-                <span
-                    class="flex items-center gap-space-2xs text-tertiary font-label-sm text-label-sm font-semibold uppercase tracking-wider">
-                    <x-lucide-triangle-alert class="size-[16px] text-primary" />
-                    Spring 2025 Permits &amp; Weather Bulletin:
-                </span>
-                <span class="text-on-surface-variant truncate max-w-xs md:max-w-lg">
-                    Khumbu Icefall route opened &bull; Manaslu restricted permits issuing on schedule &bull; Lukla
-                    operational
-                </span>
+                @foreach ($socials ?? [] as $social)
+                    <a href="{{ $social->url }}" target="_blank" rel="noopener noreferrer"
+                        class="text-tertiary hover:text-primary transition-colors flex items-center gap-space-2xs font-label-sm text-label-sm font-semibold uppercase tracking-wider" aria-label="{{ $social->platform }}">
+                        @if (strtolower($social->platform) === 'facebook')
+                            <x-lucide-facebook class="size-[16px]" />
+                        @elseif (strtolower($social->platform) === 'instagram')
+                            <x-lucide-instagram class="size-[16px]" />
+                        @elseif (strtolower($social->platform) === 'twitter' || strtolower($social->platform) === 'x')
+                            <x-lucide-twitter class="size-[16px]" />
+                        @elseif (strtolower($social->platform) === 'youtube')
+                            <x-lucide-youtube class="size-[16px]" />
+                        @elseif (strtolower($social->platform) === 'tiktok')
+                            <svg class="size-[16px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                            </svg>
+                        @else
+                            {{ $social->platform }}
+                        @endif
+                    </a>
+                @endforeach
             </div>
             <div class="hidden md:flex items-center gap-space-lg">
                 <a class="flex items-center gap-space-2xs text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors"
@@ -62,7 +73,7 @@
                 <x-lucide-search class="size-4" />
             </button>
             <a class="hidden sm:inline-flex items-center justify-center px-space-lg py-space-sm rounded-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider transition-all shadow-[0_1px_3px_rgba(25,39,53,0.08)]"
-                href="{{ route('contact') }}">Plan Your Trek</a>
+                href="{{ route('plan-your-trek') }}">Plan Your Trek</a>
             <button aria-label="Open Mobile Navigation"
                 class="xl:hidden w-10 h-10 flex items-center justify-center rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high">
                 <x-lucide-menu class="size-4" />

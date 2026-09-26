@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="w-full pt-20 bg-surface">
+    <main class="w-full pt-48  bg-surface">
         <div class="flex flex-col w-full">
             <!-- Top Technical Breadcrumbs & Status Bar -->
             <div class="w-full bg-surface-container-low py-space-sm px-gutter-mobile lg:px-gutter-desktop">
@@ -222,24 +222,23 @@
                                 <svg class="w-full h-64 overflow-visible" fill="none" viewbox="0 0 900 260"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <defs>
-                                        <lineargradient id="elevationGrad" x1="0%" x2="0%"
-                                            y1="0%" y2="100%">
+                                        <lineargradient id="elevationGrad" x1="0%" x2="0%" y1="0%" y2="100%">
                                             <stop offset="0%" stop-color="#f6ba1a" stop-opacity="0.45"></stop>
                                             <stop offset="100%" stop-color="#f6ba1a" stop-opacity="0.0"></stop>
                                         </lineargradient>
                                     </defs>
                                     <!-- Grid Horizontal Guide Lines -->
-                                    <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50"
-                                        x2="870" y1="30" y2="30"></line>
+                                    <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870"
+                                        y1="30" y2="30"></line>
                                     <text class="text-[11px] font-mono" fill="#4d6072" x="15" y="34">5,500m</text>
-                                    <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50"
-                                        x2="870" y1="80" y2="80"></line>
+                                    <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870"
+                                        y1="80" y2="80"></line>
                                     <text class="text-[11px] font-mono" fill="#4d6072" x="15" y="84">4,800m</text>
-                                    <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50"
-                                        x2="870" y1="135" y2="135"></line>
+                                    <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870"
+                                        y1="135" y2="135"></line>
                                     <text class="text-[11px] font-mono" fill="#4d6072" x="15" y="139">4,000m</text>
-                                    <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50"
-                                        x2="870" y1="190" y2="190"></line>
+                                    <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870"
+                                        y1="190" y2="190"></line>
                                     <text class="text-[11px] font-mono" fill="#4d6072" x="15" y="194">3,000m</text>
                                     <!-- Elevation Path Fill -->
                                     <path
@@ -258,8 +257,8 @@
                                     <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="60"
                                         y="252">2,846m</text>
                                     <!-- Namche -->
-                                    <circle cx="210" cy="170" fill="#f6ba1a" r="5" stroke="#795900"
-                                        stroke-width="2"></circle>
+                                    <circle cx="210" cy="170" fill="#f6ba1a" r="5" stroke="#795900" stroke-width="2">
+                                    </circle>
                                     <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="210"
                                         y="240">Namche</text>
                                     <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="210"
@@ -271,15 +270,15 @@
                                     <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="360"
                                         y="252">4,470m</text>
                                     <!-- Gokyo Lakes -->
-                                    <circle cx="440" cy="85" fill="#f6ba1a" r="5" stroke="#795900"
-                                        stroke-width="2"></circle>
+                                    <circle cx="440" cy="85" fill="#f6ba1a" r="5" stroke="#795900" stroke-width="2">
+                                    </circle>
                                     <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="440"
                                         y="240">Gokyo Ri</text>
                                     <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="440"
                                         y="252">5,357m</text>
                                     <!-- Cho La Pass -->
-                                    <circle cx="570" cy="38" fill="#0F1821" r="6" stroke="#f6ba1a"
-                                        stroke-width="2"></circle>
+                                    <circle cx="570" cy="38" fill="#0F1821" r="6" stroke="#f6ba1a" stroke-width="2">
+                                    </circle>
                                     <text class="text-[11px] font-bold" fill="#ba1a1a" text-anchor="middle" x="570"
                                         y="20">Cho La Pass</text>
                                     <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="570"
@@ -293,8 +292,8 @@
                                     <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="640"
                                         y="252">5,364m</text>
                                     <!-- Kala Patthar -->
-                                    <circle cx="720" cy="30" fill="#f6ba1a" r="6" stroke="#795900"
-                                        stroke-width="2"></circle>
+                                    <circle cx="720" cy="30" fill="#f6ba1a" r="6" stroke="#795900" stroke-width="2">
+                                    </circle>
                                     <text class="text-[11px] font-bold" fill="#795900" text-anchor="middle" x="720"
                                         y="16">Pass High</text>
                                     <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="720"
@@ -338,455 +337,474 @@
                     </div>
                     <div class="space-y-space-md">
                         @forelse($trek->features as $index => $feature)
-                        <!-- Day {{ $index + 1 }} -->
-                        <div class="flex gap-space-md group">
-                            <div class="flex flex-col items-center mt-2">
-                                <div class="w-10 h-10 rounded-full bg-surface-container border-2 border-primary text-primary flex items-center justify-center font-bold text-label-md transition-colors group-hover:bg-primary group-hover:text-summit-white">
-                                    {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                            <!-- Day {{ $index + 1 }} -->
+                            <div class="flex gap-space-md group">
+                                <div class="flex flex-col items-center mt-2">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-surface-container border-2 border-primary text-primary flex items-center justify-center font-bold text-label-md transition-colors group-hover:bg-primary group-hover:text-summit-white">
+                                        {{ str_pad($index + 1, 2, '0', STR_PAD_LEFT) }}
+                                    </div>
+                                    @if(!$loop->last)
+                                        <div
+                                            class="w-0.5 h-full bg-border-subtle mt-2 group-hover:bg-primary/30 transition-colors">
+                                        </div>
+                                    @endif
                                 </div>
-                                @if(!$loop->last)
-                                <div class="w-0.5 h-full bg-border-subtle mt-2 group-hover:bg-primary/30 transition-colors"></div>
-                                @endif
+                                <div
+                                    class="bg-surface-container-lowest rounded-xl p-space-md border border-border-subtle hover:border-primary/50 transition-all flex-1 shadow-sm hover:shadow-md">
+                                    <div
+                                        class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm border-b border-border-subtle mb-space-sm">
+                                        <div>
+                                            <h3 class="font-headline-sm text-headline-sm text-on-surface">
+                                                {{ $feature->title }}</h3>
+                                            <span
+                                                class="font-badge-caption text-badge-caption text-tertiary uppercase font-bold">{{ $feature->day_label ?? 'Day ' . ($index + 1) }}</span>
+                                        </div>
+                                        <div
+                                            class="flex items-center gap-space-sm text-label-sm text-tertiary bg-surface-container px-space-sm py-space-2xs rounded-lg">
+                                            <span class="flex items-center gap-1" title="Max Altitude"><x-lucide-mountain
+                                                    class="size-4" /> {{ number_format((float) $feature->altitude) }}m</span>
+                                            <span class="text-border-subtle">|</span>
+                                            <span class="flex items-center gap-1" title="Trekking Distance"><x-lucide-map
+                                                    class="size-4" /> {{ $feature->distance }}</span>
+                                            <span class="text-border-subtle">|</span>
+                                            <span class="flex items-center gap-1" title="Walking Hours"><x-lucide-clock
+                                                    class="size-4" /> {{ $feature->walking_time }}</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="font-body-md text-body-md text-on-surface-variant mb-space-md leading-relaxed prose prose-sm max-w-none">
+                                        {!! $feature->description !!}
+                                    </div>
+                                    <div
+                                        class="bg-surface-container rounded-lg p-space-sm flex flex-wrap gap-space-md text-label-sm">
+                                        <div class="flex items-center gap-2 text-on-surface">
+                                            <x-lucide-home class="size-[16px] text-tertiary" /> <span
+                                                class="font-semibold">Stay:</span>
+                                            {{ $feature->accommodation ?? 'Tea House' }}
+                                        </div>
+                                        <div class="flex items-center gap-2 text-on-surface">
+                                            <x-lucide-utensils class="size-[16px] text-tertiary" /> <span
+                                                class="font-semibold">Meals:</span> {{ $feature->meals ?? 'B, L, D' }}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="bg-surface-container-lowest rounded-xl p-space-md border border-border-subtle hover:border-primary/50 transition-all flex-1 shadow-sm hover:shadow-md">
-                                <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-sm border-b border-border-subtle mb-space-sm">
-                                    <div>
-                                        <h3 class="font-headline-sm text-headline-sm text-on-surface">{{ $feature->title }}</h3>
-                                        <span class="font-badge-caption text-badge-caption text-tertiary uppercase font-bold">{{ $feature->day_label ?? 'Day ' . ($index + 1) }}</span>
-                                    </div>
-                                    <div class="flex items-center gap-space-sm text-label-sm text-tertiary bg-surface-container px-space-sm py-space-2xs rounded-lg">
-                                        <span class="flex items-center gap-1" title="Max Altitude"><x-lucide-mountain class="size-4" /> {{ number_format((float)$feature->altitude) }}m</span>
-                                        <span class="text-border-subtle">|</span>
-                                        <span class="flex items-center gap-1" title="Trekking Distance"><x-lucide-map class="size-4" /> {{ $feature->distance }}</span>
-                                        <span class="text-border-subtle">|</span>
-                                        <span class="flex items-center gap-1" title="Walking Hours"><x-lucide-clock class="size-4" /> {{ $feature->walking_time }}</span>
-                                    </div>
-                                </div>
-                                <div class="font-body-md text-body-md text-on-surface-variant mb-space-md leading-relaxed prose prose-sm max-w-none">
-                                    {!! $feature->description !!}
-                                </div>
-                                <div class="bg-surface-container rounded-lg p-space-sm flex flex-wrap gap-space-md text-label-sm">
-                                    <div class="flex items-center gap-2 text-on-surface">
-                                        <x-lucide-home class="size-[16px] text-tertiary" /> <span class="font-semibold">Stay:</span> {{ $feature->accommodation ?? 'Tea House' }}
-                                    </div>
-                                    <div class="flex items-center gap-2 text-on-surface">
-                                        <x-lucide-utensils class="size-[16px] text-tertiary" /> <span class="font-semibold">Meals:</span> {{ $feature->meals ?? 'B, L, D' }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         @empty
                             <p class="text-tertiary text-center p-space-md">Detailed itinerary is not available yet.</p>
                         @endforelse
-</div>
                     </div>
                 </div>
-            </section>
-            <!-- Side-by-Side Inclusions & Exclusions -->
-            <section class="w-full bg-surface-container-lowest py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
-                <div class="max-w-max-content-width mx-auto">
-                    <div class="text-center max-w-xl mx-auto mb-space-2xl">
-                        <span
-                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Transparent
-                            Operations</span>
-                        <h2 class="font-headline-md text-headline-md text-on-surface uppercase">Trek Inclusions
-                            &amp; Logistics</h2>
+        </div>
+        </section>
+        <!-- Side-by-Side Inclusions & Exclusions -->
+        <section class="w-full bg-surface-container-lowest py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
+            <div class="max-w-max-content-width mx-auto">
+                <div class="text-center max-w-xl mx-auto mb-space-2xl">
+                    <span
+                        class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Transparent
+                        Operations</span>
+                    <h2 class="font-headline-md text-headline-md text-on-surface uppercase">Trek Inclusions
+                        &amp; Logistics</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-space-xl">
+                    <!-- Inclusions Box -->
+                    <div class="bg-surface-container-low rounded-xl p-space-xl shadow-sm space-y-space-md">
+                        <div class="flex items-center gap-space-xs text-on-surface">
+                            <x-lucide-circle-check class="text-primary size-[28px]" />
+                            <h3 class="font-headline-sm text-headline-sm uppercase">What Is Fully Covered</h3>
+                        </div>
+                        <div
+                            class="prose prose-sm max-w-none prose-li:text-tertiary prose-p:text-tertiary text-tertiary">
+                            {!! $trek->inclusions !!}</div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-space-xl">
-                        <!-- Inclusions Box -->
-                        <div class="bg-surface-container-low rounded-xl p-space-xl shadow-sm space-y-space-md">
-                            <div class="flex items-center gap-space-xs text-on-surface">
-                                <x-lucide-circle-check class="text-primary size-[28px]" />
-                                <h3 class="font-headline-sm text-headline-sm uppercase">What Is Fully Covered</h3>
-                            </div>
-                            <div class="prose prose-sm max-w-none prose-li:text-tertiary prose-p:text-tertiary text-tertiary">{!! $trek->inclusions !!}</div>
+                    <!-- Exclusions Box -->
+                    <div class="bg-surface-container rounded-xl p-space-xl shadow-sm space-y-space-md">
+                        <div class="flex items-center gap-space-xs text-on-surface">
+                            <x-lucide-x class="text-tertiary size-[28px]" />
+                            <h3 class="font-headline-sm text-headline-sm uppercase">What Trekkers Cover</h3>
                         </div>
-                        <!-- Exclusions Box -->
-                        <div class="bg-surface-container rounded-xl p-space-xl shadow-sm space-y-space-md">
-                            <div class="flex items-center gap-space-xs text-on-surface">
-                                <x-lucide-x class="text-tertiary size-[28px]" />
-                                <h3 class="font-headline-sm text-headline-sm uppercase">What Trekkers Cover</h3>
-                            </div>
-                            <div class="prose prose-sm max-w-none prose-li:text-tertiary prose-p:text-tertiary text-tertiary">{!! $trek->exclusions !!}</div>
-                        </div>
+                        <div
+                            class="prose prose-sm max-w-none prose-li:text-tertiary prose-p:text-tertiary text-tertiary">
+                            {!! $trek->exclusions !!}</div>
                     </div>
                 </div>
-            </section>
-            <!-- Lead Trek Guide Profile Card (using provided image) -->
-            <section class="w-full bg-surface-container py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
-                <div class="max-w-max-content-width mx-auto">
-                    <div
-                        class="bg-surface-container-lowest rounded-2xl p-space-xl shadow-md grid grid-cols-1 md:grid-cols-12 gap-space-xl items-center">
-                        <div class="md:col-span-5 flex justify-center">
-                            <div class="relative w-full max-w-sm rounded-xl overflow-hidden shadow-lg">
-                                <img alt="Lead Mountain Guide Dawa Tenzing Sherpa in alpine yellow down gear against Himalayan snowy destination passes"
-                                    class="w-full h-96 object-cover object-top"
-                                    src="https://lh3.googleusercontent.com/aida/AEtjO1VNGjPQgJtSEnKl7zmmZzJYfc2-mrQtN77I7_Zo0q3gEzI2Z5x0Mh_OQMKMAW_76HUyDq5X7_0BBA17p7KTzJJAsZ92x8NEAFMIYhuu2YI2WG_GB5qRh8-NQzDoptJLfnUTvLhVL0LbVJiiEC1xZ4Jade3ASI7IQXptmn7FXMDCwJqwTgJpIhrTXBd-mGGV41b6WSIPuDu-99EFB_CaiwdCGAD62wUmqyPS2OyVhPrAzTY7dUOqpbq5qA" />
-                                <div
-                                    class="absolute bottom-3 left-3 bg-ridge-deep/85 px-3 py-1 rounded text-summit-white font-badge-caption text-badge-caption uppercase">
-                                    11x Everest • IFMGA Certified
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:col-span-7 space-y-space-md">
-                            <div class="space-y-space-2xs">
-                                <span
-                                    class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-wider">Meet
-                                    Your Lead Alpine Guide</span>
-                                <h3 class="font-headline-lg text-headline-lg text-on-surface uppercase">Dawa Tenzing
-                                    Sherpa</h3>
-                                <p class="font-label-md text-label-md text-tertiary">Senior Sirdar &amp; Wilderness
-                                    Medical Trek Leader</p>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                Born and raised in the Khumjung village of Khumbu, Dawa has completed over 35
-                                high-altitude crossings of the Cho La and Renjo La passes, along with 11 successful
-                                destinations of Mount Everest (Sagarmatha). Certified by both the Nepal Trekking
-                                Association and the International Federation of Mountain Guides Associations (IFMGA).
-                            </p>
-                            <div class="grid grid-cols-3 gap-space-sm pt-space-xs">
-                                <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
-                                    <div class="font-headline-sm text-headline-sm font-bold text-on-surface">35+</div>
-                                    <div class="font-badge-caption text-badge-caption text-tertiary uppercase">Cho La
-                                        Passes</div>
-                                </div>
-                                <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
-                                    <div class="font-headline-sm text-headline-sm font-bold text-on-surface">100%</div>
-                                    <div class="font-badge-caption text-badge-caption text-tertiary uppercase">Safety
-                                        Record</div>
-                                </div>
-                                <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
-                                    <div class="font-headline-sm text-headline-sm font-bold text-on-surface">WFR</div>
-                                    <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                        Wilderness First</div>
-                                </div>
-                            </div>
-                            <div class="pt-space-xs flex items-center gap-space-md">
-                                <span
-                                    class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
-                                    <x-lucide-shield-check class="text-primary size-[18px]" />
-                                    Trained in Gamow Hyperbaric Chambers &amp; High Altitude Cerebral Edema (HACE)
-                                    mitigation
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Medical Safety & Gear Checklist Bento Grid -->
-            <section class="w-full bg-surface-container-low py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
-                <div class="max-w-max-content-width mx-auto space-y-space-2xl">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
-                        <!-- Medical Protocol Section -->
-                        <div
-                            class="lg:col-span-6 bg-surface-container-lowest rounded-xl p-space-xl shadow-sm space-y-space-md">
-                            <div class="flex items-center gap-space-xs">
-                                <x-lucide-siren class="text-error size-[28px]" />
-                                <div>
-                                    <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface">Medical
-                                        &amp; Satellite Protocol</h3>
-                                    <p class="font-badge-caption text-badge-caption text-tertiary uppercase">Alpine
-                                        Survival Equipment Standard</p>
-                                </div>
-                            </div>
-                            <p class="font-body-md text-body-md text-tertiary">
-                                High-altitude trekking requires institutional preparedness. Every Neepa Adventure team
-                                carries life-saving hyperbaric assets into the Cho La pass corridor:
-                            </p>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
-                                <div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
-                                    <div
-                                        class="flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
-                                        <x-lucide-heart-pulse class="text-primary size-[20px]" />
-                                        Medical Oximetry
-                                    </div>
-                                    <p class="font-body-sm text-body-sm text-tertiary">
-                                        Morning &amp; evening SpO2 diagnostics logged daily to intercept early onset
-                                        AMS.
-                                    </p>
-                                </div>
-                                <div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
-                                    <div
-                                        class="flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
-                                        <x-lucide-wind class="text-primary size-[20px]" />
-                                        Emergency O2 System
-                                    </div>
-                                    <p class="font-body-sm text-body-sm text-tertiary">
-                                        Bottled medical oxygen cylinder &amp; mask carried above Namche Bazaar for
-                                        emergency ascent bailouts.
-                                    </p>
-                                </div>
-                                <div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
-                                    <div
-                                        class="flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
-                                        <x-lucide-satellite class="text-primary size-[20px]" />
-                                        Garmin inReach SOS
-                                    </div>
-                                    <p class="font-body-sm text-body-sm text-tertiary">
-                                        Continuous 10-minute satellite breadcrumb ping directly tied to Kathmandu
-                                        dispatch.
-                                    </p>
-                                </div>
-                                <div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
-                                    <div
-                                        class="flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
-                                        <x-lucide-helicopter class="text-primary size-[20px]" />
-                                        Heli-Rescue Link
-                                    </div>
-                                    <p class="font-body-sm text-body-sm text-tertiary">
-                                        Immediate charter helicopter extraction protocols coordinated with Simrik /
-                                        Altitude Air.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Gear Checklist Section -->
-                        <div
-                            class="lg:col-span-6 bg-surface-container-lowest rounded-xl p-space-xl shadow-sm space-y-space-md">
-                            <div class="flex items-center gap-space-xs">
-                                <x-lucide-backpack class="text-primary size-[28px]" />
-                                <div>
-                                    <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface">Mandatory
-                                        Packing Essentials</h3>
-                                    <p class="font-badge-caption text-badge-caption text-tertiary uppercase">Tested for
-                                        Cho La Pass Sub-Zero Conditions</p>
-                                </div>
-                            </div>
-                            <div class="space-y-space-xs text-body-sm text-tertiary">
-                                <div
-                                    class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
-                                    <div class="flex items-center gap-space-xs">
-                                        <x-lucide-footprints class="text-primary size-[20px]" />
-                                        <div>
-                                            <div class="font-semibold text-on-surface">Microspikes or Flexible Crampons
-                                            </div>
-                                            <div class="text-tertiary">Required for the glaciated Cho La saddle</div>
-                                        </div>
-                                    </div>
-                                    <span
-                                        class="font-badge-caption text-badge-caption uppercase bg-amber-flare/20 text-on-primary-container px-2 py-0.5 rounded font-bold">Crucial</span>
-                                </div>
-                                <div
-                                    class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
-                                    <div class="flex items-center gap-space-xs">
-                                        <x-lucide-bed class="text-primary size-[20px]" />
-                                        <div>
-                                            <div class="font-semibold text-on-surface">4-Season Sleeping Bag (-20°C
-                                                Rated)</div>
-                                            <div class="text-tertiary">High-loft goose down or trek synthetic
-                                                fill</div>
-                                        </div>
-                                    </div>
-                                    <span
-                                        class="font-badge-caption text-badge-caption uppercase bg-surface-container-highest text-tertiary px-2 py-0.5 rounded">Provided
-                                        / Rent</span>
-                                </div>
-                                <div
-                                    class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
-                                    <div class="flex items-center gap-space-xs">
-                                        <x-lucide-brush-cleaning class="text-primary size-[20px]" />
-                                        <div>
-                                            <div class="font-semibold text-on-surface">800+ Fill Power Down Parka</div>
-                                            <div class="text-tertiary">For Gorak Shep evenings and early morning
-                                                destinations</div>
-                                        </div>
-                                    </div>
-                                    <span
-                                        class="font-badge-caption text-badge-caption uppercase bg-surface-container-highest text-tertiary px-2 py-0.5 rounded">Provided
-                                        / Rent</span>
-                                </div>
-                                <div
-                                    class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
-                                    <div class="flex items-center gap-space-xs">
-                                        <x-lucide-eye class="text-primary size-[20px]" />
-                                        <div>
-                                            <div class="font-semibold text-on-surface">Category 3 or 4 Glacier
-                                                Sunglasses</div>
-                                            <div class="text-tertiary">100% UV block against high-altitude snow
-                                                blindness</div>
-                                        </div>
-                                    </div>
-                                    <span
-                                        class="font-badge-caption text-badge-caption uppercase bg-amber-flare/20 text-on-primary-container px-2 py-0.5 rounded font-bold">Crucial</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Route Map Preview Component -->
-            <section class="w-full bg-surface-container-lowest py-space-2xl px-gutter-mobile lg:px-gutter-desktop">
-                <div class="max-w-max-content-width mx-auto space-y-space-md">
-                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-xs">
-                        <div>
-                            <span
-                                class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Geographic
-                                Tracking</span>
-                            <h2 class="font-headline-md text-headline-md text-on-surface uppercase">Khumbu High Circuit
-                                Waypoints</h2>
-                        </div>
-                        <span class="text-body-sm text-tertiary font-mono">Centerpoint: 27.9881° N, 86.9250° E</span>
-                    </div>
-                    <div class="w-full h-80 bg-cover bg-center rounded-xl shadow-inner relative flex items-end p-space-md"
-                        data-location="Everest Base Camp, Khumbu, Nepal"
-                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyHCn2xRyd59q6a9HpjHnszI6fBUVWaBPwT-VLxgVKbM77YFgu2UR0NTB0od3jHwgTTdMOZ53kQ6Oog7m8W9nOKP5YEVlTiy7KhwhejYYHOewqU2Yi-scwEgOxx-Hpj9XnVzT-3--RwEHasR8fczE0VnrhkxG1_zw8USkGgUTvlY4dT7GsAXmhv73TcyCwOhgCG5-bIr9zfhKYPxqjmjdEi6QftoW4c-nla3fKx61i_XtksWe_eGXH');">
-                        <div
-                            class="bg-ridge-deep/90 backdrop-blur-md p-space-md rounded-lg max-w-md text-summit-white space-y-space-2xs shadow-md">
-                            <div
-                                class="flex items-center gap-space-2xs text-primary-container font-badge-caption text-badge-caption uppercase font-bold">
-                                <x-lucide-map-pin class="size-[16px]" />
-                                Interactive Waypoint Active
-                            </div>
-                            <div class="font-headline-sm text-headline-sm">Gokyo Ri • Cho La • Everest Base Camp</div>
-                            <p class="font-body-sm text-body-sm text-mist-slate">
-                                Full GPX track coordinates delivered to confirmed trekkers for Garmin Fenix / Apple
-                                Watch Ultra offline navigation.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Verified Climber Testimonials -->
-            <section class="w-full bg-surface-container-low py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
-                <div class="max-w-max-content-width mx-auto space-y-space-xl">
-                    <div class="text-center max-w-xl mx-auto">
-                        <span
-                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Trek
-                            Proof</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Dispatches from Past
-                            Trekkers</h2>
-                        <p class="font-body-md text-body-md text-tertiary pt-space-2xs">Real trek feedback on the
-                            Gokyo &amp; Cho La route.</p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
-                        <!-- Review 1 -->
-                        <div
-                            class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between space-y-space-md">
-                            <div class="space-y-space-xs">
-                                <div class="flex items-center gap-1 text-primary">
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                </div>
-                                <h4 class="font-headline-sm text-headline-sm text-on-surface">"Cho La Pass was an
-                                    unforgettable highlight."</h4>
-                                <p class="font-body-sm text-body-sm text-tertiary">
-                                    Doing standard EBC without Gokyo would be a huge miss. Dawa and his Sherpa team
-                                    guided us over the icy Cho La pass with incredible patience and security. The
-                                    sunrise from Gokyo Ri seeing four 8,000-meter passes is burned into my mind forever.
-                                </p>
-                            </div>
-                            <div class="pt-space-xs flex items-center gap-space-sm">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-on-surface">
-                                    MK
-                                </div>
-                                <div>
-                                    <div class="font-label-md text-label-md font-bold text-on-surface">Marcus Keller
-                                    </div>
-                                    <div class="font-badge-caption text-badge-caption text-tertiary uppercase">Zürich,
-                                        Switzerland • Oct 2024</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Review 2 -->
-                        <div
-                            class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between space-y-space-md">
-                            <div class="space-y-space-xs">
-                                <div class="flex items-center gap-1 text-primary">
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                </div>
-                                <h4 class="font-headline-sm text-headline-sm text-on-surface">"Medical safety standards
-                                    are world-class."</h4>
-                                <p class="font-body-sm text-body-sm text-tertiary">
-                                    My oxygen saturation dipped at Machhermo, but Dawa adjusted our pacing immediately,
-                                    checked me twice daily, and made sure I acclimated naturally. Arrived at Everest
-                                    Base Camp feeling strong and healthy. Extraordinary professionalism.
-                                </p>
-                            </div>
-                            <div class="pt-space-xs flex items-center gap-space-sm">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-on-surface">
-                                    SL
-                                </div>
-                                <div>
-                                    <div class="font-label-md text-label-md font-bold text-on-surface">Sarah Lindqvist
-                                    </div>
-                                    <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                        Stockholm, Sweden • Nov 2024</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Review 3 -->
-                        <div
-                            class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between space-y-space-md">
-                            <div class="space-y-space-xs">
-                                <div class="flex items-center gap-1 text-primary">
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                    <x-lucide-star class="size-[18px]" />
-                                </div>
-                                <h4 class="font-headline-sm text-headline-sm text-on-surface">"Fair porter wages and
-                                    top tier mountain food."</h4>
-                                <p class="font-body-sm text-body-sm text-tertiary">
-                                    I chose Neepa Adventure because of their ethical porter treatment charter and it was
-                                    evident on the trail. The porters were well-outfitted with proper alpine boots and
-                                    jackets. Meals were warm, abundant, and fresh fruit dessert at 4,900m is real
-                                    luxury!
-                                </p>
-                            </div>
-                            <div class="pt-space-xs flex items-center gap-space-sm">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-on-surface">
-                                    AR
-                                </div>
-                                <div>
-                                    <div class="font-label-md text-label-md font-bold text-on-surface">Alexander Reed
-                                    </div>
-                                    <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                        Vancouver, Canada • May 2024</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Bottom Direct CTA Banner -->
-            <section
-                class="w-full bg-primary-container text-on-primary-fixed py-space-2xl px-gutter-mobile lg:px-gutter-desktop">
+            </div>
+        </section>
+        <!-- Lead Trek Guide Profile Card (using provided image) -->
+        <section class="w-full bg-surface-container py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
+            <div class="max-w-max-content-width mx-auto">
                 <div
-                    class="max-w-max-content-width mx-auto flex flex-col lg:flex-row items-center justify-between gap-space-lg text-center lg:text-left">
-                    <div class="space-y-space-2xs">
+                    class="bg-surface-container-lowest rounded-2xl p-space-xl shadow-md grid grid-cols-1 md:grid-cols-12 gap-space-xl items-center">
+                    <div class="md:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-sm rounded-xl overflow-hidden shadow-lg">
+                            <img alt="Lead Mountain Guide Dawa Tenzing Sherpa in alpine yellow down gear against Himalayan snowy destination passes"
+                                class="w-full h-96 object-cover object-top"
+                                src="https://lh3.googleusercontent.com/aida/AEtjO1VNGjPQgJtSEnKl7zmmZzJYfc2-mrQtN77I7_Zo0q3gEzI2Z5x0Mh_OQMKMAW_76HUyDq5X7_0BBA17p7KTzJJAsZ92x8NEAFMIYhuu2YI2WG_GB5qRh8-NQzDoptJLfnUTvLhVL0LbVJiiEC1xZ4Jade3ASI7IQXptmn7FXMDCwJqwTgJpIhrTXBd-mGGV41b6WSIPuDu-99EFB_CaiwdCGAD62wUmqyPS2OyVhPrAzTY7dUOqpbq5qA" />
+                            <div
+                                class="absolute bottom-3 left-3 bg-ridge-deep/85 px-3 py-1 rounded text-summit-white font-badge-caption text-badge-caption uppercase">
+                                11x Everest • IFMGA Certified
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:col-span-7 space-y-space-md">
+                        <div class="space-y-space-2xs">
+                            <span
+                                class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-wider">Meet
+                                Your Lead Alpine Guide</span>
+                            <h3 class="font-headline-lg text-headline-lg text-on-surface uppercase">Dawa Tenzing
+                                Sherpa</h3>
+                            <p class="font-label-md text-label-md text-tertiary">Senior Sirdar &amp; Wilderness
+                                Medical Trek Leader</p>
+                        </div>
+                        <p class="font-body-md text-body-md text-tertiary">
+                            Born and raised in the Khumjung village of Khumbu, Dawa has completed over 35
+                            high-altitude crossings of the Cho La and Renjo La passes, along with 11 successful
+                            destinations of Mount Everest (Sagarmatha). Certified by both the Nepal Trekking
+                            Association and the International Federation of Mountain Guides Associations (IFMGA).
+                        </p>
+                        <div class="grid grid-cols-3 gap-space-sm pt-space-xs">
+                            <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
+                                <div class="font-headline-sm text-headline-sm font-bold text-on-surface">35+</div>
+                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">Cho La
+                                    Passes</div>
+                            </div>
+                            <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
+                                <div class="font-headline-sm text-headline-sm font-bold text-on-surface">100%</div>
+                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">Safety
+                                    Record</div>
+                            </div>
+                            <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
+                                <div class="font-headline-sm text-headline-sm font-bold text-on-surface">WFR</div>
+                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
+                                    Wilderness First</div>
+                            </div>
+                        </div>
+                        <div class="pt-space-xs flex items-center gap-space-md">
+                            <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+                                <x-lucide-shield-check class="text-primary size-[18px]" />
+                                Trained in Gamow Hyperbaric Chambers &amp; High Altitude Cerebral Edema (HACE)
+                                mitigation
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Medical Safety & Gear Checklist Bento Grid -->
+        <section class="w-full bg-surface-container-low py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
+            <div class="max-w-max-content-width mx-auto space-y-space-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+                    <!-- Medical Protocol Section -->
+                    <div
+                        class="lg:col-span-6 bg-surface-container-lowest rounded-xl p-space-xl shadow-sm space-y-space-md">
+                        <div class="flex items-center gap-space-xs">
+                            <x-lucide-siren class="text-error size-[28px]" />
+                            <div>
+                                <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface">Medical
+                                    &amp; Satellite Protocol</h3>
+                                <p class="font-badge-caption text-badge-caption text-tertiary uppercase">Alpine
+                                    Survival Equipment Standard</p>
+                            </div>
+                        </div>
+                        <p class="font-body-md text-body-md text-tertiary">
+                            High-altitude trekking requires institutional preparedness. Every Neepa Adventure team
+                            carries life-saving hyperbaric assets into the Cho La pass corridor:
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm pt-space-xs">
+                            <div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
+                                <div
+                                    class="flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
+                                    <x-lucide-heart-pulse class="text-primary size-[20px]" />
+                                    Medical Oximetry
+                                </div>
+                                <p class="font-body-sm text-body-sm text-tertiary">
+                                    Morning &amp; evening SpO2 diagnostics logged daily to intercept early onset
+                                    AMS.
+                                </p>
+                            </div>
+                            <div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
+                                <div
+                                    class="flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
+                                    <x-lucide-wind class="text-primary size-[20px]" />
+                                    Emergency O2 System
+                                </div>
+                                <p class="font-body-sm text-body-sm text-tertiary">
+                                    Bottled medical oxygen cylinder &amp; mask carried above Namche Bazaar for
+                                    emergency ascent bailouts.
+                                </p>
+                            </div>
+                            <div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
+                                <div
+                                    class="flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
+                                    <x-lucide-satellite class="text-primary size-[20px]" />
+                                    Garmin inReach SOS
+                                </div>
+                                <p class="font-body-sm text-body-sm text-tertiary">
+                                    Continuous 10-minute satellite breadcrumb ping directly tied to Kathmandu
+                                    dispatch.
+                                </p>
+                            </div>
+                            <div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
+                                <div
+                                    class="flex items-center gap-1 font-label-md text-label-md font-bold text-on-surface">
+                                    <x-lucide-helicopter class="text-primary size-[20px]" />
+                                    Heli-Rescue Link
+                                </div>
+                                <p class="font-body-sm text-body-sm text-tertiary">
+                                    Immediate charter helicopter extraction protocols coordinated with Simrik /
+                                    Altitude Air.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Gear Checklist Section -->
+                    <div
+                        class="lg:col-span-6 bg-surface-container-lowest rounded-xl p-space-xl shadow-sm space-y-space-md">
+                        <div class="flex items-center gap-space-xs">
+                            <x-lucide-backpack class="text-primary size-[28px]" />
+                            <div>
+                                <h3 class="font-headline-sm text-headline-sm uppercase text-on-surface">Mandatory
+                                    Packing Essentials</h3>
+                                <p class="font-badge-caption text-badge-caption text-tertiary uppercase">Tested for
+                                    Cho La Pass Sub-Zero Conditions</p>
+                            </div>
+                        </div>
+                        <div class="space-y-space-xs text-body-sm text-tertiary">
+                            <div
+                                class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <x-lucide-footprints class="text-primary size-[20px]" />
+                                    <div>
+                                        <div class="font-semibold text-on-surface">Microspikes or Flexible Crampons
+                                        </div>
+                                        <div class="text-tertiary">Required for the glaciated Cho La saddle</div>
+                                    </div>
+                                </div>
+                                <span
+                                    class="font-badge-caption text-badge-caption uppercase bg-amber-flare/20 text-on-primary-container px-2 py-0.5 rounded font-bold">Crucial</span>
+                            </div>
+                            <div
+                                class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <x-lucide-bed class="text-primary size-[20px]" />
+                                    <div>
+                                        <div class="font-semibold text-on-surface">4-Season Sleeping Bag (-20°C
+                                            Rated)</div>
+                                        <div class="text-tertiary">High-loft goose down or trek synthetic
+                                            fill</div>
+                                    </div>
+                                </div>
+                                <span
+                                    class="font-badge-caption text-badge-caption uppercase bg-surface-container-highest text-tertiary px-2 py-0.5 rounded">Provided
+                                    / Rent</span>
+                            </div>
+                            <div
+                                class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <x-lucide-brush-cleaning class="text-primary size-[20px]" />
+                                    <div>
+                                        <div class="font-semibold text-on-surface">800+ Fill Power Down Parka</div>
+                                        <div class="text-tertiary">For Gorak Shep evenings and early morning
+                                            destinations</div>
+                                    </div>
+                                </div>
+                                <span
+                                    class="font-badge-caption text-badge-caption uppercase bg-surface-container-highest text-tertiary px-2 py-0.5 rounded">Provided
+                                    / Rent</span>
+                            </div>
+                            <div
+                                class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+                                <div class="flex items-center gap-space-xs">
+                                    <x-lucide-eye class="text-primary size-[20px]" />
+                                    <div>
+                                        <div class="font-semibold text-on-surface">Category 3 or 4 Glacier
+                                            Sunglasses</div>
+                                        <div class="text-tertiary">100% UV block against high-altitude snow
+                                            blindness</div>
+                                    </div>
+                                </div>
+                                <span
+                                    class="font-badge-caption text-badge-caption uppercase bg-amber-flare/20 text-on-primary-container px-2 py-0.5 rounded font-bold">Crucial</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Route Map Preview Component -->
+        <section class="w-full bg-surface-container-lowest py-space-2xl px-gutter-mobile lg:px-gutter-desktop">
+            <div class="max-w-max-content-width mx-auto space-y-space-md">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-xs">
+                    <div>
                         <span
-                            class="font-badge-caption text-badge-caption uppercase font-bold tracking-widest text-on-primary-fixed-variant">Ready
-                            for the High Passes?</span>
-                        <h2 class="font-headline-lg text-headline-lg font-bold">Secure Your 2025 Everest &amp; Gokyo
-                            Permit</h2>
-                        <p class="font-body-md text-body-md text-on-primary-fixed-variant max-w-xl">
-                            Lukla flight slots and premium teahouse beds are limited by national park authority
-                            regulations. Secure your departure date with a $350 deposit.
+                            class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Geographic
+                            Tracking</span>
+                        <h2 class="font-headline-md text-headline-md text-on-surface uppercase">Khumbu High Circuit
+                            Waypoints</h2>
+                    </div>
+                    <span class="text-body-sm text-tertiary font-mono">Centerpoint: 27.9881° N, 86.9250° E</span>
+                </div>
+                <div class="w-full h-80 bg-cover bg-center rounded-xl shadow-inner relative flex items-end p-space-md"
+                    data-location="Everest Base Camp, Khumbu, Nepal"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyHCn2xRyd59q6a9HpjHnszI6fBUVWaBPwT-VLxgVKbM77YFgu2UR0NTB0od3jHwgTTdMOZ53kQ6Oog7m8W9nOKP5YEVlTiy7KhwhejYYHOewqU2Yi-scwEgOxx-Hpj9XnVzT-3--RwEHasR8fczE0VnrhkxG1_zw8USkGgUTvlY4dT7GsAXmhv73TcyCwOhgCG5-bIr9zfhKYPxqjmjdEi6QftoW4c-nla3fKx61i_XtksWe_eGXH');">
+                    <div
+                        class="bg-ridge-deep/90 backdrop-blur-md p-space-md rounded-lg max-w-md text-summit-white space-y-space-2xs shadow-md">
+                        <div
+                            class="flex items-center gap-space-2xs text-primary-container font-badge-caption text-badge-caption uppercase font-bold">
+                            <x-lucide-map-pin class="size-[16px]" />
+                            Interactive Waypoint Active
+                        </div>
+                        <div class="font-headline-sm text-headline-sm">Gokyo Ri • Cho La • Everest Base Camp</div>
+                        <p class="font-body-sm text-body-sm text-mist-slate">
+                            Full GPX track coordinates delivered to confirmed trekkers for Garmin Fenix / Apple
+                            Watch Ultra offline navigation.
                         </p>
                     </div>
-                    <div class="flex flex-wrap items-center justify-center gap-space-sm shrink-0">
-                        <button
-                            class="py-space-md px-space-xl bg-ridge-deep hover:bg-tertiary text-summit-white font-label-md text-label-md font-bold uppercase tracking-wider rounded-lg shadow-md transition-all">
-                            Book This Circuit ($1,750)
-                        </button>
-                        <button
-                            class="py-space-md px-space-xl bg-surface-container-lowest hover:bg-mist-slate text-on-surface font-label-md text-label-md font-bold uppercase tracking-wider rounded-lg shadow-sm transition-all">
-                            Download PDF Dossier
-                        </button>
+                </div>
+            </div>
+        </section>
+        <!-- Verified Climber Testimonials -->
+        <section class="w-full bg-surface-container-low py-space-3xl px-gutter-mobile lg:px-gutter-desktop">
+            <div class="max-w-max-content-width mx-auto space-y-space-xl">
+                <div class="text-center max-w-xl mx-auto">
+                    <span
+                        class="font-badge-caption text-badge-caption text-primary uppercase font-bold tracking-widest block">Trek
+                        Proof</span>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Dispatches from Past
+                        Trekkers</h2>
+                    <p class="font-body-md text-body-md text-tertiary pt-space-2xs">Real trek feedback on the
+                        Gokyo &amp; Cho La route.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+                    <!-- Review 1 -->
+                    <div
+                        class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between space-y-space-md">
+                        <div class="space-y-space-xs">
+                            <div class="flex items-center gap-1 text-primary">
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                            </div>
+                            <h4 class="font-headline-sm text-headline-sm text-on-surface">"Cho La Pass was an
+                                unforgettable highlight."</h4>
+                            <p class="font-body-sm text-body-sm text-tertiary">
+                                Doing standard EBC without Gokyo would be a huge miss. Dawa and his Sherpa team
+                                guided us over the icy Cho La pass with incredible patience and security. The
+                                sunrise from Gokyo Ri seeing four 8,000-meter passes is burned into my mind forever.
+                            </p>
+                        </div>
+                        <div class="pt-space-xs flex items-center gap-space-sm">
+                            <div
+                                class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-on-surface">
+                                MK
+                            </div>
+                            <div>
+                                <div class="font-label-md text-label-md font-bold text-on-surface">Marcus Keller
+                                </div>
+                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">Zürich,
+                                    Switzerland • Oct 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review 2 -->
+                    <div
+                        class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between space-y-space-md">
+                        <div class="space-y-space-xs">
+                            <div class="flex items-center gap-1 text-primary">
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                            </div>
+                            <h4 class="font-headline-sm text-headline-sm text-on-surface">"Medical safety standards
+                                are world-class."</h4>
+                            <p class="font-body-sm text-body-sm text-tertiary">
+                                My oxygen saturation dipped at Machhermo, but Dawa adjusted our pacing immediately,
+                                checked me twice daily, and made sure I acclimated naturally. Arrived at Everest
+                                Base Camp feeling strong and healthy. Extraordinary professionalism.
+                            </p>
+                        </div>
+                        <div class="pt-space-xs flex items-center gap-space-sm">
+                            <div
+                                class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-on-surface">
+                                SL
+                            </div>
+                            <div>
+                                <div class="font-label-md text-label-md font-bold text-on-surface">Sarah Lindqvist
+                                </div>
+                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
+                                    Stockholm, Sweden • Nov 2024</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Review 3 -->
+                    <div
+                        class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between space-y-space-md">
+                        <div class="space-y-space-xs">
+                            <div class="flex items-center gap-1 text-primary">
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                                <x-lucide-star class="size-[18px]" />
+                            </div>
+                            <h4 class="font-headline-sm text-headline-sm text-on-surface">"Fair porter wages and
+                                top tier mountain food."</h4>
+                            <p class="font-body-sm text-body-sm text-tertiary">
+                                I chose Neepa Adventure because of their ethical porter treatment charter and it was
+                                evident on the trail. The porters were well-outfitted with proper alpine boots and
+                                jackets. Meals were warm, abundant, and fresh fruit dessert at 4,900m is real
+                                luxury!
+                            </p>
+                        </div>
+                        <div class="pt-space-xs flex items-center gap-space-sm">
+                            <div
+                                class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-on-surface">
+                                AR
+                            </div>
+                            <div>
+                                <div class="font-label-md text-label-md font-bold text-on-surface">Alexander Reed
+                                </div>
+                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
+                                    Vancouver, Canada • May 2024</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+        <!-- Bottom Direct CTA Banner -->
+        <section
+            class="w-full bg-primary-container text-on-primary-fixed py-space-2xl px-gutter-mobile lg:px-gutter-desktop">
+            <div
+                class="max-w-max-content-width mx-auto flex flex-col lg:flex-row items-center justify-between gap-space-lg text-center lg:text-left">
+                <div class="space-y-space-2xs">
+                    <span
+                        class="font-badge-caption text-badge-caption uppercase font-bold tracking-widest text-on-primary-fixed-variant">Ready
+                        for the High Passes?</span>
+                    <h2 class="font-headline-lg text-headline-lg font-bold">Secure Your 2025 Everest &amp; Gokyo
+                        Permit</h2>
+                    <p class="font-body-md text-body-md text-on-primary-fixed-variant max-w-xl">
+                        Lukla flight slots and premium teahouse beds are limited by national park authority
+                        regulations. Secure your departure date with a $350 deposit.
+                    </p>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-space-sm shrink-0">
+                    <button
+                        class="py-space-md px-space-xl bg-ridge-deep hover:bg-tertiary text-summit-white font-label-md text-label-md font-bold uppercase tracking-wider rounded-lg shadow-md transition-all">
+                        Book This Circuit ($1,750)
+                    </button>
+                    <button
+                        class="py-space-md px-space-xl bg-surface-container-lowest hover:bg-mist-slate text-on-surface font-label-md text-label-md font-bold uppercase tracking-wider rounded-lg shadow-sm transition-all">
+                        Download PDF Dossier
+                    </button>
+                </div>
+            </div>
+        </section>
         </div>
     </main>
     <x-footer />

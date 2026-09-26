@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="w-full pt-20 bg-surface">
+    <main class="w-full pt-48  bg-surface">
         <div class="flex flex-col w-full">
             <!-- Top Banner / Scrim Ambient Canvas -->
             <section
@@ -219,7 +219,8 @@
                                 <div class="absolute top-space-md left-space-md flex items-center gap-space-xs">
                                     <span
                                         class="bg-ridge-deep/85 backdrop-blur-md text-summit-white px-space-sm py-1 rounded-full font-badge-caption text-badge-caption uppercase tracking-wider flex items-center gap-1">
-                                        <x-lucide-arrow-up class="text-primary-container size-[14px]" /> 6,812m Destination
+                                        <x-lucide-arrow-up class="text-primary-container size-[14px]" /> 6,812m
+                                        Destination
                                         Target
                                     </span>
                                     <span
@@ -775,8 +776,7 @@
                                 </div>
                             </div>
                             <div class="p-space-lg space-y-space-xs">
-                                <div
-                                    class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
+                                <div class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
                                     Mini-Documentary</div>
                                 <h3 class="font-headline-sm text-headline-sm text-summit-white font-bold">Beyond the
                                     Cloudline: Gokyo Ri</h3>
@@ -816,8 +816,7 @@
                                 </div>
                             </div>
                             <div class="p-space-lg space-y-space-xs">
-                                <div
-                                    class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
+                                <div class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
                                     Ethical Advocacy Film</div>
                                 <h3 class="font-headline-sm text-headline-sm text-summit-white font-bold">The Porter
                                     Path: Stewardship</h3>
@@ -857,8 +856,7 @@
                                 </div>
                             </div>
                             <div class="p-space-lg space-y-space-xs">
-                                <div
-                                    class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
+                                <div class="text-primary-container font-label-sm text-label-sm uppercase font-semibold">
                                     Technical Trekking Diary</div>
                                 <h3 class="font-headline-sm text-headline-sm text-summit-white font-bold">Pushing
                                     Destination: Mera Pass 6,476m</h3>

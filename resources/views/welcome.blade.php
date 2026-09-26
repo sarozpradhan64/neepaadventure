@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="w-full pt-20 bg-surface">
+    <main class="w-full pt-48 bg-surface">
         <div class="flex flex-col w-full">
             <!-- HERO SECTION WITH TOP OVERLAY AND NEGATIVE MARGIN CLEARANCE -->
             <section class="relative w-full -mt-20 pt-36 pb-24 overflow-hidden bg-ridge-deep">

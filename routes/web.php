@@ -12,7 +12,12 @@ Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 
 Route::get('/gallery', fn () => view('gallery'))->name('gallery');
-Route::get('/contact', fn () => view('contact'))->name('contact');
+use App\Http\Controllers\Frontend\ContactController;
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/plan-your-trek', [ContactController::class, 'planYourTrek'])->name('plan-your-trek');
+Route::post('/plan-your-trek', [ContactController::class, 'storePlanYourTrek'])->name('plan-your-trek.store');
 Route::get('/community', fn () => view('community'))->name('community');
 use App\Http\Controllers\Frontend\ProjectController;
 

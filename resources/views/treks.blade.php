@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="w-full pt-20 bg-surface">
+    <main class="w-full pt-48  bg-surface">
         <div class="flex flex-col w-full">
             <!-- Top Alpine Announcement & Status Ribbon -->
             <section class="w-full bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop py-space-sm">
@@ -114,8 +114,8 @@
                                 class="absolute left-3 top-1/2 -translate-y-1/2 text-tertiary size-[20px]" />
                             <input
                                 class="w-full pl-10 pr-space-md py-2.5 bg-surface rounded-lg text-body-md text-on-surface placeholder:text-tertiary focus:outline-none focus:bg-surface-container-low transition-all"
-                                id="search-input" placeholder="Search passes, valleys, passes (e.g. Larkya La, Gokyo)..."
-                                type="text" />
+                                id="search-input"
+                                placeholder="Search passes, valleys, passes (e.g. Larkya La, Gokyo)..." type="text" />
                         </div>
                         <!-- Filter Selectors -->
                         <div class="flex flex-wrap items-center gap-space-xs">
@@ -215,8 +215,7 @@
                 <div class="max-w-max-content-width mx-auto">
                     <div
                         class="bg-surface-container-lowest rounded-xl p-space-lg lg:p-space-xl shadow-sm relative overflow-hidden">
-                        <div
-                            class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-primary/5 pointer-events-none">
+                        <div class="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-primary/5 pointer-events-none">
                         </div>
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-center">
                             <div class="lg:col-span-4 space-y-space-xs">
@@ -326,69 +325,100 @@
                     <!-- Main Cards Container -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="trek-cards-grid">
                         @foreach($treks as $trek)
-                        <article class="trek-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-altitude="{{ (int) filter_var($trek->maximum_altitude, FILTER_SANITIZE_NUMBER_INT) }}" data-difficulty="{{ $trek->difficulty_level }}" data-duration="{{ (int) filter_var($trek->duration, FILTER_SANITIZE_NUMBER_INT) }}" data-id="{{ $trek->id }}" data-price="{{ $trek->price_from }}">
-                            <div>
-                                <div class="relative h-64 w-full overflow-hidden bg-surface-dim">
-                                    @if($trek->featuredImage)
-                                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $trek->title }}" src="{{ asset('storage/' . $trek->featuredImage->path) }}" />
-                                    @else
-                                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ $trek->title }}" src="" />
-                                    @endif
-                                    <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"></div>
-                                    <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                                        <span class="px-2.5 py-1 bg-amber-flare text-on-primary-fixed font-badge-caption text-badge-caption font-bold rounded uppercase">Trek</span>
-                                    </div>
-                                    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-summit-white">
-                                        <div class="flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-wider">
-                                            <x-lucide-map-pin class="size-[16px] text-primary-container" />
-                                            {{ $trek->start_end_point }}
+                            <article
+                                class="trek-card group bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                                data-altitude="{{ (int) filter_var($trek->maximum_altitude, FILTER_SANITIZE_NUMBER_INT) }}"
+                                data-difficulty="{{ $trek->difficulty_level }}"
+                                data-duration="{{ (int) filter_var($trek->duration, FILTER_SANITIZE_NUMBER_INT) }}"
+                                data-id="{{ $trek->id }}" data-price="{{ $trek->price_from }}">
+                                <div>
+                                    <div class="relative h-64 w-full overflow-hidden bg-surface-dim">
+                                        @if($trek->featuredImage)
+                                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                alt="{{ $trek->title }}"
+                                                src="{{ asset('storage/' . $trek->featuredImage->path) }}" />
+                                        @else
+                                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                                alt="{{ $trek->title }}" src="" />
+                                        @endif
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent">
                                         </div>
-                                        <div class="font-badge-caption text-badge-caption bg-surface-container-lowest/20 backdrop-blur-md px-2 py-0.5 rounded text-summit-white">
-                                            {{ $trek->duration }}
+                                        <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                                            <span
+                                                class="px-2.5 py-1 bg-amber-flare text-on-primary-fixed font-badge-caption text-badge-caption font-bold rounded uppercase">Trek</span>
+                                        </div>
+                                        <div
+                                            class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-summit-white">
+                                            <div
+                                                class="flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-wider">
+                                                <x-lucide-map-pin class="size-[16px] text-primary-container" />
+                                                {{ $trek->start_end_point }}
+                                            </div>
+                                            <div
+                                                class="font-badge-caption text-badge-caption bg-surface-container-lowest/20 backdrop-blur-md px-2 py-0.5 rounded text-summit-white">
+                                                {{ $trek->duration }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="p-space-lg space-y-space-md">
-                                    <div>
-                                        <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">{{ $trek->title }}</h3>
-                                        <div class="font-body-md text-body-md text-tertiary line-clamp-2 mt-1">{!! strip_tags($trek->description) !!}</div>
-                                    </div>
-                                    <div class="grid grid-cols-3 gap-2 py-space-xs bg-surface rounded-lg p-2 text-center">
+                                    <div class="p-space-lg space-y-space-md">
                                         <div>
-                                            <span class="block font-badge-caption text-badge-caption text-tertiary uppercase">Grade</span>
-                                            <span class="block font-label-md text-label-md font-bold text-on-surface">{{ ucfirst($trek->difficulty_level) }}</span>
+                                            <h3
+                                                class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                                                {{ $trek->title }}</h3>
+                                            <div class="font-body-md text-body-md text-tertiary line-clamp-2 mt-1">
+                                                {!! strip_tags($trek->description) !!}</div>
                                         </div>
-                                        <div class="border-l border-surface-container">
-                                            <span class="block font-badge-caption text-badge-caption text-tertiary uppercase">Group Size</span>
-                                            <span class="block font-label-md text-label-md font-bold text-on-surface">Max {{ $trek->max_group_size }}</span>
-                                        </div>
-                                        <div class="border-l border-surface-container">
-                                            <span class="block font-badge-caption text-badge-caption text-tertiary uppercase">Pass/Alt</span>
-                                            <span class="block font-label-md text-label-md font-bold text-primary">{{ $trek->maximum_altitude }}</span>
+                                        <div
+                                            class="grid grid-cols-3 gap-2 py-space-xs bg-surface rounded-lg p-2 text-center">
+                                            <div>
+                                                <span
+                                                    class="block font-badge-caption text-badge-caption text-tertiary uppercase">Grade</span>
+                                                <span
+                                                    class="block font-label-md text-label-md font-bold text-on-surface">{{ ucfirst($trek->difficulty_level) }}</span>
+                                            </div>
+                                            <div class="border-l border-surface-container">
+                                                <span
+                                                    class="block font-badge-caption text-badge-caption text-tertiary uppercase">Group
+                                                    Size</span>
+                                                <span
+                                                    class="block font-label-md text-label-md font-bold text-on-surface">Max
+                                                    {{ $trek->max_group_size }}</span>
+                                            </div>
+                                            <div class="border-l border-surface-container">
+                                                <span
+                                                    class="block font-badge-caption text-badge-caption text-tertiary uppercase">Pass/Alt</span>
+                                                <span
+                                                    class="block font-label-md text-label-md font-bold text-primary">{{ $trek->maximum_altitude }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="p-space-lg pt-0 space-y-space-sm">
-                                <div class="flex items-baseline justify-between pt-space-xs border-t border-surface-container">
-                                    <div>
-                                        <span class="font-body-sm text-body-sm text-tertiary block">All-inclusive from</span>
-                                        <div class="flex items-baseline gap-1">
-                                            <span class="font-headline-md text-headline-md font-bold text-on-surface">${{ number_format($trek->price_from, 2) }}</span>
-                                            <span class="font-body-sm text-body-sm text-tertiary">USD / person</span>
+                                <div class="p-space-lg pt-0 space-y-space-sm">
+                                    <div
+                                        class="flex items-baseline justify-between pt-space-xs border-t border-surface-container">
+                                        <div>
+                                            <span class="font-body-sm text-body-sm text-tertiary block">All-inclusive
+                                                from</span>
+                                            <div class="flex items-baseline gap-1">
+                                                <span
+                                                    class="font-headline-md text-headline-md font-bold text-on-surface">${{ number_format($trek->price_from, 2) }}</span>
+                                                <span class="font-body-sm text-body-sm text-tertiary">USD / person</span>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="grid grid-cols-2 gap-space-xs">
+                                        <a class="w-full py-2.5 px-3 bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-wider rounded text-center transition-colors"
+                                            href="{{ route('trek-detail', $trek->slug) }}">
+                                            Itinerary
+                                        </a>
+                                        <button
+                                            class="quick-book-btn w-full py-2.5 px-3 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-sm text-label-sm font-bold uppercase tracking-wider rounded text-center transition-colors shadow-sm">
+                                            Dates &amp; Book
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-space-xs">
-                                    <a class="w-full py-2.5 px-3 bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm font-bold uppercase tracking-wider rounded text-center transition-colors" href="{{ route('trek-detail', $trek->slug) }}">
-                                        Itinerary
-                                    </a>
-                                    <button class="quick-book-btn w-full py-2.5 px-3 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-sm text-label-sm font-bold uppercase tracking-wider rounded text-center transition-colors shadow-sm">
-                                        Dates &amp; Book
-                                    </button>
-                                </div>
-                            </div>
-                        </article>
+                            </article>
                         @endforeach
                     </div>
                     <!-- No Results State (Hidden by default) -->
@@ -418,8 +448,7 @@
                     class="bg-surface-container-lowest rounded-xl max-w-xl w-full p-space-lg lg:p-space-xl shadow-2xl relative space-y-space-md animate-in fade-in zoom-in duration-200">
                     <div class="flex items-start justify-between">
                         <div>
-                            <span
-                                class="font-badge-caption text-badge-caption text-primary font-bold uppercase">Trek
+                            <span class="font-badge-caption text-badge-caption text-primary font-bold uppercase">Trek
                                 Reservation</span>
                             <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface"
                                 id="modal-trek-name">Select Departure Dates</h3>
@@ -439,8 +468,8 @@
                             <label
                                 class="flex items-center justify-between p-3 rounded-lg bg-surface hover:bg-surface-container-low cursor-pointer transition-colors border border-transparent has-[:checked]:border-primary has-[:checked]:bg-primary/5">
                                 <div class="flex items-center gap-space-sm">
-                                    <input checked="" class="text-primary focus:ring-0 w-4 h-4"
-                                        name="departure-slot" type="radio" />
+                                    <input checked="" class="text-primary focus:ring-0 w-4 h-4" name="departure-slot"
+                                        type="radio" />
                                     <div>
                                         <span class="font-label-md text-label-md font-bold text-on-surface block">Oct
                                             04, 2025 – Oct 19, 2025</span>
