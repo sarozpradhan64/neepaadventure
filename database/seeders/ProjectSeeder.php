@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use Blaze\AdminCore\Models\Project;
+use Blaze\AdminCore\Models\ProjectCategory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class ProjectSeeder extends Seeder
 {
@@ -12,9 +14,36 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
+        Schema::disableForeignKeyConstraints();
         Project::truncate();
+        Schema::enableForeignKeyConstraints();
+
+        $annapurnaCategory = ProjectCategory::firstOrCreate([
+            'slug' => 'annapurna-abc',
+        ], [
+            'name' => 'Annapurna & ABC',
+            'status' => true,
+            'sort_order' => 1,
+        ]);
+
+        $manasluCategory = ProjectCategory::firstOrCreate([
+            'slug' => 'manaslu-circuits',
+        ], [
+            'name' => 'Manaslu & Circuits',
+            'status' => true,
+            'sort_order' => 1,
+        ]);
+
+        $islandCategory = ProjectCategory::firstOrCreate([
+            'slug' => 'everest-khumbu',
+        ], [
+            'name' => 'Everest & Khumbu',
+            'status' => true,
+            'sort_order' => 1,
+        ]);
 
         Project::create([
+            'project_category_id' => $annapurnaCategory->id,
             'title' => 'Russian Alpine Club - Annapurna Base Camp',
             'slug' => 'russian-alpine-club-abc',
             'project_status' => 'completed',
@@ -36,6 +65,7 @@ class ProjectSeeder extends Seeder
         ]);
 
         Project::create([
+            'project_category_id' => $manasluCategory->id,
             'title' => 'Cambridge Alpine Society Manaslu Project',
             'slug' => 'cambridge-alpine-society-manaslu',
             'project_status' => 'completed',
@@ -57,6 +87,7 @@ class ProjectSeeder extends Seeder
         ]);
 
         Project::create([
+            'project_category_id' => $islandCategory->id,
             'title' => 'Tokyo Trekking Club Island Pass Trek',
             'slug' => 'tokyo-trekking-club-island-pass',
             'project_status' => 'completed',
