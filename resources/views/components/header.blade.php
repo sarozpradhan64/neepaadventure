@@ -37,10 +37,15 @@
                     <x-lucide-phone class="text-primary size-[16px]" />
                     {{ $contact?->phone ?? 'Contact us' }}
                 </a>
-                <div class="gap-space-2xs font-label-sm text-label-sm text-on-surface-variant flex items-center">
-                    <x-lucide-globe class="size-[16px]" />
-                    <span>NPR / USD ($)</span>
-                </div>
+                @if ($contact?->email)
+                    <a
+                        class="gap-space-2xs text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center transition-colors"
+                        href="mailto:{{ $contact->email }}"
+                    >
+                        <x-lucide-mail class="text-primary size-[16px]" />
+                        {{ $contact->email }}
+                    </a>
+                @endif
             </div>
         </div>
     </div>
