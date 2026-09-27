@@ -3,108 +3,6 @@
     <main class="bg-surface w-full pt-48">
         <div class="flex w-full flex-col">
             <!-- Immersive Cinematic Hero: Bleeds cleanly beneath header -->
-            <section class="bg-ridge-deep text-summit-white relative -mt-20 w-full overflow-hidden pt-28 pb-20">
-                <div class="absolute inset-0 z-0">
-                    <div
-                        class="h-full w-full scale-105 transform bg-cover bg-center opacity-30 mix-blend-luminosity duration-1000 ease-out"
-                        data-alt="Breathtaking panorama of Everest, Lhotse, and Ama Dablam at dawn with golden morning alpine glow hitting the snow ridges, prayer flags fluttering in foreground, deep celestial sky, cinematic wide mountain landscape."
-                        style="
-                            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8FoXSNMGY20jxds-OcV4ipTgqHSAWmSv5-bzNOOvs0hK4OQTgt8N1q4NfUYbEllyRUHsmuLllm5qCfqaiMPVcQ5zgriX4DHTyEzsZ7azQ561x2K_8_UoTSlbxEpcA-5ngYPMgHDMmDvByZWI_b4OHmySkaaXczk1y_80yxIQfa1DmZ01eFgrsahvOJsV8pP7npw-gSEe4sdJn5bjcVZ-aXeKwLV_uUnEl1WYzWKUgzFEpzcmkvLme');
-                        "
-                    ></div>
-                    <div class="from-ridge-deep via-ridge-deep/80 to-ridge-deep/40 absolute inset-0 bg-gradient-to-t"></div>
-                    <div class="bg-primary-container/10 pointer-events-none absolute top-1/4 -right-32 h-96 w-96 rounded-full blur-3xl"></div>
-                    <div class="bg-tertiary/20 pointer-events-none absolute bottom-10 -left-20 h-80 w-80 rounded-full blur-3xl"></div>
-                </div>
-                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto">
-                    <div class="space-y-space-md max-w-4xl">
-                        <div class="gap-space-xs px-space-sm py-space-2xs bg-surface-container-lowest/10 inline-flex items-center rounded-lg shadow-sm backdrop-blur-md">
-                            <span class="bg-primary-container inline-block h-2 w-2 animate-pulse rounded-full"></span>
-                            <span class="font-badge-caption text-badge-caption text-primary-container font-bold tracking-[0.2em] uppercase">
-                                BORN ON THE HIGH PASSES • INDIGENOUS Guide FOUNDED
-                            </span>
-                        </div>
-                        <h1 class="font-display-xl text-headline-lg lg:text-display-xl text-summit-white leading-tight font-extrabold tracking-tight">
-                            THE NEEPA ADVENTURE STORY: <br class="hidden sm:inline" /><span
-                                class="text-primary-container relative inline-block"
-                                >GUARDIANS<svg
-                                    class="text-amber-flare/60 absolute -bottom-2 left-0 h-3 w-full"
-                                    fill="none"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 250 12"
-                                >
-                                    <path
-                                        d="M2 9C50 3 180 3 248 8"
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-width="3"
-                                    ></path></svg
-                            ></span>
-                            OF THE HIGH HIMALAYA
-                        </h1>
-                        <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-3xl leading-relaxed">
-                            Founded by native mountain guides from Khumjung and Phortse, Neepa Adventure was built on a
-                            singular conviction: that mountain exploration must honor the sacred ridges, empower local
-                            communities, and deliver unmatched alpine safety without compromise.
-                        </p>
-                        <div class="pt-space-xs gap-space-sm text-label-sm font-label-sm flex flex-wrap items-center">
-                            <span class="gap-space-2xs text-primary-container flex items-center">
-                                <x-lucide-shield-check class="size-[18px]" /> Certified
-                            </span>
-                            <span class="text-mist-slate/40">•</span>
-                            <span class="gap-space-2xs text-mist-slate flex items-center">
-                                <x-lucide-leaf class="size-[18px]" /> 100% Leave No Trace Standard
-                            </span>
-                            <span class="text-mist-slate/40">•</span>
-                            <span class="gap-space-2xs text-mist-slate flex items-center">
-                                <x-lucide-heart class="size-[18px]" /> IMEC Porter Protection Partner
-                            </span>
-                        </div>
-                    </div>
-                    <!-- Quick Milestones Summary Strip -->
-                    <div class="mt-space-2xl gap-space-sm bg-surface-container-lowest/5 p-space-md lg:p-space-lg grid grid-cols-2 rounded-xl shadow-xl backdrop-blur-xl md:grid-cols-3 lg:grid-cols-5">
-                        <div class="space-y-space-2xs p-space-xs">
-                            <div class="font-badge-caption text-badge-caption text-primary-container uppercase">
-                                Heritage
-                            </div>
-                            <div class="font-headline-sm text-headline-sm text-summit-white font-bold">2011</div>
-                            <div class="font-body-sm text-body-sm text-mist-slate">Founded in Khumjung Village</div>
-                        </div>
-                        <div class="space-y-space-2xs p-space-xs">
-                            <div class="font-badge-caption text-badge-caption text-primary-container uppercase">
-                                Roots
-                            </div>
-                            <div class="font-headline-sm text-headline-sm text-summit-white font-bold">100%</div>
-                            <div class="font-body-sm text-body-sm text-mist-slate">
-                                Indigenous Guide Owned &amp; Run
-                            </div>
-                        </div>
-                        <div class="space-y-space-2xs p-space-xs">
-                            <div class="font-badge-caption text-badge-caption text-primary-container uppercase">
-                                Mastery
-                            </div>
-                            <div class="font-headline-sm text-headline-sm text-summit-white font-bold">14x</div>
-                            <div class="font-body-sm text-body-sm text-mist-slate">
-                                Everest Destinations Led by Founder
-                            </div>
-                        </div>
-                        <div class="space-y-space-2xs p-space-xs">
-                            <div class="font-badge-caption text-badge-caption text-primary-container uppercase">
-                                High Safety
-                            </div>
-                            <div class="font-headline-sm text-headline-sm text-summit-white font-bold">0</div>
-                            <div class="font-body-sm text-body-sm text-mist-slate">Serious AMS Evac Incidents</div>
-                        </div>
-                        <div class="space-y-space-2xs p-space-xs col-span-2 md:col-span-1">
-                            <div class="font-badge-caption text-badge-caption text-primary-container uppercase">
-                                Stewardship
-                            </div>
-                            <div class="font-headline-sm text-headline-sm text-summit-white font-bold">$120,000+</div>
-                            <div class="font-body-sm text-body-sm text-mist-slate">Pledged to Mountain Schools</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
             <!-- Origin Story & Sacred Philosophy Section -->
             <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface w-full">
                 <div class="max-w-max-content-width mx-auto">
@@ -235,9 +133,6 @@
                                     training ensures supreme leadership at all elevations.
                                 </p>
                             </div>
-                            <div class="pt-space-md mt-space-md bg-surface-container-low/50 p-space-xs rounded-lg text-center">
-                                <span class="font-badge-caption text-badge-caption text-on-surface-variant font-bold uppercase">1:3 Guide-to-Client Max Ratio</span>
-                            </div>
                         </div>
                         <!-- Pillar 2 -->
                         <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-xl shadow-sm transition-shadow hover:shadow-md">
@@ -258,9 +153,6 @@
                                     inReach satellite transceivers. Guides record daily twice-a-day SpO2, heart rate,
                                     and Lake Louise scores into our encrypted cloud database.
                                 </p>
-                            </div>
-                            <div class="pt-space-md mt-space-md bg-surface-container-low/50 p-space-xs rounded-lg text-center">
-                                <span class="font-badge-caption text-badge-caption text-on-surface-variant font-bold uppercase">24/7 Kathmandu Doctor Relay</span>
                             </div>
                         </div>
                         <!-- Pillar 3 -->
@@ -283,9 +175,6 @@
                                     exceed national collective standards by 35%.
                                 </p>
                             </div>
-                            <div class="pt-space-md mt-space-md bg-surface-container-low/50 p-space-xs rounded-lg text-center">
-                                <span class="font-badge-caption text-badge-caption text-on-surface-variant font-bold uppercase">Full IMEC Compliance Certified</span>
-                            </div>
                         </div>
                         <!-- Pillar 4 -->
                         <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-xl shadow-sm transition-shadow hover:shadow-md">
@@ -307,15 +196,12 @@
                                     client on every high pass crossing.
                                 </p>
                             </div>
-                            <div class="pt-space-md mt-space-md bg-surface-container-low/50 p-space-xs rounded-lg text-center">
-                                <span class="font-badge-caption text-badge-caption text-on-surface-variant font-bold uppercase">Net-Negative Trail Carbon</span>
-                            </div>
                         </div>
                     </div>
                 </div>
             </section>
             <!-- Expanded Leadership & Operations Team Grid -->
-            <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface w-full">
+            <section id="team-leaders" class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface w-full">
                 <div class="max-w-max-content-width space-y-space-2xl mx-auto">
                     <div class="gap-space-md flex flex-col justify-between md:flex-row md:items-end">
                         <div class="space-y-space-2xs max-w-xl">
@@ -330,329 +216,51 @@
                                 wilderness emergency medicine, and international logistics.
                             </p>
                         </div>
-                        <div class="gap-space-xs px-space-md py-space-xs bg-surface-container text-tertiary text-body-sm inline-flex items-center rounded-lg">
-                            <x-lucide-shield-check class="text-primary size-[18px]" />
-                            All Guides Carry Active UIAGM/NNMGA Licenses
-                        </div>
                     </div>
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                        <!-- Profile 1: Dawa Tenzing Sherpa -->
+                        @php
+                            $featuredGuides = \Blaze\AdminCore\Models\TeamMember::where('status', true)
+                                ->where('is_guide', true)
+                                ->where('featured', true)
+                                ->orderBy('sort_order')
+                                ->get();
+                        @endphp
+                        
+                        @forelse($featuredGuides as $guide)
                         <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
                             <div class="relative h-64 overflow-hidden">
                                 <img
                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Portrait of Dawa Tenzing Sherpa, senior Himalayan mountain guide with weathered confident smile, high altitude down jacket, snowy mountain backdrop with deep clear blue sky."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6OLohWYe675toRG4i-Q5KWMCZT1csmglGmBdAhFmmhUKom097ON186aw6DRSxv3PITLYuTRyMcPeyNzgU-LcPxx43DcsYWqVIypjRiaLASw1YhEv25-XsuaYQhOTmNfMIkK5Qq_Zb3ZPr21Z_t8Mojr4fYtOfSd5r2D92eI7H6L7YBkP7GMsd8r3G7-CZBkcdl_Ex96wBAOm8mpaBsP9k6ieaqvJlXSbnOKsh21V4C2bQGF4MM6jH"
+                                    alt="{{ $guide->name }}"
+                                    src="{{ $guide->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($guide->image) : 'https://placehold.co/600x800' }}"
                                 />
-                                <div class="top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs absolute rounded tracking-wider uppercase">
-                                    14x Everest Destinations
-                                </div>
                                 <div class="from-on-surface/90 p-space-md absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent">
-                                    <span class="text-primary-container font-badge-caption text-badge-caption uppercase">Khumjung, Solukhumbu</span>
+                                    <span class="text-primary-container font-badge-caption text-badge-caption uppercase">
+                                        {{ $guide->department ?? 'Trek Leader' }}
+                                    </span>
                                 </div>
                             </div>
                             <div class="p-space-lg space-y-space-sm">
                                 <div>
                                     <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Dawa Tenzing Sherpa
+                                        {{ $guide->name }}
                                     </h3>
                                     <p class="font-label-sm text-label-sm text-primary font-semibold">
-                                        Founder &amp; Head of Treks
+                                        {{ $guide->designation ?? $guide->role ?? '' }}
                                     </p>
                                 </div>
-                                <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Certified mountain guide. Oversees all 8,000m ascents and technical pass
-                                    crossings. Former chief route fixer for Sagarmatha pollution control initiatives.
-                                </p>
-                                <div class="gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant flex items-center font-medium">
-                                    <x-lucide-shield class="text-primary size-[16px]" />
-                                    Specialty: Khumbu &amp; Rolwaling Alpine Traverses
+                                <div class="font-body-sm text-body-sm text-tertiary leading-relaxed line-clamp-3">
+                                    {!! strip_tags($guide->bio) !!}
                                 </div>
                             </div>
                         </div>
-                        <!-- Profile 2: Pasang Lhamu Sherpa -->
-                        <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
-                            <div class="relative h-64 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Portrait of Pasang Lhamu Sherpa, expert female trekker in red technical trekking shell holding alpine radio with snowy Himalayan passes in background."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQsD-a9A3e-33LEVqmrXe7XVJewuY4OgmFaA0gzKNkNOTwkO7XNAKph24NKKLNJ0qFCbReMwHB1MkSz0xPP4U3a3pSCEdc1MUDBK2Hn99PwmOMMa-_YFSzqmd5-BClGlr6I9_AebO4dFxUvLXKLTEOj1N1sn1TUIECS2x7DEKbf808PJPjbw5Nr1oHJYFZjY8kB_pxH70Fk8YjbCL33UbbBRSTzFugqwntZnOlMogX2oJTGuI2liYU"
-                                />
-                                <div class="top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs absolute rounded tracking-wider uppercase">
-                                    5x Everest • K2 Destination
-                                </div>
-                                <div class="from-on-surface/90 p-space-md absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent">
-                                    <span class="text-primary-container font-badge-caption text-badge-caption uppercase">Phortse Valley</span>
-                                </div>
-                            </div>
-                            <div class="p-space-lg space-y-space-sm">
-                                <div>
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Pasang Lhamu Sherpa
-                                    </h3>
-                                    <p class="font-label-sm text-label-sm text-primary font-semibold">
-                                        Director of Women's Mountain Leadership
-                                    </p>
-                                </div>
-                                <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Wilderness First Responder (WFR) certified. Champion for empowering indigenous
-                                    Himalayan women in high-altitude guiding and rescue logistics.
-                                </p>
-                                <div class="gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant flex items-center font-medium">
-                                    <x-lucide-shield-plus class="text-primary size-[16px]" />
-                                    Specialty: Field Safety &amp; High Altitude Evacuation
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Profile 3: Mingma Norbu Guide -->
-                        <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
-                            <div class="relative h-64 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Portrait of Mingma Norbu Guide, logistics master sitting in high altitude tent with navigation maps and trek gear, warm atmospheric lighting."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgsNXoODtdirIDtsZemPeVb-t-WnBbD9nLcMeII08RmG6xydcQ9u0XaMeYdacWHkojSs1WE4uxvx21qY1L5GQty1l5dQJmDxVTiAxGnIYySYjN8N6SoTYpP3s5gJid9rLMY9dWgUXvqCt5rtnGKY9XecW1TCgkPNewP-IIARVQ9dRE4gMbgDBqg9JxEsMFbORE1ds4qtRy_qB6PqOYaDslAftAGRy6Uq0a2rpxR_kO3Lnz9Ftk1AO1"
-                                />
-                                <div class="top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs absolute rounded tracking-wider uppercase">
-                                    110+ High Pass Crossings
-                                </div>
-                                <div class="from-on-surface/90 p-space-md absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent">
-                                    <span class="text-primary-container font-badge-caption text-badge-caption uppercase">Rolwaling / Beding</span>
-                                </div>
-                            </div>
-                            <div class="p-space-lg space-y-space-sm">
-                                <div>
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Mingma Norbu Guide
-                                    </h3>
-                                    <p class="font-label-sm text-label-sm text-primary font-semibold">
-                                        Chief Logistics Sirdar
-                                    </p>
-                                </div>
-                                <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Veterans call him the 'Walking Map of Nepal.' Flawlessly manages mountain supply
-                                    chains across Larkya La, Cho La, Thorong La, and remote Dolpo trails.
-                                </p>
-                                <div class="gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant flex items-center font-medium">
-                                    <x-lucide-route class="text-primary size-[16px]" />
-                                    Specialty: Remote Trek Caravans &amp; High Passes
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Profile 4: Dr. Nima Tshering, MD -->
-                        <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
-                            <div class="relative h-64 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Portrait of Himalayan medical doctor Dr Nima Tshering holding high altitude medical chart, wearing fleece trek jacket with snow covered Himalayan clinic visible outside."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCesl3ZdhvE3yvOoQz4r5XtIRUl7AsqCZCV9iMfQqYrK7n5MjcA0uajD_FmK1zEvckozleZsZ0hlUDP4pWOXp09ZEAa9TxiOJTBBJ6CSkE5EKJNkB5gECO7smYa088fN8m8Uf4kXt9uyNwM_SANhLl3ZDatal6b1KW9G5hUEjW6Q_WrDlIOfrKA8mzXH_bUHKUrwobv9YosxbnRWElXVa7v74svWel7yiwhClkVZuwE73eOhG_lBvUL"
-                                />
-                                <div class="top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs absolute rounded tracking-wider uppercase">
-                                    Ex-Pheriche HRA Clinic
-                                </div>
-                                <div class="from-on-surface/90 p-space-md absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent">
-                                    <span class="text-primary-container font-badge-caption text-badge-caption uppercase">Kathmandu / Khumbu</span>
-                                </div>
-                            </div>
-                            <div class="p-space-lg space-y-space-sm">
-                                <div>
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Dr. Nima Tshering, MD
-                                    </h3>
-                                    <p class="font-label-sm text-label-sm text-primary font-semibold">
-                                        High-Altitude Medical Advisor
-                                    </p>
-                                </div>
-                                <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Renowned high-altitude medicine researcher specializing in Acute Mountain Sickness
-                                    (AMS), HAPE, and HACE mitigation. Author of our preventative acclimatization
-                                    protocols.
-                                </p>
-                                <div class="gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant flex items-center font-medium">
-                                    <x-lucide-heart-pulse class="text-primary size-[16px]" />
-                                    Specialty: Non-Linear Acclimatization Science
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Profile 5: Tashi Gyalzen Guide -->
-                        <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
-                            <div class="relative h-64 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Tashi Gyalzen Guide ice trekking on blue glacial wall with harness and technical ice axes, focused expression with snow crystals glistening."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU1qjWg7qO6s_FW3MISD9gZF4ZxH6MqPq2JL5QGYfsOIV2N4kRaTL8qE2Y4Y0B4JxtySMRmHifDV8rfLtstwHhHnAiS7dmV2BnHoolTB6y4pWFYhusjDw3WR657G6IB9JxJTeOzSTdEpWnq3a4NDkmhRuRr0pZ7MZ4Y3HQefysMgly75sb1yzZ347prRGIF8tmoYHdaWnPpM0YSwetvPYNW1t13FgUxUmrGeqnlb1_BvFIFvTIfOKQ"
-                                />
-                                <div class="top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs absolute rounded tracking-wider uppercase">
-                                    9x Ama Dablam • Manaslu
-                                </div>
-                                <div class="from-on-surface/90 p-space-md absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent">
-                                    <span class="text-primary-container font-badge-caption text-badge-caption uppercase">Pangboche</span>
-                                </div>
-                            </div>
-                            <div class="p-space-lg space-y-space-sm">
-                                <div>
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Tashi Gyalzen Guide
-                                    </h3>
-                                    <p class="font-label-sm text-label-sm text-primary font-semibold">
-                                        Technical Trekking Director
-                                    </p>
-                                </div>
-                                <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Steep-angle ice and rock specialist. Leads our technical 6,000m pass teams including
-                                    Island Pass, Mera, and Lobuche East with meticulous anchor systems.
-                                </p>
-                                <div class="gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant flex items-center font-medium">
-                                    <x-lucide-mountain class="text-primary size-[16px]" />
-                                    Specialty: Fixed Line Rigging &amp; Crevasse Rescue
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Profile 6: Anton V. -->
-                        <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
-                            <div class="relative h-64 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    data-alt="Anton V. reviewing satellite weather maps and trek logs on tablet outdoors in Namche Bazaar alpine cafe, passes visible through window."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBigebxnzIzSc0ygcd0LhBxwYuMKpNIh9OtiQ5vi0VQc73R3QeYDuVoJ0YJarDTYfU2QYPT1V7UU-Uxi6lJj4YNQ96Y7BK0K4j-v-LD4mSGkhc1QrB1eRr6AgJoRX_p2LnXu6DVMV1jQhzAfc3DysUHh6RPLKjYMxJHAdDAnwdnRHWqis5o9B3aWgozhGGhp6qYZSkwPCZT0_Idc9MIScPUukP33_S6O535nmnI4dXtVekodL7BpKr2"
-                                />
-                                <div class="top-space-sm right-space-sm bg-ridge-deep/90 text-primary-container font-badge-caption text-badge-caption px-space-xs py-space-2xs absolute rounded tracking-wider uppercase">
-                                    12 Years Alpine Liaison
-                                </div>
-                                <div class="from-on-surface/90 p-space-md absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent">
-                                    <span class="text-primary-container font-badge-caption text-badge-caption uppercase">Kathmandu / Geneva</span>
-                                </div>
-                            </div>
-                            <div class="p-space-lg space-y-space-sm">
-                                <div>
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Anton V.
-                                    </h3>
-                                    <p class="font-label-sm text-label-sm text-primary font-semibold">
-                                        International Client Liaison &amp; Comm Officer
-                                    </p>
-                                </div>
-                                <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Connects international climbers directly with native guides. Manages European visa
-                                    protocol, Garmin satellite communications, and weather telemetry monitoring.
-                                </p>
-                                <div class="gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant flex items-center font-medium">
-                                    <x-lucide-satellite class="text-primary size-[16px]" />
-                                    Specialty: Real-time Weather Radar &amp; Communications
-                                </div>
-                            </div>
-                        </div>
+                        @empty
+                        <!-- Fallback static cards if no featured guides are found -->
+                        @endforelse
                     </div>
                 </div>
             </section>
-            <!-- Facilities & Infrastructure: Logistics Superiority -->
-            <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface-container-low w-full">
-                <div class="max-w-max-content-width space-y-space-2xl mx-auto">
-                    <div class="space-y-space-2xs max-w-2xl">
-                        <div class="font-badge-caption text-badge-caption text-primary font-bold tracking-[0.2em] uppercase">
-                            Trek Infrastructure
-                        </div>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
-                            Where Alpine Discipline Meets Boutique Comfort
-                        </h2>
-                        <p class="font-body-md text-body-md text-tertiary">
-                            Our permanent field facilities ensure you are outfitted, acclimatized, and supported at
-                            every stage of the journey.
-                        </p>
-                    </div>
-                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-3">
-                        <!-- Facility 1 -->
-                        <div class="bg-surface-container-lowest flex flex-col overflow-hidden rounded-xl shadow-sm">
-                            <div class="relative h-48 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover"
-                                    data-alt="Modern high altitude gear vault in Kathmandu with neatly organized Petzl harnesses, down sleeping bags, trek boots, and briefing table."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1DfxvgWVd0FB8Ja-0bpI1G8ktZMRKG7iU4ArV6spCSx7dXDKoWi1uHgXYw9nKareoFMfs1zv8zDnlc0H4EjBanPnpigZ7BA48f7DUE-z0PmwmOgeWsNwwq1CCIHEq1AnxeqFgBH6D21EVdrLM84qVqgp1otHQg8lg_InS2Wagt_pPHgZuelFA20JMqFK76U7np0qcCUbnSCYTFz9MW5qrgKAi9nNzj1kSPD5e5G7DCb-nnhs238Xk"
-                                />
-                                <div class="top-space-xs left-space-xs bg-ridge-deep/80 text-summit-white px-space-xs py-space-2xs font-badge-caption text-badge-caption absolute rounded uppercase">
-                                    Kathmandu Basecamp (1,400m)
-                                </div>
-                            </div>
-                            <div class="p-space-lg space-y-space-xs flex flex-1 flex-col justify-between">
-                                <div class="space-y-space-xs">
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Gear Vault &amp; Pre-Climb Briefing Lounge
-                                    </h3>
-                                    <p class="font-body-sm text-body-sm text-tertiary">
-                                        Located in Thamel, our 4,000 sq ft headquarters houses technical rental gear
-                                        (The North Face, Petzl, Grivel), private luggage storage, and satellite briefing
-                                        theatre with live topo maps.
-                                    </p>
-                                </div>
-                                <div class="pt-space-md text-label-sm text-tertiary flex items-center justify-between font-medium">
-                                    <span class="gap-space-2xs flex items-center"><x-lucide-archive class="text-primary size-[16px]" />Sterilized Gear</span>
-                                    <span class="gap-space-2xs flex items-center"><x-lucide-wifi class="text-primary size-[16px]" />Starlink Hub</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Facility 2 -->
-                        <div class="bg-surface-container-lowest flex flex-col overflow-hidden rounded-xl shadow-sm">
-                            <div class="relative h-48 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover"
-                                    data-alt="Namche Bazaar high altitude staging depot and acclimatization lodge with solar arrays and view over snow covered mountains in the evening."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBelH50b6YP31JCDNmMjB4ijhEEOYKLfIII6G6I2AZ6qabsMHZOIG5RT1FUPg-F-C0QHPXS3kmMKfhuvQ3exRaDKeSZ6eTdFD1rBcK7BCgcYXXW8nSryG3JKQBxu17ipdT0md3ZYb7zVXid9_rcsMBsWIF5HEYLvRGaE0CPqEcL8rk-uOnPsHRGAZjb20smKSygZp4bXiAbUkvFNwRSxzW8XkO4Jhx8tqvwhNbKxovbwzi5iwQY3OZM"
-                                />
-                                <div class="top-space-xs left-space-xs bg-ridge-deep/80 text-summit-white px-space-xs py-space-2xs font-badge-caption text-badge-caption absolute rounded uppercase">
-                                    Namche High Hub (3,440m)
-                                </div>
-                            </div>
-                            <div class="p-space-lg space-y-space-xs flex flex-1 flex-col justify-between">
-                                <div class="space-y-space-xs">
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Acclimatization Staging Depot
-                                    </h3>
-                                    <p class="font-body-sm text-body-sm text-tertiary">
-                                        Our permanent Khumbu operational base. Features a dedicated acclimatization
-                                        clinic, backup oxygen cylinder depot, medical compression chambers, and private
-                                        solar-heated resting rooms.
-                                    </p>
-                                </div>
-                                <div class="pt-space-md text-label-sm text-tertiary flex items-center justify-between font-medium">
-                                    <span class="gap-space-2xs flex items-center"><x-lucide-shield-plus class="text-primary size-[16px]" />HRA Doctor Relay</span>
-                                    <span class="gap-space-2xs flex items-center"
-                                        ><x-lucide-sun-medium class="text-primary size-[16px]" />100% Solar
-                                        Powered</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Facility 3 -->
-                        <div class="bg-surface-container-lowest flex flex-col overflow-hidden rounded-xl shadow-sm">
-                            <div class="relative h-48 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover"
-                                    data-alt="Yellow geodesic dome dining tent and personal sleeping tents set up on the rocky Khumbu glacier at Everest Base Camp under star filled night sky."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5_pUwiNVB0JUpIsN6DKERbCcuC4BXRgg0qTvPGtFgSgZL5pbvTbS7ePLFQ1rBDd-fLqmZHTGk0zLwYTxywFeZhkWA21ZZ1qACE-8meABYDWUo0Fpl7AUu-AlqZL-2QGeS2r9yR2hfnRzhlTRxpQ9MBTCv24OJtMyf_CZ4ygupEiVG6AvbQKMpBVDrnnKKXdxqKKgjLPIhhULeus0_yzrJLhjHoSaA5XXvEp8jk7kNr50G4OOxND1b"
-                                />
-                                <div class="top-space-xs left-space-xs bg-ridge-deep/80 text-summit-white px-space-xs py-space-2xs font-badge-caption text-badge-caption absolute rounded uppercase">
-                                    EBC Geodesic Dome (5,364m)
-                                </div>
-                            </div>
-                            <div class="p-space-lg space-y-space-xs flex flex-1 flex-col justify-between">
-                                <div class="space-y-space-xs">
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        Basecamp Geodesic Dome Enclave
-                                    </h3>
-                                    <p class="font-body-sm text-body-sm text-tertiary">
-                                        Custom double-walled geodetic dining and sleeping domes equipped with carpeted
-                                        wood-floor insulation, high-flow medical oxygen concentrators, and high-speed
-                                        satellite connectivity.
-                                    </p>
-                                </div>
-                                <div class="pt-space-md text-label-sm text-tertiary flex items-center justify-between font-medium">
-                                    <span class="gap-space-2xs flex items-center"><x-lucide-wind class="text-primary size-[16px]" />Supplemental O2 Vault</span>
-                                    <span class="gap-space-2xs flex items-center"><x-lucide-satellite class="text-primary size-[16px]" />High-Speed Link</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Community Commitment & Transparency Ledger Section -->
+            {{-- <!-- Community Commitment & Transparency Ledger Section -->
             <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface w-full">
                 <div class="max-w-max-content-width mx-auto">
                     <div class="bg-ridge-deep text-summit-white p-space-xl lg:p-space-3xl relative overflow-hidden rounded-2xl shadow-2xl">
@@ -743,9 +351,9 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
             <!-- Interactive Timeline / High Heritage Milestones -->
-            <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface-container-low w-full">
+            {{-- <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface-container-low w-full">
                 <div class="max-w-max-content-width space-y-space-2xl mx-auto">
                     <div class="space-y-space-2xs mx-auto max-w-2xl text-center">
                         <div class="font-badge-caption text-badge-caption text-primary font-bold tracking-[0.2em] uppercase">
@@ -820,7 +428,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
             <!-- High Impact Bottom Conversion Banner -->
             <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-ridge-deep text-summit-white relative w-full overflow-hidden">
                 <div class="absolute inset-0 z-0">
@@ -873,7 +481,7 @@
                         </div>
                         <div class="gap-space-2xs flex items-center">
                             <x-lucide-shield class="text-primary-container size-[20px]" />
-                            TAAN Licensed Agency #89432
+                            TAAN Licensed Agency
                         </div>
                         <div class="gap-space-2xs flex items-center">
                             <x-lucide-users class="text-primary-container size-[20px]" />

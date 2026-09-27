@@ -469,7 +469,37 @@
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
                     <div class="gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-12">
                         <!-- Left: Leader Highlight with Image -->
+                        @php
+                            $featuredGuide = \Blaze\AdminCore\Models\TeamMember::where('status', true)
+                                ->where('is_guide', true)
+                                ->where('featured', true)
+                                ->orderBy('sort_order')
+                                ->first();
+                            $totalGuides = \Blaze\AdminCore\Models\TeamMember::where('status', true)->where('is_guide', true)->count();
+                        @endphp
                         <div class="relative lg:col-span-6">
+                            @if($featuredGuide)
+                                <div class="bg-ridge-deep relative overflow-hidden rounded-2xl shadow-2xl">
+                                    <img alt="{{ $featuredGuide->name }}"
+                                        class="h-auto max-h-[580px] w-full object-cover"
+                                        src="{{ $featuredGuide->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($featuredGuide->image) : 'https://placehold.co/600x800' }}" />
+                                    <div
+                                        class="from-ridge-deep absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-90">
+                                    </div>
+                                    <div class="text-summit-white absolute right-6 bottom-6 left-6">
+                                        <span
+                                            class="px-space-sm bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption rounded py-1 font-bold tracking-wider uppercase">
+                                            {{ $featuredGuide->designation ?? $featuredGuide->role ?? 'Trek Leader' }}
+                                        </span>
+                                        <h3 class="font-headline-md text-headline-md text-summit-white mt-2 font-bold">
+                                            {{ $featuredGuide->name }}
+                                        </h3>
+                                        <p class="font-body-sm text-body-sm text-surface-container-high mt-1 opacity-90">
+                                            {!! strip_tags($featuredGuide->bio) !!}
+                                        </p>
+                                    </div>
+                                </div>
+                            @else
                             <div class="bg-ridge-deep relative overflow-hidden rounded-2xl shadow-2xl">
                                 <img alt="Portrait of Dawa Tenzing Sherpa, Senior Trek Guide"
                                     class="h-auto max-h-[580px] w-full object-cover"
@@ -490,6 +520,7 @@
                                     </p>
                                 </div>
                             </div>
+                            @endif
                             <!-- Floating Micro Credential Card -->
                             <div
                                 class="bg-surface-container-lowest p-space-md gap-space-md absolute -right-6 -bottom-6 hidden max-w-xs items-center rounded-xl shadow-xl sm:flex">
@@ -568,8 +599,8 @@
                             </div>
                             <div class="pt-space-sm gap-space-md flex items-center">
                                 <a class="px-space-lg py-space-sm bg-ridge-deep text-summit-white font-label-md text-label-md hover:bg-tertiary rounded-lg font-bold tracking-wider uppercase transition-all"
-                                    data-path="about-nepal" href="#">
-                                    Meet All 24 Guides
+                                    href="{{ route('about') }}#team-leaders">
+                                    Meet All {{ $totalGuides > 0 ? $totalGuides : 24 }} Guides
                                 </a>
                                 <span class="font-body-sm text-body-sm text-tertiary">Or request a specific sardar for
                                     private groups.</span>
