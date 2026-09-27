@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Blaze\AdminCore\Models\Blog;
 use Blaze\AdminCore\Models\BlogCategory;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use Faker\Factory as Faker;
 
 class BlogSeeder extends Seeder
 {
@@ -47,10 +47,10 @@ class BlogSeeder extends Seeder
 
             for ($i = 0; $i < $numBlogs; $i++) {
                 $title = rtrim($faker->sentence(rand(4, 8)), '.');
-                
+
                 Blog::create([
                     'title' => $title,
-                    'slug' => Str::slug($title) . '-' . uniqid(),
+                    'slug' => Str::slug($title).'-'.uniqid(),
                     'excerpt' => $faker->paragraph(2),
                     'content' => $this->generateHtmlContent($faker),
                     'status' => true,
@@ -64,8 +64,8 @@ class BlogSeeder extends Seeder
 
     private function generateHtmlContent($faker): string
     {
-        return '<p>' . implode('</p><p>', $faker->paragraphs(4)) . '</p>' .
-               '<h2>' . $faker->sentence() . '</h2>' .
-               '<p>' . implode('</p><p>', $faker->paragraphs(3)) . '</p>';
+        return '<p>'.implode('</p><p>', $faker->paragraphs(4)).'</p>'.
+               '<h2>'.$faker->sentence().'</h2>'.
+               '<p>'.implode('</p><p>', $faker->paragraphs(3)).'</p>';
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Blaze\AdminCore\Models\Blog;
 use Blaze\AdminCore\Models\BlogCategory;
+use Blaze\AdminCore\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -40,7 +41,7 @@ class BlogController extends Controller
             ->orderByDesc('created_at')
             ->first();
 
-        $popularTags = \Blaze\AdminCore\Models\Tag::whereHas('blogs', function ($q) {
+        $popularTags = Tag::whereHas('blogs', function ($q) {
             $q->where('status', true);
         })->orderByDesc('usage_count')->take(10)->get();
 
