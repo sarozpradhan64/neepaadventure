@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             TestimonialSeeder::class,
             ProjectSeeder::class,
             HomePageSettingsSeeder::class,
+            SeoSettingsSeeder::class,
         ]);
     }
 }
