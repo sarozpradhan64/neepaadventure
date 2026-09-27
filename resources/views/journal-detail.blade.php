@@ -1,4 +1,9 @@
-<x-layouts.app>
+<x-layouts.app 
+    :seo="$blog->seoMetadata"
+    :title="$blog->title"
+    :description="$blog->excerpt"
+    :image="$blog->featured_image"
+>
     <x-header />
     <main class="bg-surface w-full pt-32">
         <div class="flex w-full flex-col">

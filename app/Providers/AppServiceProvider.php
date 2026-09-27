@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Blaze\AdminCore\Models\ContactInformation;
+use Blaze\AdminCore\Models\LegalDocument;
 use Blaze\AdminCore\Models\Project;
 use Blaze\AdminCore\Models\Service;
 use Blaze\AdminCore\Models\SocialLink;
@@ -32,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
             $websiteSettings = [];
             $navServices = collect();
             $navProjects = collect();
+            $navLegalDocuments = collect();
 
             if (Schema::hasTable('contact_information')) {
                 $contact = ContactInformation::first();
@@ -60,6 +62,12 @@ class AppServiceProvider extends ServiceProvider
                     ->take(4)
                     ->get();
             }
+            
+            if (Schema::hasTable('legal_documents')) {
+                $navLegalDocuments = LegalDocument::where('status', true)
+                    ->latest()
+                    ->get();
+            }
 
             $view->with(compact(
                 'contact',
@@ -67,6 +75,7 @@ class AppServiceProvider extends ServiceProvider
                 'websiteSettings',
                 'navServices',
                 'navProjects',
+                'navLegalDocuments',
             ));
         });
     }

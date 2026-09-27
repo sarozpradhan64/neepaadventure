@@ -3,24 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ $title ?? $websiteSettings['seo_default_title'] ?? config('app.name', 'Neepa Adventure') }}</title>
-    <meta name="description" content="{{ $description ?? $websiteSettings['seo_default_description'] ?? 'Experience the best trekking, climbing, and adventure tours in Nepal.' }}" />
-    <meta name="keywords" content="{{ $keywords ?? $websiteSettings['seo_default_keywords'] ?? 'trekking, nepal, himalayas' }}" />
-    
-    <meta property="og:title" content="{{ $title ?? $websiteSettings['seo_default_title'] ?? config('app.name', 'Neepa Adventure') }}" />
-    <meta property="og:description" content="{{ $description ?? $websiteSettings['seo_default_description'] ?? '' }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ request()->url() }}" />
-    @if(!empty($image ?? $websiteSettings['seo_default_image']))
-        <meta property="og:image" content="{{ Storage::url($image ?? $websiteSettings['seo_default_image']) }}" />
-    @endif
+    <x-seo-meta 
+        :seo="$seo ?? null"
+        :title="$title ?? null"
+        :description="$description ?? null"
+        :image="$image ?? null"
+    />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ $title ?? $websiteSettings['seo_default_title'] ?? config('app.name', 'Neepa Adventure') }}" />
-    <meta name="twitter:description" content="{{ $description ?? $websiteSettings['seo_default_description'] ?? '' }}" />
-    @if(!empty($image ?? $websiteSettings['seo_default_image']))
-        <meta name="twitter:image" content="{{ Storage::url($image ?? $websiteSettings['seo_default_image']) }}" />
-    @endif
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

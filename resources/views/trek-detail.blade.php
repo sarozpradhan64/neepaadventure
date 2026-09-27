@@ -1,8 +1,8 @@
 <x-layouts.app 
-    :title="$trek->seoMetadata?->title ?? $trek->title"
-    :description="$trek->seoMetadata?->description ?? $trek->short_description"
-    :keywords="$trek->seoMetadata?->keywords ?? ''"
-    :image="$trek->seoMetadata?->image ?? $trek->featured_image"
+    :seo="$trek->seoMetadata"
+    :title="$trek->title"
+    :description="$trek->short_description"
+    :image="$trek->featured_image"
 >
     <x-header />
     <main class="bg-surface w-full pt-48">

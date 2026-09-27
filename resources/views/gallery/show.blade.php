@@ -1,4 +1,9 @@
-<x-layouts.app>
+<x-layouts.app 
+    :seo="$album->seoMetadata"
+    :title="$album->title"
+    :description="$album->description"
+    :image="$album->cover_image"
+>
     <x-header />
     <main class="bg-surface w-full pt-32 pb-20">
         <div class="max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop">

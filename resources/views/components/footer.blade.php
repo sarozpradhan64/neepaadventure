@@ -48,6 +48,17 @@
                     <li><a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </div>
+            
+            @if(isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
+            <div class="space-y-space-sm">
+                <div class="font-label-md text-label-md text-on-surface font-bold tracking-wider uppercase">
+                    Legal
+                </div>
+                <ul class="space-y-space-xs font-body-md text-body-md text-tertiary">
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('legal.index') }}">Legal & Policies</a></li>
+                </ul>
+            </div>
+            @endif
         </div>
         <div class="pt-space-2xl mt-space-2xl border-surface-container-high text-body-sm text-tertiary border-t">
             <span>&copy; {{ date('Y') }} {{ $contact?->company_name ?? config('app.name') }}. All rights reserved.</span>

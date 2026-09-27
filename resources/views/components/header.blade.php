@@ -59,32 +59,173 @@
             </a>
         </div>
 
-        <nav class="gap-space-md hidden items-center xl:flex">
-            <a
-                class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('treks*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                href="{{ route('treks') }}"
-            >Treks</a>
+        <nav class="hidden items-center gap-2 xl:flex">
+            {{-- Treks Dropdown --}}
+            <div class="group relative py-6">
+                <a
+                    class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('treks*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
+                    href="{{ route('treks') }}"
+                >
+                    Treks
+                    <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
+                </a>
+                <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[600px]">
+                    <div class="bg-surface rounded-2xl shadow-xl border border-outline/10 p-6 overflow-hidden">
+                        <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase mb-4">Popular Regions</h3>
+                                <ul class="space-y-3">
+                                    <li>
+                                        <a href="{{ route('treks') }}?region=everest" class="group/item flex items-center gap-3">
+                                            <div class="bg-surface-container-high group-hover/item:bg-primary-container rounded-md p-2 transition-colors">
+                                                <x-lucide-mountain class="size-4 text-on-surface-variant group-hover/item:text-primary" />
+                                            </div>
+                                            <div>
+                                                <div class="text-body-sm font-body-sm text-on-surface font-semibold group-hover/item:text-primary transition-colors">Everest Region</div>
+                                                <div class="text-body-xs font-body-xs text-on-surface-variant">Iconic peaks & sherpa culture</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('treks') }}?region=annapurna" class="group/item flex items-center gap-3">
+                                            <div class="bg-surface-container-high group-hover/item:bg-primary-container rounded-md p-2 transition-colors">
+                                                <x-lucide-map class="size-4 text-on-surface-variant group-hover/item:text-primary" />
+                                            </div>
+                                            <div>
+                                                <div class="text-body-sm font-body-sm text-on-surface font-semibold group-hover/item:text-primary transition-colors">Annapurna Region</div>
+                                                <div class="text-body-xs font-body-xs text-on-surface-variant">Diverse landscapes & trails</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('treks') }}?region=langtang" class="group/item flex items-center gap-3">
+                                            <div class="bg-surface-container-high group-hover/item:bg-primary-container rounded-md p-2 transition-colors">
+                                                <x-lucide-tent class="size-4 text-on-surface-variant group-hover/item:text-primary" />
+                                            </div>
+                                            <div>
+                                                <div class="text-body-sm font-body-sm text-on-surface font-semibold group-hover/item:text-primary transition-colors">Langtang Region</div>
+                                                <div class="text-body-xs font-body-xs text-on-surface-variant">Valley of glaciers & lakes</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-surface-container-low -m-6 p-6">
+                                <h3 class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase mb-4">Featured</h3>
+                                <a href="{{ route('treks') }}" class="group/feature block relative rounded-xl overflow-hidden aspect-[4/3]">
+                                    <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=600&auto=format&fit=crop" alt="Featured Trek" class="w-full h-full object-cover transition-transform duration-700 group-hover/feature:scale-105">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4">
+                                        <span class="text-white font-bold text-title-sm mb-1">Everest Base Camp</span>
+                                        <span class="text-white/80 text-body-xs flex items-center gap-1">
+                                            <x-lucide-clock class="size-3" /> 14 Days
+                                        </span>
+                                    </div>
+                                </a>
+                                <a href="{{ route('treks') }}" class="mt-4 text-label-sm font-label-sm text-primary font-bold hover:text-primary-600 flex items-center gap-1 transition-colors">
+                                    View all treks <x-lucide-arrow-right class="size-4" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <a
-                class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('projects') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                href="{{ route('projects') }}"
-            >Projects</a>
-            <a
-                class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('gallery') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                href="{{ route('gallery') }}"
-            >Gallery</a>
-            <a
-                class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('blog') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                href="{{ route('blog') }}"
-            >Blogs</a>
-            <a
-                class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('about') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                href="{{ route('about') }}"
-            >About Us</a>
-            <a
-                class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('contact') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                href="{{ route('contact') }}"
-            >Contact Us</a>
+            {{-- Projects Dropdown --}}
+            <div class="group relative py-6">
+                <a
+                    class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('projects*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
+                    href="{{ route('projects') }}"
+                >
+                    Projects
+                    <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
+                </a>
+                <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[300px]">
+                    <div class="bg-surface rounded-2xl shadow-xl border border-outline/10 p-2">
+                        <a href="{{ route('projects') }}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                            <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                <x-lucide-folder-git-2 class="size-5" />
+                            </div>
+                            <div>
+                                <div class="text-body-sm font-semibold text-on-surface">Our Initiatives</div>
+                                <div class="text-body-xs text-on-surface-variant">Community & conservation</div>
+                            </div>
+                        </a>
+                        <a href="{{ route('projects') }}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                            <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                <x-lucide-heart-handshake class="size-5" />
+                            </div>
+                            <div>
+                                <div class="text-body-sm font-semibold text-on-surface">Get Involved</div>
+                                <div class="text-body-xs text-on-surface-variant">Volunteer with us</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Standard Links --}}
+            <div class="py-6">
+                <a
+                    class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('gallery') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
+                    href="{{ route('gallery') }}"
+                >Gallery</a>
+            </div>
+            
+            <div class="py-6">
+                <a
+                    class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('blog') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
+                    href="{{ route('blog') }}"
+                >Blogs</a>
+            </div>
+            
+            {{-- About Us Dropdown --}}
+            <div class="group relative py-6">
+                <a
+                    class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('about*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
+                    href="{{ route('about') }}"
+                >
+                    About Us
+                    <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
+                </a>
+                <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[350px]">
+                    <div class="bg-surface rounded-2xl shadow-xl border border-outline/10 p-4">
+                        <div class="mb-2 px-3">
+                            <h3 class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase">Company</h3>
+                        </div>
+                        <a href="{{ route('about') }}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                            <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                <x-lucide-users class="size-5" />
+                            </div>
+                            <div>
+                                <div class="text-body-sm font-semibold text-on-surface">About Neepa Adventure</div>
+                                <div class="text-body-xs text-on-surface-variant">Our story & team</div>
+                            </div>
+                        </a>
+                        
+                        @if(isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
+                            <div class="mt-4 mb-2 px-3 border-t border-outline/10 pt-4">
+                                <h3 class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase">Legal & Policies</h3>
+                            </div>
+                            <a href="{{ route('legal.index') }}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                                <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                    <x-lucide-scale class="size-4" />
+                                </div>
+                                <div>
+                                    <div class="text-body-sm font-semibold text-on-surface">Legal Documents</div>
+                                    <div class="text-body-xs text-on-surface-variant">View all policies</div>
+                                </div>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            
+            <div class="py-6">
+                <a
+                    class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('contact') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
+                    href="{{ route('contact') }}"
+                >Contact Us</a>
+            </div>
         </nav>
 
         <div class="gap-space-sm flex items-center">

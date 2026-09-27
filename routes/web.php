@@ -29,6 +29,19 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog-detail');
 
+Route::get('/legal', function () {
+    $legalDocuments = \Blaze\AdminCore\Models\LegalDocument::where('status', true)->latest()->get();
+    return view('legal-documents', compact('legalDocuments'));
+})->name('legal.index');
+
+Route::get('/legal/{slug}', function ($slug) {
+    $legalDocument = \Blaze\AdminCore\Models\LegalDocument::where('slug', $slug)->where('status', true)->firstOrFail();
+    if ($legalDocument->file_path) {
+        return redirect(\Illuminate\Support\Facades\Storage::disk('public')->url($legalDocument->file_path));
+    }
+    abort(404, 'Document file not found.');
+})->name('legal-document.show');
+
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('lucide-icon/{icon}', function (string $icon) {
         abort_unless(preg_match('/^[a-z0-9\-]+$/', $icon), 404);
