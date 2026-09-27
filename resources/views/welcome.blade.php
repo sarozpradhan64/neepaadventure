@@ -25,7 +25,7 @@
                             $websiteSettings['hero_title'] ?? "Conquer the World's Highest Passes with Guide Mastery";
                         $heroText =
                             $websiteSettings['hero_text'] ??
-                            "Pioneering 100% safety records across Nepal's 8,000m trails. Led by certified IFMGA/NNMGA Guide leaders with sustainable zero-plastic ethics and intimate small trek teams.";
+                            "Pioneering 100% safety records across Nepal's 8,000m trails. Led by certified Guide leaders with sustainable zero-plastic ethics and intimate small trek teams.";
                         $highlightText = $websiteSettings['hero_highlighted_text'] ?? '';
 
                         if ($highlightText) {
@@ -59,22 +59,22 @@
                         <div
                             class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
                             <x-lucide-star class="text-primary-container size-[18px]" />
-                            <span class="text-summit-white font-semibold">4.9/5 from 1,400+ Trekkers</span>
+                            <span class="text-summit-white font-semibold">500+ Happy Clients</span>
                         </div>
                         <div
                             class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
                             <x-lucide-shield-check class="text-primary-container size-[18px]" />
-                            <span class="text-summit-white font-semibold">100% Guaranteed Departures</span>
+                            <span class="text-summit-white font-semibold">100% Success Rate</span>
                         </div>
                         <div
                             class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
                             <x-lucide-leaf class="text-primary-container size-[18px]" />
-                            <span class="text-summit-white font-semibold">Zero-Trace Footprint</span>
+                            <span class="text-summit-white font-semibold">Eco-Friendly</span>
                         </div>
                         <div
                             class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
                             <x-lucide-siren class="text-primary-container size-[18px]" />
-                            <span class="text-summit-white font-semibold">24/7 Heli-Rescue Ready</span>
+                            <span class="text-summit-white font-semibold">24/7 Rescue</span>
                         </div>
                     </div>
                     <!-- Interactive Floating Trip Search & Filter Bar -->
@@ -161,30 +161,6 @@
                     </div> --}}
                 </div>
             </section>
-            <!-- REPUTATION STRIP (Elevation Transition) -->
-            <section class="bg-surface-container-low pb-space-xl w-full pt-24">
-                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
-                    <div
-                        class="gap-space-lg text-tertiary font-label-sm text-label-sm flex flex-wrap items-center justify-between">
-                        <div class="gap-space-xs flex items-center">
-                            <x-lucide-shield-check class="text-primary size-[24px]" />
-                            <span>100% High-Altitude Acclimatization Rate</span>
-                        </div>
-                        <div class="gap-space-xs flex items-center">
-                            <x-lucide-users class="text-primary size-[24px]" />
-                            <span>Guide-to-Guest Ratio 1:3 Maximum</span>
-                        </div>
-                        <div class="gap-space-xs flex items-center">
-                            <x-lucide-briefcase-medical class="text-primary size-[24px]" />
-                            <span>Gamow Bag &amp; O2 Backup on Every Pass</span>
-                        </div>
-                        <div class="gap-space-xs flex items-center">
-                            <x-lucide-users-round class="text-primary size-[24px]" />
-                            <span>Porter Welfare Certified (IMEC Compliance)</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
             <!-- SIGNATURE TREKS -->
             <section class="py-space-3xl bg-surface w-full">
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
@@ -226,41 +202,34 @@
                     </div>
                     <!-- 4-Card Trek Grid -->
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-                        <!-- CARD 1: EBC & Gokyo Ri -->
-                        <x-trek-card title="Everest Base Camp & Gokyo Ri Lakes"
-                            image="https://lh3.googleusercontent.com/aida-public/AB6AXuCGV3jfAcQ1D1ainUbQOlN36bRNEhWQGL-L0bvJWHSx_5I77ZvEQ4teqGSfxfW5liU1qVdN5ho5gk8-oKnbccQDJkvpcYj_8TzLI6GgS8VaXbizM_6LNxAqUB6z_2k4fVTZazbgFodhX2yNoJIVgNIVo_OEvmp7DjvNDZa-DXG8DQUg5anAkyougQ42Prtx9HnsPZcM5ZpLXXV-8LuhHwv8eHmzMgW5eQlsewese6Ng5S7WlYknGVUI"
-                            badge="Best Seller" badgeClass="bg-primary-container text-on-primary-fixed"
-                            altitude="5,364m" duration="16 Days" rating="4.9" reviews="340"
-                            description="Cross the famed Cho La Pass, stand alongside the turquoise high-altitude sacred lakes, and witness uncrowded Everest sunrises."
-                            :inclusions="['Guide & 2:1 Porter Ratio', 'Oxygen & Sat-Com Tracking Included']" price="$1,750"
-                            href="{{ route('trek-detail', ['slug' => 'ebc-gokyo-ri']) }}" />
-                        <!-- CARD 2: Annapurna Circuit -->
-                        <x-trek-card title="Annapurna Circuit & Tilicho Pass"
-                            image="https://lh3.googleusercontent.com/aida-public/AB6AXuCNP4kkcrjSQJNNyDqk5v4TUHIaNS589LcNfzBtwllPHnSHJf0dCQ64ZfhruTaREzXKHpB4D1POySWp-MyxZNiNA4Uqb7_MxodO-wpXzCV4UgdLltxqxYwGm-NZtZL36EnkuoCgPp1kZPXawsV3OVC4iCXHTmXYFe5dt--5JtzqYFtRtsWgl1r_WngUYV8aDbDq0Zz0jsA9XFwXVZ1ucJsR9W5J5Z6JBO6ziEHlYZxqzl-Q5sZD0e0N"
-                            badge="Classic Circuit" badgeClass="bg-ridge-deep/80 text-summit-white" altitude="5,416m"
-                            duration="18 Days" rating="4.95" reviews="280"
-                            description="Traverse dramatic climatic zones from lush subtropical valleys to the formidable Thorong La Pass and emerald Tilicho Lake."
-                            :inclusions="['ACAP & TIMS Permits Arranged', 'Comfortable Teahouse Lodge Circuit']" price="$1,590"
-                            href="{{ route('trek-detail', ['slug' => 'annapurna-circuit']) }}" />
-                        <!-- CARD 3: Manaslu Circuit -->
-                        <x-trek-card title="Manaslu Circuit: The Sacred Neepa"
-                            image="https://lh3.googleusercontent.com/aida-public/AB6AXuAMPw5A0GYFgyE8SoATLMIVDSwWNinr21j8Kzk1dp_-FnC3tuXsKMA82YMQyISnVfT2-k2cKxubB636GyLSJNH1zrFSEO2dsLz3WLzURkCoIB4xNkhVHLBhyzd7JtlTa76aMnl9SBBwcT9H4BAGuPm7jP0RCXif5sT8DYhezfqs2kipCDXvSgsqqnn8H5iVRNyuCpkGVeEiL7i6edxsY2ggJJn8ouDb9FGAnr3gCbQxtjJqmSyBH8FE"
-                            badge="Low Footfall • Wild" badgeClass="bg-tertiary text-summit-white" altitude="5,106m"
-                            duration="14 Days" rating="4.92" reviews="190"
-                            description="Circumnavigate the eighth highest pass on Earth through ancient Tibetan borderlands and over the thrilling Larkya La Pass."
-                            :inclusions="['Restricted Area Government Permit', 'Authentic Gurung & Tibetan Villages']" price="$1,680"
-                            href="{{ route('trek-detail', ['slug' => 'manaslu-circuit']) }}" />
-                        <!-- CARD 4: Island Pass 6,189m -->
-                        <x-trek-card title="Island Pass (Imja Tse) & EBC"
-                            image="https://lh3.googleusercontent.com/aida-public/AB6AXuAlfFCnLWwAdMYDqNOV-XGuUMDBqo6v1AhcTLVRwrG0i3RXCOFbBgj7BocvuHe3_RMec3ZH27kl3HFEVvfTQM-_vtbXlM4AqRY0I7uXbpJnIFPDI8qJjJlF8OfQ4d3y0SEIaHk7eRUPaSjM-KO9RX49kuebgrh-b8-Illrkfi6cWgc1-_20PbX_Q5IHlCl-8O9H4zLnO6EB9OI2Ckr4wPnhEwbuJ6r0XnJ35ih0wKeRMtz8tRYtOkRj"
-                            badge="High Altitude Trek" badgeClass="bg-primary text-summit-white" altitude="6,189m"
-                            duration="19 Days" rating="4.98" reviews="115"
-                            description="Comprehensive alpine training combined with Everest Base Camp trekking before ascending fixed ropes onto a towering 6,000m destination."
-                            :inclusions="[
-                                'NMA Trekking Permit & High Camp Tents',
-                                '1:1 Trekking Guide on Destination Push',
-                            ]" price="$2,450"
-                            href="{{ route('trek-detail', ['slug' => 'island-peak']) }}" />
+                        @foreach($treks->take(4) as $trek)
+                            @php
+                                $badgeClass = $loop->index % 4 === 0 ? 'bg-primary-container text-on-primary-fixed' : 
+                                              ($loop->index % 4 === 1 ? 'bg-ridge-deep/80 text-summit-white' : 
+                                              ($loop->index % 4 === 2 ? 'bg-tertiary text-summit-white' : 
+                                              'bg-primary text-summit-white'));
+                                
+                                $inclusionsList = [];
+                                if (!empty($trek->inclusions)) {
+                                    $lines = array_filter(array_map('trim', explode("\n", $trek->inclusions)));
+                                    $inclusionsList = array_slice($lines, 0, 2);
+                                }
+                            @endphp
+                            <x-trek-card 
+                                title="{{ $trek->title }}"
+                                image="{{ $trek->featured_image ? asset('storage/' . $trek->featured_image) : 'https://placehold.co/600x400?text=Neepa+Adventure' }}"
+                                badge="{{ $trek->difficulty_level ?? 'Featured Trek' }}" 
+                                badgeClass="{{ $badgeClass }}"
+                                altitude="{{ $trek->maximum_altitude ?? 'TBA' }}" 
+                                duration="{{ $trek->duration ?? 'TBA' }}" 
+                                rating="5.0" 
+                                reviews="100+"
+                                description="{{ Str::limit($trek->short_description ?? strip_tags($trek->description), 120) }}"
+                                :inclusions="$inclusionsList" 
+                                price="${{ number_format((float)($trek->price_from ?? 0)) }}"
+                                href="{{ route('trek-detail', ['slug' => $trek->slug]) }}" 
+                            />
+                        @endforeach
                     </div>
                 </div>
             </section>
@@ -558,7 +527,7 @@
                                     </div>
                                     <div>
                                         <h4 class="font-headline-sm text-headline-sm text-on-surface">
-                                            IFMGA &amp; NNMGA Licensed Sardars
+                                            Licensed Guides
                                         </h4>
                                         <p class="font-body-sm text-body-sm text-tertiary">
                                             Formal international diplomas certifying rope management, crevasse
@@ -764,11 +733,11 @@
                         <div class="gap-space-md flex w-full shrink-0 flex-col items-center sm:w-auto sm:flex-row">
                             <a class="px-space-xl py-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase shadow-lg transition-all sm:w-auto"
                                 data-path="plan-your-trek" href="#">
-                                Talk to an Alpine Specialist
+                                Talk to an Expert
                             </a>
                             <a class="px-space-xl py-space-md bg-summit-white/10 hover:bg-summit-white/20 text-summit-white font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase backdrop-blur-sm transition-all sm:w-auto"
                                 data-path="treks" href="#">
-                                Download 2025/26 Catalog
+                                Download Catalog
                             </a>
                         </div>
                     </div>

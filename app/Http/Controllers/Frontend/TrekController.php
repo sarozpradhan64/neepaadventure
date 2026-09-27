@@ -16,7 +16,19 @@ class TrekController extends Controller
             ->orderBy('sort_order')
             ->get();
 
-        return view('treks', compact('treks'));
+        $difficulties = Service::where('status', true)
+            ->whereNotNull('difficulty_level')
+            ->where('difficulty_level', '!=', '')
+            ->distinct()
+            ->pluck('difficulty_level');
+
+        $seasons = Service::where('status', true)
+            ->whereNotNull('best_season')
+            ->where('best_season', '!=', '')
+            ->distinct()
+            ->pluck('best_season');
+
+        return view('treks', compact('treks', 'difficulties', 'seasons'));
     }
 
     public function show(string $slug)

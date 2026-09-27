@@ -27,7 +27,7 @@ class HomePageSettingsSeeder extends Seeder
             ],
             [
                 'key' => 'hero_text',
-                'value' => 'Pioneering 100% safety records across Nepal\'s 8,000m trails. Led by certified IFMGA/NNMGA Guide leaders with sustainable zero-plastic ethics and intimate small trek teams.',
+                'value' => 'Pioneering 100% safety records across Nepal\'s 8,000m trails. Led by certified Guide leaders with sustainable zero-plastic ethics and intimate small trek teams.',
                 'group' => 'homepage',
                 'type' => 'textarea',
             ],

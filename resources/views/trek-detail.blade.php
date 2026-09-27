@@ -543,7 +543,7 @@
                                 src="https://lh3.googleusercontent.com/aida/AEtjO1VNGjPQgJtSEnKl7zmmZzJYfc2-mrQtN77I7_Zo0q3gEzI2Z5x0Mh_OQMKMAW_76HUyDq5X7_0BBA17p7KTzJJAsZ92x8NEAFMIYhuu2YI2WG_GB5qRh8-NQzDoptJLfnUTvLhVL0LbVJiiEC1xZ4Jade3ASI7IQXptmn7FXMDCwJqwTgJpIhrTXBd-mGGV41b6WSIPuDu-99EFB_CaiwdCGAD62wUmqyPS2OyVhPrAzTY7dUOqpbq5qA"
                             />
                             <div class="bg-ridge-deep/85 text-summit-white font-badge-caption text-badge-caption absolute bottom-3 left-3 rounded px-3 py-1 uppercase">
-                                11x Everest • IFMGA Certified
+                                11x Everest • Certified
                             </div>
                         </div>
                     </div>
@@ -561,7 +561,7 @@
                             Born and raised in the Khumjung village of Khumbu, Dawa has completed over 35 high-altitude
                             crossings of the Cho La and Renjo La passes, along with 11 successful destinations of Mount
                             Everest (Sagarmatha). Certified by both the Nepal Trekking Association and the International
-                            Federation of Mountain Guides Associations (IFMGA).
+                            Federation of Mountain Guides Associations.
                         </p>
                         <div class="gap-space-sm pt-space-xs grid grid-cols-3">
                             <div class="bg-surface-container-low p-space-sm rounded-lg text-center">

@@ -64,37 +64,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Trust Assurance Strip -->
-                    <div class="gap-space-md pt-space-xl mt-space-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-                        <div class="gap-space-sm p-space-sm bg-surface flex items-center rounded-lg">
-                            <x-lucide-shield-check class="text-primary size-[28px]" />
-                            <div>
-                                <span class="font-label-md text-label-md text-on-surface block font-bold">100% Guaranteed</span>
-                                <span class="font-body-sm text-body-sm text-tertiary block">Every scheduled departure runs</span>
-                            </div>
-                        </div>
-                        <div class="gap-space-sm p-space-sm bg-surface flex items-center rounded-lg">
-                            <x-lucide-refresh-cw class="text-primary size-[28px]" />
-                            <div>
-                                <span class="font-label-md text-label-md text-on-surface block font-bold">Free Date Shifting</span>
-                                <span class="font-body-sm text-body-sm text-tertiary block">Modify up to 45 days prior</span>
-                            </div>
-                        </div>
-                        <div class="gap-space-sm p-space-sm bg-surface flex items-center rounded-lg">
-                            <x-lucide-satellite class="text-primary size-[28px]" />
-                            <div>
-                                <span class="font-label-md text-label-md text-on-surface block font-bold">Satellite SOS Included</span>
-                                <span class="font-body-sm text-body-sm text-tertiary block">Garmin inReach + 24/7 MedLink</span>
-                            </div>
-                        </div>
-                        <div class="gap-space-sm p-space-sm bg-surface flex items-center rounded-lg">
-                            <x-lucide-users class="text-primary size-[28px]" />
-                            <div>
-                                <span class="font-label-md text-label-md text-on-surface block font-bold">Small Team Ratio</span>
-                                <span class="font-body-sm text-body-sm text-tertiary block">Maximum 8 trekkers per group</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
             <!-- Interactive Facet / Filtering Command Bar -->
@@ -185,44 +154,32 @@
                         >
                             All
                         </button>
+                        @foreach($difficulties as $difficulty)
                         <button
-                            class="difficulty-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors"
-                            data-difficulty="Moderate"
+                            class="difficulty-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors capitalize"
+                            data-difficulty="{{ $difficulty }}"
                         >
-                            Moderate (3/5)
+                            {{ $difficulty }}
                         </button>
-                        <button
-                            class="difficulty-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors"
-                            data-difficulty="Demanding"
-                        >
-                            Demanding (4/5)
-                        </button>
-                        <button
-                            class="difficulty-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors"
-                            data-difficulty="Alpine Strenuous"
-                        >
-                            Alpine Strenuous (5/5)
-                        </button>
+                        @endforeach
+                        
                         <div class="bg-surface-container-highest mx-2 hidden h-4 w-px sm:block"></div>
+                        
                         <span class="text-tertiary hidden pr-2 font-bold tracking-wider uppercase sm:inline">Season:</span>
                         <button
-                            class="season-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors"
-                            data-season="autumn"
+                            class="season-pill active-pill bg-surface-container-high text-on-surface rounded px-3 py-1 font-semibold"
+                            data-season="all"
                         >
-                            Autumn (Clear Skies)
+                            All
                         </button>
+                        @foreach($seasons as $season)
                         <button
-                            class="season-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors"
-                            data-season="spring"
+                            class="season-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors capitalize"
+                            data-season="{{ $season }}"
                         >
-                            Spring (Rhododendrons)
+                            {{ $season }}
                         </button>
-                        <button
-                            class="season-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors"
-                            data-season="mustang"
-                        >
-                            Monsoon-Proof (Mustang)
-                        </button>
+                        @endforeach
                     </div>
                 </div>
             </section>

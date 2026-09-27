@@ -13,13 +13,8 @@
                             <span class="font-badge-caption text-badge-caption text-secondary tracking-widest uppercase">Neepa Alpine Archives</span>
                         </div>
                         <h1 class="font-display-xl text-display-xl text-on-surface max-w-4xl tracking-tight uppercase">
-                            Stories from the Ridge, High Science &amp; Route Archives
+                            Stories from the Himalayas
                         </h1>
-                        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
-                            Deep-dive route briefings, altitude physiology protocols, cultural heritage from Solukhumbu,
-                            and unvarnished gear tests written by veteran IFMGA/NNMGA Guides, trek doctors, and
-                            high-altitude navigators.
-                        </p>
                     </div>
                     <!-- Search & Category Bar -->
                     <div class="gap-space-md pt-space-xs flex flex-col">
@@ -125,7 +120,7 @@
                         <div>
                             <span class="font-badge-caption text-badge-caption text-primary tracking-widest uppercase">Intelligence Repository</span>
                             <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                Curated Alpine Dispatches
+                                Curated Alpine Posts
                             </h2>
                         </div>
                         <span class="font-body-sm text-body-sm text-secondary">Displaying 6 of 48 peer-reviewed articles</span>

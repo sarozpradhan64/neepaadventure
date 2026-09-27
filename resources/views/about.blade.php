@@ -49,7 +49,7 @@
                         </p>
                         <div class="pt-space-xs gap-space-sm text-label-sm font-label-sm flex flex-wrap items-center">
                             <span class="gap-space-2xs text-primary-container flex items-center">
-                                <x-lucide-shield-check class="size-[18px]" /> IFMGA / UIAGM Certified
+                                <x-lucide-shield-check class="size-[18px]" /> Certified
                             </span>
                             <span class="text-mist-slate/40">•</span>
                             <span class="gap-space-2xs text-mist-slate flex items-center">
@@ -167,7 +167,7 @@
                                     Guide people.
                                 </p>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">
-                                    After earning his prestigious IFMGA mountain badge and logging 14 destinations of
+                                    After earning his prestigious badge and logging 14 destinations of
                                     Everest, Dawa chose not to work for absentee overseas operators. In 2011, alongside
                                     brothers and cousins from Phortse, he established Neepa Adventure to reclaim the
                                     narrative of Himalayan trekking: ethical pay, native equity, and authentic spiritual
@@ -231,8 +231,7 @@
                                     </h3>
                                 </div>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    100% of our trip leaders are indigenous Guides holding IFMGA, UIAGM, or NNMGA
-                                    certifications. Generational acclimation combined with elite technical rescue
+                                    100% of our trip leaders are indigenous Guides holding certifications. Generational acclimation combined with elite technical rescue
                                     training ensures supreme leadership at all elevations.
                                 </p>
                             </div>
@@ -362,7 +361,7 @@
                                     </p>
                                 </div>
                                 <p class="font-body-sm text-body-sm text-tertiary leading-relaxed">
-                                    Certified IFMGA mountain guide. Oversees all 8,000m ascents and technical pass
+                                    Certified mountain guide. Oversees all 8,000m ascents and technical pass
                                     crossings. Former chief route fixer for Sagarmatha pollution control initiatives.
                                 </p>
                                 <div class="gap-space-xs pt-space-2xs text-body-sm text-on-surface-variant flex items-center font-medium">

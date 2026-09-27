@@ -301,8 +301,7 @@
                         </div>
                         <div class="border-surface-container-high flex justify-between border-b pb-1">
                             <span class="text-tertiary">Lead By:</span>
-                            <span class="text-primary font-bold" id="modal-lead-by-name">Certified IFMGA / NMA
-                                Guide</span>
+                            <span class="text-primary font-bold" id="modal-lead-by-name">Certified Guide</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-tertiary">Medical Evacuations:</span>
@@ -441,7 +440,7 @@
                         if (clientEl) clientEl.innerText = client || 'International Club Registry';
 
                         const sirdarEl = document.getElementById('modal-lead-by-name');
-                        if (sirdarEl) sirdarEl.innerText = lead_by || 'Certified IFMGA / NMA Guide';
+                        if (sirdarEl) sirdarEl.innerText = lead_by || 'Certified Guide';
 
                         modal.classList.remove('hidden');
                     }
