@@ -3,16 +3,16 @@
     <main class="bg-surface w-full pt-48">
         <div class="flex w-full flex-col">
             <!-- Immersive Cinematic Hero: Bleeds cleanly beneath header -->
-            <!-- Origin Story & Sacred Philosophy Section -->
+            <!-- About Us Generic Section -->
             <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface w-full">
                 <div class="max-w-max-content-width mx-auto">
-                    <div class="gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-12">
-                        <!-- Left: Image Duo Mosaic -->
-                        <div class="space-y-space-md relative lg:col-span-5">
+                    <div class="gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
+                        <!-- Left: Image -->
+                        <div class="relative">
                             <div class="relative overflow-hidden rounded-xl shadow-xl">
                                 <img
                                     class="h-80 w-full transform object-cover transition-transform duration-700 hover:scale-105 lg:h-96"
-                                    data-alt="Traditional stone Guide lodge in Khumjung village with majestic Ama Dablam mountain towering under bright crisp skies, colorful prayer flags hanging along the stone terrace."
+                                    alt="Group of trekkers walking on a scenic mountain trail in the Himalayas with a beautiful blue sky."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH-T_vvEFdoqOoZOBFTvoDElAEOrBl2nCqehW5vdVes7CS0Ev4wPgcXWPtSHXQC5MQVCbTl5rLVPi3CE3Jei4Y4t69UHHGUb5DVNRi07EtBhAUyGWWMVgz3hcgMpAVgrgedsLsTKApZq9OtW7tCtmTCMZ1v9GgBpXWYLljR-hl89xy83ZmZfUzOCXb4uxE-cKGJ3o6Ph8TjCIUf4dke1y44J6Y2zLMm7oYDNr4TPlYaNilVlL_ZLHo"
                                 />
                                 <div class="bottom-space-sm left-space-sm bg-ridge-deep/85 px-space-md py-space-xs text-summit-white absolute rounded-lg backdrop-blur-md">
@@ -20,79 +20,64 @@
                                     <span class="font-body-sm text-body-sm font-medium">3,790m • Cradle of Himalayan Guides</span>
                                 </div>
                             </div>
+                            @php
+                                $founder = \Blaze\AdminCore\Models\TeamMember::where('status', true)->orderBy('sort_order')->first();
+                            @endphp
+                            @if($founder)
                             <div class="bg-surface-container-lowest p-space-2xs relative -mt-12 ml-auto w-3/4 overflow-hidden rounded-xl shadow-2xl">
                                 <img
                                     class="h-52 w-full rounded-lg object-cover"
-                                    data-alt="Veteran Guide trek leader with windburned skin and radiant welcoming smile holding trekking crampons and ice axe, misty mountain pass in background."
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD2Z9ekpCwI8kbDV1ICEbQjAVPmphgeA2fPOZk8_2RWjHH3HSDVH6ptyV1mAv6qzvrViIdPPEZWRy1w4Q_nVPdwxKZXjUoQpNzutGwJxb1MEy0MYCTZ2nTtdeDPQvXO9erjef2AKg5dnqtZIViQqxa3XQBpADuge7ofdeukc18ifcJ6K6RJ5DZaavOVQw9BqRdX7FFW7wmM0YGfPwlUTch9NJrS--mhYloViFNHtkb16jkr60wIp46"
+                                    alt="{{ $founder->name }}"
+                                    src="{{ $founder->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($founder->image) : 'https://placehold.co/600x800' }}"
                                 />
                                 <div class="p-space-sm bg-surface-container-lowest">
                                     <div class="font-label-md text-label-md text-on-surface font-bold">
-                                        Dawa Tenzing Sherpa
+                                        {{ $founder->name }}
                                     </div>
                                     <div class="font-body-sm text-body-sm text-tertiary">
-                                        Founder &amp; Senior Lead Guide
+                                        {{ $founder->designation ?? 'Founder' }}
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
-                        <!-- Right: Narrative Columns -->
-                        <div class="space-y-space-xl lg:col-span-7">
+                        <!-- Right: Narrative -->
+                        <div class="space-y-space-xl">
                             <div>
                                 <div class="gap-space-xs text-primary mb-space-xs flex items-center">
                                     <x-lucide-compass class="size-[20px]" />
-                                    <span class="font-badge-caption text-badge-caption font-bold tracking-wider uppercase">Lineage &amp; Spiritual Respect</span>
+                                    <span class="font-badge-caption text-badge-caption font-bold tracking-wider uppercase">Who We Are</span>
                                 </div>
                                 <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
-                                    Rooted in the Soil and Snow of the High Khumbu
+                                    Your Trusted Partner for Himalayan Adventures
                                 </h2>
                             </div>
-                            <!-- Story 1 -->
+                            
                             <div class="space-y-space-xs bg-surface-container-lowest p-space-xl rounded-xl shadow-sm">
                                 <div class="gap-space-sm flex items-center">
                                     <div class="bg-primary-container/20 text-on-primary-container font-headline-sm text-body-md flex h-8 w-8 items-center justify-center rounded-lg font-bold">
                                         01
                                     </div>
                                     <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        From Khumbu Yak Trails to International Destinations
+                                        Passion for the Outdoors
                                     </h3>
                                 </div>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">
-                                    Before the world flocked to Everest, our elders guided yaks along icy passes into
-                                    Tibet, learning navigation not from GPS receivers but from the shifts of alpine
-                                    wind, snow drifts, and glacier seracs. Dawa Tenzing grew up herding in Khumjung,
-                                    learning rope craft under the gaze of Mount Khumbila—the sacred protector of the
-                                    Guide people.
-                                </p>
-                                <p class="font-body-md text-body-md text-tertiary leading-relaxed">
-                                    After earning his prestigious badge and logging 14 destinations of
-                                    Everest, Dawa chose not to work for absentee overseas operators. In 2011, alongside
-                                    brothers and cousins from Phortse, he established Neepa Adventure to reclaim the
-                                    narrative of Himalayan trekking: ethical pay, native equity, and authentic spiritual
-                                    stewardship.
+                                    We are a team of dedicated travel professionals and experienced trekking guides who share a deep love for the great outdoors. Our mission is to provide unforgettable trekking experiences that allow our clients to connect with nature and explore the majestic beauty of the Himalayas in a safe and responsible manner.
                                 </p>
                             </div>
-                            <!-- Story 2: Meaning of Neepa -->
+                            
                             <div class="space-y-space-xs bg-surface-container-low p-space-xl rounded-xl shadow-sm">
                                 <div class="gap-space-sm flex items-center">
                                     <div class="bg-primary-container text-on-primary-fixed font-headline-sm text-body-md flex h-8 w-8 items-center justify-center rounded-lg font-bold">
                                         02
                                     </div>
                                     <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        The Meaning of 'Neepa'
+                                        Commitment to Excellence
                                     </h3>
                                 </div>
                                 <p class="font-body-md text-body-md text-tertiary leading-relaxed">
-                                    In Tibetan Buddhism, a <span class="text-on-surface font-semibold">Neepa</span> is a
-                                    sacred circumambulation: an act of meditative devotion where pilgrims walk clockwise
-                                    around sacred passes, ancient stupas, and monasteries. It represents the journey of
-                                    life, humility in the presence of timeless mountains, and the karmic cycle of giving
-                                    back.
-                                </p>
-                                <p class="font-body-md text-body-md text-tertiary leading-relaxed">
-                                    Every trek we curate follows this spiritual compass. We do not ‘conquer’
-                                    mountains—we seek permission, honor local customs, perform the sacred Puja before
-                                    setting foot on ice, and leave each col cleaner than we found it.
+                                    From carefully crafted itineraries to prioritizing your comfort and safety, we focus on delivering high-quality services. We believe in sustainable tourism that supports local communities and minimizes our environmental footprint, ensuring that the natural wonders we explore remain pristine for future generations.
                                 </p>
                             </div>
                         </div>

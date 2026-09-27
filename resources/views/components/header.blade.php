@@ -130,37 +130,12 @@
                 </div>
             </div>
 
-            {{-- Projects Dropdown --}}
-            <div class="group relative py-6">
+            {{-- Projects Link --}}
+            <div class="py-6">
                 <a
-                    class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('projects*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
+                    class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('projects*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
                     href="{{ route('projects') }}"
-                >
-                    Projects
-                    <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
-                </a>
-                <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[300px]">
-                    <div class="bg-surface rounded-2xl shadow-xl border border-outline/10 p-2">
-                        <a href="{{ route('projects') }}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
-                            <div class="bg-primary/10 text-primary rounded-lg p-2">
-                                <x-lucide-folder-git-2 class="size-5" />
-                            </div>
-                            <div>
-                                <div class="text-body-sm font-semibold text-on-surface">Our Initiatives</div>
-                                <div class="text-body-xs text-on-surface-variant">Community & conservation</div>
-                            </div>
-                        </a>
-                        <a href="{{ route('projects') }}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
-                            <div class="bg-primary/10 text-primary rounded-lg p-2">
-                                <x-lucide-heart-handshake class="size-5" />
-                            </div>
-                            <div>
-                                <div class="text-body-sm font-semibold text-on-surface">Get Involved</div>
-                                <div class="text-body-xs text-on-surface-variant">Volunteer with us</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                >Projects</a>
             </div>
 
             {{-- Standard Links --}}

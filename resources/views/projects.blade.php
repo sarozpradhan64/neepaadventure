@@ -93,7 +93,7 @@
                                             class="py-space-2xs px-space-sm bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm text-on-surface inline-flex w-full items-center justify-center gap-1.5 rounded-lg font-bold transition-all"
                                             onclick="openProjectModal('{{ addslashes($project->dossier_title ?? $project->title) }}', '{{ addslashes($project->dossier_description ?? $project->short_description) }}', '{{ addslashes($project->client_name ?? '') }}', '{{ addslashes($project->lead_by ?? '') }}', '{{ addslashes($project->inclusions ?? '') }}')">
                                             <x-lucide-eye class="size-[16px]" />
-                                            <span>View Project Case Dossier</span>
+                                            <span>View Project</span>
                                         </button>
                                     </div>
                                 </div>
