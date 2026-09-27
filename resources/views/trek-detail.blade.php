@@ -1,4 +1,9 @@
-<x-layouts.app>
+<x-layouts.app 
+    :title="$trek->seoMetadata?->title ?? $trek->title"
+    :description="$trek->seoMetadata?->description ?? $trek->short_description"
+    :keywords="$trek->seoMetadata?->keywords ?? ''"
+    :image="$trek->seoMetadata?->image ?? $trek->featured_image"
+>
     <x-header />
     <main class="bg-surface w-full pt-48">
         <div class="flex w-full flex-col">

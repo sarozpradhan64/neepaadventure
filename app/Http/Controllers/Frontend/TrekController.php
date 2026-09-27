@@ -23,7 +23,7 @@ class TrekController extends Controller
     {
         $trek = Service::where('slug', $slug)
             ->where('status', true)
-            ->with(['features', 'category'])
+            ->with(['features', 'category', 'seoMetadata'])
             ->firstOrFail();
 
         // Let's also load the departures associated with this trek
