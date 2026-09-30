@@ -31,6 +31,19 @@ class HomePageSettingsSeeder extends Seeder
                 'group' => 'homepage',
                 'type' => 'textarea',
             ],
+            [
+                'key' => 'hero_stats',
+                'value' => json_encode([
+                    ['icon' => 'award', 'value' => '10+', 'label' => 'years of experience'],
+                    ['icon' => 'leaf', 'value' => '', 'label' => 'Sustainable and Responsible Tourism'],
+                    ['icon' => 'compass', 'value' => '', 'label' => 'Authentic Nepali Experience'],
+                    ['icon' => 'users', 'value' => '', 'label' => 'Local Experienced Team'],
+                    ['icon' => 'map', 'value' => '', 'label' => 'Bespoke Packages'],
+                    ['icon' => 'users-round', 'value' => '', 'label' => 'Small Groups'],
+                ]),
+                'group' => 'homepage',
+                'type' => 'json',
+            ],
         ];
 
         foreach ($settings as $setting) {

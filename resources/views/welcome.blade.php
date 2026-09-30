@@ -53,114 +53,129 @@
                         class="font-body-lg text-body-lg text-surface-container mb-space-xl mx-auto max-w-2xl opacity-90">
                         {{ $heroText }}
                     </p>
+                    @php
+                        $heroStats = json_decode($websiteSettings['hero_stats'] ?? '[]', true) ?: [];
+                        
+                        if(empty($heroStats)) {
+                            $heroStats = [
+                                ['value' => '500+', 'label' => 'Happy Clients'],
+                                ['value' => '100%', 'label' => 'Success Rate'],
+                                ['value' => '', 'label' => 'Eco-Friendly'],
+                                ['value' => '24/7', 'label' => 'Rescue']
+                            ];
+                        }
+                        
+                        $statIcons = [
+                            'star',
+                            'shield-check',
+                            'leaf',
+                            'siren'
+                        ];
+                    @endphp
                     <!-- Quick Trust Proof Badges -->
                     <div
                         class="gap-space-sm mb-space-2xl text-summit-white font-label-sm text-label-sm flex flex-wrap items-center justify-center">
-                        <div
-                            class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
-                            <x-lucide-star class="text-primary-container size-[18px]" />
-                            <span class="text-summit-white font-semibold">500+ Happy Clients</span>
-                        </div>
-                        <div
-                            class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
-                            <x-lucide-shield-check class="text-primary-container size-[18px]" />
-                            <span class="text-summit-white font-semibold">100% Success Rate</span>
-                        </div>
-                        <div
-                            class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
-                            <x-lucide-leaf class="text-primary-container size-[18px]" />
-                            <span class="text-summit-white font-semibold">Eco-Friendly</span>
-                        </div>
-                        <div
-                            class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
-                            <x-lucide-siren class="text-primary-container size-[18px]" />
-                            <span class="text-summit-white font-semibold">24/7 Rescue</span>
-                        </div>
+                        @foreach($heroStats as $index => $stat)
+                            @php
+                                $icon = !empty($stat['icon']) ? $stat['icon'] : $statIcons[$index % count($statIcons)];
+                                $text = trim(($stat['value'] ?? '') . ' ' . ($stat['label'] ?? ''));
+                            @endphp
+                            @if($text)
+                            <div
+                                class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
+                                @svg('lucide-'.$icon, 'text-primary-container size-[18px]')
+                                <span class="text-summit-white font-semibold">{{ $text }}</span>
+                            </div>
+                            @endif
+                        @endforeach
                     </div>
                     <!-- Interactive Floating Trip Search & Filter Bar -->
-                    {{-- <div
-                        class="w-full max-w-5xl bg-surface-container-lowest shadow-2xl rounded-xl p-space-md lg:p-space-lg text-left -mb-16 relative z-20">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md items-end">
-                            <!-- Destination Field -->
-                            <div class="space-y-space-2xs">
-                                <label
-                                    class="block font-badge-caption text-badge-caption uppercase tracking-wider text-tertiary">Destination
-                                    Region</label>
-                                <div class="relative">
-                                    <select
-                                        class="w-full h-11 px-space-sm rounded-lg bg-surface-container-low font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
-                                        <option value="all">All Himalayan Regions</option>
-                                        <option value="everest">Everest &amp; Khumbu</option>
-                                        <option value="annapurna">Annapurna Circuit &amp; Sanctuary</option>
-                                        <option value="manaslu">Manaslu High Pass</option>
-                                        <option value="mustang">Upper Mustang Kingdom</option>
-                                        <option value="langtang">Langtang Valley</option>
-                                    </select>
-                                    <x-lucide-chevron-down
-                                        class="absolute right-space-xs top-2.5 text-tertiary pointer-events-none size-[20px]" />
-                                </div>
+                    <div
+                        class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-2xl rounded-full p-2 text-left -mb-8 relative z-20 border border-outline/10">
+                        <form action="{{ route('treks') }}" method="GET" class="flex items-center gap-2">
+                            <div class="relative flex-1">
+                                <x-lucide-search class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary size-[22px]" />
+                                <input type="text" name="search" placeholder="Search Treks, Tours, Adventure & Authentic Nepal Experiences" 
+                                    class="w-full h-14 pl-12 pr-4 bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
                             </div>
-                            <!-- Activity Level -->
-                            <div class="space-y-space-2xs">
-                                <label
-                                    class="block font-badge-caption text-badge-caption uppercase tracking-wider text-tertiary">Activity
-                                    / Grade</label>
-                                <div class="relative">
-                                    <select
-                                        class="w-full h-11 px-space-sm rounded-lg bg-surface-container-low font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
-                                        <option value="all">Any Difficulty</option>
-                                        <option value="moderate">Moderate (Grade II)</option>
-                                        <option value="challenging">Challenging (Grade III)</option>
-                                        <option value="strenuous">Strenuous Alpine (Grade IV)</option>
-                                        <option value="technical">6,000m High Altitude Trekking</option>
-                                    </select>
-                                    <x-lucide-mountain
-                                        class="absolute right-space-xs top-2.5 text-tertiary pointer-events-none size-[20px]" />
-                                </div>
-                            </div>
-                            <!-- Season / Window -->
-                            <div class="space-y-space-2xs">
-                                <label
-                                    class="block font-badge-caption text-badge-caption uppercase tracking-wider text-tertiary">Season
-                                    Window</label>
-                                <div class="relative">
-                                    <select
-                                        class="w-full h-11 px-space-sm rounded-lg bg-surface-container-low font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
-                                        <option value="spring2025">Spring 2025 (Mar - May)</option>
-                                        <option value="autumn2025">Autumn 2025 (Sep - Nov)</option>
-                                        <option value="winter2025">Winter 2025 (Dec - Feb)</option>
-                                        <option value="spring2026">Spring 2026</option>
-                                    </select>
-                                    <x-lucide-calendar-days
-                                        class="absolute right-space-xs top-2.5 text-tertiary pointer-events-none size-[20px]" />
-                                </div>
-                            </div>
-                            <!-- Duration -->
-                            <div class="space-y-space-2xs">
-                                <label
-                                    class="block font-badge-caption text-badge-caption uppercase tracking-wider text-tertiary">Duration</label>
-                                <div class="relative">
-                                    <select
-                                        class="w-full h-11 px-space-sm rounded-lg bg-surface-container-low font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer">
-                                        <option value="all">Any Duration</option>
-                                        <option value="short">7 - 11 Days</option>
-                                        <option value="classic">12 - 16 Days</option>
-                                        <option value="epic">17+ Days Trek</option>
-                                    </select>
-                                    <x-lucide-clock-3
-                                        class="absolute right-space-xs top-2.5 text-tertiary pointer-events-none size-[20px]" />
-                                </div>
-                            </div>
-                            <!-- Action Button -->
-                            <button
-                                class="w-full h-11 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95">
-                                <x-lucide-search class="size-[20px]" />
+                            <button type="submit"
+                                class="h-12 px-8 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-full transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0">
                                 <span>Explore</span>
                             </button>
-                        </div>
-                    </div> --}}
+                        </form>
+                    </div>
                 </div>
             </section>
+            <!-- WHO ARE WE SECTION -->
+            @php
+                $whoTitle = $websiteSettings['who_are_we_title'] ?? 'Setting the Standard in Trekking Excellence';
+                $whoSubtitle = $websiteSettings['who_are_we_subtitle'] ?? 'Who We Are';
+                $whoText = $websiteSettings['who_are_we_text'] ?? 'We believe in building more than just itineraries; we build trust through unparalleled safety, expert guidance, and sustainable practices. Join us to experience the mountains with true professionals.';
+                $whoBullets = json_decode($websiteSettings['who_are_we_bullets'] ?? '[]', true) ?: [
+                    'Uncompromising safety standards on every trek.',
+                    'Decades of proven Himalayan expertise.',
+                    'Commitment to sustainable and ethical practices.'
+                ];
+                $whoImage = !empty($websiteSettings['who_are_we_image']) 
+                    ? asset('storage/' . $websiteSettings['who_are_we_image']) 
+                    : 'https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2000&auto=format&fit=crop';
+            @endphp
+            <section class="bg-surface-container-lowest pt-[5rem] pb-space-3xl w-full">
+                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
+                    <div class="gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
+                        <!-- Image Side -->
+                        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg h-[400px] lg:h-[550px]">
+                            <img src="{{ $whoImage }}" alt="{{ $whoTitle }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <!-- Small decorative element on image -->
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <div class="bg-surface/90 backdrop-blur-md p-space-md rounded-xl inline-flex items-center gap-4 shadow-sm">
+                                    <div class="bg-primary text-on-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
+                                        <x-lucide-shield-check class="size-6" />
+                                    </div>
+                                    <div>
+                                        <div class="font-headline-sm font-bold text-on-surface">Trusted by Thousands</div>
+                                        <div class="font-body-sm text-tertiary">Verified Excellence</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text Side -->
+                        <div class="flex flex-col justify-center">
+                            <div class="font-badge-caption text-badge-caption text-primary mb-space-xs font-bold tracking-[0.2em] uppercase">
+                                {{ $whoSubtitle }}
+                            </div>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-md tracking-tight">
+                                {{ $whoTitle }}
+                            </h2>
+                            <p class="font-body-lg text-body-lg text-tertiary mb-space-lg leading-relaxed">
+                                {{ $whoText }}
+                            </p>
+                            
+                            @if(!empty($whoBullets))
+                                <div class="space-y-4 mb-space-lg">
+                                    @foreach($whoBullets as $bullet)
+                                        <div class="flex items-start gap-3">
+                                            <div class="text-primary mt-1 shrink-0">
+                                                <x-lucide-check-circle class="size-5" />
+                                            </div>
+                                            <p class="font-body-md text-on-surface">{{ $bullet }}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <div>
+                                <a href="#" class="bg-primary text-on-primary hover:bg-primary/90 font-label-lg px-space-xl py-space-sm inline-flex items-center justify-center rounded-full transition-colors">
+                                    Read Our Full Story
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- SIGNATURE TREKS -->
             <section class="py-space-3xl bg-surface w-full">
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">

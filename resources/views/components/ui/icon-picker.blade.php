@@ -1,4 +1,4 @@
-@props(['name', 'value' => '', 'id' => null])
+@props(['name' => '', 'value' => '', 'id' => null])
 
 @php
     $currentValue = old($name, $value);
@@ -12,6 +12,8 @@
 @endphp
 
 <div
+    x-modelable="selected"
+    {{ $attributes->whereStartsWith('x-model') }}
     x-data="{
         open: false,
         search: '',
@@ -33,8 +35,16 @@
             return this.page < this.filtered.length;
         },
         async init() {
-            this.selected && this.loadSvg(this.selected);
+            if (this.selected) this.loadSvg(this.selected);
             this.$watch('search', () => { this.page = this.pageSize; this.$nextTick(() => this.loadVisibleSvgs()); });
+            this.$watch('selected', val => {
+                if (val) this.loadSvg(val);
+            });
+            this.$nextTick(() => {
+                if (this.selected && !this.svgCache[this.selected]) {
+                    this.loadSvg(this.selected);
+                }
+            });
         },
         async openPicker() {
             this.open = ! this.open;
@@ -71,7 +81,9 @@
             if (! icon || this.svgCache[icon]) return;
             try {
                 const res = await fetch('/admin/lucide-icon/' + encodeURIComponent(icon));
-                if (res.ok) this.svgCache[icon] = await res.text();
+                if (res.ok) {
+                    this.svgCache = { ...this.svgCache, [icon]: await res.text() };
+                }
             } catch {}
         },
     }"
