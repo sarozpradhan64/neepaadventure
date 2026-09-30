@@ -53,9 +53,11 @@
     {{-- Main nav bar --}}
     <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop gap-space-md mx-auto flex h-20 items-center justify-between">
         <div class="gap-space-md flex items-center">
-            <a href="{{ route('home') }}" class="flex flex-col">
-                <span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight uppercase">{{ $contact?->company_name ?? config('app.name') }}</span>
-                <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-[0.2em] uppercase">{{ $websiteSettings['slogan'] ?? 'Treks &bull; Nepal' }}</span>
+            <a href="{{ route('home') }}" class="flex items-center">
+                @if(!empty($websiteSettings['logo']))
+                    <img src="{{ Storage::url($websiteSettings['logo']) }}" alt="{{ $contact?->company_name ?? config('app.name') }}" class="h-16 w-auto object-contain">
+                    <span class="font-headline-xs text-headline-xs text-on-surface font-bold tracking-tight uppercase">{{ $contact?->company_name ?? config('app.name') }}</span>
+                @endif
             </a>
         </div>
 
