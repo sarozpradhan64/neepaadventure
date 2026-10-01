@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\TrekController;
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ServiceDepartureController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,11 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog-detail');
+
+Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
+Route::get('/careers/{job:slug}', [CareerController::class, 'show'])->name('careers.show');
+Route::get('/careers/{job:slug}/apply', [CareerController::class, 'apply'])->name('careers.apply');
+Route::post('/careers/{job:slug}/apply', [CareerController::class, 'submitApplication'])->name('careers.submit');
 
 Route::get('/legal', function () {
     $legalDocuments = \Blaze\AdminCore\Models\LegalDocument::where('status', true)->latest()->get();

@@ -81,7 +81,7 @@
         x-data="blatSelect({ model: $blatModel(@js($initialValue)), wired: @js($hasWire), multiple: @js((bool) $multiple) })"
         x-id="['blat-listbox']"
         @if ($style) style="{{ $style }}" @endif
-        {{ $attributes->twMerge('relative') }}
+        {{ $attributes->twMerge('relative w-full') }}
     >
         @if ($name)
             @if ($multiple)

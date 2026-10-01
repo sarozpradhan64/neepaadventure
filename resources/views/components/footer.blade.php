@@ -45,6 +45,7 @@
                     <li><a class="hover:text-primary transition-colors" href="{{ route('treks') }}">Treks</a></li>
 
                     <li><a class="hover:text-primary transition-colors" href="{{ route('about') }}">About Us</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('careers.index') }}">Careers</a></li>
                     <li><a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </div>

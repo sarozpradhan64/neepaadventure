@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             HomePageSettingsSeeder::class,
             SeoSettingsSeeder::class,
+            JobSeeder::class,
         ]);
     }
 }
