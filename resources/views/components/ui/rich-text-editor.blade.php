@@ -184,7 +184,7 @@
         @keyup="refresh()"
         @mouseup="refresh()"
         @focus="refresh()"
-        class="empty:before:text-muted-foreground [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_h1]:mb-2 [&_h1]:text-2xl [&_h1]:font-semibold [&_h2]:mb-2 [&_h2]:text-xl [&_h2]:font-semibold [&_li]:mt-1 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:ps-6 [&_p]:my-2 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:ps-6 min-h-40 w-full max-w-none px-3 py-3 text-sm leading-7 outline-none empty:before:pointer-events-none empty:before:content-[attr(data-placeholder)]"
+        class="empty:before:text-muted-foreground prose prose-sm max-w-none px-3 py-3 outline-none empty:before:pointer-events-none empty:before:content-[attr(data-placeholder)]"
     >
         {!! $value !!}
     </div>

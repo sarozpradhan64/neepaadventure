@@ -90,7 +90,7 @@
                                         class="gap-space-xs px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md inline-flex items-center rounded py-3 tracking-wider uppercase transition-colors"
                                         href="{{ route('blog-detail', $featured->slug) }}"
                                     >
-                                        <span>Read Full Dossier</span>
+                                        <span>Read</span>
                                         <x-lucide-arrow-right class="size-[18px]" />
                                     </a>
                                 </div>
