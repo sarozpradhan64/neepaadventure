@@ -885,7 +885,7 @@
                         Book This Circuit ($1,750)
                     </button>
                     <button class="py-space-md px-space-xl bg-surface-container-lowest hover:bg-mist-slate text-on-surface font-label-md text-label-md rounded-lg font-bold tracking-wider uppercase shadow-sm transition-all">
-                        Download PDF Dossier
+                        Download PDF Blog
                     </button>
                 </div>
             </div>

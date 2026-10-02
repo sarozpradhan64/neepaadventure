@@ -243,14 +243,14 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
             ServiceFormField::make(
                 name: 'dossier_title',
                 type: 'text',
-                label: 'Dossier Title',
+                label: 'Blog Title',
                 placeholder: 'e.g. Russian Alpine Club - Annapurna Base Camp',
                 validationRule: 'nullable|string|max:255',
             ),
             ServiceFormField::make(
                 name: 'dossier_description',
                 type: 'textarea',
-                label: 'Dossier Description',
+                label: 'Blog Description',
                 placeholder: 'e.g. Complete operational debrief...',
                 validationRule: 'nullable|string',
             ),

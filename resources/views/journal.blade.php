@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </section>
-            <!-- Featured Lead Dossier -->
+            <!-- Featured Lead Blog -->
             @if ($featured)
                 <section class="bg-surface px-gutter-desktop py-space-2xl w-full">
                     <div class="max-w-max-content-width mx-auto">
@@ -219,7 +219,7 @@
                             </h2>
                             <p class="font-body-md text-body-md text-surface-dim">
                                 Receive seasonal permit bulletins, route conditions reports, and exclusive trek case
-                                dossiers straight from our Kathmandu operations room.
+                                blogs straight from our Kathmandu operations room.
                             </p>
                             <div class="gap-space-md text-surface-dim pt-space-xs flex items-center text-[12px]">
                                 <span class="gap-space-2xs flex items-center"

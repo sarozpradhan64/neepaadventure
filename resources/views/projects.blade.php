@@ -282,7 +282,7 @@
                     <div
                         class="gap-space-xs text-primary font-label-sm text-label-sm flex items-center font-bold tracking-wider uppercase">
                         <x-lucide-folder-open class="size-[20px]" />
-                        <span>Neepa Adventure Field Dossier</span>
+                        <span>Neepa Adventure Field Blog</span>
                     </div>
                     <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold" id="modal-project-title">
                         Russian Alpine Club - Annapurna Base Camp

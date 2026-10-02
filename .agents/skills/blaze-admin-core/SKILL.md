@@ -313,6 +313,8 @@ use Blaze\AdminCore\Http\Controllers\ReorderController;
 5. **DO run** `git submodule update --init --recursive` after cloning any site that uses this package.
 6. When referencing package views in controllers, always use the `admin-core::` view namespace prefix: `view('admin-core::dashboard')`.
 7. **DO add** the `required` boolean property to `<x-ui.field-label>` tags (e.g., `<x-ui.field-label for="title" required>Title</x-ui.field-label>`) for all mandatory fields within forms. This ensures a red asterisk (`*`) is displayed next to the label.
+8. **DO use singular directory names** for storage directories (e.g., `blog/{id}/`, `service/{id}/`, not `blogs/`, `services/`).
+
 ---
 
 ## 9. Extending Core Forms (Form Builder Pattern)

@@ -5,13 +5,19 @@
     :image="$blog->featured_image"
 >
     <x-header />
-    <main class="bg-surface w-full pt-32">
+    <main class="bg-surface w-full">
         <div class="flex w-full flex-col">
             <!-- ARTICLE HEADER SECTION -->
-            <header class="bg-surface-container-low pt-space-xl pb-space-xl w-full">
-                <div class="max-w-max-content-width px-gutter-desktop mx-auto">
+            <header class="relative pt-40 pb-space-2xl w-full min-h-[60vh] flex flex-col justify-end">
+                @if ($blog->featured_image)
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ Storage::url($blog->featured_image) }}')"></div>
+                    <div class="absolute inset-0 bg-ridge-deep/60 bg-gradient-to-t from-ridge-deep/90 to-ridge-deep/20"></div>
+                @else
+                    <div class="absolute inset-0 bg-surface-container-high"></div>
+                @endif
+                <div class="max-w-max-content-width px-gutter-desktop mx-auto relative z-10 w-full">
                     <!-- Breadcrumbs -->
-                    <div class="gap-space-sm pb-space-md font-label-sm text-label-sm text-secondary flex flex-wrap items-center justify-between">
+                    <div class="gap-space-sm pb-space-md font-label-sm text-label-sm text-summit-white/70 flex flex-wrap items-center justify-between">
                         <nav aria-label="Breadcrumbs" class="gap-space-2xs flex items-center">
                             <a class="hover:text-primary transition-colors" href="{{ route('home') }}">Home</a>
                             <span>/</span>
@@ -24,24 +30,24 @@
                                 {{ $blog->category?->name ?? 'Uncategorized' }}
                             </a>
                             <span>/</span>
-                            <span class="text-on-surface max-w-xs truncate font-semibold md:max-w-md">{{ $blog->title }}</span>
+                            <span class="text-summit-white max-w-xs truncate font-semibold md:max-w-md">{{ $blog->title }}</span>
                         </nav>
                     </div>
 
                     <!-- Category -->
                     <div class="pt-space-xs pb-space-sm">
-                        <span class="gap-space-2xs px-space-sm bg-primary-container/15 text-on-primary-container font-badge-caption text-badge-caption inline-flex items-center rounded py-1 tracking-widest uppercase">
+                        <span class="gap-space-2xs px-space-sm bg-primary/20 text-primary font-badge-caption text-badge-caption inline-flex items-center rounded py-1 tracking-widest uppercase border border-primary/30">
                             <x-lucide-activity class="size-[14px]" />
-                            {{ $blog->category?->name ?? 'Dossier' }}
+                            {{ $blog->category?->name ?? 'Blog' }}
                         </span>
                     </div>
 
                     <!-- Headline & Subtitle -->
                     <div class="gap-space-sm flex max-w-4xl flex-col">
-                        <h1 class="font-display-xl text-headline-lg md:text-display-xl text-on-surface leading-tight tracking-tight">
+                        <h1 class="font-display-xl text-headline-lg md:text-display-xl text-summit-white leading-tight tracking-tight">
                             {{ $blog->title }}
                         </h1>
-                        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        <p class="font-body-lg text-body-lg text-summit-white/80 leading-relaxed">
                             {{ $blog->excerpt }}
                         </p>
                     </div>
@@ -49,48 +55,37 @@
                     <!-- Author Metadata -->
                     <div class="mt-space-md flex flex-wrap items-center gap-space-md">
                         <div class="gap-space-sm flex items-center">
-                            <div class="bg-surface-container-high text-on-surface flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full">
+                            <div class="bg-summit-white/10 text-summit-white flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-full backdrop-blur-sm">
                                 <span class="text-xs font-bold">{{ strtoupper(substr($blog->author?->name ?? 'NA', 0, 2)) }}</span>
                             </div>
                             <div class="gap-space-2xs flex items-center">
-                                <span class="font-label-sm text-label-sm text-on-surface font-medium">{{ $blog->author?->name ?? 'Neepa Team' }}</span>
+                                <span class="font-label-sm text-label-sm text-summit-white font-medium">{{ $blog->author?->name ?? 'Neepa Team' }}</span>
                                 <x-lucide-check-circle class="text-primary size-[14px]" title="Verified Author" />
                             </div>
                         </div>
-                        <div class="bg-surface-variant h-4 w-px hidden sm:block"></div>
-                        <div class="gap-space-2xs font-body-sm text-body-sm text-secondary flex items-center">
-                            <x-lucide-calendar class="text-tertiary size-[14px]" />
+                        <div class="bg-summit-white/20 h-4 w-px hidden sm:block"></div>
+                        <div class="gap-space-2xs font-body-sm text-body-sm text-summit-white/70 flex items-center">
+                            <x-lucide-calendar class="text-summit-white/50 size-[14px]" />
                             <span>{{ $blog->created_at->format('F d, Y') }}</span>
                         </div>
                     </div>
 
-                    <div class="mt-space-md flex flex-wrap items-center justify-between gap-space-sm pt-space-xs text-secondary font-label-sm text-label-sm">
-                        <div class="gap-space-xs flex items-center">
-                            <span class="text-on-surface-variant font-medium">Share Dossier:</span>
-                            <a aria-label="Share WhatsApp" class="bg-surface-container hover:bg-primary hover:text-on-primary flex h-7 w-7 items-center justify-center rounded transition-colors" href="#">
+                    <div class="mt-space-md flex flex-wrap items-center justify-between gap-space-sm pt-space-xs text-summit-white/70 font-label-sm text-label-sm border-t border-summit-white/10">
+                        <div class="gap-space-xs flex items-center mt-4">
+                            <span class="text-summit-white/90 font-medium">Share Blog:</span>
+                            <a aria-label="Share WhatsApp" class="bg-summit-white/10 hover:bg-primary hover:text-on-primary flex h-7 w-7 items-center justify-center rounded transition-colors backdrop-blur-sm" href="#">
                                 <x-lucide-message-circle class="size-[16px]" />
                             </a>
-                            <a aria-label="Share LinkedIn" class="bg-surface-container hover:bg-primary hover:text-on-primary flex h-7 w-7 items-center justify-center rounded transition-colors" href="#">
+                            <a aria-label="Share LinkedIn" class="bg-summit-white/10 hover:bg-primary hover:text-on-primary flex h-7 w-7 items-center justify-center rounded transition-colors backdrop-blur-sm" href="#">
                                 <x-lucide-linkedin class="size-[16px]" />
                             </a>
-                            <a aria-label="Copy Link" class="bg-surface-container hover:bg-primary hover:text-on-primary flex h-7 w-7 items-center justify-center rounded transition-colors" href="#" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!');">
+                            <a aria-label="Copy Link" class="bg-summit-white/10 hover:bg-primary hover:text-on-primary flex h-7 w-7 items-center justify-center rounded transition-colors backdrop-blur-sm" href="#" onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied!');">
                                 <x-lucide-link class="size-[16px]" />
                             </a>
                         </div>
                     </div>
                 </div>
             </header>
-
-            <!-- LEAD VISUAL -->
-            <section class="bg-surface pb-space-2xl w-full">
-                <div class="max-w-max-content-width px-gutter-desktop mx-auto">
-                    @if ($blog->featured_image)
-                    <div class="mt-space-md relative h-[380px] w-full overflow-hidden rounded-2xl shadow-xl md:h-[500px]">
-                        <div class="h-full w-full bg-cover bg-center" style="background-image: url('{{ Storage::url($blog->featured_image) }}')"></div>
-                    </div>
-                    @endif
-                </div>
-            </section>
 
             <!-- MAIN ARTICLE -->
             <section class="bg-surface pb-space-4xl w-full">

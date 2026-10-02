@@ -525,7 +525,7 @@
                         </h3>
                         <p class="font-body-md text-body-md text-tertiary">
                             Your route inquiry has been assigned to our Lead Treks Officer in Kathmandu. You will
-                            receive an initial alpine briefing dossier and WhatsApp call invitation within 4 hours.
+                            receive an initial alpine briefing blog and WhatsApp call invitation within 4 hours.
                         </p>
                     </div>
                     <button
