@@ -7,6 +7,7 @@ use Blaze\AdminCore\Models\LegalDocument;
 use Blaze\AdminCore\Models\Project;
 use Blaze\AdminCore\Models\Service;
 use Blaze\AdminCore\Models\SocialLink;
+use Blaze\AdminCore\Models\TeamMember;
 use Blaze\AdminCore\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -62,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
                     ->take(4)
                     ->get();
             }
-            
+
             if (Schema::hasTable('legal_documents')) {
                 $navLegalDocuments = LegalDocument::where('status', true)
                     ->latest()
@@ -79,7 +80,7 @@ class AppServiceProvider extends ServiceProvider
             ));
         });
 
-        \Blaze\AdminCore\Models\TeamMember::saving(function ($member) {
+        TeamMember::saving(function ($member) {
             // Map 'role' from the form to 'designation' in the database
             if ($member->isDirty('role') || array_key_exists('role', $member->getAttributes())) {
                 $member->designation = $member->getAttribute('role');

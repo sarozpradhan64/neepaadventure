@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\TrekController;
-use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ServiceDepartureController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +24,8 @@ Route::get('/plan-your-trek', [ContactController::class, 'planYourTrek'])->name(
 Route::post('/plan-your-trek', [ContactController::class, 'storePlanYourTrek'])->name('plan-your-trek.store');
 Route::get('/community', fn () => view('community'))->name('community');
 use App\Http\Controllers\Frontend\ProjectController;
+use Blaze\AdminCore\Models\LegalDocument;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
@@ -36,14 +38,15 @@ Route::get('/careers/{job:slug}/apply', [CareerController::class, 'apply'])->nam
 Route::post('/careers/{job:slug}/apply', [CareerController::class, 'submitApplication'])->name('careers.submit');
 
 Route::get('/legal', function () {
-    $legalDocuments = \Blaze\AdminCore\Models\LegalDocument::where('status', true)->latest()->get();
+    $legalDocuments = LegalDocument::where('status', true)->latest()->get();
+
     return view('legal-documents', compact('legalDocuments'));
 })->name('legal.index');
 
 Route::get('/legal/{slug}', function ($slug) {
-    $legalDocument = \Blaze\AdminCore\Models\LegalDocument::where('slug', $slug)->where('status', true)->firstOrFail();
+    $legalDocument = LegalDocument::where('slug', $slug)->where('status', true)->firstOrFail();
     if ($legalDocument->file_path) {
-        return redirect(\Illuminate\Support\Facades\Storage::disk('public')->url($legalDocument->file_path));
+        return redirect(Storage::disk('public')->url($legalDocument->file_path));
     }
     abort(404, 'Document file not found.');
 })->name('legal-document.show');

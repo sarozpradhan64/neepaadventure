@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Blaze\AdminCore\Models\Job;
 use Blaze\AdminCore\Models\JobApplication;
+use Blaze\AdminCore\Models\JobCategory;
 use Illuminate\Http\Request;
 
 class CareerController extends Controller
@@ -11,29 +12,32 @@ class CareerController extends Controller
     public function index()
     {
         $jobs = Job::with('category')->where('status', true)->orderBy('sort_order')->latest()->get();
-        $categories = \Blaze\AdminCore\Models\JobCategory::where('status', true)->orderBy('sort_order')->get();
+        $categories = JobCategory::where('status', true)->orderBy('sort_order')->get();
+
         return view('careers.index', compact('jobs', 'categories'));
     }
 
     public function show(Job $job)
     {
-        if (!$job->status) {
+        if (! $job->status) {
             abort(404);
         }
+
         return view('careers.show', compact('job'));
     }
 
     public function apply(Job $job)
     {
-        if (!$job->status) {
+        if (! $job->status) {
             abort(404);
         }
+
         return view('careers.apply', compact('job'));
     }
 
     public function submitApplication(Request $request, Job $job)
     {
-        if (!$job->status) {
+        if (! $job->status) {
             abort(404);
         }
 
@@ -59,7 +63,7 @@ class CareerController extends Controller
         if ($request->hasFile('license')) {
             $validated['license'] = $request->file('license')->store('job_applications/licenses', 'public');
         }
-        
+
         $otherDocs = [];
         if ($request->has('other_documents') && is_array($request->other_documents)) {
             foreach ($request->other_documents as $index => $docData) {
@@ -67,7 +71,7 @@ class CareerController extends Controller
                     $path = $request->file("other_documents.{$index}.file")->store('job_applications/other', 'public');
                     $otherDocs[] = [
                         'title' => $docData['title'],
-                        'file' => $path
+                        'file' => $path,
                     ];
                 }
             }

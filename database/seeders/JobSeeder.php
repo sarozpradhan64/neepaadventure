@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use Blaze\AdminCore\Models\Job;
 use Blaze\AdminCore\Models\JobCategory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class JobSeeder extends Seeder
 {
