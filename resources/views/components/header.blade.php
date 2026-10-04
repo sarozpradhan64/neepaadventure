@@ -193,7 +193,37 @@
                             </div>
                             <div>
                                 <div class="text-body-sm font-semibold text-on-surface">About Neepa Adventure</div>
-                                <div class="text-body-xs text-on-surface-variant">Our story & team</div>
+                                <div class="text-body-xs text-on-surface-variant">Our story</div>
+                            </div>
+                        </a>
+                        <a href="{{ route('team') }}"
+                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                            <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                <x-lucide-users class="size-5" />
+                            </div>
+                            <div>
+                                <div class="text-body-sm font-semibold text-on-surface">Our Team</div>
+                                <div class="text-body-xs text-on-surface-variant">Meet our experts</div>
+                            </div>
+                        </a>
+                        <a href="{{ route('reviews') }}"
+                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                            <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                <x-lucide-star class="size-5" />
+                            </div>
+                            <div>
+                                <div class="text-body-sm font-semibold text-on-surface">Reviews</div>
+                                <div class="text-body-xs text-on-surface-variant">What our customers say</div>
+                            </div>
+                        </a>
+                        <a href="{{ route('careers.index') }}"
+                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                            <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                <x-lucide-briefcase class="size-5" />
+                            </div>
+                            <div>
+                                <div class="text-body-sm font-semibold text-on-surface">Careers</div>
+                                <div class="text-body-xs text-on-surface-variant">Join our team</div>
                             </div>
                         </a>
 
@@ -317,6 +347,12 @@
                                     <a href="{{ route('about') }}"
                                         class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">About
                                         Neepa Adventure</a>
+                                    <a href="{{ route('team') }}"
+                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Our Team</a>
+                                    <a href="{{ route('reviews') }}"
+                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Reviews</a>
+                                    <a href="{{ route('careers.index') }}"
+                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Careers</a>
                                     @if (isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
                                         <a href="{{ route('legal.index') }}"
                                             class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Legal

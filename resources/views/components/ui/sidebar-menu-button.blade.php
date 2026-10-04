@@ -71,13 +71,13 @@
     >{{ $slot }}</a>
 @else
     <button
-        type="button"
+        type="{{ $attributes->get('type', 'button') }}"
         data-slot="sidebar-menu-button"
         data-sidebar="menu-button"
         data-size="{{ $size }}"
         @if ($isActive) data-active="true" @endif
         @if ($tooltip) x-ref="trigger" :aria-describedby="{{ $tipState }} ? $id('blat-tooltip') : null" @endif
-        {{ $attributes->twMerge($classes) }}
+        {{ $attributes->except('type')->twMerge($classes) }}
     >
         {{ $slot }}
     </button>

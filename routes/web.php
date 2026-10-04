@@ -5,10 +5,15 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\TrekController;
 use App\Http\Controllers\ServiceDepartureController;
+use Blaze\AdminCore\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', fn () => view('about'))->name('about');
+Route::get('/team', fn () => view('team', [
+    'teamMembers' => TeamMember::where('status', true)->orderBy('sort_order')->get(),
+]))->name('team');
+Route::get('/reviews', fn () => view('reviews'))->name('reviews');
 Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 
