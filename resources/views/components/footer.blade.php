@@ -19,6 +19,71 @@
                         href="mailto:{{ $contact?->email }}"
                     >{{ $contact?->email ?? 'Email us' }}</a>
                 </div>
+
+                <div class="pt-space-md max-w-md">
+                    <div class="font-label-md text-label-md text-on-surface font-bold tracking-wider uppercase mb-space-xs">
+                        Subscribe to our Newsletter
+                    </div>
+                    <form id="newsletter-form" action="{{ route('newsletter.subscribe') }}" method="POST" class="flex gap-2">
+                        @csrf
+                        <input type="email" id="newsletter-email" name="email" placeholder="Enter your email (e.g. @gmail.com)" required
+                            class="flex-1 px-4 py-2 bg-surface border border-outline/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                        <button type="submit" id="newsletter-submit" class="px-6 py-2 bg-primary text-on-primary rounded-lg font-bold hover:bg-primary/90 transition-colors text-sm">
+                            Subscribe
+                        </button>
+                    </form>
+                    <p id="newsletter-error" class="text-error text-xs mt-1 hidden"></p>
+                    <p id="newsletter-success" class="text-green-600 text-xs mt-1 hidden"></p>
+
+                    <script>
+                        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
+                            e.preventDefault();
+                            
+                            const form = e.target;
+                            const submitBtn = document.getElementById('newsletter-submit');
+                            const errorEl = document.getElementById('newsletter-error');
+                            const successEl = document.getElementById('newsletter-success');
+                            
+                            submitBtn.disabled = true;
+                            submitBtn.innerHTML = 'Wait...';
+                            errorEl.classList.add('hidden');
+                            successEl.classList.add('hidden');
+                            
+                            try {
+                                const formData = new FormData(form);
+                                const response = await fetch(form.action, {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest',
+                                        'Accept': 'application/json',
+                                    },
+                                    body: formData
+                                });
+                                
+                                const data = await response.json();
+                                
+                                if (!response.ok) {
+                                    if (response.status === 422) {
+                                        errorEl.innerText = data.errors.email[0];
+                                    } else {
+                                        errorEl.innerText = data.message || 'Something went wrong. Please try again.';
+                                    }
+                                    errorEl.classList.remove('hidden');
+                                } else {
+                                    successEl.innerText = data.message;
+                                    successEl.classList.remove('hidden');
+                                    form.reset();
+                                }
+                            } catch (err) {
+                                errorEl.innerText = 'Network error. Please try again.';
+                                errorEl.classList.remove('hidden');
+                            } finally {
+                                submitBtn.disabled = false;
+                                submitBtn.innerHTML = 'Subscribe';
+                            }
+                        });
+                    </script>
+                </div>
             </div>
             <div class="space-y-space-sm">
                 <div class="font-label-md text-label-md text-on-surface font-bold tracking-wider uppercase">
@@ -47,6 +112,7 @@
                     <li><a class="hover:text-primary transition-colors" href="{{ route('about') }}">About Us</a></li>
                     <li><a class="hover:text-primary transition-colors" href="{{ route('careers.index') }}">Careers</a></li>
                     <li><a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('write-review') }}">Write a Review</a></li>
                 </ul>
             </div>
             

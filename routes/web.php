@@ -21,13 +21,20 @@ Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 
 use App\Http\Controllers\Frontend\GalleryController;
+use App\Http\Controllers\Frontend\NewsletterController;
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/gallery/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 use App\Http\Controllers\Frontend\ContactController;
+
+use App\Http\Controllers\Frontend\ReviewController;
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/write-review', [ReviewController::class, 'create'])->name('write-review');
+Route::post('/write-review', [ReviewController::class, 'store'])->name('write-review.store');
+
 Route::get('/plan-your-trek', [ContactController::class, 'planYourTrek'])->name('plan-your-trek');
 Route::post('/plan-your-trek', [ContactController::class, 'storePlanYourTrek'])->name('plan-your-trek.store');
 Route::get('/community', fn () => view('community'))->name('community');

@@ -72,9 +72,24 @@
                             'siren'
                         ];
                     @endphp
+                    <!-- Interactive Floating Trip Search & Filter Bar -->
+                    <div
+                        class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-2xl rounded-full p-2 text-left mb-space-xl relative z-20 border border-outline/10">
+                        <form action="{{ route('treks') }}" method="GET" class="flex items-center gap-2">
+                            <div class="relative flex-1">
+                                <x-lucide-search class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary size-[22px]" />
+                                <input type="text" name="search" placeholder="Search Treks, Tours, Adventure & Authentic Nepal Experiences" 
+                                    class="w-full h-14 pl-12 pr-4 bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
+                            </div>
+                            <button type="submit"
+                                class="h-12 px-8 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-full transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0">
+                                <span>Explore</span>
+                            </button>
+                        </form>
+                    </div>
                     <!-- Quick Trust Proof Badges -->
                     <div
-                        class="gap-space-sm mb-space-2xl text-summit-white font-label-sm text-label-sm flex flex-wrap items-center justify-center">
+                        class="gap-space-sm text-summit-white font-label-sm text-label-sm flex flex-wrap items-center justify-center -mb-8 relative z-20">
                         @foreach($heroStats as $index => $stat)
                             @php
                                 $icon = !empty($stat['icon']) ? $stat['icon'] : $statIcons[$index % count($statIcons)];
@@ -88,21 +103,6 @@
                             </div>
                             @endif
                         @endforeach
-                    </div>
-                    <!-- Interactive Floating Trip Search & Filter Bar -->
-                    <div
-                        class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-2xl rounded-full p-2 text-left -mb-8 relative z-20 border border-outline/10">
-                        <form action="{{ route('treks') }}" method="GET" class="flex items-center gap-2">
-                            <div class="relative flex-1">
-                                <x-lucide-search class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary size-[22px]" />
-                                <input type="text" name="search" placeholder="Search Treks, Tours, Adventure & Authentic Nepal Experiences" 
-                                    class="w-full h-14 pl-12 pr-4 bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
-                            </div>
-                            <button type="submit"
-                                class="h-12 px-8 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-full transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0">
-                                <span>Explore</span>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </section>
