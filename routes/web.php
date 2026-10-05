@@ -9,11 +9,14 @@ use Blaze\AdminCore\Models\TeamMember;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/about', fn () => view('about'))->name('about');
-Route::get('/team', fn () => view('team', [
-    'teamMembers' => TeamMember::where('status', true)->orderBy('sort_order')->get(),
-]))->name('team');
-Route::get('/reviews', fn () => view('reviews'))->name('reviews');
+Route::prefix('about-us')->group(function () {
+    Route::get('/', fn () => view('about'))->name('about');
+    Route::get('/story', fn () => view('about'))->name('about.story');
+    Route::get('/team', fn () => view('team', [
+        'teamMembers' => TeamMember::where('status', true)->orderBy('sort_order')->get(),
+    ]))->name('team');
+    Route::get('/reviews', fn () => view('reviews'))->name('reviews');
+});
 Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 
@@ -37,10 +40,12 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blog-detail');
 
-Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
-Route::get('/careers/{job:slug}', [CareerController::class, 'show'])->name('careers.show');
-Route::get('/careers/{job:slug}/apply', [CareerController::class, 'apply'])->name('careers.apply');
-Route::post('/careers/{job:slug}/apply', [CareerController::class, 'submitApplication'])->name('careers.submit');
+Route::prefix('about-us')->group(function () {
+    Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
+    Route::get('/careers/{job:slug}', [CareerController::class, 'show'])->name('careers.show');
+    Route::get('/careers/{job:slug}/apply', [CareerController::class, 'apply'])->name('careers.apply');
+    Route::post('/careers/{job:slug}/apply', [CareerController::class, 'submitApplication'])->name('careers.submit');
+});
 
 use Blaze\AdminCore\Models\Page;
 
