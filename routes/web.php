@@ -43,8 +43,10 @@ Route::get('/careers/{job:slug}/apply', [CareerController::class, 'apply'])->nam
 Route::post('/careers/{job:slug}/apply', [CareerController::class, 'submitApplication'])->name('careers.submit');
 
 use Blaze\AdminCore\Models\Page;
+
 Route::get('/page/{slug}', function ($slug) {
     $page = Page::where('slug', $slug)->where('status', true)->firstOrFail();
+
     return view('page', compact('page'));
 })->name('pages.show');
 

@@ -13,9 +13,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contact = ContactInformation::first();
-
-        return view('contact', compact('contact'));
+        return view('contact');
     }
 
     public function store(Request $request)

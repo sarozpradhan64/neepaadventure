@@ -9,8 +9,8 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $featuredAlbums = GalleryAlbum::where('status', true)->where('is_featured', true)->orderBy('sort_order')->get();
-        $albums = GalleryAlbum::where('status', true)->where('is_featured', false)->orderBy('sort_order')->get();
+        $allAlbums = GalleryAlbum::cachedActive();
+        [$featuredAlbums, $albums] = $allAlbums->partition(fn ($album) => $album->is_featured);
 
         return view('gallery.index', compact('featuredAlbums', 'albums'));
     }

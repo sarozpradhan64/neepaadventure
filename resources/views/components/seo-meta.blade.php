@@ -6,9 +6,9 @@
 ])
 
 @php
-    $finalTitle = $seo?->meta_title ?? $title ?? $websiteSettings['seo_default_title'] ?? config('app.name', 'Neepa Adventure');
-    $finalDescription = $seo?->meta_description ?? $description ?? $websiteSettings['seo_default_description'] ?? 'Experience the best trekking, climbing, and adventure tours in Nepal.';
-    $finalImage = $seo?->og_image ?? $image ?? $websiteSettings['seo_default_image'];
+    $finalTitle = $seo?->meta_title ?? $title ?? ($websiteSettings['seo_default_title'] ?? config('app.name', 'Neepa Adventure'));
+    $finalDescription = $seo?->meta_description ?? $description ?? ($websiteSettings['seo_default_description'] ?? 'Experience the best trekking, climbing, and adventure tours in Nepal.');
+    $finalImage = $seo?->og_image ?? $image ?? ($websiteSettings['seo_default_image'] ?? null);
     $finalImageUrl = $finalImage ? (Str::startsWith($finalImage, 'http') ? $finalImage : Storage::url($finalImage)) : null;
 @endphp
 

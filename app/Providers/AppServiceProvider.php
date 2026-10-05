@@ -4,13 +4,10 @@ namespace App\Providers;
 
 use Blaze\AdminCore\Models\ContactInformation;
 use Blaze\AdminCore\Models\LegalDocument;
-use Blaze\AdminCore\Models\Project;
-use Blaze\AdminCore\Models\Service;
+use Blaze\AdminCore\Models\Menu;
 use Blaze\AdminCore\Models\SocialLink;
 use Blaze\AdminCore\Models\TeamMember;
 use Blaze\AdminCore\Models\WebsiteSetting;
-use Blaze\AdminCore\Models\Menu;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,7 +18,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        if (file_exists(app_path('helpers.php'))) {
+            require_once app_path('helpers.php');
+        }
     }
 
     /**
@@ -30,67 +29,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view): void {
-            $contact = null;
-            $socials = collect();
-            $websiteSettings = [];
-            $navServices = collect();
-            $navProjects = collect();
-            $navLegalDocuments = collect();
-            $navMenus = collect();
-
-            if (Schema::hasTable('contact_information')) {
-                $contact = ContactInformation::first();
-            }
-
-            if (Schema::hasTable('social_links')) {
-                $socials = SocialLink::where('status', true)
-                    ->orderBy('sort_order')
-                    ->get();
-            }
-
-            if (Schema::hasTable('website_settings')) {
-                $websiteSettings = WebsiteSetting::pluck('value', 'key')->toArray();
-            }
-
-            if (Schema::hasTable('services')) {
-                $navServices = Service::where('status', true)
-                    ->orderBy('sort_order')
-                    ->take(5)
-                    ->get();
-            }
-
-            if (Schema::hasTable('projects')) {
-                $navProjects = Project::where('status', true)
-                    ->orderBy('sort_order')
-                    ->take(4)
-                    ->get();
-            }
-
-            if (Schema::hasTable('legal_documents')) {
-                $navLegalDocuments = LegalDocument::where('status', true)
-                    ->latest()
-                    ->get();
-            }
-
-            if (Schema::hasTable('menus')) {
-                $navMenus = Menu::whereNull('parent_id')
-                    ->where('status', true)
-                    ->orderBy('sort_order')
-                    ->with(['children' => function ($query) {
-                        $query->where('status', true)->orderBy('sort_order');
-                    }])
-                    ->get();
-            }
-
-            $view->with(compact(
-                'contact',
-                'socials',
-                'websiteSettings',
-                'navServices',
-                'navProjects',
-                'navLegalDocuments',
-                'navMenus',
-            ));
+            $view->with([
+                'contact' => ContactInformation::cached(),
+                'socials' => SocialLink::cached(),
+                'websiteSettings' => WebsiteSetting::cached(),
+                'navLegalDocuments' => LegalDocument::cached(),
+                'navMenus' => Menu::cachedTree(),
+            ]);
         });
 
         TeamMember::saving(function ($member) {
