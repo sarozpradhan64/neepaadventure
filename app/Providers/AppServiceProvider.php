@@ -9,6 +9,7 @@ use Blaze\AdminCore\Models\Service;
 use Blaze\AdminCore\Models\SocialLink;
 use Blaze\AdminCore\Models\TeamMember;
 use Blaze\AdminCore\Models\WebsiteSetting;
+use Blaze\AdminCore\Models\Menu;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
             $navServices = collect();
             $navProjects = collect();
             $navLegalDocuments = collect();
+            $navMenus = collect();
 
             if (Schema::hasTable('contact_information')) {
                 $contact = ContactInformation::first();
@@ -70,6 +72,16 @@ class AppServiceProvider extends ServiceProvider
                     ->get();
             }
 
+            if (Schema::hasTable('menus')) {
+                $navMenus = Menu::whereNull('parent_id')
+                    ->where('status', true)
+                    ->orderBy('sort_order')
+                    ->with(['children' => function ($query) {
+                        $query->where('status', true)->orderBy('sort_order');
+                    }])
+                    ->get();
+            }
+
             $view->with(compact(
                 'contact',
                 'socials',
@@ -77,6 +89,7 @@ class AppServiceProvider extends ServiceProvider
                 'navServices',
                 'navProjects',
                 'navLegalDocuments',
+                'navMenus',
             ));
         });
 

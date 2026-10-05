@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-32">
+    <main class="bg-surface w-full pt-28">
         <div class="flex w-full flex-col">
             <!-- Curated Featured Photo Essays & Highlights -->
             @if($featuredAlbums->count() > 0)

@@ -34,13 +34,19 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
-Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog-detail');
+Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
+Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blog-detail');
 
 Route::get('/careers', [CareerController::class, 'index'])->name('careers.index');
 Route::get('/careers/{job:slug}', [CareerController::class, 'show'])->name('careers.show');
 Route::get('/careers/{job:slug}/apply', [CareerController::class, 'apply'])->name('careers.apply');
 Route::post('/careers/{job:slug}/apply', [CareerController::class, 'submitApplication'])->name('careers.submit');
+
+use Blaze\AdminCore\Models\Page;
+Route::get('/page/{slug}', function ($slug) {
+    $page = Page::where('slug', $slug)->where('status', true)->firstOrFail();
+    return view('page', compact('page'));
+})->name('pages.show');
 
 Route::get('/legal', function () {
     $legalDocuments = LegalDocument::where('status', true)->latest()->get();

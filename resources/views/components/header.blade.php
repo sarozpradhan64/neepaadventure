@@ -4,6 +4,13 @@
     <div class="bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop">
         <div class="max-w-max-content-width text-body-sm mx-auto flex h-9 items-center justify-between">
             <div class="gap-space-md flex items-center">
+                @if ($contact?->registration_number)
+                    <span class="gap-space-2xs text-on-surface-variant font-label-sm text-label-sm flex items-center">
+                        <x-lucide-file-text class="text-primary size-[16px]" />
+                        Regd: {{ $contact->registration_number }}
+                    </span>
+                    <div class="h-4 w-px bg-outline/20 hidden md:block"></div>
+                @endif
                 @foreach ($socials ?? [] as $social)
                     <a href="{{ $social->url }}" target="_blank" rel="noopener noreferrer"
                         class="text-tertiary hover:text-primary gap-space-2xs font-label-sm text-label-sm flex items-center font-semibold tracking-wider uppercase transition-colors"
@@ -155,103 +162,62 @@
                 </div>
             </div>
 
-            {{-- Projects Link --}}
-            <div class="py-6">
-                <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('projects*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                    href="{{ route('projects') }}">Projects</a>
-            </div>
-
-            {{-- Standard Links --}}
-            <div class="py-6">
-                <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('gallery') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                    href="{{ route('gallery') }}">Gallery</a>
-            </div>
-
-            <div class="py-6">
-                <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('blog') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                    href="{{ route('blog') }}">Blogs</a>
-            </div>
-
-            {{-- About Us Dropdown --}}
-            <div class="group relative py-6">
-                <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('about*') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
-                    href="{{ route('about') }}">
-                    About Us
-                    <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
-                </a>
-                <div
-                    class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[350px]">
-                    <div class="bg-surface rounded-2xl shadow-xl border border-outline/10 p-4">
-                        <div class="mb-2 px-3">
-                            <h3 class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase">
-                                Company</h3>
+            @foreach($navMenus as $menu)
+                @if($menu->children->isNotEmpty())
+                    <div class="group relative py-6">
+                        <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->url() == url($menu->url ?? '') || (isset($menu->url) && request()->is(ltrim($menu->url, '/').'*')) ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
+                            href="{{ $menu->url }}">
+                            {{ $menu->title }}
+                            <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
+                        </a>
+                        <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[350px]">
+                            <div class="bg-surface rounded-2xl shadow-xl border border-outline/10 p-4">
+                                <div class="mb-2 px-3">
+                                    <h3 class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase">
+                                        {{ $menu->title }}</h3>
+                                </div>
+                                @foreach($menu->children as $child)
+                                    <a href="{{ $child->url }}"
+                                        class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                                        @if($child->icon)
+                                            <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                                <x-dynamic-component :component="'lucide-' . $child->icon" class="size-5" />
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <div class="text-body-sm font-semibold text-on-surface">{{ $child->title }}</div>
+                                            @if($child->subtitle)
+                                                <div class="text-body-xs text-on-surface-variant">{{ $child->subtitle }}</div>
+                                            @endif
+                                        </div>
+                                    </a>
+                                @endforeach
+                                @if(strtolower($menu->title) === 'about us' && isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
+                                    <div class="mt-4 mb-2 px-3 border-t border-outline/10 pt-4">
+                                        <h3 class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase">
+                                            Legal & Policies</h3>
+                                    </div>
+                                    <a href="{{ route('legal.index') }}"
+                                        class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                                        <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                            <x-lucide-scale class="size-4" />
+                                        </div>
+                                        <div>
+                                            <div class="text-body-sm font-semibold text-on-surface">Legal Documents</div>
+                                            <div class="text-body-xs text-on-surface-variant">View all policies</div>
+                                        </div>
+                                    </a>
+                                @endif
+                            </div>
                         </div>
-                        <a href="{{ route('about') }}"
-                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
-                            <div class="bg-primary/10 text-primary rounded-lg p-2">
-                                <x-lucide-users class="size-5" />
-                            </div>
-                            <div>
-                                <div class="text-body-sm font-semibold text-on-surface">About Neepa Adventure</div>
-                                <div class="text-body-xs text-on-surface-variant">Our story</div>
-                            </div>
-                        </a>
-                        <a href="{{ route('team') }}"
-                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
-                            <div class="bg-primary/10 text-primary rounded-lg p-2">
-                                <x-lucide-users class="size-5" />
-                            </div>
-                            <div>
-                                <div class="text-body-sm font-semibold text-on-surface">Our Team</div>
-                                <div class="text-body-xs text-on-surface-variant">Meet our experts</div>
-                            </div>
-                        </a>
-                        <a href="{{ route('reviews') }}"
-                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
-                            <div class="bg-primary/10 text-primary rounded-lg p-2">
-                                <x-lucide-star class="size-5" />
-                            </div>
-                            <div>
-                                <div class="text-body-sm font-semibold text-on-surface">Reviews</div>
-                                <div class="text-body-xs text-on-surface-variant">What our customers say</div>
-                            </div>
-                        </a>
-                        <a href="{{ route('careers.index') }}"
-                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
-                            <div class="bg-primary/10 text-primary rounded-lg p-2">
-                                <x-lucide-briefcase class="size-5" />
-                            </div>
-                            <div>
-                                <div class="text-body-sm font-semibold text-on-surface">Careers</div>
-                                <div class="text-body-xs text-on-surface-variant">Join our team</div>
-                            </div>
-                        </a>
-
-                        @if (isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
-                            <div class="mt-4 mb-2 px-3 border-t border-outline/10 pt-4">
-                                <h3
-                                    class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase">
-                                    Legal & Policies</h3>
-                            </div>
-                            <a href="{{ route('legal.index') }}"
-                                class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
-                                <div class="bg-primary/10 text-primary rounded-lg p-2">
-                                    <x-lucide-scale class="size-4" />
-                                </div>
-                                <div>
-                                    <div class="text-body-sm font-semibold text-on-surface">Legal Documents</div>
-                                    <div class="text-body-xs text-on-surface-variant">View all policies</div>
-                                </div>
-                            </a>
-                        @endif
                     </div>
-                </div>
-            </div>
-
-            <div class="py-6">
-                <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->routeIs('contact') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                    href="{{ route('contact') }}">Contact Us</a>
-            </div>
+                @else
+                    <div class="py-6">
+                        <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->url() == url($menu->url ?? '') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
+                            href="{{ $menu->url }}">{{ $menu->title }}</a>
+                    </div>
+                @endif
+            @endforeach
         </nav>
 
         <div class="gap-space-sm flex items-center">
@@ -329,41 +295,31 @@
                                 </div>
                             </div>
 
-                            <a href="{{ route('projects') }}"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 {{ request()->routeIs('projects*') ? 'bg-primary-container text-on-primary-container' : 'text-on-surface hover:bg-surface-container-low' }} transition-colors">Projects</a>
-                            <a href="{{ route('gallery') }}"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 {{ request()->routeIs('gallery') ? 'bg-primary-container text-on-primary-container' : 'text-on-surface hover:bg-surface-container-low' }} transition-colors">Gallery</a>
-                            <a href="{{ route('blog') }}"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 {{ request()->routeIs('blog') ? 'bg-primary-container text-on-primary-container' : 'text-on-surface hover:bg-surface-container-low' }} transition-colors">Blogs</a>
-
-                            <div x-data="{ open: false }">
-                                <button @click="open = !open"
-                                    class="-mx-3 flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-surface-container-low transition-colors text-on-surface">
-                                    About Us
-                                    <x-lucide-chevron-down class="size-4 transition-transform duration-200"
-                                        x-bind:class="{ 'rotate-180': open }" />
-                                </button>
-                                <div x-show="open" class="mt-2 space-y-2" x-transition>
-                                    <a href="{{ route('about') }}"
-                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">About
-                                        Neepa Adventure</a>
-                                    <a href="{{ route('team') }}"
-                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Our Team</a>
-                                    <a href="{{ route('reviews') }}"
-                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Reviews</a>
-                                    <a href="{{ route('careers.index') }}"
-                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Careers</a>
-                                    @if (isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
-                                        <a href="{{ route('legal.index') }}"
-                                            class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Legal
-                                            Documents</a>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <a href="{{ route('contact') }}"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 {{ request()->routeIs('contact') ? 'bg-primary-container text-on-primary-container' : 'text-on-surface hover:bg-surface-container-low' }} transition-colors">Contact
-                                Us</a>
+                            @foreach($navMenus as $menu)
+                                @if($menu->children->isNotEmpty())
+                                    <div x-data="{ open: false }">
+                                        <button @click="open = !open"
+                                            class="-mx-3 flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-surface-container-low transition-colors text-on-surface">
+                                            {{ $menu->title }}
+                                            <x-lucide-chevron-down class="size-4 transition-transform duration-200"
+                                                x-bind:class="{ 'rotate-180': open }" />
+                                        </button>
+                                        <div x-show="open" class="mt-2 space-y-2" x-transition>
+                                            @foreach($menu->children as $child)
+                                                <a href="{{ $child->url }}"
+                                                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">{{ $child->title }}</a>
+                                            @endforeach
+                                            @if(strtolower($menu->title) === 'about us' && isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
+                                                <a href="{{ route('legal.index') }}"
+                                                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Legal Documents</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @else
+                                    <a href="{{ $menu->url }}"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 {{ request()->url() == url($menu->url ?? '') ? 'bg-primary-container text-on-primary-container' : 'text-on-surface hover:bg-surface-container-low' }} transition-colors">{{ $menu->title }}</a>
+                                @endif
+                            @endforeach
                         </div>
                         <div class="py-6">
                             <a href="{{ route('plan-your-trek') }}"

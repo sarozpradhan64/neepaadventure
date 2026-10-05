@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Blaze\AdminCore\Database\Seeders\AdminSeeder;
+use Blaze\AdminCore\Database\Seeders\DefaultMenuSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
             HomePageSettingsSeeder::class,
             SeoSettingsSeeder::class,
             JobSeeder::class,
+            DefaultMenuSeeder::class,
         ]);
     }
 }

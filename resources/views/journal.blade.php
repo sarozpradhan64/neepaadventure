@@ -1,19 +1,14 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-48">
+    <main class="bg-surface w-full pt-28">
         <div class="flex w-full flex-col">
 
             <!-- Editorial Hero Section -->
-            <section class="bg-surface-container-lowest px-gutter-desktop pt-space-2xl pb-space-2xl w-full">
+            <section class="bg-surface-container-low px-gutter-desktop pt-space-2xl pb-space-2xl w-full">
                 <div class="max-w-max-content-width gap-space-xl mx-auto flex flex-col">
                     <div class="gap-space-xs flex flex-col">
-                        <div class="gap-space-sm flex items-center">
-                            <span class="font-badge-caption text-badge-caption text-primary tracking-widest uppercase">Field Dispatches &amp; Himalayan Intelligence</span>
-                            <span class="text-secondary">•</span>
-                            <span class="font-badge-caption text-badge-caption text-secondary tracking-widest uppercase">Neepa Alpine Archives</span>
-                        </div>
-                        <h1 class="font-display-xl text-display-xl text-on-surface max-w-4xl tracking-tight uppercase">
-                            Stories from the Himalayas
+                        <h1 class="text-display-xl text-on-surface max-w-4xl tracking-tight">
+                            Nepal Travel Guides
                         </h1>
                     </div>
                     <!-- Search & Category Bar -->
@@ -23,7 +18,7 @@
                             <input
                                 name="search"
                                 value="{{ request('search') }}"
-                                class="pr-space-md bg-surface-container-low text-on-surface placeholder:text-secondary font-body-md text-body-md focus:bg-surface-container-lowest w-full rounded-lg py-3.5 pl-12 shadow-sm transition-all focus:outline-none"
+                                class="pr-space-md text-on-surface placeholder:text-secondary font-body-md text-body-md bg-surface-container-lowest w-full rounded-lg py-3.5 pl-12 shadow-sm transition-all focus:outline-none"
                                 placeholder="Search blog posts..."
                                 type="text"
                             />
@@ -112,18 +107,18 @@
                     </div>
                 </section>
             @endif
+
             <!-- Curated Dispatches & Field Notes Strip Section -->
+            @if(!empty($blogs))
             <section class="bg-surface-container-low px-gutter-desktop py-space-3xl w-full">
                 <div class="max-w-max-content-width gap-space-2xl mx-auto flex flex-col">
                     <!-- Section Header -->
                     <div class="gap-space-md flex flex-col justify-between sm:flex-row sm:items-end">
                         <div>
-                            <span class="font-badge-caption text-badge-caption text-primary tracking-widest uppercase">Intelligence Repository</span>
                             <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                Curated Alpine Posts
+                                Other Travel Guides
                             </h2>
                         </div>
-                        <span class="font-body-sm text-body-sm text-secondary">Displaying 6 of 48 peer-reviewed articles</span>
                     </div>
                     <!-- Main Layout: 8 cols Articles + 4 cols Sticky Field Notes -->
                     <div class="gap-space-xl grid grid-cols-1 lg:grid-cols-12">
@@ -190,6 +185,8 @@
                     </div>
                 </div>
             </section>
+            @endif 
+
             <!-- Editorial Newsletter / Trek Briefing Box -->
             <section class="bg-surface-container-highest px-gutter-desktop py-space-3xl w-full">
                 <div class="max-w-max-content-width mx-auto">
@@ -215,7 +212,7 @@
                                 </span>
                             </div>
                             <h2 class="font-headline-lg text-headline-lg text-summit-white tracking-tight">
-                                Join 14,000+ Himalayan Trekkers &amp; Climbers
+                                Join 5,000+ Himalayan Trekkers &amp; Climbers
                             </h2>
                             <p class="font-body-md text-body-md text-surface-dim">
                                 Receive seasonal permit bulletins, route conditions reports, and exclusive trek case
@@ -228,9 +225,6 @@
                                 <span class="gap-space-2xs flex items-center"
                                     ><x-lucide-check-circle class="text-primary-container size-[16px]"
                                         />Unsubscribe anytime</span>
-                                <span class="gap-space-2xs flex items-center"
-                                    ><x-lucide-check-circle class="text-primary-container size-[16px]"
-                                        />Dispatched bi-weekly</span>
                             </div>
                         </div>
                         <!-- Subscription Form -->
@@ -246,7 +240,7 @@
                                     class="px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md rounded py-3.5 tracking-wider whitespace-nowrap uppercase transition-colors"
                                     type="submit"
                                 >
-                                    Receive Dispatches
+                                    Subscribe
                                 </button>
                             </form>
                             <span class="text-surface-dim/80 text-center text-[11px] sm:text-left">

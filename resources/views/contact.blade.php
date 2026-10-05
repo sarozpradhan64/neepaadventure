@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-48">
+    <main class="bg-surface w-full pt-28">
         <div class="flex w-full flex-col">
             <!-- Two-Column Operations & Consultation Hub -->
             <section class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop py-space-3xl mx-auto w-full">
