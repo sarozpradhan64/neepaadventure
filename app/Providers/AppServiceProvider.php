@@ -21,6 +21,13 @@ class AppServiceProvider extends ServiceProvider
         if (file_exists(app_path('helpers.php'))) {
             require_once app_path('helpers.php');
         }
+
+        $this->app->extend(\TailwindMerge\Contracts\TailwindMergeContract::class, function ($service, $app) {
+            return \TailwindMerge\TailwindMerge::factory()
+                ->withConfiguration(config('tailwind-merge', []))
+                ->withCache($app->make('cache')->store('array'))
+                ->make();
+        });
     }
 
     /**
