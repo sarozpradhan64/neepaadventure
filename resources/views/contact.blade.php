@@ -255,8 +255,7 @@
                                     <x-lucide-clock-3 class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
                                     <div class="">
                                         <strong class="text-on-surface block font-medium">Operations Hours (NPT)</strong>
-                                        Sunday – Friday: 08:00 – 19:00 NPT<br />
-                                        Saturday: Standby Duty Officer on site
+                                        {!! nl2br($contact?->working_hours) !!}
                                     </div>
                                 </div>
                             </div>
