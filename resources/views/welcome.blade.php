@@ -248,6 +248,60 @@
                     </div>
                 </div>
             </section>
+            <!-- 2026/27 GUARANTEED DEPARTURES SECTION (MODERN) -->
+            <section class="py-space-3xl relative w-full overflow-hidden bg-white">
+                <!-- Decorative background elements -->
+                <div class="absolute inset-0 pointer-events-none overflow-hidden">
+                    <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary-container/10 blur-[100px]"></div>
+                    <div class="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-tertiary/5 blur-[120px]"></div>
+                </div>
+
+                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto">
+                    <!-- Section Header -->
+                    <div class="mb-space-2xl flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
+                        <div class="max-w-2xl">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary mb-space-sm">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                </span>
+                                <span class="font-badge-caption text-badge-caption font-bold tracking-[0.2em] uppercase">Limited Slots</span>
+                            </div>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">
+                                2026/27 <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-amber-500">Guaranteed Departures</span>
+                            </h2>
+                            <p class="font-body-md text-body-md text-tertiary">
+                                Lock in your adventure early. Fixed departure dates with confirmed groups, expert lead guides, and early-bird savings.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-space-sm shrink-0">
+                            <div class="relative group">
+                                <select id="season-filter" class="appearance-none bg-surface-container-lowest border-2 border-outline/10 hover:border-primary/30 rounded-xl pl-5 pr-12 py-3 text-on-surface font-label-md font-bold focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all cursor-pointer">
+                                    <option value="">All Seasons</option>
+                                    <option value="autumn">Autumn (Oct - Nov)</option>
+                                    <option value="spring">Spring (Mar - May)</option>
+                                </select>
+                                <x-lucide-chevron-down class="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-tertiary pointer-events-none group-hover:text-primary transition-colors" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modern Ticket-Style Cards -->
+                    <div id="departures-container" class="space-y-space-md">
+                        @include('components.departures-list', ['departures' => $departures])
+                    </div>
+                    
+                    <!-- Footer Link -->
+                    <div class="mt-space-xl text-center md:text-left flex justify-center md:justify-start">
+                        <a href="{{ route('schedules') }}" class="group inline-flex items-center gap-3 font-label-md font-bold text-on-surface uppercase tracking-wider hover:text-primary transition-colors py-2 px-4 rounded-full border border-transparent hover:border-primary/20 hover:bg-primary/5">
+                            Explore All Schedules 
+                            <span class="bg-primary/10 text-primary group-hover:bg-primary group-hover:text-on-primary p-1.5 rounded-full transition-colors">
+                                <x-lucide-arrow-right class="size-4" />
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </section>
             <!-- INTERACTIVE ALTITUDE & ACCLIMATIZATION GUIDE STRIP -->
             <section class="bg-ridge-deep py-space-3xl text-summit-white relative w-full overflow-hidden">
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto">
@@ -814,4 +868,33 @@
         </script>
     </main>
     <x-footer />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const seasonFilter = document.getElementById('season-filter');
+            const departuresContainer = document.getElementById('departures-container');
+
+            if (seasonFilter && departuresContainer) {
+                seasonFilter.addEventListener('change', function () {
+                    const season = this.value;
+                    
+                    departuresContainer.style.opacity = '0.5';
+                    
+                    fetch(`{{ route('schedules') }}?season=${season}`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.text())
+                    .then(html => {
+                        departuresContainer.innerHTML = html;
+                        departuresContainer.style.opacity = '1';
+                    })
+                    .catch(error => {
+                        console.error('Error fetching departures:', error);
+                        departuresContainer.style.opacity = '1';
+                    });
+                });
+            }
+        });
+    </script>
 </x-layouts.app>

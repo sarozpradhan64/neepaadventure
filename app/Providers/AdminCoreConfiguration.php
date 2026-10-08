@@ -52,6 +52,14 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
                 attributes: ['step' => '0.01'],
             ),
             ServiceFormField::make(
+                name: 'discount_amount',
+                type: 'number',
+                label: 'Discount Amount (USD)',
+                placeholder: '0.00',
+                validationRule: 'nullable|numeric|min:0|lte:price_from',
+                attributes: ['step' => '0.01'],
+            ),
+            ServiceFormField::make(
                 name: 'difficulty_level',
                 type: 'select',
                 label: 'Difficulty Level',
@@ -112,10 +120,10 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
             ),
             ServiceFormField::make(
                 name: 'deposit_requirement',
-                type: 'text',
-                label: 'Deposit Requirement',
-                placeholder: 'e.g. 20% ($350 USD)',
-                validationRule: 'nullable|string|max:255',
+                type: 'number',
+                label: 'Deposit Requirement (%)',
+                placeholder: 'e.g. 20',
+                validationRule: 'nullable|integer|between:1,100',
             ),
             ServiceFormField::make(
                 name: 'heli_evac_coverage',

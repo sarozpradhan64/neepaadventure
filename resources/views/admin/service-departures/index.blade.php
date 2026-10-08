@@ -13,6 +13,30 @@
         </div>
 
         <x-ui.card>
+            <div class="border-b border-border p-4">
+                <form method="GET" action="{{ route('admin.service-departures.index') }}" class="flex flex-col sm:flex-row gap-4 items-end">
+                    <div class="w-full sm:max-w-xs">
+                        <label for="search" class="text-sm font-medium leading-none mb-1 block">Search Service</label>
+                        <input type="text" name="search" id="search" value="{{ request('search') }}" placeholder="Search by title..." class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                    </div>
+                    <div class="w-full sm:max-w-xs">
+                        <label for="status" class="text-sm font-medium leading-none mb-1 block">Status</label>
+                        <select name="status" id="status" class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                            <option value="">All Statuses</option>
+                            <option value="Available" @selected(request('status') === 'Available')>Available</option>
+                            <option value="Guaranteed" @selected(request('status') === 'Guaranteed')>Guaranteed</option>
+                            <option value="Full" @selected(request('status') === 'Full')>Full</option>
+                            <option value="Cancelled" @selected(request('status') === 'Cancelled')>Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <x-ui.button type="submit">Filter</x-ui.button>
+                        @if(request()->hasAny(['search', 'status']))
+                            <x-ui.button href="{{ route('admin.service-departures.index') }}" variant="outline">Clear</x-ui.button>
+                        @endif
+                    </div>
+                </form>
+            </div>
             <div class="relative w-full overflow-auto rounded-lg">
                 <table class="w-full caption-bottom text-sm">
                     <thead class="bg-muted/50 border-border border-b">

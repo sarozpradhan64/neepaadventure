@@ -19,6 +19,8 @@ Route::prefix('about-us')->group(function () {
 });
 Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
+use App\Http\Controllers\Frontend\ScheduleController;
+Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules');
 
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\NewsletterController;

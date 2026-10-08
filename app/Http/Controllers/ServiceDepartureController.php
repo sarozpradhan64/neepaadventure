@@ -8,9 +8,22 @@ use Illuminate\Http\Request;
 
 class ServiceDepartureController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $departures = ServiceDeparture::with('service')->orderBy('start_date', 'asc')->paginate(20);
+        $query = ServiceDeparture::with('service')->orderBy('start_date', 'asc');
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->whereHas('service', function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->input('status'));
+        }
+
+        $departures = $query->paginate(20)->withQueryString();
 
         return view('admin.service-departures.index', compact('departures'));
     }
