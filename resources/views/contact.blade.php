@@ -311,6 +311,18 @@
                                         </div>
                                     </div>
                                 @endif
+                                @if ($contact?->secondary_phone)
+                                    <div class="gap-space-sm flex items-start">
+                                        <x-lucide-phone class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
+                                        <div>
+                                            <strong class="text-on-surface block font-medium">Secondary Phone</strong>
+                                            <a
+                                                class="hover:text-primary transition-colors"
+                                                href="tel:{{ preg_replace('/[^0-9+]/', '', $contact->secondary_phone) }}"
+                                            >{{ $contact->secondary_phone }}</a>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="gap-space-sm flex items-start">
                                     <x-lucide-mail class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
                                     <div>
@@ -321,6 +333,18 @@
                                             >{{ $contact?->email ?? 'Email us' }}</a>
                                     </div>
                                 </div>
+                                @if ($contact?->secondary_email)
+                                    <div class="gap-space-sm flex items-start">
+                                        <x-lucide-mail class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
+                                        <div>
+                                            <strong class="text-on-surface block font-medium">Secondary Email</strong
+                                            ><a
+                                                class="text-on-surface hover:text-primary block transition-colors"
+                                                href="mailto:{{ $contact->secondary_email }}"
+                                                >{{ $contact->secondary_email }}</a>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="gap-space-sm flex items-start">
                                     <x-lucide-clock-3 class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
                                     <div class="">
