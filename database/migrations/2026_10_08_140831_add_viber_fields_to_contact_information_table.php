@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('enquiries', function (Blueprint $table) {
-            $table->json('service_ids')->nullable();
+        Schema::table('contact_information', function (Blueprint $table) {
+            $table->string('viber')->nullable()->after('whatsapp_name');
+            $table->string('viber_name')->nullable()->after('viber');
         });
     }
 
@@ -21,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('enquiries', function (Blueprint $table) {
-            $table->dropColumn('service_ids');
+        Schema::table('contact_information', function (Blueprint $table) {
+            $table->dropColumn(['viber', 'viber_name']);
         });
     }
 };

@@ -234,7 +234,15 @@
                                 @php
                                     $phoneClean = preg_replace('/[^0-9+]/', '', $contact?->phone ?? '');
                                     $whatsappClean = preg_replace('/[^0-9+]/', '', $contact?->whatsapp ?? '');
-                                    $isSameNumber = $contact?->whatsapp && $phoneClean === $whatsappClean;
+                                    $viberClean = preg_replace('/[^0-9+]/', '', $contact?->viber ?? '');
+
+                                    $hasPhone = (bool) $phoneClean;
+                                    $hasWhatsapp = (bool) $whatsappClean;
+                                    $hasViber = (bool) $viberClean;
+
+                                    $phoneIsWhatsapp = $hasPhone && $hasWhatsapp && $phoneClean === $whatsappClean;
+                                    $phoneIsViber = $hasPhone && $hasViber && $phoneClean === $viberClean;
+                                    $whatsappIsViber = $hasWhatsapp && $hasViber && $whatsappClean === $viberClean;
                                 @endphp
 
                                 <div class="gap-space-sm flex items-start">
@@ -246,20 +254,30 @@
                                                 class="hover:text-primary transition-colors"
                                                 href="tel:{{ $phoneClean }}"
                                             >{{ $contact?->phone ?? 'Contact us' }}</a>
-                                            @if($isSameNumber)
-                                                <span class="text-tertiary text-sm">(WhatsApp/Viber)</span>
-                                                @if ($contact->whatsapp_name)
-                                                    <span class="text-tertiary text-sm">({{ $contact->whatsapp_name }})</span>
-                                                @endif
+                                            
+                                            @php
+                                                $phoneTags = [];
+                                                if ($phoneIsWhatsapp) $phoneTags[] = 'WhatsApp';
+                                                if ($phoneIsViber) $phoneTags[] = 'Viber';
+                                            @endphp
+                                            
+                                            @if(!empty($phoneTags))
+                                                <span class="text-tertiary text-sm">({{ implode('/', $phoneTags) }})</span>
+                                            @endif
+
+                                            @if ($phoneIsWhatsapp && $contact->whatsapp_name)
+                                                <span class="text-tertiary text-sm">({{ $contact->whatsapp_name }})</span>
+                                            @elseif ($phoneIsViber && $contact->viber_name)
+                                                <span class="text-tertiary text-sm">({{ $contact->viber_name }})</span>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
-                                @if ($contact?->whatsapp && !$isSameNumber)
+                                @if ($contact?->whatsapp && !$phoneIsWhatsapp)
                                     <div class="gap-space-sm flex items-start">
                                         <x-lucide-message-circle class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
                                         <div>
-                                            <strong class="text-on-surface block font-medium">WhatsApp</strong>
+                                            <strong class="text-on-surface block font-medium">WhatsApp @if($whatsappIsViber) / Viber @endif</strong>
                                             <div class="flex flex-wrap items-center gap-1">
                                                 <a
                                                     class="hover:text-primary transition-colors"
@@ -269,6 +287,25 @@
                                                 >{{ $contact->whatsapp }}</a>
                                                 @if ($contact->whatsapp_name)
                                                     <span class="text-tertiary text-sm">({{ $contact->whatsapp_name }})</span>
+                                                @elseif ($whatsappIsViber && $contact->viber_name)
+                                                    <span class="text-tertiary text-sm">({{ $contact->viber_name }})</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if ($contact?->viber && !$phoneIsViber && !$whatsappIsViber)
+                                    <div class="gap-space-sm flex items-start">
+                                        <x-lucide-phone-forwarded class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
+                                        <div>
+                                            <strong class="text-on-surface block font-medium">Viber</strong>
+                                            <div class="flex flex-wrap items-center gap-1">
+                                                <a
+                                                    class="hover:text-primary transition-colors"
+                                                    href="tel:{{ $viberClean }}"
+                                                >{{ $contact->viber }}</a>
+                                                @if ($contact->viber_name)
+                                                    <span class="text-tertiary text-sm">({{ $contact->viber_name }})</span>
                                                 @endif
                                             </div>
                                         </div>
