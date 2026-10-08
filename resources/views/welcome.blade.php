@@ -302,7 +302,7 @@
                     </div>
                 </div>
             </section>
-            <!-- INTERACTIVE ALTITUDE & ACCLIMATIZATION GUIDE STRIP -->
+            {{-- <!-- INTERACTIVE ALTITUDE & ACCLIMATIZATION GUIDE STRIP -->
             <section class="bg-ridge-deep py-space-3xl text-summit-white relative w-full overflow-hidden">
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto">
                     <div class="mb-space-2xl mx-auto max-w-2xl text-center">
@@ -424,7 +424,7 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> --}}
             <!-- WHY TREK WITH Neepa Adventure (Values & Ethos Grid) -->
             <section class="py-space-3xl bg-surface-container-low w-full">
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
@@ -803,6 +803,43 @@
                     </div>
                 </div>
             </section>
+            <!-- LATEST TRAVEL GUIDES -->
+            @if(isset($latestBlogs) && $latestBlogs->isNotEmpty())
+            <section class="bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop py-space-3xl w-full">
+                <div class="max-w-max-content-width mx-auto flex flex-col gap-space-2xl">
+
+                    <!-- Section Header -->
+                    <div class="flex flex-col gap-space-md justify-between sm:flex-row sm:items-end">
+                        <div class="gap-space-xs flex flex-col">
+                            <span class="font-badge-caption text-badge-caption text-primary font-bold uppercase tracking-[0.2em]">Get Inspired</span>
+                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Latest Travel Guides</h2>
+                        </div>
+                        <a href="{{ route('blog') }}" class="gap-space-xs px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md inline-flex items-center rounded py-3 tracking-wider uppercase transition-colors self-start sm:self-auto">
+                            <span>View All Posts</span>
+                            <x-lucide-arrow-right class="size-[18px]" />
+                        </a>
+                    </div>
+
+                    <!-- Blog Cards Grid -->
+                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                        @foreach($latestBlogs->take(3) as $post)
+                            <x-blog-card
+                                :title="$post->title"
+                                :slug="$post->slug"
+                                :image="$post->featured_image ? Storage::url($post->featured_image) : null"
+                                :image-alt="$post->title"
+                                :category="$post->category?->name"
+                                :excerpt="$post->excerpt"
+                                :author="$post->author?->name"
+                                :date="$post->created_at->format('M d, Y')"
+                            />
+                        @endforeach
+                    </div>
+
+                </div>
+            </section>
+            @endif
+            
             <!-- FINAL CALL TO ACTION BANNER -->
             <section class="bg-ridge-deep py-space-3xl relative w-full overflow-hidden">
                 <!-- Atmospheric mountain background -->
