@@ -231,16 +231,49 @@
                                         @endif
                                     </div>
                                 </div>
+                                @php
+                                    $phoneClean = preg_replace('/[^0-9+]/', '', $contact?->phone ?? '');
+                                    $whatsappClean = preg_replace('/[^0-9+]/', '', $contact?->whatsapp ?? '');
+                                    $isSameNumber = $contact?->whatsapp && $phoneClean === $whatsappClean;
+                                @endphp
+
                                 <div class="gap-space-sm flex items-start">
                                     <x-lucide-phone-call class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
                                     <div>
-                                        <strong class="text-on-surface block font-medium">Telephone Line</strong>
-                                        <a
-                                            class=""
-                                            href="tel:{{ preg_replace('/[^0-9+]/', '', $contact?->phone ?? '') }}"
-                                        >{{ $contact?->phone ?? 'Contact us' }}</a>
+                                        <strong class="text-on-surface block font-medium">Phone number</strong>
+                                        <div class="flex flex-wrap items-center gap-1">
+                                            <a
+                                                class="hover:text-primary transition-colors"
+                                                href="tel:{{ $phoneClean }}"
+                                            >{{ $contact?->phone ?? 'Contact us' }}</a>
+                                            @if($isSameNumber)
+                                                <span class="text-tertiary text-sm">(WhatsApp/Viber)</span>
+                                                @if ($contact->whatsapp_name)
+                                                    <span class="text-tertiary text-sm">({{ $contact->whatsapp_name }})</span>
+                                                @endif
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
+                                @if ($contact?->whatsapp && !$isSameNumber)
+                                    <div class="gap-space-sm flex items-start">
+                                        <x-lucide-message-circle class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
+                                        <div>
+                                            <strong class="text-on-surface block font-medium">WhatsApp</strong>
+                                            <div class="flex flex-wrap items-center gap-1">
+                                                <a
+                                                    class="hover:text-primary transition-colors"
+                                                    href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->whatsapp) }}"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >{{ $contact->whatsapp }}</a>
+                                                @if ($contact->whatsapp_name)
+                                                    <span class="text-tertiary text-sm">({{ $contact->whatsapp_name }})</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="gap-space-sm flex items-start">
                                     <x-lucide-mail class="text-primary mt-0.5 size-[20px] flex-shrink-0" />
                                     <div>
