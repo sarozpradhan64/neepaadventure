@@ -17,17 +17,6 @@ class HomepageSectionSeeder extends Seeder
 
         $sections = [
             [
-                'section_type' => 'signature_treks',
-                'title' => 'Signature Treks',
-                'subtitle' => 'Curated Himalayan Routes',
-                'content' => 'From standard high passes to technical destinations, all journeys feature experienced local leaders, private logistics, and satellite rescue systems.',
-                'button_text' => 'All Treks',
-                'button_url' => '/treks',
-                'settings' => ['service_ids' => []],
-                'sort_order' => 1,
-                'status' => true,
-            ],
-            [
                 'section_type' => 'custom_services',
                 'title' => 'Our Best-Selling Trips for 2026',
                 'subtitle' => 'Top Recommended Adventures',

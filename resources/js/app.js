@@ -3,6 +3,8 @@ import Alpine from "alpinejs";
 import { registerBlatUI } from "./blatui-core.js";
 import Sortable from "sortablejs";
 
+window.Sortable = Sortable;
+
 registerBlatUI(Alpine);
 
 Alpine.data("tagPicker", ({ initial = "", searchUrl }) => ({
