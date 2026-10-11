@@ -10,6 +10,8 @@ use Blaze\AdminCore\Models\TeamMember;
 use Blaze\AdminCore\Models\WebsiteSetting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use TailwindMerge\Contracts\TailwindMergeContract;
+use TailwindMerge\TailwindMerge;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
             require_once app_path('helpers.php');
         }
 
-        $this->app->extend(\TailwindMerge\Contracts\TailwindMergeContract::class, function ($service, $app) {
-            return \TailwindMerge\TailwindMerge::factory()
+        $this->app->extend(TailwindMergeContract::class, function ($service, $app) {
+            return TailwindMerge::factory()
                 ->withConfiguration(config('tailwind-merge', []))
                 ->withCache($app->make('cache')->store('array'))
                 ->make();

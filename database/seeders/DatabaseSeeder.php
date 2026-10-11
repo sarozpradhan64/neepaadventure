@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             SeoSettingsSeeder::class,
             JobSeeder::class,
             DefaultMenuSeeder::class,
+            HomepageSectionSeeder::class,
         ]);
     }
 }

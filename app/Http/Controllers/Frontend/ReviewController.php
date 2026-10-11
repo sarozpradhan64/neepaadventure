@@ -36,7 +36,7 @@ class ReviewController extends Controller
 
         if ($request->wantsJson()) {
             return response()->json([
-                'message' => 'Thank you! Your review has been submitted and is pending approval.'
+                'message' => 'Thank you! Your review has been submitted and is pending approval.',
             ]);
         }
 

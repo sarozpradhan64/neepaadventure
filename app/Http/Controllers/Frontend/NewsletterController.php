@@ -70,6 +70,7 @@ class NewsletterController extends Controller
                         // 1 or 2 character difference
                         if ($distance >= 1 && $distance <= 2) {
                             $fail("Did you mean {$commonDomain}?");
+
                             return;
                         }
                     }
@@ -86,7 +87,7 @@ class NewsletterController extends Controller
 
         if ($request->wantsJson()) {
             return response()->json([
-                'message' => 'Thank you for subscribing to our newsletter!'
+                'message' => 'Thank you for subscribing to our newsletter!',
             ]);
         }
 

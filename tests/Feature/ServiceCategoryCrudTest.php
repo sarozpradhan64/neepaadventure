@@ -58,4 +58,32 @@ class ServiceCategoryCrudTest extends TestCase
             ])
             ->assertSessionHasErrors('parent_id');
     }
+
+    public function test_it_displays_nested_service_categories_in_the_index_page(): void
+    {
+        $user = User::factory()->create();
+        $parent = ServiceCategory::create([
+            'name' => 'Trekking Tours',
+            'slug' => 'trekking-tours',
+            'status' => true,
+            'sort_order' => 1,
+        ]);
+
+        $child = ServiceCategory::create([
+            'name' => 'Everest Region',
+            'slug' => 'everest-region',
+            'parent_id' => $parent->id,
+            'status' => true,
+            'sort_order' => 1,
+        ]);
+
+        $response = $this->actingAs($user)->get(route('admin.service-categories.index'));
+
+        $response->assertOk();
+        $response->assertSee('Trekking Tours');
+        $response->assertSee('Everest Region');
+        $response->assertSee('1 sub-category');
+        $response->assertSee(route('admin.services.index', ['category_id' => $parent->id]));
+        $response->assertSee(route('admin.services.index', ['category_id' => $child->id]));
+    }
 }

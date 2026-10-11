@@ -20,6 +20,7 @@ Route::prefix('about-us')->group(function () {
 Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 use App\Http\Controllers\Frontend\ScheduleController;
+
 Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules');
 
 use App\Http\Controllers\Frontend\GalleryController;
@@ -29,7 +30,6 @@ Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/gallery/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 use App\Http\Controllers\Frontend\ContactController;
-
 use App\Http\Controllers\Frontend\ReviewController;
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
