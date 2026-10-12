@@ -19,6 +19,7 @@ Route::prefix('about-us')->group(function () {
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
 });
 Route::redirect('/reviews', '/about-us/reviews', 301);
+Route::get('/services/{categorySlug}', [TrekController::class, 'category'])->name('services.category');
 Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 use App\Http\Controllers\Frontend\ScheduleController;

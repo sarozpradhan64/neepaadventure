@@ -72,10 +72,14 @@
                             'siren'
                         ];
                     @endphp
+                    @php
+                        $defaultCategory = \Blaze\AdminCore\Models\ServiceCategory::whereNull('parent_id')->where('status', true)->orderBy('sort_order')->first();
+                        $searchAction = $defaultCategory ? route('services.category', $defaultCategory->slug) : route('treks');
+                    @endphp
                     <!-- Interactive Floating Trip Search & Filter Bar -->
                     <div
                         class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-2xl rounded-full p-2 text-left mb-space-xl relative z-20 border border-outline/10">
-                        <form action="{{ route('treks') }}" method="GET" class="flex items-center gap-2">
+                        <form action="{{ $searchAction }}" method="GET" class="flex items-center gap-2">
                             <div class="relative flex-1">
                                 <x-lucide-search class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary size-[22px]" />
                                 <input type="text" name="search" placeholder="Search Treks, Tours, Adventure & Authentic Nepal Experiences" 
@@ -281,7 +285,7 @@
                                             </h2>
                                         </div>
                                         @if($section->button_text)
-                                            <a href="{{ $section->button_url ?: route('treks') }}" class="group inline-flex items-center gap-2 font-label-md font-bold text-on-surface hover:text-primary transition-colors py-2 px-4 rounded-full border border-outline/20 hover:border-primary/40 bg-surface self-start md:self-auto">
+                                            <a href="{{ $section->button_url ?: ($defaultCategory ? route('services.category', $defaultCategory->slug) : route('treks')) }}" class="group inline-flex items-center gap-2 font-label-md font-bold text-on-surface hover:text-primary transition-colors py-2 px-4 rounded-full border border-outline/20 hover:border-primary/40 bg-surface self-start md:self-auto">
                                                 {{ $section->button_text }}
                                                 <span class="bg-primary/10 text-primary group-hover:bg-primary group-hover:text-on-primary p-1 rounded-full transition-colors">
                                                     <x-lucide-arrow-right class="size-4" />

@@ -107,7 +107,12 @@
                     Explore
                 </div>
                 <ul class="space-y-space-xs font-body-md text-body-md text-tertiary">
-                    <li><a class="hover:text-primary transition-colors" href="{{ route('treks') }}">Treks</a></li>
+                    @php
+                        $footerCategory = \Blaze\AdminCore\Models\ServiceCategory::whereNull('parent_id')->where('status', true)->orderBy('sort_order')->first();
+                    @endphp
+                    @if($footerCategory)
+                        <li><a class="hover:text-primary transition-colors" href="{{ route('services.category', $footerCategory->slug) }}">{{ $footerCategory->name }}</a></li>
+                    @endif
 
                     <li><a class="hover:text-primary transition-colors" href="{{ route('about') }}">About Us</a></li>
                     <li><a class="hover:text-primary transition-colors" href="{{ route('careers.index') }}">Careers</a></li>

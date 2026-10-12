@@ -5,30 +5,61 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\ServiceDeparture;
 use Blaze\AdminCore\Models\Service;
+use Blaze\AdminCore\Models\ServiceCategory;
 use Blaze\AdminCore\Models\Testimonial;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TrekController extends Controller
 {
-    public function index()
+    public function index(Request $request): RedirectResponse
     {
-        // Get all active services
-        $treks = Service::where('status', true)
+        $firstCategory = ServiceCategory::whereNull('parent_id')
+            ->where('status', true)
             ->orderBy('sort_order')
-            ->get();
+            ->first();
 
-        $difficulties = Service::where('status', true)
-            ->whereNotNull('difficulty_level')
-            ->where('difficulty_level', '!=', '')
-            ->distinct()
-            ->pluck('difficulty_level');
+        if ($firstCategory) {
+            return redirect()->route('services.category', array_merge(
+                ['categorySlug' => $firstCategory->slug],
+                $request->query()
+            ), 301);
+        }
 
-        $seasons = Service::where('status', true)
-            ->whereNotNull('best_season')
-            ->where('best_season', '!=', '')
-            ->distinct()
-            ->pluck('best_season');
+        return redirect()->route('home', [], 301);
+    }
 
-        return view('treks', compact('treks', 'difficulties', 'seasons'));
+    public function category(Request $request, string $categorySlug): View
+    {
+        $category = ServiceCategory::where('slug', $categorySlug)
+            ->where('status', true)
+            ->with(['parent', 'children' => function ($query): void {
+                $query->where('status', true)->orderBy('sort_order');
+            }, 'seoMetadata'])
+            ->firstOrFail();
+
+        $categoryIds = $category->getAllCategoryIds();
+
+        $query = Service::whereIn('service_category_id', $categoryIds)
+            ->where('status', true)
+            ->with(['features', 'category'])
+            ->orderBy('sort_order');
+
+        if ($request->filled('search')) {
+            $search = trim((string) $request->input('search'));
+            $query->where(function ($q) use ($search): void {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('short_description', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        $services = $query->get();
+        $childCategories = $category->children;
+        $ancestors = $category->ancestors();
+
+        return view('category-services', compact('category', 'services', 'childCategories', 'ancestors'));
     }
 
     public function show(string $slug)

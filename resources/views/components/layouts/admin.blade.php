@@ -53,6 +53,14 @@
                                     Profile
                                 </a>
                             @endif
+                            <form method="POST" action="{{ route('admin.cache.clear') }}" class="block w-full">
+                                @csrf
+                                <button type="submit" class="flex w-full items-center gap-2 px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground transition-colors text-left">
+                                    <x-lucide-rotate-cw class="size-4 text-muted-foreground" />
+                                    Clear Cache
+                                </button>
+                            </form>
+                            <div class="my-1 border-t"></div>
                             <form method="POST" action="{{ route('admin.logout') }}" class="block w-full">
                                 @csrf
                                 <button type="submit" class="flex w-full items-center gap-2 px-4 py-2 text-sm text-destructive hover:bg-accent hover:text-destructive transition-colors text-left">

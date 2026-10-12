@@ -76,8 +76,9 @@
                             <input
                                 class="pr-space-md bg-surface text-body-md text-on-surface placeholder:text-tertiary focus:bg-surface-container-low w-full rounded-lg py-2.5 pl-10 transition-all focus:outline-none"
                                 id="search-input"
-                                placeholder="Search passes, valleys, passes (e.g. Larkya La, Gokyo)..."
+                                placeholder="Search passes, valleys, passes (e.g. Larkya La, Gokyo, Annapurna)..."
                                 type="text"
+                                value="{{ request('search', '') }}"
                             />
                         </div>
                         <!-- Filter Selectors -->
@@ -88,12 +89,12 @@
                                     class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-lg py-2 pr-8 transition-colors focus:outline-none"
                                     id="region-filter"
                                 >
-                                    <option value="all">All Himalayan Regions</option>
-                                    <option value="khumbu">Everest &amp; Khumbu</option>
-                                    <option value="annapurna">Annapurna &amp; Mustang</option>
-                                    <option value="manaslu">Manaslu &amp; Ganesh Himal</option>
-                                    <option value="langtang">Langtang &amp; Helambu</option>
-                                    <option value="eastern">Far-Eastern (Kanchenjunga)</option>
+                                    <option value="all" {{ request('region') == 'all' || !request('region') ? 'selected' : '' }}>All Himalayan Regions</option>
+                                    <option value="khumbu" {{ in_array(strtolower(request('region', '')), ['khumbu', 'everest']) ? 'selected' : '' }}>Everest &amp; Khumbu</option>
+                                    <option value="annapurna" {{ strtolower(request('region', '')) === 'annapurna' ? 'selected' : '' }}>Annapurna &amp; Mustang</option>
+                                    <option value="manaslu" {{ strtolower(request('region', '')) === 'manaslu' ? 'selected' : '' }}>Manaslu &amp; Ganesh Himal</option>
+                                    <option value="langtang" {{ strtolower(request('region', '')) === 'langtang' ? 'selected' : '' }}>Langtang &amp; Helambu</option>
+                                    <option value="eastern" {{ strtolower(request('region', '')) === 'eastern' ? 'selected' : '' }}>Far-Eastern (Kanchenjunga)</option>
                                 </select>
                                 <x-lucide-chevron-down class="text-tertiary pointer-events-none absolute top-1/2 right-2.5 size-[18px] -translate-y-1/2" />
                             </div>
@@ -201,10 +202,27 @@
                     <!-- Main Cards Container -->
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" id="trek-cards-grid">
                         @foreach ($treks as $trek)
+                            @php
+                                $region = 'other';
+                                $titleAndDesc = strtolower($trek->title . ' ' . $trek->short_description . ' ' . $trek->description . ' ' . $trek->start_end_point);
+                                if (str_contains($titleAndDesc, 'annapurna') || str_contains($titleAndDesc, 'mustang') || str_contains($titleAndDesc, 'tilicho') || str_contains($titleAndDesc, 'thorong')) {
+                                    $region = 'annapurna';
+                                } elseif (str_contains($titleAndDesc, 'everest') || str_contains($titleAndDesc, 'khumbu') || str_contains($titleAndDesc, 'gokyo') || str_contains($titleAndDesc, 'lukla') || str_contains($titleAndDesc, 'cho la')) {
+                                    $region = 'khumbu';
+                                } elseif (str_contains($titleAndDesc, 'manaslu') || str_contains($titleAndDesc, 'larkya') || str_contains($titleAndDesc, 'ganesh')) {
+                                    $region = 'manaslu';
+                                } elseif (str_contains($titleAndDesc, 'langtang') || str_contains($titleAndDesc, 'helambu') || str_contains($titleAndDesc, 'gosainkunda')) {
+                                    $region = 'langtang';
+                                } elseif (str_contains($titleAndDesc, 'kanchenjunga') || str_contains($titleAndDesc, 'makalu')) {
+                                    $region = 'eastern';
+                                }
+                            @endphp
                             <article
                                 class="trek-card group bg-surface-container-lowest flex flex-col justify-between overflow-hidden rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl"
                                 data-altitude="{{ (int) filter_var($trek->maximum_altitude, FILTER_SANITIZE_NUMBER_INT) }}"
-                                data-difficulty="{{ $trek->difficulty_level }}"
+                                data-difficulty="{{ strtolower($trek->difficulty_level ?? '') }}"
+                                data-season="{{ strtolower($trek->best_season ?? '') }}"
+                                data-region="{{ $region }}"
                                 data-duration="{{ (int) filter_var($trek->duration, FILTER_SANITIZE_NUMBER_INT) }}"
                                 data-id="{{ $trek->id }}"
                                 data-price="{{ $trek->price_from }}"
@@ -471,47 +489,153 @@
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
                     const searchInput = document.getElementById('search-input');
+                    const regionFilter = document.getElementById('region-filter');
+                    const durationFilter = document.getElementById('duration-filter');
+                    const altitudeFilter = document.getElementById('altitude-filter');
                     const difficultyPills = document.querySelectorAll('.difficulty-pill');
+                    const seasonPills = document.querySelectorAll('.season-pill');
+                    const resetFiltersBtn = document.getElementById('reset-filters');
+                    const clearAllFiltersBtn = document.getElementById('clear-all-filters-btn');
                     const trekCards = document.querySelectorAll('.trek-card');
                     const countIndicator = document.getElementById('catalog-count-indicator');
-                    
+                    const noResultsState = document.getElementById('no-results-state');
                     const sortSelector = document.getElementById('sort-selector');
                     const cardsGrid = document.getElementById('trek-cards-grid');
 
+                    // Read query parameters from URL on load
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const initialSearch = urlParams.get('search');
+                    const initialRegion = urlParams.get('region');
+
+                    if (initialSearch && searchInput) {
+                        searchInput.value = initialSearch;
+                    }
+
+                    if (initialRegion && regionFilter) {
+                        const normalizedRegion = initialRegion.toLowerCase() === 'everest' ? 'khumbu' : initialRegion.toLowerCase();
+                        let foundOption = false;
+                        for (let i = 0; i < regionFilter.options.length; i++) {
+                            if (regionFilter.options[i].value.toLowerCase() === normalizedRegion) {
+                                regionFilter.selectedIndex = i;
+                                foundOption = true;
+                                break;
+                            }
+                        }
+                        if (!foundOption && searchInput && !searchInput.value) {
+                            searchInput.value = initialRegion;
+                        }
+                    }
+
                     function filterTreks() {
-                        const searchTerm = searchInput.value.toLowerCase();
+                        const searchTerm = (searchInput ? searchInput.value : '').trim().toLowerCase();
+                        const selectedRegion = regionFilter ? regionFilter.value.toLowerCase() : 'all';
+                        const selectedDuration = durationFilter ? durationFilter.value : 'all';
+                        const selectedAltitude = altitudeFilter ? altitudeFilter.value : 'all';
+
                         let activeDifficulty = 'all';
                         difficultyPills.forEach(pill => {
                             if (pill.classList.contains('active-pill')) {
-                                activeDifficulty = pill.getAttribute('data-difficulty');
+                                activeDifficulty = pill.getAttribute('data-difficulty').toLowerCase();
+                            }
+                        });
+
+                        let activeSeason = 'all';
+                        seasonPills.forEach(pill => {
+                            if (pill.classList.contains('active-pill')) {
+                                activeSeason = pill.getAttribute('data-season').toLowerCase();
                             }
                         });
 
                         let visibleCount = 0;
 
                         trekCards.forEach(card => {
-                            const title = card.querySelector('.font-headline-sm').innerText.toLowerCase();
-                            const matchesSearch = title.includes(searchTerm);
-                            const cardDifficulty = card.getAttribute('data-difficulty');
-                            
+                            const cardText = (card.innerText || card.textContent).toLowerCase();
+                            const matchesSearch = !searchTerm || cardText.includes(searchTerm);
+
+                            const cardRegion = (card.getAttribute('data-region') || '').toLowerCase();
+                            let matchesRegion = (selectedRegion === 'all');
+                            if (!matchesRegion) {
+                                if (cardRegion === selectedRegion) {
+                                    matchesRegion = true;
+                                } else if (selectedRegion === 'annapurna' && cardText.includes('annapurna')) {
+                                    matchesRegion = true;
+                                } else if (selectedRegion === 'khumbu' && (cardText.includes('everest') || cardText.includes('khumbu') || cardText.includes('gokyo'))) {
+                                    matchesRegion = true;
+                                } else if (selectedRegion === 'langtang' && cardText.includes('langtang')) {
+                                    matchesRegion = true;
+                                } else if (selectedRegion === 'manaslu' && cardText.includes('manaslu')) {
+                                    matchesRegion = true;
+                                } else if (selectedRegion === 'eastern' && (cardText.includes('kanchenjunga') || cardText.includes('makalu'))) {
+                                    matchesRegion = true;
+                                }
+                            }
+
+                            const cardDuration = parseInt(card.getAttribute('data-duration')) || 0;
+                            let matchesDuration = (selectedDuration === 'all');
+                            if (!matchesDuration) {
+                                if (selectedDuration === '7-12') {
+                                    matchesDuration = (cardDuration >= 7 && cardDuration <= 12);
+                                } else if (selectedDuration === '13-17') {
+                                    matchesDuration = (cardDuration >= 13 && cardDuration <= 17);
+                                } else if (selectedDuration === '18-24') {
+                                    matchesDuration = (cardDuration >= 18);
+                                }
+                            }
+
+                            const cardAltitude = parseInt(card.getAttribute('data-altitude')) || 0;
+                            let matchesAltitude = (selectedAltitude === 'all');
+                            if (!matchesAltitude) {
+                                if (selectedAltitude === 'sub-4000') {
+                                    matchesAltitude = (cardAltitude > 0 && cardAltitude <= 4000);
+                                } else if (selectedAltitude === 'sub-5200') {
+                                    matchesAltitude = (cardAltitude > 0 && cardAltitude <= 5200);
+                                } else if (selectedAltitude === 'high-pass') {
+                                    matchesAltitude = (cardAltitude >= 5300);
+                                }
+                            }
+
+                            const cardDifficulty = (card.getAttribute('data-difficulty') || '').toLowerCase();
                             const matchesDifficulty = (activeDifficulty === 'all' || cardDifficulty === activeDifficulty);
 
-                            if (matchesSearch && matchesDifficulty) {
+                            const cardSeason = (card.getAttribute('data-season') || '').toLowerCase();
+                            const matchesSeason = (activeSeason === 'all' || cardSeason.includes(activeSeason));
+
+                            if (matchesSearch && matchesRegion && matchesDuration && matchesAltitude && matchesDifficulty && matchesSeason) {
                                 card.style.display = 'flex';
                                 visibleCount++;
                             } else {
                                 card.style.display = 'none';
                             }
                         });
-                        
-                        if(countIndicator) {
+
+                        if (countIndicator) {
                             countIndicator.innerText = `Showing ${visibleCount} verified routes`;
+                        }
+
+                        if (noResultsState) {
+                            if (visibleCount === 0) {
+                                noResultsState.classList.remove('hidden');
+                            } else {
+                                noResultsState.classList.add('hidden');
+                            }
                         }
                     }
 
                     // Event Listeners for Filters
-                    searchInput.addEventListener('input', filterTreks);
+                    if (searchInput) {
+                        searchInput.addEventListener('input', filterTreks);
+                    }
+                    if (regionFilter) {
+                        regionFilter.addEventListener('change', filterTreks);
+                    }
+                    if (durationFilter) {
+                        durationFilter.addEventListener('change', filterTreks);
+                    }
+                    if (altitudeFilter) {
+                        altitudeFilter.addEventListener('change', filterTreks);
+                    }
 
+                    // Difficulty Pills
                     difficultyPills.forEach(pill => {
                         pill.addEventListener('click', () => {
                             difficultyPills.forEach(p => {
@@ -523,24 +647,83 @@
                             filterTreks();
                         });
                     });
-                    
-                    // Simple Sort logic
-                    sortSelector.addEventListener('change', (e) => {
-                        const val = e.target.value;
-                        let cardsArray = Array.from(trekCards);
-                        
-                        if(val === 'price-asc') {
-                            cardsArray.sort((a,b) => parseInt(a.getAttribute('data-price')) - parseInt(b.getAttribute('data-price')));
-                        } else if(val === 'duration-desc') {
-                            cardsArray.sort((a,b) => parseInt(b.getAttribute('data-duration')) - parseInt(a.getAttribute('data-duration')));
-                        } else if(val === 'altitude-desc') {
-                            cardsArray.sort((a,b) => parseInt(b.getAttribute('data-altitude')) - parseInt(a.getAttribute('data-altitude')));
-                        }
-                        
-                        // re-append in order
-                        cardsArray.forEach(card => cardsGrid.appendChild(card));
+
+                    // Season Pills
+                    seasonPills.forEach(pill => {
+                        pill.addEventListener('click', () => {
+                            seasonPills.forEach(p => {
+                                p.classList.remove('active-pill', 'bg-surface-container-high', 'text-on-surface', 'font-semibold');
+                                p.classList.add('bg-surface', 'text-tertiary');
+                            });
+                            pill.classList.remove('bg-surface', 'text-tertiary');
+                            pill.classList.add('active-pill', 'bg-surface-container-high', 'text-on-surface', 'font-semibold');
+                            filterTreks();
+                        });
                     });
 
+                    // Reset Filters Handler
+                    function resetAllFilters() {
+                        if (searchInput) searchInput.value = '';
+                        if (regionFilter) regionFilter.value = 'all';
+                        if (durationFilter) durationFilter.value = 'all';
+                        if (altitudeFilter) altitudeFilter.value = 'all';
+
+                        difficultyPills.forEach((p, idx) => {
+                            if (idx === 0) {
+                                p.classList.add('active-pill', 'bg-surface-container-high', 'text-on-surface', 'font-semibold');
+                                p.classList.remove('bg-surface', 'text-tertiary');
+                            } else {
+                                p.classList.remove('active-pill', 'bg-surface-container-high', 'text-on-surface', 'font-semibold');
+                                p.classList.add('bg-surface', 'text-tertiary');
+                            }
+                        });
+
+                        seasonPills.forEach((p, idx) => {
+                            if (idx === 0) {
+                                p.classList.add('active-pill', 'bg-surface-container-high', 'text-on-surface', 'font-semibold');
+                                p.classList.remove('bg-surface', 'text-tertiary');
+                            } else {
+                                p.classList.remove('active-pill', 'bg-surface-container-high', 'text-on-surface', 'font-semibold');
+                                p.classList.add('bg-surface', 'text-tertiary');
+                            }
+                        });
+
+                        // Clear URL query string in browser without reload
+                        if (window.history.pushState) {
+                            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                            window.history.pushState({path: cleanUrl}, '', cleanUrl);
+                        }
+
+                        filterTreks();
+                    }
+
+                    if (resetFiltersBtn) {
+                        resetFiltersBtn.addEventListener('click', resetAllFilters);
+                    }
+                    if (clearAllFiltersBtn) {
+                        clearAllFiltersBtn.addEventListener('click', resetAllFilters);
+                    }
+
+                    // Sort logic
+                    if (sortSelector && cardsGrid) {
+                        sortSelector.addEventListener('change', (e) => {
+                            const val = e.target.value;
+                            let cardsArray = Array.from(trekCards);
+
+                            if (val === 'price-asc') {
+                                cardsArray.sort((a,b) => (parseInt(a.getAttribute('data-price')) || 0) - (parseInt(b.getAttribute('data-price')) || 0));
+                            } else if (val === 'duration-desc') {
+                                cardsArray.sort((a,b) => (parseInt(b.getAttribute('data-duration')) || 0) - (parseInt(a.getAttribute('data-duration')) || 0));
+                            } else if (val === 'altitude-desc') {
+                                cardsArray.sort((a,b) => (parseInt(b.getAttribute('data-altitude')) || 0) - (parseInt(a.getAttribute('data-altitude')) || 0));
+                            }
+
+                            cardsArray.forEach(card => cardsGrid.appendChild(card));
+                        });
+                    }
+
+                    // Initial run on page load
+                    filterTreks();
                 });
             </script>
         </div>

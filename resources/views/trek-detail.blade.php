@@ -10,20 +10,30 @@
             <!-- Top Technical Breadcrumbs & Status Bar -->
             <div class="bg-surface-container-low py-space-sm px-gutter-mobile lg:px-gutter-desktop w-full">
                 <div class="max-w-max-content-width gap-space-sm mx-auto flex flex-wrap items-center justify-between">
-                    <div class="gap-space-2xs font-label-sm text-label-sm text-tertiary flex items-center">
-                        <a class="hover:text-primary transition-colors" href="#">Treks</a>
+                    <div class="gap-space-2xs font-label-sm text-label-sm text-tertiary flex items-center flex-wrap">
+                        <a class="hover:text-primary transition-colors" href="{{ route('home') }}">Home</a>
                         <x-lucide-chevron-right class="size-[14px]" />
-                        <a class="hover:text-primary transition-colors" href="#">Khumbu &amp; Everest</a>
-                        <x-lucide-chevron-right class="size-[14px]" />
-                        <span class="text-on-surface font-semibold">EBC &amp; Gokyo Ri Circuit</span>
+                        @if($trek->category)
+                            @if($trek->category->parent)
+                                <a class="hover:text-primary transition-colors" href="{{ route('services.category', $trek->category->parent->slug) }}">{{ $trek->category->parent->name }}</a>
+                                <x-lucide-chevron-right class="size-[14px]" />
+                            @endif
+                            <a class="hover:text-primary transition-colors" href="{{ route('services.category', $trek->category->slug) }}">{{ $trek->category->name }}</a>
+                            <x-lucide-chevron-right class="size-[14px]" />
+                        @endif
+                        <span class="text-on-surface font-semibold truncate max-w-xs md:max-w-md">{{ $trek->title }}</span>
                     </div>
                     <div class="gap-space-md font-badge-caption text-badge-caption flex items-center uppercase">
-                        <span class="gap-space-2xs text-tertiary flex items-center">
-                            <span class="bg-primary-container h-2 w-2 animate-pulse rounded-full"></span>
-                            Spring 2025 Booking Open
-                        </span>
-                        <span class="text-tertiary/50">•</span>
-                        <span class="text-on-surface-variant font-medium">Permit Status: TAAN Validated</span>
+                        @php
+                            $seasonYears = date('Y') . '/' . (date('Y') + 1);
+                        @endphp
+                        <a href="#upcoming-departures" class="gap-space-2xs text-primary hover:text-amber-600 transition-colors flex items-center font-bold tracking-wider group cursor-pointer bg-primary/10 hover:bg-primary/20 px-3 py-1 rounded-full border border-primary/20">
+                            <span class="bg-emerald-500 h-2 w-2 animate-pulse rounded-full"></span>
+                            <span>{{ $seasonYears }} Season Open</span>
+                            <x-lucide-chevron-down class="size-3.5 transition-transform group-hover:translate-y-0.5" />
+                        </a>
+                        <span class="text-tertiary/50 hidden sm:inline">•</span>
+                        <span class="text-on-surface-variant font-medium hidden sm:inline">Permit Status: TAAN Validated</span>
                     </div>
                 </div>
             </div>
@@ -90,11 +100,11 @@
                             </div>
                         </div>
                         <!-- Sticky Quick Booking Matrix -->
-                        <div class="bg-surface-container-low p-space-lg space-y-space-md rounded-xl shadow-md lg:col-span-4">
+                        <div id="booking" class="scroll-mt-28 bg-surface-container-low p-space-lg space-y-space-md rounded-xl shadow-md lg:col-span-4">
                             <div class="flex items-baseline justify-between">
                                 <div>
                                     <span class="font-body-sm text-body-sm text-tertiary block">All-Inclusive Standard Rate</span>
-                                    <span class="font-headline-lg text-headline-lg text-on-surface font-bold">$1,750</span>
+                                    <span class="font-headline-lg text-headline-lg text-on-surface font-bold">${{ number_format((float) $trek->price_from, 0) }}</span>
                                     <span class="font-body-sm text-body-sm text-tertiary"> USD / Person</span>
                                 </div>
                                 <span class="bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption px-space-xs rounded py-1 font-bold uppercase">
@@ -102,16 +112,26 @@
                                 </span>
                             </div>
                             <div class="space-y-space-xs pt-space-xs">
-                                <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase">Select Fixed Departure Date</label>
+                                <div class="flex items-center justify-between">
+                                    <label class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase">Select Departure Date</label>
+                                    <a href="#upcoming-departures" class="text-[11px] font-bold text-primary hover:underline flex items-center gap-1">
+                                        View Schedule <x-lucide-arrow-down class="size-3" />
+                                    </a>
+                                </div>
                                 <select
-                                    class="bg-surface-container-lowest text-on-surface font-body-md text-body-md p-space-sm focus:ring-primary w-full cursor-pointer rounded-lg shadow-sm focus:ring-2 focus:outline-none"
+                                    class="bg-surface-container-lowest text-on-surface font-body-md text-body-md p-space-sm focus:ring-primary w-full cursor-pointer rounded-lg shadow-sm focus:ring-2 focus:outline-none border border-outline/10 text-sm"
                                     id="departure-select"
                                 >
-                                    <option value="apr-04">Apr 04 – Apr 19, 2025 (4 seats left)</option>
-                                    <option value="apr-18">Apr 18 – May 03, 2025 (2 seats left)</option>
-                                    <option value="may-02">May 02 – May 17, 2025 (6 seats left)</option>
-                                    <option value="oct-05">Oct 05 – Oct 20, 2025 (Available)</option>
-                                    <option value="oct-19">Oct 19 – Nov 03, 2025 (Available)</option>
+                                    @forelse($departures as $dep)
+                                        @php
+                                            $spotsLeft = max(0, $dep->seats_total - $dep->seats_booked);
+                                        @endphp
+                                        <option value="{{ $dep->id }}">
+                                            {{ $dep->start_date?->format('M d') }} – {{ $dep->end_date?->format('M d, Y') }} ({{ $spotsLeft }} {{ Str::plural('seat', $spotsLeft) }} left)
+                                        </option>
+                                    @empty
+                                        <option value="custom">Inquire for Flexible Dates / Custom Group</option>
+                                    @endforelse
                                 </select>
                             </div>
                             <div class="bg-surface-container-lowest p-space-sm space-y-space-2xs text-body-sm text-tertiary rounded-lg">
@@ -725,6 +745,195 @@
                 </div>
             </div>
         </section>
+        <!-- Upcoming Guaranteed Departures Section -->
+        <section id="upcoming-departures" class="scroll-mt-24 bg-surface-container-low py-space-3xl px-gutter-mobile lg:px-gutter-desktop w-full border-t border-outline/10">
+            <div class="max-w-max-content-width space-y-space-xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-space-sm border-b border-outline/10">
+                    <div class="space-y-space-2xs max-w-2xl">
+                        <div class="flex items-center gap-2">
+                            <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">
+                                Fixed & Guaranteed Schedules
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                                <span class="size-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                {{ date('Y') }}/{{ date('Y') + 1 }} Season Open
+                            </span>
+                        </div>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase font-extrabold tracking-tight">
+                            Upcoming Guaranteed Departures
+                        </h2>
+                        <p class="font-body-md text-body-md text-tertiary">
+                            Join one of our verified small-group departures for {{ $trek->title }}. All dates feature guaranteed run status with certified high-altitude Sherpa leadership and comprehensive medical telemetry.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-3 shrink-0">
+                        <a href="{{ route('plan-your-trek') }}" class="px-5 py-2.5 bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-xs font-bold uppercase tracking-wider rounded-xl transition-all border border-outline/10 flex items-center gap-1.5">
+                            <x-lucide-calendar-plus class="size-4 text-primary" /> Request Custom Date
+                        </a>
+                    </div>
+                </div>
+
+                @if($departures->isNotEmpty())
+                    <div class="grid grid-cols-1 gap-4">
+                        @foreach($departures as $departure)
+                            @php
+                                $spotsLeft = max(0, $departure->seats_total - $departure->seats_booked);
+                                $isFewSpots = $spotsLeft <= 3 && $spotsLeft > 0;
+                            @endphp
+                            <div class="group bg-surface-container-lowest hover:bg-surface rounded-2xl p-5 md:p-6 border border-outline/10 hover:border-primary/40 hover:shadow-xl transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                                <!-- Date & Duration Column -->
+                                <div class="flex items-start sm:items-center gap-4">
+                                    <div class="bg-surface-container-low rounded-2xl p-3 sm:p-4 text-center border border-outline/15 min-w-[84px] shadow-sm group-hover:border-primary/30 transition-colors shrink-0">
+                                        <span class="block text-[11px] font-black uppercase text-primary tracking-wider">
+                                            {{ $departure->start_date?->format('M') }}
+                                        </span>
+                                        <span class="block text-2xl font-black text-on-surface leading-tight">
+                                            {{ $departure->start_date?->format('d') }}
+                                        </span>
+                                        <span class="block text-[10px] font-semibold text-tertiary">
+                                            {{ $departure->start_date?->format('Y') }}
+                                        </span>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <span class="text-base sm:text-lg font-bold text-on-surface">
+                                                {{ $departure->start_date?->format('M d, Y') }} &ndash; {{ $departure->end_date?->format('M d, Y') }}
+                                            </span>
+                                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                                                <x-lucide-check-circle-2 class="size-3" /> Guaranteed Run
+                                            </span>
+                                        </div>
+                                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-tertiary">
+                                            <span class="flex items-center gap-1 font-medium">
+                                                <x-lucide-clock class="size-3.5 text-primary" /> {{ $trek->duration ?: '16 Days' }}
+                                            </span>
+                                            <span class="flex items-center gap-1 font-medium">
+                                                <x-lucide-map-pin class="size-3.5 text-amber-500" /> {{ $trek->start_end_point ?: 'Kathmandu' }}
+                                            </span>
+                                            <span class="flex items-center gap-1 font-medium">
+                                                <x-lucide-users class="size-3.5 text-primary" /> Max {{ $departure->seats_total }} Trekkers
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Availability & Status Column -->
+                                <div class="flex flex-wrap items-center gap-6 lg:justify-end">
+                                    <div class="space-y-1 text-left lg:text-right">
+                                        <div class="flex items-center lg:justify-end gap-2">
+                                            @if($spotsLeft === 0)
+                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-rose-500/10 text-rose-600 border border-rose-500/20">
+                                                    Sold Out
+                                                </span>
+                                            @elseif($isFewSpots)
+                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-amber-500/10 text-amber-600 border border-amber-500/20 flex items-center gap-1">
+                                                    <span class="size-1.5 rounded-full bg-amber-500 animate-ping"></span>
+                                                    Only {{ $spotsLeft }} {{ Str::plural('Spot', $spotsLeft) }} Left
+                                                </span>
+                                            @else
+                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                                                    {{ $spotsLeft }} Spots Available
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="text-xs text-tertiary font-medium">
+                                            Deposit: ${{ number_format((float) ($trek->deposit_requirement ?: 350)) }} USD / person
+                                        </div>
+                                    </div>
+
+                                    <!-- Price & CTA -->
+                                    <div class="flex items-center gap-4">
+                                        <div class="text-right">
+                                            <div class="text-xl sm:text-2xl font-black text-on-surface">
+                                                ${{ number_format((float) $trek->price_from, 0) }}
+                                            </div>
+                                            <div class="text-[10px] text-tertiary font-semibold uppercase tracking-wider">
+                                                USD / Person
+                                            </div>
+                                        </div>
+
+                                        <button 
+                                            type="button"
+                                            onclick="
+                                                var sel = document.getElementById('departure-select');
+                                                if (sel) { sel.value = '{{ $departure->id }}'; }
+                                                var bookingCard = document.getElementById('booking');
+                                                if (bookingCard) { 
+                                                    bookingCard.scrollIntoView({ behavior: 'smooth' }); 
+                                                    bookingCard.classList.add('ring-2', 'ring-primary');
+                                                    setTimeout(() => bookingCard.classList.remove('ring-2', 'ring-primary'), 2000);
+                                                }
+                                            "
+                                            class="px-5 py-3 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm hover:shadow-md flex items-center gap-1.5 group/btn shrink-0"
+                                        >
+                                            <span>Select Date</span>
+                                            <x-lucide-arrow-right class="size-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="bg-surface-container-lowest rounded-2xl p-10 text-center border border-outline/10 space-y-4 max-w-xl mx-auto shadow-sm">
+                        <div class="bg-surface-container-high w-14 h-14 rounded-2xl flex items-center justify-center mx-auto text-primary">
+                            <x-lucide-calendar class="size-7" />
+                        </div>
+                        <h3 class="text-xl font-bold text-on-surface">Flexible & Custom Departures Available</h3>
+                        <p class="text-sm text-tertiary leading-relaxed">
+                            We operate flexible weekly departures during the peak Spring & Autumn seasons. Contact our alpine logistics team to open a guaranteed group date or schedule a private trek on your preferred days.
+                        </p>
+                        <div class="pt-2">
+                            <a href="{{ route('plan-your-trek') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-on-primary font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all">
+                                Request Private / Custom Date
+                            </a>
+                        </div>
+                    </div>
+                @endif
+
+                <!-- Departure Guarantee Badges Strip -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-outline/10">
+                    <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
+                        <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
+                            <x-lucide-shield-check class="size-5" />
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-on-surface uppercase tracking-wider">100% Guaranteed Runs</div>
+                            <div class="text-[11px] text-tertiary mt-0.5">Your trip is guaranteed to depart once booked.</div>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
+                        <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
+                            <x-lucide-users class="size-5" />
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-on-surface uppercase tracking-wider">Max 8 Trekkers</div>
+                            <div class="text-[11px] text-tertiary mt-0.5">Intimate small teams ensure safety & attention.</div>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
+                        <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
+                            <x-lucide-repeat class="size-5" />
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-on-surface uppercase tracking-wider">Free Date Shift</div>
+                            <div class="text-[11px] text-tertiary mt-0.5">Transfer your booking up to 30 days before departure.</div>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
+                        <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
+                            <x-lucide-radio class="size-5" />
+                        </div>
+                        <div>
+                            <div class="text-xs font-bold text-on-surface uppercase tracking-wider">Garmin Monitored</div>
+                            <div class="text-[11px] text-tertiary mt-0.5">Continuous satellite safety & rescue link.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Route Map Preview Component -->
         <section class="bg-surface-container-lowest py-space-2xl px-gutter-mobile lg:px-gutter-desktop w-full">
             <div class="max-w-max-content-width space-y-space-md mx-auto">
