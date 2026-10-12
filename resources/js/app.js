@@ -115,7 +115,7 @@ Alpine.data("tagPicker", ({ initial = "", searchUrl }) => ({
     },
 }));
 
-Alpine.data("sortableList", ({ reorderUrl, csrfToken }) => ({
+    Alpine.data("sortableList", ({ reorderUrl, csrfToken }) => ({
     init() {
         Sortable.create(this.$el, {
             handle: "[data-drag-handle]",
@@ -138,5 +138,64 @@ Alpine.data("sortableList", ({ reorderUrl, csrfToken }) => ({
     },
 }));
 
+import SlimSelect from "slim-select";
+import "slim-select/styles";
+
+window.SlimSelect = SlimSelect;
+
+window.initSlimSelect = function (element, options = {}) {
+    if (!element) return null;
+    const selectEl =
+        typeof element === "string" ? document.querySelector(element) : element;
+    if (!selectEl) return null;
+    if (selectEl._slimSelect) return selectEl._slimSelect;
+
+    selectEl._slimSelect = new SlimSelect({
+        select: selectEl,
+        settings: {
+            placeholderText:
+                selectEl.getAttribute("placeholder") || "Select option(s)...",
+            searchPlaceholder: "Search...",
+            allowDeselect: true,
+            closeOnSelect: !selectEl.multiple,
+            ...(options.settings || {}),
+        },
+        ...options,
+    });
+
+    return selectEl._slimSelect;
+};
+
+Alpine.data("slimSelect", (options = {}) => ({
+    init() {
+        this.$nextTick(() => {
+            const selectEl =
+                this.$el.tagName === "SELECT"
+                    ? this.$el
+                    : this.$el.querySelector("select");
+            if (selectEl) {
+                window.initSlimSelect(selectEl, options);
+            }
+        });
+    },
+    destroy() {
+        const selectEl =
+            this.$el.tagName === "SELECT"
+                ? this.$el
+                : this.$el.querySelector("select");
+        if (selectEl?._slimSelect) {
+            selectEl._slimSelect.destroy();
+            selectEl._slimSelect = null;
+        }
+    },
+}));
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("select.slim-select").forEach((el) => {
+        window.initSlimSelect(el);
+    });
+});
+
 window.Alpine = Alpine;
 Alpine.start();
+

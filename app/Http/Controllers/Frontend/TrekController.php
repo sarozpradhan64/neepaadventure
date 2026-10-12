@@ -46,7 +46,25 @@ class TrekController extends Controller
             ->orderBy('start_date', 'asc')
             ->get();
 
-        $testimonials = Testimonial::where('status', true)->orderBy('sort_order')->get();
+        $testimonials = Testimonial::where('status', true)
+            ->where(function ($query) use ($trek) {
+                $query->where('service_id', $trek->id)
+                    ->orWhereHas('services', function ($sq) use ($trek) {
+                        $sq->where('services.id', $trek->id);
+                    });
+            })
+            ->orderBy('sort_order')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // If no service-specific reviews are linked yet, fall back to active featured testimonials
+        if ($testimonials->isEmpty()) {
+            $testimonials = Testimonial::where('status', true)
+                ->where('is_featured', true)
+                ->orderBy('sort_order')
+                ->take(3)
+                ->get();
+        }
 
         return view('trek-detail', compact('trek', 'departures', 'testimonials'));
     }

@@ -229,23 +229,78 @@
                         </div>
                         <!-- Subscription Form -->
                         <div class="gap-space-xs relative z-10 flex w-full max-w-md min-w-[320px] flex-col lg:w-auto">
-                            <form class="gap-space-xs flex flex-col sm:flex-row" onsubmit="event.preventDefault()">
+                            <form id="journal-newsletter-form" action="{{ route('newsletter.subscribe') }}" method="POST" class="gap-space-xs flex flex-col sm:flex-row">
+                                @csrf
                                 <input
+                                    id="journal-newsletter-email"
+                                    name="email"
                                     class="px-space-md bg-surface-container-lowest/10 text-summit-white placeholder:text-surface-dim/70 font-body-md text-body-md focus:bg-surface-container-lowest/20 flex-grow rounded py-3.5 focus:outline-none"
                                     placeholder="Enter your email address"
-                                    required=""
+                                    required
                                     type="email"
                                 />
                                 <button
-                                    class="px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md rounded py-3.5 tracking-wider whitespace-nowrap uppercase transition-colors"
+                                    id="journal-newsletter-submit"
+                                    class="px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md rounded py-3.5 tracking-wider whitespace-nowrap uppercase transition-colors disabled:opacity-50"
                                     type="submit"
                                 >
                                     Subscribe
                                 </button>
                             </form>
+                            <p id="journal-newsletter-error" class="text-error text-xs hidden"></p>
+                            <p id="journal-newsletter-success" class="text-emerald-400 text-xs hidden"></p>
                             <span class="text-surface-dim/80 text-center text-[11px] sm:text-left">
                                 Your data remains private under Nepal DP &amp; GDPR regulations.
                             </span>
+
+                            <script>
+                                document.getElementById('journal-newsletter-form')?.addEventListener('submit', async function(e) {
+                                    e.preventDefault();
+
+                                    const form = e.target;
+                                    const submitBtn = document.getElementById('journal-newsletter-submit');
+                                    const errorEl = document.getElementById('journal-newsletter-error');
+                                    const successEl = document.getElementById('journal-newsletter-success');
+
+                                    submitBtn.disabled = true;
+                                    submitBtn.innerText = 'WAIT...';
+                                    errorEl.classList.add('hidden');
+                                    successEl.classList.add('hidden');
+
+                                    try {
+                                        const formData = new FormData(form);
+                                        const response = await fetch(form.action, {
+                                            method: 'POST',
+                                            headers: {
+                                                'X-Requested-With': 'XMLHttpRequest',
+                                                'Accept': 'application/json',
+                                            },
+                                            body: formData
+                                        });
+
+                                        const data = await response.json();
+
+                                        if (!response.ok) {
+                                            if (response.status === 422 && data.errors && data.errors.email) {
+                                                errorEl.innerText = data.errors.email[0];
+                                            } else {
+                                                errorEl.innerText = data.message || 'Something went wrong. Please try again.';
+                                            }
+                                            errorEl.classList.remove('hidden');
+                                        } else {
+                                            successEl.innerText = data.message;
+                                            successEl.classList.remove('hidden');
+                                            form.reset();
+                                        }
+                                    } catch (err) {
+                                        errorEl.innerText = 'Network error. Please try again.';
+                                        errorEl.classList.remove('hidden');
+                                    } finally {
+                                        submitBtn.disabled = false;
+                                        submitBtn.innerText = 'SUBSCRIBE';
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>

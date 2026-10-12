@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ReviewController;
 use App\Http\Controllers\Frontend\TrekController;
 use App\Http\Controllers\ServiceDepartureController;
 use Blaze\AdminCore\Models\TeamMember;
@@ -15,8 +16,9 @@ Route::prefix('about-us')->group(function () {
     Route::get('/team', fn () => view('team', [
         'teamMembers' => TeamMember::where('status', true)->orderBy('sort_order')->get(),
     ]))->name('team');
-    Route::get('/reviews', fn () => view('reviews'))->name('reviews');
+    Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
 });
+Route::redirect('/reviews', '/about-us/reviews', 301);
 Route::get('/treks', [TrekController::class, 'index'])->name('treks');
 Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
 use App\Http\Controllers\Frontend\ScheduleController;
@@ -30,7 +32,6 @@ Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 Route::get('/gallery/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 use App\Http\Controllers\Frontend\ContactController;
-use App\Http\Controllers\Frontend\ReviewController;
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

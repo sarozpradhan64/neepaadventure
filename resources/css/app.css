@@ -220,3 +220,99 @@ h6,
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
 }
+
+/* SlimSelect Custom Theme Integration */
+.ss-main {
+    border-color: var(--input) !important;
+    border-radius: calc(var(--radius) - 2px) !important;
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+    font-size: 0.875rem !important;
+    min-height: 2.375rem !important;
+    padding: 0.25rem 0.5rem !important;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.ss-main:focus, .ss-main.ss-open-below, .ss-main.ss-open-above {
+    border-color: var(--ring) !important;
+    box-shadow: 0 0 0 2px var(--ring) !important;
+}
+
+.ss-content {
+    border-color: var(--border) !important;
+    border-radius: calc(var(--radius) - 2px) !important;
+    background-color: var(--popover) !important;
+    color: var(--popover-foreground) !important;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+
+.ss-content .ss-search {
+    padding: 0.5rem !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+.ss-content .ss-search input {
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+    border: 1px solid var(--input) !important;
+    border-radius: calc(var(--radius) - 4px) !important;
+    font-size: 0.8125rem !important;
+    padding: 0.375rem 0.625rem !important;
+}
+
+.ss-content .ss-search input:focus {
+    outline: none !important;
+    border-color: var(--ring) !important;
+}
+
+.ss-content .ss-list .ss-option {
+    color: var(--foreground) !important;
+    font-size: 0.8125rem !important;
+    padding: 0.45rem 0.75rem !important;
+    border-radius: calc(var(--radius) - 4px) !important;
+    margin: 0.125rem 0.25rem !important;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ss-content .ss-list .ss-option:hover,
+.ss-content .ss-list .ss-option.ss-highlighted {
+    background-color: var(--accent) !important;
+    color: var(--accent-foreground) !important;
+    border-left: none !important;
+}
+
+.ss-content .ss-list .ss-option.ss-selected {
+    background-color: var(--primary) !important;
+    color: var(--primary-foreground) !important;
+}
+
+.ss-main .ss-values .ss-value {
+    background-color: var(--secondary) !important;
+    color: var(--secondary-foreground) !important;
+    border-radius: calc(var(--radius) - 4px) !important;
+    border: 1px solid var(--border) !important;
+    padding: 0.125rem 0.375rem !important;
+    margin: 0.125rem !important;
+}
+
+.ss-main .ss-values .ss-value .ss-value-text {
+    color: var(--secondary-foreground) !important;
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    padding: 0.125rem 0.25rem !important;
+}
+
+.ss-main .ss-values .ss-value .ss-value-delete {
+    border-left: 1px solid var(--border) !important;
+    padding: 0.125rem 0.25rem !important;
+}
+
+.ss-main .ss-values .ss-value .ss-value-delete svg path {
+    stroke: var(--secondary-foreground) !important;
+}
+
+.ss-main .ss-values .ss-placeholder {
+    color: var(--muted-foreground) !important;
+    font-size: 0.875rem !important;
+}
+

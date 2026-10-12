@@ -764,106 +764,69 @@
                 <div class="mx-auto max-w-xl text-center">
                     <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-widest uppercase">Trek Proof</span>
                     <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">
-                        Dispatches from Past Trekkers
+                        Real Journeys. Real Stories.
                     </h2>
                     <p class="font-body-md text-body-md text-tertiary pt-space-2xs">
-                        Real trek feedback on the Gokyo &amp; Cho La route.
+                        Real traveler stories and feedback for {{ $trek->title }}.
                     </p>
                 </div>
                 <div class="gap-space-lg grid grid-cols-1 md:grid-cols-3">
-                    <!-- Review 1 -->
-                    <div class="bg-surface-container-lowest p-space-lg space-y-space-md flex flex-col justify-between rounded-xl shadow-sm">
-                        <div class="space-y-space-xs">
-                            <div class="text-primary flex items-center gap-1">
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
+                    @forelse ($testimonials as $testimonial)
+                        <div class="bg-surface-container-lowest p-space-lg space-y-space-md flex flex-col justify-between rounded-xl shadow-sm">
+                            <div class="space-y-space-xs">
+                                <div class="text-amber-500 flex items-center gap-1">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= ($testimonial->rating ?? 5))
+                                            <x-lucide-star class="size-[18px] fill-current text-amber-500" />
+                                        @else
+                                            <x-lucide-star class="size-[18px] text-outline/30" />
+                                        @endif
+                                    @endfor
+                                </div>
+                                <div class="font-body-sm text-body-sm text-on-surface leading-relaxed pt-1">
+                                    "{!! nl2br(e(strip_tags($testimonial->content))) !!}"
+                                </div>
                             </div>
-                            <h4 class="font-headline-sm text-headline-sm text-on-surface">
-                                "Cho La Pass was an unforgettable highlight."
-                            </h4>
-                            <p class="font-body-sm text-body-sm text-tertiary">
-                                Doing standard EBC without Gokyo would be a huge miss. Dawa and his Guide team guided
-                                us over the icy Cho La pass with incredible patience and security. The sunrise from
-                                Gokyo Ri seeing four 8,000-meter passes is burned into my mind forever.
-                            </p>
-                        </div>
-                        <div class="pt-space-xs gap-space-sm flex items-center">
-                            <div class="bg-surface-container-highest text-on-surface flex h-10 w-10 items-center justify-center rounded-full font-bold">
-                                MK
-                            </div>
-                            <div>
-                                <div class="font-label-md text-label-md text-on-surface font-bold">Marcus Keller</div>
-                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                    Zürich, Switzerland • Oct 2024
+                            <div class="pt-space-xs gap-space-sm flex items-center border-t border-outline/10">
+                                @if (! empty($testimonial->image))
+                                    <img 
+                                        src="{{ Storage::url($testimonial->image) }}" 
+                                        alt="{{ $testimonial->name }}" 
+                                        class="h-10 w-10 rounded-full object-cover shrink-0 border border-outline/20"
+                                    />
+                                @else
+                                    @php
+                                        $initials = collect(explode(' ', trim($testimonial->name)))
+                                            ->map(fn($part) => strtoupper(substr($part, 0, 1)))
+                                            ->take(2)
+                                            ->implode('');
+                                    @endphp
+                                    <div class="bg-surface-container-highest text-on-surface flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold">
+                                        {{ $initials ?: 'TR' }}
+                                    </div>
+                                @endif
+                                <div class="min-w-0 flex-1">
+                                    <div class="font-label-md text-label-md text-on-surface font-bold truncate">
+                                        {{ $testimonial->name }}
+                                    </div>
+                                    <div class="font-badge-caption text-badge-caption text-tertiary uppercase truncate">
+                                        {{ $testimonial->role ?: ($testimonial->company ?: 'Verified Trekker') }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Review 2 -->
-                    <div class="bg-surface-container-lowest p-space-lg space-y-space-md flex flex-col justify-between rounded-xl shadow-sm">
-                        <div class="space-y-space-xs">
-                            <div class="text-primary flex items-center gap-1">
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                            </div>
-                            <h4 class="font-headline-sm text-headline-sm text-on-surface">
-                                "Medical safety standards are world-class."
-                            </h4>
-                            <p class="font-body-sm text-body-sm text-tertiary">
-                                My oxygen saturation dipped at Machhermo, but Dawa adjusted our pacing immediately,
-                                checked me twice daily, and made sure I acclimated naturally. Arrived at Everest Base
-                                Camp feeling strong and healthy. Extraordinary professionalism.
-                            </p>
+                    @empty
+                        <div class="col-span-full py-12 text-center bg-surface-container-lowest rounded-xl border border-outline/10 p-6">
+                            <p class="font-body-md text-tertiary mb-3">No reviews recorded specifically for this trek yet.</p>
+                            <a 
+                                href="{{ route('write-review') }}" 
+                                class="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:underline"
+                            >
+                                <x-lucide-pencil class="size-3.5" />
+                                <span>Be the first to share your experience</span>
+                            </a>
                         </div>
-                        <div class="pt-space-xs gap-space-sm flex items-center">
-                            <div class="bg-surface-container-highest text-on-surface flex h-10 w-10 items-center justify-center rounded-full font-bold">
-                                SL
-                            </div>
-                            <div>
-                                <div class="font-label-md text-label-md text-on-surface font-bold">Sarah Lindqvist</div>
-                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                    Stockholm, Sweden • Nov 2024
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Review 3 -->
-                    <div class="bg-surface-container-lowest p-space-lg space-y-space-md flex flex-col justify-between rounded-xl shadow-sm">
-                        <div class="space-y-space-xs">
-                            <div class="text-primary flex items-center gap-1">
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                                <x-lucide-star class="size-[18px]" />
-                            </div>
-                            <h4 class="font-headline-sm text-headline-sm text-on-surface">
-                                "Fair porter wages and top tier mountain food."
-                            </h4>
-                            <p class="font-body-sm text-body-sm text-tertiary">
-                                I chose Neepa Adventure because of their ethical porter treatment charter and it was
-                                evident on the trail. The porters were well-outfitted with proper alpine boots and
-                                jackets. Meals were warm, abundant, and fresh fruit dessert at 4,900m is real luxury!
-                            </p>
-                        </div>
-                        <div class="pt-space-xs gap-space-sm flex items-center">
-                            <div class="bg-surface-container-highest text-on-surface flex h-10 w-10 items-center justify-center rounded-full font-bold">
-                                AR
-                            </div>
-                            <div>
-                                <div class="font-label-md text-label-md text-on-surface font-bold">Alexander Reed</div>
-                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                    Vancouver, Canada • May 2024
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </section>

@@ -8,6 +8,19 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+    public function index()
+    {
+        $reviews = Testimonial::where('status', true)
+            ->orderBy('sort_order')
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+
+        $totalReviews = Testimonial::where('status', true)->count();
+        $averageRating = Testimonial::where('status', true)->avg('rating') ?: 5.0;
+
+        return view('reviews', compact('reviews', 'totalReviews', 'averageRating'));
+    }
+
     public function create()
     {
         return view('write-review');
