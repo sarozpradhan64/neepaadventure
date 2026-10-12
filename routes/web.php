@@ -20,8 +20,10 @@ Route::prefix('about-us')->group(function () {
 });
 Route::redirect('/reviews', '/about-us/reviews', 301);
 Route::get('/services/{categorySlug}', [TrekController::class, 'category'])->name('services.category');
+Route::get('/services/{categorySlug}/{serviceSlug}', [TrekController::class, 'show'])->name('services.show');
+Route::post('/services/{categorySlug}/{serviceSlug}/book', [TrekController::class, 'book'])->name('services.book');
 Route::get('/treks', [TrekController::class, 'index'])->name('treks');
-Route::get('/treks/{slug}', [TrekController::class, 'show'])->name('trek-detail');
+Route::get('/treks/{slug}', [TrekController::class, 'legacyShow'])->name('trek-detail');
 use App\Http\Controllers\Frontend\ScheduleController;
 
 Route::get('/schedules', [ScheduleController::class, 'index'])->name('schedules');

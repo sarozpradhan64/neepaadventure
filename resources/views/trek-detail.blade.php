@@ -5,7 +5,88 @@
     :image="$trek->featured_image"
 >
     <x-header />
-    <main class="bg-surface w-full pt-48">
+    <main class="bg-surface w-full pt-28" x-data="{
+        bookingModalOpen: false,
+        selectedDeparture: '{{ $departures->isNotEmpty() ? $departures->first()->id : 'custom' }}',
+        selectedDepartureLabel: '{{ $departures->isNotEmpty() ? ($departures->first()->start_date?->format('M d, Y') . ' – ' . $departures->first()->end_date?->format('M d, Y')) : 'Custom / Flexible Dates' }}',
+        trekkersCount: 1,
+        basePrice: {{ (float) ($trek->price_from ?: 1750) }},
+        depositPerPerson: {{ (float) ($trek->deposit_requirement ? (float) filter_var($trek->deposit_requirement, FILTER_SANITIZE_NUMBER_INT) : 350) ?: 350 }},
+        name: '',
+        email: '',
+        phone: '',
+        country: '',
+        notes: '',
+        submitting: false,
+        submitted: false,
+        successMessage: '',
+        errorMessage: '',
+
+        openBooking(depId = null, depLabel = null) {
+            if (depId) {
+                this.selectedDeparture = depId;
+                const sel = document.getElementById('departure-select');
+                if (sel) { sel.value = depId; }
+            } else {
+                const sel = document.getElementById('departure-select');
+                if (sel && sel.value) { this.selectedDeparture = sel.value; }
+            }
+
+            if (depLabel) {
+                this.selectedDepartureLabel = depLabel;
+            } else {
+                const sel = document.getElementById('departure-select');
+                if (sel && sel.selectedIndex >= 0) {
+                    this.selectedDepartureLabel = sel.options[sel.selectedIndex].text;
+                }
+            }
+
+            this.submitted = false;
+            this.errorMessage = '';
+            this.bookingModalOpen = true;
+        },
+
+        async submitBooking() {
+            if (!this.name || !this.email || !this.phone) {
+                this.errorMessage = 'Please provide your full name, email address, and phone/WhatsApp number.';
+                return;
+            }
+            this.submitting = true;
+            this.errorMessage = '';
+
+            try {
+                const response = await fetch('{{ route('services.book', ['categorySlug' => $trek->category?->slug ?? 'trekking', 'serviceSlug' => $trek->slug]) }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        name: this.name,
+                        email: this.email,
+                        phone: this.phone,
+                        departure_id: this.selectedDeparture,
+                        trekkers_count: this.trekkersCount,
+                        country: this.country,
+                        notes: this.notes
+                    })
+                });
+
+                const data = await response.json();
+                if (response.ok && data.success) {
+                    this.submitted = true;
+                    this.successMessage = data.message;
+                } else {
+                    this.errorMessage = data.message || 'Unable to submit booking. Please check your information.';
+                }
+            } catch (err) {
+                this.errorMessage = 'Network connection issue. Please try again or message us directly on WhatsApp.';
+            } finally {
+                this.submitting = false;
+            }
+        }
+    }">
         <div class="flex w-full flex-col">
             <!-- Top Technical Breadcrumbs & Status Bar -->
             <div class="bg-surface-container-low py-space-sm px-gutter-mobile lg:px-gutter-desktop w-full">
@@ -121,6 +202,11 @@
                                 <select
                                     class="bg-surface-container-lowest text-on-surface font-body-md text-body-md p-space-sm focus:ring-primary w-full cursor-pointer rounded-lg shadow-sm focus:ring-2 focus:outline-none border border-outline/10 text-sm"
                                     id="departure-select"
+                                    x-model="selectedDeparture"
+                                    @change="
+                                        const opt = $event.target.options[$event.target.selectedIndex];
+                                        if (opt) { selectedDepartureLabel = opt.text; }
+                                    "
                                 >
                                     @forelse($departures as $dep)
                                         @php
@@ -137,7 +223,7 @@
                             <div class="bg-surface-container-lowest p-space-sm space-y-space-2xs text-body-sm text-tertiary rounded-lg">
                                 <div class="flex items-center justify-between">
                                     <span>Deposit Requirement:</span>
-                                    <span class="text-on-surface font-semibold">20% ($350 USD)</span>
+                                    <span class="text-on-surface font-semibold">20% (${{ number_format((float) ($trek->deposit_requirement ?: 350)) }} USD)</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span>Group Size Cap:</span>
@@ -151,10 +237,18 @@
                                 </div>
                             </div>
                             <div class="gap-space-xs pt-space-2xs flex flex-col">
-                                <button class="py-space-sm px-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase shadow-sm transition-all">
+                                <button 
+                                    type="button"
+                                    @click="openBooking()"
+                                    class="py-space-sm px-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase shadow-sm transition-all cursor-pointer"
+                                >
                                     Reserve Your Place
                                 </button>
-                                <button class="py-space-sm px-space-md bg-surface-container-highest hover:bg-mist-slate text-on-surface font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase transition-colors">
+                                <button 
+                                    type="button"
+                                    @click="openBooking('custom', 'Custom / Private Date Request')"
+                                    class="py-space-sm px-space-md bg-surface-container-highest hover:bg-mist-slate text-on-surface font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase transition-colors cursor-pointer"
+                                >
                                     Request Private / Custom Date
                                 </button>
                                 <a
@@ -855,17 +949,8 @@
 
                                         <button 
                                             type="button"
-                                            onclick="
-                                                var sel = document.getElementById('departure-select');
-                                                if (sel) { sel.value = '{{ $departure->id }}'; }
-                                                var bookingCard = document.getElementById('booking');
-                                                if (bookingCard) { 
-                                                    bookingCard.scrollIntoView({ behavior: 'smooth' }); 
-                                                    bookingCard.classList.add('ring-2', 'ring-primary');
-                                                    setTimeout(() => bookingCard.classList.remove('ring-2', 'ring-primary'), 2000);
-                                                }
-                                            "
-                                            class="px-5 py-3 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm hover:shadow-md flex items-center gap-1.5 group/btn shrink-0"
+                                            @click="openBooking('{{ $departure->id }}', '{{ $departure->start_date?->format('M d, Y') }} – {{ $departure->end_date?->format('M d, Y') }}')"
+                                            class="px-5 py-3 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm hover:shadow-md flex items-center gap-1.5 group/btn shrink-0 cursor-pointer"
                                         >
                                             <span>Select Date</span>
                                             <x-lucide-arrow-right class="size-3.5 transition-transform group-hover/btn:translate-x-0.5" />
@@ -1053,8 +1138,12 @@
                     </p>
                 </div>
                 <div class="gap-space-sm flex shrink-0 flex-wrap items-center justify-center">
-                    <button class="py-space-md px-space-xl bg-ridge-deep hover:bg-tertiary text-summit-white font-label-md text-label-md rounded-lg font-bold tracking-wider uppercase shadow-md transition-all">
-                        Book This Circuit ($1,750)
+                    <button 
+                        type="button"
+                        @click="openBooking()"
+                        class="py-space-md px-space-xl bg-ridge-deep hover:bg-tertiary text-summit-white font-label-md text-label-md rounded-lg font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer"
+                    >
+                        Book This Circuit (${{ number_format((float) $trek->price_from, 0) }})
                     </button>
                     <button class="py-space-md px-space-xl bg-surface-container-lowest hover:bg-mist-slate text-on-surface font-label-md text-label-md rounded-lg font-bold tracking-wider uppercase shadow-sm transition-all">
                         Download PDF Blog
@@ -1062,6 +1151,274 @@
                 </div>
             </div>
         </section>
+        </div>
+
+        <!-- Dynamic Booking & Reservation Modal -->
+        <div 
+            x-cloak
+            x-show="bookingModalOpen"
+            @keydown.escape.window="bookingModalOpen = false"
+            class="fixed inset-0 z-50 overflow-y-auto"
+            aria-labelledby="booking-modal-title" 
+            role="dialog" 
+            aria-modal="true"
+        >
+            <!-- Backdrop -->
+            <div 
+                x-show="bookingModalOpen"
+                x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-ridge-deep/75 backdrop-blur-sm transition-opacity"
+                @click="bookingModalOpen = false"
+            ></div>
+
+            <!-- Modal Panel Centering Wrapper -->
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-6">
+                <div 
+                    x-show="bookingModalOpen"
+                    x-transition:enter="ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="ease-in duration-200"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    class="relative w-full max-w-2xl transform overflow-hidden rounded-2xl bg-surface-container-lowest text-left shadow-2xl transition-all border border-outline/10"
+                    @click.stop
+                >
+                    <!-- Modal Header -->
+                    <div class="bg-surface-container px-6 py-5 border-b border-outline/10 flex items-center justify-between">
+                        <div class="space-y-1 pr-4">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-primary-container text-on-primary-fixed">
+                                <x-lucide-calendar-check class="size-3.5" /> Direct Reservation
+                            </span>
+                            <h3 class="text-xl font-bold text-on-surface" id="booking-modal-title">
+                                {{ $trek->title }}
+                            </h3>
+                        </div>
+                        <button 
+                            type="button" 
+                            @click="bookingModalOpen = false"
+                            class="rounded-lg p-2 text-tertiary hover:text-on-surface hover:bg-surface-container-high transition-colors"
+                        >
+                            <x-lucide-x class="size-5" />
+                        </button>
+                    </div>
+
+                    <!-- Modal Body: Form View -->
+                    <div x-show="!submitted" class="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+                        <!-- Selected Departure Info Card -->
+                        <div class="rounded-xl bg-surface-container p-4 border border-outline/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div>
+                                <div class="text-xs uppercase font-bold tracking-wider text-tertiary">Selected Departure Date</div>
+                                <div class="text-sm sm:text-base font-semibold text-on-surface mt-0.5" x-text="selectedDepartureLabel"></div>
+                            </div>
+                            <div class="sm:text-right shrink-0">
+                                <div class="text-xs uppercase font-bold tracking-wider text-tertiary">Base Rate</div>
+                                <div class="text-base font-bold text-primary">${{ number_format((float) $trek->price_from, 0) }} <span class="text-xs text-tertiary font-normal">/ person</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Departure Change Dropdown (Optional Override) -->
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-tertiary mb-1.5">
+                                Change Departure Date
+                            </label>
+                            <select 
+                                x-model="selectedDeparture"
+                                @change="
+                                    const opt = $event.target.options[$event.target.selectedIndex];
+                                    if (opt) { selectedDepartureLabel = opt.text; }
+                                "
+                                class="w-full rounded-xl border border-outline/15 bg-surface-container-lowest px-4 py-2.5 text-sm text-on-surface focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                            >
+                                @forelse($departures as $dep)
+                                    @php
+                                        $spotsLeft = max(0, $dep->seats_total - $dep->seats_booked);
+                                    @endphp
+                                    <option value="{{ $dep->id }}">
+                                        {{ $dep->start_date?->format('M d') }} – {{ $dep->end_date?->format('M d, Y') }} ({{ $spotsLeft }} {{ Str::plural('seat', $spotsLeft) }} left)
+                                    </option>
+                                @empty
+                                    <option value="custom">Inquire for Flexible Dates / Custom Group</option>
+                                @endforelse
+                                <option value="custom">Custom / Private Date Request</option>
+                            </select>
+                        </div>
+
+                        <!-- Number of Trekkers & Calculation -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center rounded-xl bg-surface-container/60 p-4 border border-outline/10">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-tertiary mb-2">
+                                    Number of Trekkers
+                                </label>
+                                <div class="inline-flex items-center gap-3 bg-surface-container-lowest rounded-xl border border-outline/15 p-1.5 shadow-sm">
+                                    <button 
+                                        type="button"
+                                        @click="if (trekkersCount > 1) trekkersCount--"
+                                        class="size-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-bold flex items-center justify-center transition-colors cursor-pointer"
+                                    >
+                                        -
+                                    </button>
+                                    <span class="w-8 text-center font-bold text-on-surface" x-text="trekkersCount">1</span>
+                                    <button 
+                                        type="button"
+                                        @click="if (trekkersCount < 16) trekkersCount++"
+                                        class="size-8 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-bold flex items-center justify-center transition-colors cursor-pointer"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 sm:text-right">
+                                <div class="text-xs text-tertiary">
+                                    Total Est: <span class="font-bold text-on-surface" x-text="'$' + (basePrice * trekkersCount).toLocaleString() + ' USD'"></span>
+                                </div>
+                                <div class="text-xs text-tertiary">
+                                    Deposit Due (20%): <span class="font-bold text-primary" x-text="'$' + (depositPerPerson * trekkersCount).toLocaleString() + ' USD'"></span>
+                                </div>
+                                <div class="text-[11px] text-tertiary italic">Payable after itinerary confirmation</div>
+                            </div>
+                        </div>
+
+                        <!-- Error Message Banner -->
+                        <div x-show="errorMessage" class="rounded-xl bg-red-500/10 border border-red-500/30 p-4 text-xs font-medium text-red-600 flex items-start gap-2.5">
+                            <x-lucide-alert-circle class="size-4 shrink-0 mt-0.5" />
+                            <span x-text="errorMessage"></span>
+                        </div>
+
+                        <!-- Contact Details Form -->
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-tertiary mb-1">
+                                        Full Name <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        x-model="name"
+                                        placeholder="e.g. Alexander Smith"
+                                        class="w-full rounded-xl border border-outline/15 bg-surface-container-lowest px-4 py-2.5 text-sm text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-tertiary mb-1">
+                                        Email Address <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="email" 
+                                        x-model="email"
+                                        placeholder="e.g. alex@example.com"
+                                        class="w-full rounded-xl border border-outline/15 bg-surface-container-lowest px-4 py-2.5 text-sm text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-tertiary mb-1">
+                                        WhatsApp / Phone <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="tel" 
+                                        x-model="phone"
+                                        placeholder="e.g. +1 555 123 4567"
+                                        class="w-full rounded-xl border border-outline/15 bg-surface-container-lowest px-4 py-2.5 text-sm text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-tertiary mb-1">
+                                        Country / Nationality
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        x-model="country"
+                                        placeholder="e.g. United States, Germany, Australia"
+                                        class="w-full rounded-xl border border-outline/15 bg-surface-container-lowest px-4 py-2.5 text-sm text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-tertiary mb-1">
+                                    Special Requests / Questions
+                                </label>
+                                <textarea 
+                                    x-model="notes"
+                                    rows="3"
+                                    placeholder="Tell us about your fitness level, dietary requirements, or private guide preferences..."
+                                    class="w-full rounded-xl border border-outline/15 bg-surface-container-lowest px-4 py-2.5 text-sm text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Footer Actions -->
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-outline/10">
+                            <div class="flex items-center gap-2 text-xs text-tertiary">
+                                <x-lucide-shield-check class="size-4 text-emerald-600" />
+                                <span>No payment required right now. 100% free inquiry.</span>
+                            </div>
+                            <div class="flex items-center gap-3 w-full sm:w-auto">
+                                <button 
+                                    type="button"
+                                    @click="bookingModalOpen = false"
+                                    class="w-1/2 sm:w-auto px-4 py-2.5 rounded-xl border border-outline/20 text-xs font-bold uppercase tracking-wider text-tertiary hover:text-on-surface hover:bg-surface-container transition-colors"
+                                >
+                                    Cancel
+                                </button>
+                                <button 
+                                    type="button"
+                                    @click="submitBooking()"
+                                    :disabled="submitting"
+                                    class="w-1/2 sm:w-auto px-6 py-2.5 rounded-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed text-xs font-bold uppercase tracking-wider transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+                                >
+                                    <span x-show="!submitting">Confirm Booking Request</span>
+                                    <span x-show="submitting" class="flex items-center gap-2">
+                                        <x-lucide-loader-2 class="size-4 animate-spin" /> Submitting...
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Body: Success View -->
+                    <div x-show="submitted" class="p-8 text-center space-y-5">
+                        <div class="size-16 rounded-full bg-emerald-500/10 text-emerald-600 mx-auto flex items-center justify-center">
+                            <x-lucide-check-circle-2 class="size-9" />
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="text-2xl font-bold text-on-surface">Booking Request Submitted!</h4>
+                            <p class="text-sm text-tertiary max-w-md mx-auto" x-text="successMessage"></p>
+                        </div>
+                        <div class="rounded-xl bg-surface-container p-4 border border-outline/10 text-xs text-on-surface-variant max-w-md mx-auto">
+                            Our expedition specialists will review your departure date, check national park permit availability, and reach out via email or WhatsApp within 12 hours.
+                        </div>
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                            <a 
+                                href="https://wa.me/97714700000" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] text-white text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
+                            >
+                                <x-lucide-message-circle class="size-4" /> Message Us on WhatsApp
+                            </a>
+                            <button 
+                                type="button" 
+                                @click="bookingModalOpen = false"
+                                class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-xs font-bold uppercase tracking-wider text-on-surface transition-colors cursor-pointer"
+                            >
+                                Done
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <x-footer />

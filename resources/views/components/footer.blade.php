@@ -116,7 +116,7 @@
 
                     <li><a class="hover:text-primary transition-colors" href="{{ route('about') }}">About Us</a></li>
                     <li><a class="hover:text-primary transition-colors" href="{{ route('careers.index') }}">Careers</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="{{ route('contact') }}">Contact Us</a></li>
                     <li><a class="hover:text-primary transition-colors" href="{{ route('write-review') }}">Write a Review</a></li>
                 </ul>
             </div>

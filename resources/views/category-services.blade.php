@@ -5,7 +5,7 @@
 >
     <x-header />
 
-    <main class="bg-surface w-full pt-48" x-data="{
+    <main class="bg-surface w-full pt-28" x-data="{
         searchQuery: '{{ request('search', '') }}',
         activeFilter: 'all',
         services: {{ Js::from($services->map(fn($s) => [
@@ -201,7 +201,7 @@
                                         <!-- Card Content -->
                                         <div class="p-6 space-y-4">
                                             <div>
-                                                <a href="{{ route('trek-detail', $trek->slug) }}">
+                                                <a href="{{ $trek->url }}">
                                                     <h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors line-clamp-2 leading-snug">
                                                         {{ $trek->title }}
                                                     </h2>
@@ -246,13 +246,13 @@
                                         <div class="grid grid-cols-2 gap-2">
                                             <a
                                                 class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-xs rounded-xl py-2.5 text-center font-bold tracking-wider uppercase transition-all"
-                                                href="{{ route('trek-detail', $trek->slug) }}"
+                                                href="{{ $trek->url }}"
                                             >
                                                 Itinerary
                                             </a>
                                             <a
                                                 class="bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-sm text-xs rounded-xl py-2.5 text-center font-bold tracking-wider uppercase transition-all shadow-sm"
-                                                href="{{ route('trek-detail', $trek->slug) }}#booking"
+                                                href="{{ $trek->url }}#booking"
                                             >
                                                 Book Now
                                             </a>
@@ -272,7 +272,7 @@
                         Custom Mountain Journeys
                     </span>
                     <h2 class="text-3xl font-extrabold text-on-surface">
-                        Looking for a Bespoke Expedition in {{ $category->name }}?
+                        Looking for a Custom Tour in {{ $category->name }}?
                     </h2>
                     <p class="text-tertiary text-base max-w-2xl mx-auto leading-relaxed">
                         Whether you require private tented camps, personalized acclimatization schedules, or combined climbing peaks, our licensed guides craft custom journeys tailored to your fitness and schedule.
@@ -282,7 +282,7 @@
                             Plan Your Custom Trek
                         </a>
                         <a href="{{ route('contact') }}" class="px-8 py-3.5 bg-surface-container-highest hover:bg-surface-container text-on-surface font-bold rounded-xl transition-all border border-outline/10">
-                            Speak with a Guide
+                            Contact Us
                         </a>
                     </div>
                 </div>

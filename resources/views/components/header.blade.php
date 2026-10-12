@@ -129,10 +129,10 @@
 
                                         {{-- Right Content Area: Corresponding services of active child category --}}
                                         <div class="flex-1 p-6 bg-surface overflow-y-auto max-h-[500px]">
-                                            {{-- Top Action: Confused? Let's Talk button --}}
+                                            {{-- Top Action: Contact Us button --}}
                                             <div class="mb-5">
                                                 <a href="{{ route('contact') }}" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-md shadow-sm transition-colors">
-                                                    Confused? Let's Talk
+                                                    Contact Us
                                                 </a>
                                             </div>
 
@@ -196,7 +196,7 @@
                                         <div class="flex items-center justify-between pb-4 mb-4 border-b border-outline/10">
                                             <span class="text-xs font-semibold text-on-surface-variant">Available Services</span>
                                             <a href="{{ route('contact') }}" class="inline-flex items-center px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-md shadow-sm transition-colors">
-                                                Confused? Let's Talk
+                                                Contact Us
                                             </a>
                                         </div>
                                         @if($directServices->isNotEmpty())

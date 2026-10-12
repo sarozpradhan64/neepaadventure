@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\ServiceDeparture;
 use Blaze\AdminCore\Models\Service;
+use Blaze\AdminCore\Models\ServiceCategory;
 use Blaze\AdminCore\Models\ServiceFeature;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -15,10 +16,43 @@ class TrekDataSeeder extends Seeder
      */
     public function run(): void
     {
+        $trekking = ServiceCategory::firstOrCreate(
+            ['slug' => 'trekking'],
+            [
+                'name' => 'Trekking',
+                'description' => 'Classic Himalayan circuits, remote passes, and guided alpine treks across Nepal.',
+                'status' => true,
+                'sort_order' => 1,
+            ]
+        );
+
+        $everest = ServiceCategory::firstOrCreate(
+            ['slug' => 'everest-region'],
+            [
+                'name' => 'Everest Region',
+                'parent_id' => $trekking->id,
+                'description' => 'Iconic routes beneath Mount Everest, Sagarmatha National Park, and high Khumbu passes.',
+                'status' => true,
+                'sort_order' => 1,
+            ]
+        );
+
+        $annapurna = ServiceCategory::firstOrCreate(
+            ['slug' => 'annapurna-region'],
+            [
+                'name' => 'Annapurna Region',
+                'parent_id' => $trekking->id,
+                'description' => 'Diverse landscapes, sacred high-altitude lakes, and classic Thorong La circuit.',
+                'status' => true,
+                'sort_order' => 2,
+            ]
+        );
+
         // 1. Everest Base Camp & Gokyo Ri Circuit
         $ebc = Service::updateOrCreate([
             'slug' => 'everest-base-camp-gokyo-ri',
         ], [
+            'service_category_id' => $everest->id,
             'title' => 'Everest Base Camp & Gokyo Ri Lakes Circuit',
             'short_description' => 'A sacred circumnavigation through the high turquoise glacial lakes of Gokyo, over the glaciated Cho La Pass (5,420m), onto the legendary Khumbu Icefall moraine beneath Mt. Everest.',
             'description' => '<p>Experience the ultimate Himalayan adventure...</p>',
@@ -92,6 +126,7 @@ class TrekDataSeeder extends Seeder
         $abc = Service::updateOrCreate([
             'slug' => 'annapurna-circuit',
         ], [
+            'service_category_id' => $annapurna->id,
             'title' => 'Annapurna Circuit & Tilicho Lake',
             'short_description' => 'From subtropical rice paddies to the world\'s highest glacial tarn (Tilicho) and the iconic Thorong La high alpine col.',
             'description' => '<p>The classic Annapurna traverse...</p>',
