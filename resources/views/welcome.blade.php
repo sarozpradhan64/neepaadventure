@@ -250,7 +250,7 @@
                                                 description="{{ Str::limit($trek->short_description ?? strip_tags($trek->description), 120) }}"
                                                 :inclusions="$inclusionsList" 
                                                 price="${{ number_format((float)($trek->price_from ?? 0)) }}"
-                                                href="{{ route('trek-detail', ['slug' => $trek->slug]) }}" 
+                                                href="{{ $trek->url }}" 
                                             />
                                         @endforeach
                                     </div>
@@ -320,7 +320,7 @@
                                                 description="{{ Str::limit($trek->short_description ?? strip_tags($trek->description), 120) }}"
                                                 :inclusions="$inclusionsList" 
                                                 price="${{ number_format((float)($trek->price_from ?? 0)) }}"
-                                                href="{{ route('trek-detail', ['slug' => $trek->slug]) }}" 
+                                                href="{{ $trek->url }}" 
                                             />
                                         @endforeach
                                     </div>

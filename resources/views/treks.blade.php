@@ -294,7 +294,7 @@
                                     <div class="gap-space-xs grid grid-cols-2">
                                         <a
                                             class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm w-full rounded px-3 py-2.5 text-center font-bold tracking-wider uppercase transition-colors"
-                                            href="{{ route('trek-detail', $trek->slug) }}"
+                                            href="{{ $trek->url }}"
                                         >
                                             Itinerary
                                         </a>

@@ -147,7 +147,7 @@
                                                                     <ul class="space-y-2.5">
                                                                         @forelse($subCat->services as $srv)
                                                                             <li>
-                                                                                <a href="{{ route('trek-detail', $srv->slug) }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors">
+                                                                                <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors">
                                                                                     <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                                                     @if($srv->duration)
                                                                                         <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
@@ -164,7 +164,7 @@
                                                     @elseif($childCat->services && $childCat->services->isNotEmpty())
                                                         <div class="grid grid-cols-2 gap-4">
                                                             @foreach($childCat->services as $srv)
-                                                                <a href="{{ route('trek-detail', $srv->slug) }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container-low transition-all">
+                                                                <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container-low transition-all">
                                                                     <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                                     @if($srv->duration)
                                                                         <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
@@ -202,7 +202,7 @@
                                         @if($directServices->isNotEmpty())
                                             <div class="grid grid-cols-2 gap-x-6 gap-y-3 max-h-[400px] overflow-y-auto">
                                                 @foreach($directServices as $srv)
-                                                    <a href="{{ route('trek-detail', $srv->slug) }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors py-1">
+                                                    <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors py-1">
                                                         <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                         @if($srv->duration)
                                                             <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
@@ -355,14 +355,14 @@
                                                                 @foreach($child->serviceCategory->children as $subCat)
                                                                     <a href="{{ route('services.category', $subCat->slug) }}" class="block text-xs font-bold text-primary pt-1 hover:underline">{{ $subCat->name }}</a>
                                                                     @foreach($subCat->services as $srv)
-                                                                        <a href="{{ route('trek-detail', $srv->slug) }}" class="block py-1 pl-2 text-xs text-on-surface-variant hover:text-primary">
+                                                                        <a href="{{ $srv->url }}" class="block py-1 pl-2 text-xs text-on-surface-variant hover:text-primary">
                                                                             {{ $srv->title }}
                                                                         </a>
                                                                     @endforeach
                                                                 @endforeach
                                                             @elseif($child->serviceCategory && $child->serviceCategory->services->isNotEmpty())
                                                                 @foreach($child->serviceCategory->services as $srv)
-                                                                    <a href="{{ route('trek-detail', $srv->slug) }}" class="block py-1 text-xs text-on-surface-variant hover:text-primary">
+                                                                    <a href="{{ $srv->url }}" class="block py-1 text-xs text-on-surface-variant hover:text-primary">
                                                                         {{ $srv->title }}
                                                                     </a>
                                                                 @endforeach
