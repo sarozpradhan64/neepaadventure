@@ -65,7 +65,23 @@
             </a>
         </div>
 
-        <nav class="hidden items-center gap-2 xl:flex">
+        @php
+            $checkUrlActive = function (?string $url) {
+                if (!$url || $url === '#') {
+                    return false;
+                }
+                if (request()->url() === url($url)) {
+                    return true;
+                }
+                $path = trim(parse_url($url, PHP_URL_PATH) ?? '', '/');
+                if ($path === '') {
+                    return request()->path() === '/' || request()->path() === '';
+                }
+                return request()->is($path) || request()->is($path . '/*');
+            };
+        @endphp
+
+        <nav class="hidden items-center gap-1.5 xl:flex">
             @foreach($navMenus as $menu)
                 @php
                     $isServiceMenu = $menu->children->contains(fn($c) => $c->type === 'service_category' || ($c->children && $c->children->contains(fn($cc) => $cc->type === 'service_category')));
@@ -96,6 +112,25 @@
                             }
                         }
                     }
+
+                    $hasActiveChild = $menu->children->isNotEmpty() && $menu->children->contains(function ($child) use ($checkUrlActive) {
+                        if ($checkUrlActive($child->url)) {
+                            return true;
+                        }
+                        if ($child->serviceCategory) {
+                            $cat = $child->serviceCategory;
+                            if (request()->url() === route('services.category', $cat->slug) || request()->is('services/' . $cat->slug . '*')) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    });
+
+                    if (!$hasActiveChild && strtolower($menu->title) === 'about us' && (request()->routeIs('legal.*') || request()->is('legal*'))) {
+                        $hasActiveChild = true;
+                    }
+
+                    $isMenuActive = $checkUrlActive($menu->url) || $hasActiveChild;
                 @endphp
 
                 @if($menu->children->isNotEmpty())
@@ -104,10 +139,13 @@
                         @if($childTabs->isNotEmpty())
                             {{-- Case 1: Child service categories exist -> render clickable tabs on the left, corresponding services on the right --}}
                             <div class="group relative py-6" x-data="{ activeTab: '{{ $childTabs->first()->id }}' }">
-                                <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->url() == url($menu->url ?? '') || (isset($menu->url) && request()->is(ltrim($menu->url, '/').'*')) ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
+                                <a class="relative px-3 py-2 font-label-md text-label-md rounded-lg transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-on-surface font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 font-medium' }}"
                                     href="{{ $menu->url }}">
-                                    {{ $menu->title }}
-                                    <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
+                                    <span>{{ $menu->title }}</span>
+                                    <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-primary' : 'opacity-50' }}" />
+                                    @if($isMenuActive)
+                                        <span class="absolute bottom-0 inset-x-2 h-[2.5px] rounded-full bg-primary"></span>
+                                    @endif
                                 </a>
                                 <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[920px] max-w-[95vw]">
                                     <div class="bg-surface rounded-2xl shadow-2xl border border-outline/10 overflow-hidden flex min-h-[420px]">
@@ -131,7 +169,7 @@
                                         <div class="flex-1 p-6 bg-surface overflow-y-auto max-h-[500px]">
                                             {{-- Top Action: Contact Us button --}}
                                             <div class="mb-5">
-                                                <a href="{{ route('contact') }}" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-md shadow-sm transition-colors">
+                                                <a href="{{ route('contact') }}" class="inline-flex items-center px-4 py-2 bg-primary-container hover:bg-amber-flare text-on-primary-fixed text-xs font-semibold rounded-lg shadow-sm transition-colors">
                                                     Contact Us
                                                 </a>
                                             </div>
@@ -150,7 +188,7 @@
                                                                                 <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors">
                                                                                     <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                                                     @if($srv->duration)
-                                                                                        <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
+                                                                                        <span class="text-[10px] text-primary font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
                                                                                     @endif
                                                                                 </a>
                                                                             </li>
@@ -167,7 +205,7 @@
                                                                 <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container-low transition-all">
                                                                     <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                                     @if($srv->duration)
-                                                                        <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
+                                                                        <span class="text-[10px] text-primary font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
                                                                     @endif
                                                                 </a>
                                                             @endforeach
@@ -186,16 +224,19 @@
                         @else
                             {{-- Case 2: Child service category does not exist -> list all available services directly without left sidebar --}}
                             <div class="group relative py-6">
-                                <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->url() == url($menu->url ?? '') || (isset($menu->url) && request()->is(ltrim($menu->url, '/').'*')) ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
+                                <a class="relative px-3 py-2 font-label-md text-label-md rounded-lg transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-on-surface font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 font-medium' }}"
                                     href="{{ $menu->url }}">
-                                    {{ $menu->title }}
-                                    <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
+                                    <span>{{ $menu->title }}</span>
+                                    <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-primary' : 'opacity-50' }}" />
+                                    @if($isMenuActive)
+                                        <span class="absolute bottom-0 inset-x-2 h-[2.5px] rounded-full bg-primary"></span>
+                                    @endif
                                 </a>
                                 <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[640px] max-w-[95vw]">
                                     <div class="bg-surface rounded-2xl shadow-2xl border border-outline/10 p-6 overflow-hidden">
                                         <div class="flex items-center justify-between pb-4 mb-4 border-b border-outline/10">
                                             <span class="text-xs font-semibold text-on-surface-variant">Available Services</span>
-                                            <a href="{{ route('contact') }}" class="inline-flex items-center px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-md shadow-sm transition-colors">
+                                            <a href="{{ route('contact') }}" class="inline-flex items-center px-3.5 py-1.5 bg-primary-container hover:bg-amber-flare text-on-primary-fixed text-xs font-semibold rounded-lg shadow-sm transition-colors">
                                                 Contact Us
                                             </a>
                                         </div>
@@ -205,7 +246,7 @@
                                                     <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors py-1">
                                                         <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                         @if($srv->duration)
-                                                            <span class="text-[10px] text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
+                                                            <span class="text-[10px] text-primary font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
                                                         @endif
                                                     </a>
                                                 @endforeach
@@ -222,10 +263,13 @@
                     @else
                         {{-- Standard Dropdown Menu --}}
                         <div class="group relative py-6">
-                            <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->url() == url($menu->url ?? '') || (isset($menu->url) && request()->is(ltrim($menu->url, '/').'*')) ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} flex items-center gap-1 transition-colors"
+                            <a class="relative px-3 py-2 font-label-md text-label-md rounded-lg transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-on-surface font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 font-medium' }}"
                                 href="{{ $menu->url }}">
-                                {{ $menu->title }}
-                                <x-lucide-chevron-down class="size-4 opacity-50 transition-transform group-hover:rotate-180" />
+                                <span>{{ $menu->title }}</span>
+                                <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-primary' : 'opacity-50' }}" />
+                                @if($isMenuActive)
+                                    <span class="absolute bottom-0 inset-x-2 h-[2.5px] rounded-full bg-primary"></span>
+                                @endif
                             </a>
                             <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[350px]">
                                 <div class="bg-surface rounded-2xl shadow-xl border border-outline/10 p-4">
@@ -234,35 +278,47 @@
                                             {{ $menu->title }}</h3>
                                     </div>
                                     @foreach($menu->children as $child)
+                                        @php
+                                            $isChildActive = $checkUrlActive($child->url);
+                                        @endphp
                                         <a href="{{ $child->url }}"
-                                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
+                                            class="flex items-center gap-3 p-3 rounded-xl transition-all {{ $isChildActive ? 'bg-primary/10 shadow-[inset_0_0_0_1px_rgba(246,186,26,0.25)] text-on-surface font-semibold' : 'hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface' }}">
                                             @if($child->icon)
-                                                <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                                <div class="{{ $isChildActive ? 'bg-primary text-on-primary-fixed shadow-sm' : 'bg-primary/10 text-primary' }} rounded-lg p-2 transition-colors">
                                                     <x-dynamic-component :component="'lucide-' . $child->icon" class="size-5" />
                                                 </div>
                                             @endif
-                                            <div>
-                                                <div class="text-body-sm font-semibold text-on-surface">{{ $child->title }}</div>
+                                            <div class="flex-1">
+                                                <div class="text-body-sm font-semibold {{ $isChildActive ? 'text-primary' : 'text-on-surface' }}">{{ $child->title }}</div>
                                                 @if($child->subtitle)
                                                     <div class="text-body-xs text-on-surface-variant">{{ $child->subtitle }}</div>
                                                 @endif
                                             </div>
+                                            @if($isChildActive)
+                                                <span class="size-1.5 rounded-full bg-primary"></span>
+                                            @endif
                                         </a>
                                     @endforeach
                                     @if(strtolower($menu->title) === 'about us' && isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
+                                        @php
+                                            $isLegalActive = request()->routeIs('legal.*') || request()->is('legal*');
+                                        @endphp
                                         <div class="mt-4 mb-2 px-3 border-t border-outline/10 pt-4">
                                             <h3 class="text-label-sm font-label-sm text-primary font-bold tracking-wider uppercase">
                                                 Legal & Policies</h3>
                                         </div>
                                         <a href="{{ route('legal.index') }}"
-                                            class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors">
-                                            <div class="bg-primary/10 text-primary rounded-lg p-2">
+                                            class="flex items-center gap-3 p-3 rounded-xl transition-all {{ $isLegalActive ? 'bg-primary/10 shadow-[inset_0_0_0_1px_rgba(246,186,26,0.25)] text-on-surface font-semibold' : 'hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface' }}">
+                                            <div class="{{ $isLegalActive ? 'bg-primary text-on-primary-fixed shadow-sm' : 'bg-primary/10 text-primary' }} rounded-lg p-2 transition-colors">
                                                 <x-lucide-scale class="size-4" />
                                             </div>
-                                            <div>
-                                                <div class="text-body-sm font-semibold text-on-surface">Legal Documents</div>
+                                            <div class="flex-1">
+                                                <div class="text-body-sm font-semibold {{ $isLegalActive ? 'text-primary' : 'text-on-surface' }}">Legal Documents</div>
                                                 <div class="text-body-xs text-on-surface-variant">View all policies</div>
                                             </div>
+                                            @if($isLegalActive)
+                                                <span class="size-1.5 rounded-full bg-primary"></span>
+                                            @endif
                                         </a>
                                     @endif
                                 </div>
@@ -271,8 +327,13 @@
                     @endif
                 @else
                     <div class="py-6">
-                        <a class="px-space-sm py-space-2xs font-label-md text-label-md {{ request()->url() == url($menu->url ?? '') ? 'text-on-primary-container bg-primary-container font-semibold rounded-lg' : 'text-on-surface-variant hover:text-on-surface' }} transition-colors"
-                            href="{{ $menu->url }}">{{ $menu->title }}</a>
+                        <a class="relative px-3 py-2 font-label-md text-label-md rounded-lg transition-all duration-200 inline-flex items-center {{ $isMenuActive ? 'text-on-surface font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 font-medium' }}"
+                            href="{{ $menu->url }}">
+                            <span>{{ $menu->title }}</span>
+                            @if($isMenuActive)
+                                <span class="absolute bottom-0 inset-x-2 h-[2.5px] rounded-full bg-primary"></span>
+                            @endif
+                        </a>
                     </div>
                 @endif
             @endforeach
@@ -331,21 +392,42 @@
                     <div class="-my-6 divide-y divide-outline/10">
                         <div class="space-y-2 py-6">
                             @foreach($navMenus as $menu)
+                                @php
+                                    $isMobileChildActive = $menu->children->isNotEmpty() && $menu->children->contains(function ($child) use ($checkUrlActive) {
+                                        if ($checkUrlActive($child->url)) {
+                                            return true;
+                                        }
+                                        if ($child->serviceCategory) {
+                                            $cat = $child->serviceCategory;
+                                            if (request()->url() === route('services.category', $cat->slug) || request()->is('services/' . $cat->slug . '*')) {
+                                                return true;
+                                            }
+                                        }
+                                        return false;
+                                    });
+
+                                    if (!$isMobileChildActive && strtolower($menu->title) === 'about us' && (request()->routeIs('legal.*') || request()->is('legal*'))) {
+                                        $isMobileChildActive = true;
+                                    }
+
+                                    $isMobileMenuActive = $checkUrlActive($menu->url) || $isMobileChildActive;
+                                @endphp
                                 @if($menu->children->isNotEmpty())
-                                    <div x-data="{ open: false }">
+                                    <div x-data="{ open: {{ $isMobileMenuActive ? 'true' : 'false' }} }">
                                         <button @click="open = !open"
-                                            class="-mx-3 flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 hover:bg-surface-container-low transition-colors text-on-surface">
-                                            {{ $menu->title }}
-                                            <x-lucide-chevron-down class="size-4 transition-transform duration-200"
+                                            class="-mx-3 flex w-full items-center justify-between rounded-xl py-2 pl-3 pr-3.5 text-base font-semibold leading-7 transition-colors {{ $isMobileMenuActive ? 'bg-primary/10 text-on-surface font-bold border-l-4 border-primary pl-2' : 'hover:bg-surface-container-low text-on-surface' }}">
+                                            <span>{{ $menu->title }}</span>
+                                            <x-lucide-chevron-down class="size-4 transition-transform duration-200 {{ $isMobileMenuActive ? 'text-primary' : '' }}"
                                                 x-bind:class="{ 'rotate-180': open }" />
                                         </button>
-                                        <div x-show="open" class="mt-2 space-y-2" x-transition>
+                                        <div x-show="open" class="mt-2 space-y-1 pl-2" x-transition>
                                             @foreach($menu->children as $child)
                                                 @php
+                                                    $isChildActive = $checkUrlActive($child->url);
                                                     $hasSub = ($child->serviceCategory && ($child->serviceCategory->children->isNotEmpty() || $child->serviceCategory->services->isNotEmpty())) || $child->children->isNotEmpty();
                                                 @endphp
                                                 @if($hasSub)
-                                                    <div x-data="{ childOpen: false }" class="pl-4">
+                                                    <div x-data="{ childOpen: false }" class="pl-3">
                                                         <button @click="childOpen = !childOpen" class="flex w-full items-center justify-between py-1.5 pr-3 text-sm font-semibold text-on-surface hover:text-primary">
                                                             <span>{{ $child->title }}</span>
                                                             <x-lucide-chevron-down class="size-3.5 transition-transform" x-bind:class="{ 'rotate-180': childOpen }" />
@@ -377,18 +459,31 @@
                                                     </div>
                                                 @else
                                                     <a href="{{ $child->url }}"
-                                                        class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">{{ $child->title }}</a>
+                                                        class="flex items-center justify-between rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 transition-colors {{ $isChildActive ? 'bg-primary/10 text-primary font-bold shadow-[inset_0_0_0_1px_rgba(246,186,26,0.2)]' : 'hover:bg-surface-container-low text-on-surface-variant hover:text-primary' }}">
+                                                        <span>{{ $child->title }}</span>
+                                                        @if($isChildActive)
+                                                            <span class="size-1.5 rounded-full bg-primary"></span>
+                                                        @endif
+                                                    </a>
                                                 @endif
                                             @endforeach
                                             @if(strtolower($menu->title) === 'about us' && isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
+                                                @php
+                                                    $isLegalActive = request()->routeIs('legal.*') || request()->is('legal*');
+                                                @endphp
                                                 <a href="{{ route('legal.index') }}"
-                                                    class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 hover:bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors">Legal Documents</a>
+                                                    class="flex items-center justify-between rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 transition-colors {{ $isLegalActive ? 'bg-primary/10 text-primary font-bold shadow-[inset_0_0_0_1px_rgba(246,186,26,0.2)]' : 'hover:bg-surface-container-low text-on-surface-variant hover:text-primary' }}">
+                                                    <span>Legal Documents</span>
+                                                    @if($isLegalActive)
+                                                        <span class="size-1.5 rounded-full bg-primary"></span>
+                                                    @endif
+                                                </a>
                                             @endif
                                         </div>
                                     </div>
                                 @else
                                     <a href="{{ $menu->url }}"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 {{ request()->url() == url($menu->url ?? '') ? 'bg-primary-container text-on-primary-container' : 'text-on-surface hover:bg-surface-container-low' }} transition-colors">{{ $menu->title }}</a>
+                                        class="-mx-3 block rounded-xl px-3 py-2 text-base font-semibold leading-7 transition-colors {{ $isMobileMenuActive ? 'bg-primary/10 text-on-surface font-bold border-l-4 border-primary pl-2' : 'text-on-surface hover:bg-surface-container-low' }}">{{ $menu->title }}</a>
                                 @endif
                             @endforeach
                         </div>

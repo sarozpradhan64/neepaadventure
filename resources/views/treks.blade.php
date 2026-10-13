@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-48">
+    <main class="bg-surface w-full pt-28">
         <div class="flex w-full flex-col">
             <!-- Top Alpine Announcement & Status Ribbon -->
             <section class="bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop py-space-sm w-full">
@@ -16,7 +16,7 @@
                         <span class="text-on-surface-variant">2025/2026 Himalayan Catalog</span>
                     </nav>
                     <div class="gap-space-md flex items-center">
-                        <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary inline-flex items-center gap-1.5 rounded px-2.5 py-1">
+                        <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-semibold uppercase tracking-wider">
                             <span class="bg-amber-flare h-2 w-2 animate-pulse rounded-full"></span>
                             AUTUMN &amp; SPRING BOOKINGS OPEN
                         </span>
@@ -74,7 +74,7 @@
                         <div class="relative max-w-md min-w-[240px] flex-1">
                             <x-lucide-search class="text-tertiary absolute top-1/2 left-3 size-[20px] -translate-y-1/2" />
                             <input
-                                class="pr-space-md bg-surface text-body-md text-on-surface placeholder:text-tertiary focus:bg-surface-container-low w-full rounded-lg py-2.5 pl-10 transition-all focus:outline-none"
+                                class="pr-space-md bg-surface text-body-md text-on-surface placeholder:text-tertiary focus:bg-surface-container-low w-full rounded-xl py-2.5 pl-10 transition-all focus:outline-none border border-outline/10 focus:border-primary"
                                 id="search-input"
                                 placeholder="Search passes, valleys, passes (e.g. Larkya La, Gokyo, Annapurna)..."
                                 type="text"
@@ -86,7 +86,7 @@
                             <!-- Region Select -->
                             <div class="relative">
                                 <select
-                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-lg py-2 pr-8 transition-colors focus:outline-none"
+                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary"
                                     id="region-filter"
                                 >
                                     <option value="all" {{ request('region') == 'all' || !request('region') ? 'selected' : '' }}>All Himalayan Regions</option>
@@ -101,7 +101,7 @@
                             <!-- Duration Select -->
                             <div class="relative">
                                 <select
-                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-lg py-2 pr-8 transition-colors focus:outline-none"
+                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary"
                                     id="duration-filter"
                                 >
                                     <option value="all">Any Duration</option>
@@ -114,7 +114,7 @@
                             <!-- Max Altitude Select -->
                             <div class="relative">
                                 <select
-                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-lg py-2 pr-8 transition-colors focus:outline-none"
+                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary"
                                     id="altitude-filter"
                                 >
                                     <option value="all">Altitude (All)</option>
@@ -127,7 +127,7 @@
                             <!-- Sort Selector -->
                             <div class="relative">
                                 <select
-                                    class="bg-surface-container text-on-surface-variant px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-lg py-2 pr-8 font-semibold transition-colors focus:outline-none"
+                                    class="bg-surface-container text-on-surface-variant px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 font-semibold transition-colors focus:outline-none border border-outline/10"
                                     id="sort-selector"
                                 >
                                     <option value="popular">Sort: Most Popular</option>
@@ -138,7 +138,7 @@
                                 <x-lucide-arrow-down-up class="text-tertiary pointer-events-none absolute top-1/2 right-2.5 size-[18px] -translate-y-1/2" />
                             </div>
                             <button
-                                class="text-tertiary hover:text-on-surface hover:bg-surface-container rounded-lg p-2 transition-colors"
+                                class="text-tertiary hover:text-on-surface hover:bg-surface-container rounded-xl p-2 transition-colors border border-outline/10"
                                 id="reset-filters"
                                 title="Reset Filters"
                             >
@@ -150,14 +150,14 @@
                     <div class="gap-space-xs pt-space-2xs text-label-sm font-label-sm flex flex-wrap items-center">
                         <span class="text-tertiary pr-2 font-bold tracking-wider uppercase">Difficulty:</span>
                         <button
-                            class="difficulty-pill active-pill bg-surface-container-high text-on-surface rounded px-3 py-1 font-semibold"
+                            class="difficulty-pill active-pill bg-surface-container-high text-on-surface rounded-full px-3.5 py-1.5 font-semibold"
                             data-difficulty="all"
                         >
                             All
                         </button>
                         @foreach($difficulties as $difficulty)
                         <button
-                            class="difficulty-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors capitalize"
+                            class="difficulty-pill bg-surface text-tertiary hover:text-on-surface rounded-full px-3.5 py-1.5 transition-colors capitalize border border-outline/10"
                             data-difficulty="{{ $difficulty }}"
                         >
                             {{ $difficulty }}
@@ -168,14 +168,14 @@
                         
                         <span class="text-tertiary hidden pr-2 font-bold tracking-wider uppercase sm:inline">Season:</span>
                         <button
-                            class="season-pill active-pill bg-surface-container-high text-on-surface rounded px-3 py-1 font-semibold"
+                            class="season-pill active-pill bg-surface-container-high text-on-surface rounded-full px-3.5 py-1.5 font-semibold"
                             data-season="all"
                         >
                             All
                         </button>
                         @foreach($seasons as $season)
                         <button
-                            class="season-pill bg-surface text-tertiary hover:text-on-surface rounded px-3 py-1 transition-colors capitalize"
+                            class="season-pill bg-surface text-tertiary hover:text-on-surface rounded-full px-3.5 py-1.5 transition-colors capitalize border border-outline/10"
                             data-season="{{ $season }}"
                         >
                             {{ $season }}
@@ -218,7 +218,7 @@
                                 }
                             @endphp
                             <article
-                                class="trek-card group bg-surface-container-lowest flex flex-col justify-between overflow-hidden rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl"
+                                class="trek-card group bg-surface-container-lowest flex flex-col justify-between overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40"
                                 data-altitude="{{ (int) filter_var($trek->maximum_altitude, FILTER_SANITIZE_NUMBER_INT) }}"
                                 data-difficulty="{{ strtolower($trek->difficulty_level ?? '') }}"
                                 data-season="{{ strtolower($trek->best_season ?? '') }}"
@@ -244,14 +244,14 @@
                                         @endif
                                         <div class="from-on-surface/80 absolute inset-0 bg-gradient-to-t via-transparent to-transparent"></div>
                                         <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                                            <span class="bg-amber-flare text-on-primary-fixed font-badge-caption text-badge-caption rounded px-2.5 py-1 font-bold uppercase">Trek</span>
+                                            <span class="bg-amber-flare text-on-primary-fixed font-badge-caption text-badge-caption rounded-md px-2.5 py-1 font-bold uppercase shadow-sm">Trek</span>
                                         </div>
                                         <div class="text-summit-white absolute right-3 bottom-3 left-3 flex items-center justify-between">
                                             <div class="font-label-sm text-label-sm flex items-center gap-1 tracking-wider uppercase">
                                                 <x-lucide-map-pin class="text-primary-container size-[16px]" />
                                                 {{ $trek->start_end_point }}
                                             </div>
-                                            <div class="font-badge-caption text-badge-caption bg-surface-container-lowest/20 text-summit-white rounded px-2 py-0.5 backdrop-blur-md">
+                                            <div class="font-badge-caption text-badge-caption bg-surface-container-lowest/20 text-summit-white rounded-md px-2 py-0.5 backdrop-blur-md">
                                                 {{ $trek->duration }}
                                             </div>
                                         </div>
@@ -265,7 +265,7 @@
                                                 {!! strip_tags($trek->description) !!}
                                             </div>
                                         </div>
-                                        <div class="py-space-xs bg-surface grid grid-cols-3 gap-2 rounded-lg p-2 text-center">
+                                        <div class="py-space-xs bg-surface grid grid-cols-3 gap-2 rounded-xl border border-outline/5 p-2.5 text-center">
                                             <div>
                                                 <span class="font-badge-caption text-badge-caption text-tertiary block uppercase">Grade</span>
                                                 <span class="font-label-md text-label-md text-on-surface block font-bold">{{ ucfirst($trek->difficulty_level) }}</span>
@@ -293,12 +293,12 @@
                                     </div>
                                     <div class="gap-space-xs grid grid-cols-2">
                                         <a
-                                            class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm w-full rounded px-3 py-2.5 text-center font-bold tracking-wider uppercase transition-colors"
+                                            class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-sm text-label-sm w-full rounded-xl px-3 py-2.5 text-center font-bold tracking-wider uppercase transition-colors"
                                             href="{{ $trek->url }}"
                                         >
                                             Itinerary
                                         </a>
-                                        <button class="quick-book-btn bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-sm text-label-sm w-full rounded px-3 py-2.5 text-center font-bold tracking-wider uppercase shadow-sm transition-colors">
+                                        <button class="quick-book-btn bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs w-full rounded-xl px-3 py-2.5 text-center font-bold tracking-wider uppercase shadow-sm transition-colors">
                                             Dates &amp; Book
                                         </button>
                                     </div>
@@ -308,7 +308,7 @@
                     </div>
                     <!-- No Results State (Hidden by default) -->
                     <div
-                        class="py-space-3xl space-y-space-md bg-surface-container-lowest hidden rounded-xl text-center"
+                        class="py-space-3xl space-y-space-md bg-surface-container-lowest hidden rounded-2xl border border-outline/10 text-center"
                         id="no-results-state"
                     >
                         <x-lucide-map class="text-tertiary size-[54px]" />
@@ -321,7 +321,7 @@
                                 crafted by our Guide team.
                             </p>
                             <button
-                                class="mt-space-sm px-space-lg py-space-xs bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-sm text-label-sm rounded font-bold"
+                                class="mt-space-sm px-space-lg py-space-xs bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-sm text-label-sm rounded-xl font-bold shadow-sm"
                                 id="clear-all-filters-btn"
                             >
                                 Reset All Filters
@@ -335,7 +335,7 @@
                 class="bg-ridge-deep/70 p-gutter-mobile fixed inset-0 z-50 flex hidden items-center justify-center backdrop-blur-sm"
                 id="booking-modal"
             >
-                <div class="bg-surface-container-lowest p-space-lg lg:p-space-xl space-y-space-md animate-in fade-in zoom-in relative w-full max-w-xl rounded-xl shadow-2xl duration-200">
+                <div class="bg-surface-container-lowest p-space-lg lg:p-space-xl space-y-space-md animate-in fade-in zoom-in relative w-full max-w-xl rounded-2xl border border-outline/15 shadow-2xl duration-200">
                     <div class="flex items-start justify-between">
                         <div>
                             <span class="font-badge-caption text-badge-caption text-primary font-bold uppercase">Trek Reservation</span>
@@ -359,7 +359,7 @@
                     <div class="space-y-space-xs">
                         <span class="font-label-md text-label-md text-on-surface block font-bold">Upcoming 2025/2026 Guaranteed Slots</span>
                         <div class="max-h-56 space-y-2 overflow-y-auto pr-1">
-                            <label class="bg-surface hover:bg-surface-container-low has-[:checked]:border-primary has-[:checked]:bg-primary/5 flex cursor-pointer items-center justify-between rounded-lg border border-transparent p-3 transition-colors">
+                            <label class="bg-surface hover:bg-surface-container-low has-[:checked]:border-primary has-[:checked]:bg-primary/5 flex cursor-pointer items-center justify-between rounded-xl border border-outline/10 p-3 transition-colors">
                                 <div class="gap-space-sm flex items-center">
                                     <input
                                         checked=""
@@ -377,7 +377,7 @@
                                     id="modal-price-slot-1"
                                 >$1,750</span>
                             </label>
-                            <label class="bg-surface hover:bg-surface-container-low has-[:checked]:border-primary has-[:checked]:bg-primary/5 flex cursor-pointer items-center justify-between rounded-lg border border-transparent p-3 transition-colors">
+                            <label class="bg-surface hover:bg-surface-container-low has-[:checked]:border-primary has-[:checked]:bg-primary/5 flex cursor-pointer items-center justify-between rounded-xl border border-outline/10 p-3 transition-colors">
                                 <div class="gap-space-sm flex items-center">
                                     <input
                                         class="text-primary h-4 w-4 focus:ring-0"
@@ -394,7 +394,7 @@
                                     id="modal-price-slot-2"
                                 >$1,750</span>
                             </label>
-                            <label class="bg-surface hover:bg-surface-container-low has-[:checked]:border-primary has-[:checked]:bg-primary/5 flex cursor-pointer items-center justify-between rounded-lg border border-transparent p-3 transition-colors">
+                            <label class="bg-surface hover:bg-surface-container-low has-[:checked]:border-primary has-[:checked]:bg-primary/5 flex cursor-pointer items-center justify-between rounded-xl border border-outline/10 p-3 transition-colors">
                                 <div class="gap-space-sm flex items-center">
                                     <input
                                         class="text-primary h-4 w-4 focus:ring-0"
@@ -425,13 +425,13 @@
                     </div>
                     <div class="gap-space-sm pt-space-xs flex items-center justify-end">
                         <button
-                            class="px-space-md font-label-md text-label-md text-tertiary hover:text-on-surface rounded py-2.5 transition-colors"
+                            class="px-space-md font-label-md text-label-md text-tertiary hover:text-on-surface rounded-xl py-2.5 transition-colors border border-outline/10"
                             id="cancel-modal-btn"
                         >
                             Cancel
                         </button>
                         <button
-                            class="px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md rounded py-2.5 font-bold tracking-wider uppercase shadow-sm transition-colors"
+                            class="px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md rounded-xl py-2.5 font-bold tracking-wider uppercase shadow-sm transition-colors"
                             id="confirm-booking-btn"
                         >
                             Reserve Provisional Spot
@@ -467,16 +467,15 @@
                         </div>
                         <div class="gap-space-sm flex flex-col sm:flex-row lg:col-span-4 lg:flex-col">
                             <a
-                                class="gap-space-xs px-space-lg bg-on-surface text-surface font-label-md text-label-md hover:bg-tertiary flex items-center justify-center rounded py-3 text-center font-bold tracking-wider uppercase transition-colors"
+                                class="gap-space-xs px-space-lg bg-on-surface text-surface font-label-md text-label-md hover:bg-tertiary flex items-center justify-center rounded-xl py-3 text-center font-bold tracking-wider uppercase transition-colors shadow-sm"
                                 href="tel:{{ preg_replace('/[^0-9+]/', '', $contact?->phone ?? '') }}"
                             >
                                 <x-lucide-phone class="text-primary-container size-[18px]" />
                                 Call {{ $contact?->company_name ?? 'our team' }} ({{ $contact?->phone ?? 'Contact us' }})
                             </a>
                             <a
-                                class="gap-space-xs px-space-lg bg-surface-container-highest hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center rounded py-3 text-center font-bold tracking-wider uppercase transition-colors"
-                                data-path="about-us"
-                                href="#"
+                                class="gap-space-xs px-space-lg bg-surface-container-highest hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center rounded-xl py-3 text-center font-bold tracking-wider uppercase transition-colors border border-outline/10"
+                                href="{{ route('about') }}#team-leaders"
                             >
                                 <x-lucide-handshake class="size-[18px]" />
                                 Consult Guide Trek Lead

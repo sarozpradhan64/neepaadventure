@@ -18,7 +18,12 @@ class HomeController extends Controller
     {
         $treks = Service::get();
         $testimonials = Testimonial::where('status', true)->orderBy('sort_order')->get();
-        $departures = ServiceDeparture::with('service')->where('start_date', '>=', now())->orderBy('start_date')->take(3)->get();
+        $departures = ServiceDeparture::with('service')
+            ->where('start_date', '>=', now()->startOfDay())
+            ->whereIn('status', ['Available', 'Guaranteed'])
+            ->orderBy('start_date')
+            ->take(3)
+            ->get();
         $latestBlogs = Blog::with('author')->where('status', true)->orderByDesc('created_at')->take(4)->get();
         $homepageSections = HomepageSection::cachedActive();
         $allServices = Service::where('status', true)->get()->keyBy('id');

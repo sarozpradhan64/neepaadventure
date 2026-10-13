@@ -17,7 +17,7 @@
                     
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         @foreach($featuredAlbums as $album)
-                        <a href="{{ route('gallery.show', $album->slug) }}" class="group bg-surface-container-lowest relative overflow-hidden rounded-xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                        <a href="{{ route('gallery.show', $album->slug) }}" class="group bg-surface-container-lowest relative overflow-hidden rounded-2xl border border-outline/10 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/30">
                             <div class="relative h-80 overflow-hidden">
                                 @if($album->cover_image)
                                     <img src="{{ Storage::url($album->cover_image) }}" alt="{{ $album->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -62,7 +62,7 @@
                     
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" id="gallery-grid">
                         @foreach($albums as $album)
-                        <a href="{{ route('gallery.show', $album->slug) }}" class="gallery-item group bg-surface-container-lowest relative overflow-hidden rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl">
+                        <a href="{{ route('gallery.show', $album->slug) }}" class="gallery-item group bg-surface-container-lowest relative overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30">
                             <div class="relative h-80 overflow-hidden">
                                 @if($album->cover_image)
                                     <img src="{{ Storage::url($album->cover_image) }}" alt="{{ $album->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />

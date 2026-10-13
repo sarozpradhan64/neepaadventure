@@ -125,6 +125,9 @@ Alpine.data("tagPicker", ({ initial = "", searchUrl }) => ({
                 const ids = [...this.$el.querySelectorAll("[data-id]")].map(
                     (el) => el.dataset.id,
                 );
+                this.$el.querySelectorAll("[data-sortable-index]").forEach((el, index) => {
+                    el.textContent = '#' + (index + 1);
+                });
                 fetch(reorderUrl, {
                     method: "POST",
                     headers: {

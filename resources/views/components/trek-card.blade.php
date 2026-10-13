@@ -14,7 +14,7 @@
     'href' => '#',
 ])
 
-<div class="bg-surface-container-lowest group flex flex-col overflow-hidden rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl">
+<div class="bg-surface-container-lowest group flex flex-col overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40">
     <!-- Card Image & Badges -->
     <div class="relative h-60 w-full overflow-hidden">
         <div
@@ -24,13 +24,13 @@
         ></div>
 
         @if ($badge)
-            <div class="absolute top-3 left-3 px-space-sm py-1 rounded font-badge-caption text-badge-caption font-bold uppercase shadow-sm {{ $badgeClass }}">
+            <div class="absolute top-3 left-3 px-space-sm py-1 rounded-md font-badge-caption text-badge-caption font-bold uppercase shadow-sm {{ $badgeClass }}">
                 {{ $badge }}
             </div>
         @endif
 
         @if ($altitude)
-            <div class="px-space-sm bg-ridge-deep/85 text-summit-white font-badge-caption text-badge-caption absolute right-3 bottom-3 flex items-center gap-1 rounded py-1 font-bold uppercase backdrop-blur-sm">
+            <div class="px-space-sm bg-ridge-deep/85 text-summit-white font-badge-caption text-badge-caption absolute right-3 bottom-3 flex items-center gap-1 rounded-md py-1 font-bold uppercase backdrop-blur-sm">
                 <x-lucide-mountain class="text-primary-container size-[14px]" />
                 {{ $altitude }}
             </div>
@@ -62,7 +62,7 @@
 
             @if (count($inclusions) > 0)
                 <!-- Inclusions checklist -->
-                <div class="mb-space-lg bg-surface-container-low p-space-sm text-on-surface font-body-sm text-body-sm space-y-1.5 rounded-lg">
+                <div class="mb-space-lg bg-surface-container-low p-space-sm text-on-surface font-body-sm text-body-sm space-y-1.5 rounded-xl border border-outline/5">
                     @foreach ($inclusions as $inclusion)
                         @php
                             $cleanInclusion = trim(strip_tags($inclusion));
@@ -90,7 +90,7 @@
                 variant="secondary"
                 as="a"
                 href="{{ $href }}"
-                class="bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed text-on-surface font-label-md text-label-md font-bold uppercase transition-all"
+                class="bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed text-on-surface font-label-md text-label-md font-bold uppercase transition-all rounded-xl"
             >
                 Itinerary
             </x-ui.button>

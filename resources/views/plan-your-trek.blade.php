@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface pb-space-3xl w-full pt-48">
+    <main class="bg-surface pb-space-3xl w-full pt-28">
         <div class="px-gutter-mobile lg:px-gutter-desktop mx-auto max-w-4xl">
             <div class="gap-space-2xs mb-space-xl flex flex-col text-center">
                 <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">Confidential Consultation</span>
@@ -14,7 +14,7 @@
             </div>
 
             <div
-                class="bg-surface-container-lowest p-space-lg sm:p-space-xl border-surface-container-low rounded-xl border shadow-md"
+                class="bg-surface-container-lowest p-space-lg sm:p-space-xl border border-outline/10 rounded-2xl shadow-sm"
                 id="trek-form-container"
             >
                 <form
@@ -30,7 +30,7 @@
                             <div class="relative flex items-center">
                                 <x-lucide-user class="left-space-sm text-tertiary absolute size-[18px]" />
                                 <input
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                     placeholder="e.g. Dr. Arthur Hansen"
                                     name="name"
                                     required=""
@@ -43,7 +43,7 @@
                             <div class="relative flex items-center">
                                 <x-lucide-mail class="left-space-sm text-tertiary absolute size-[18px]" />
                                 <input
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                     placeholder="you@example.com"
                                     name="email"
                                     required=""
@@ -59,7 +59,7 @@
                             <div class="relative flex items-center">
                                 <x-lucide-globe class="left-space-sm text-tertiary absolute size-[18px]" />
                                 <input
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                     placeholder="e.g. Switzerland / USA / UK"
                                     name="country"
                                     type="text"
@@ -71,7 +71,7 @@
                             <div class="relative flex items-center">
                                 <x-lucide-message-circle class="left-space-sm text-tertiary absolute size-[18px]" />
                                 <input
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                     placeholder="+1 234 567 8900"
                                     name="phone"
                                     required=""
@@ -88,7 +88,7 @@
                                 <x-lucide-mountain class="left-space-sm text-tertiary absolute size-[18px]" />
                                 <select
                                     name="service_id"
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full cursor-pointer appearance-none rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full cursor-pointer appearance-none rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                 >
                                     <option value="">Select a Region / Service</option>
                                     @foreach ($services as $service)
@@ -103,7 +103,7 @@
                             <div class="relative flex items-center">
                                 <x-lucide-calendar-days class="left-space-sm text-tertiary absolute size-[18px]" />
                                 <input
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                     placeholder="e.g. October 2025 (~18 Days)"
                                     name="window"
                                     type="text"
@@ -119,7 +119,7 @@
                                 <x-lucide-users class="left-space-sm text-tertiary absolute size-[18px]" />
                                 <select
                                     name="group_size"
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full cursor-pointer appearance-none rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full cursor-pointer appearance-none rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                 >
                                     <option value="Solo Alpine Trekker (1:1 Guide)">
                                         Solo Alpine Trekker (1:1 Guide)
@@ -142,7 +142,7 @@
                                 <x-lucide-footprints class="left-space-sm text-tertiary absolute size-[18px]" />
                                 <select
                                     name="experience"
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full cursor-pointer appearance-none rounded-lg border pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full cursor-pointer appearance-none rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
                                 >
                                     <option value="First time in the Himalaya (Beginner to Altitude)">
                                         First time in the Himalaya
@@ -165,7 +165,7 @@
                     <div class="gap-space-xs pt-space-xs flex flex-col">
                         <span class="font-label-sm text-label-sm text-on-surface font-bold uppercase">Logistics &amp; Field Directives</span>
                         <div class="gap-space-xs grid grid-cols-1 sm:grid-cols-2">
-                            <label class="gap-space-xs p-space-xs bg-surface-container-low/70 hover:bg-surface-container-low flex cursor-pointer items-center rounded transition-colors">
+                            <label class="gap-space-xs p-space-xs bg-surface-container-low/70 hover:bg-surface-container-low flex cursor-pointer items-center rounded-xl border border-outline/10 transition-colors">
                                 <input
                                     class="text-primary focus:ring-primary-container border-surface-variant h-4 w-4 rounded"
                                     name="logistics[]"
@@ -174,7 +174,7 @@
                                 />
                                 <span class="font-body-sm text-body-sm text-on-surface">Bespoke Dietary / High-Calorie Nutrition</span>
                             </label>
-                            <label class="gap-space-xs p-space-xs bg-surface-container-low/70 hover:bg-surface-container-low flex cursor-pointer items-center rounded transition-colors">
+                            <label class="gap-space-xs p-space-xs bg-surface-container-low/70 hover:bg-surface-container-low flex cursor-pointer items-center rounded-xl border border-outline/10 transition-colors">
                                 <input
                                     class="text-primary focus:ring-primary-container border-surface-variant h-4 w-4 rounded"
                                     name="logistics[]"
@@ -183,7 +183,7 @@
                                 />
                                 <span class="font-body-sm text-body-sm text-on-surface">Private Single Room / Tent Logistics</span>
                             </label>
-                            <label class="gap-space-xs p-space-xs bg-surface-container-low/70 hover:bg-surface-container-low flex cursor-pointer items-center rounded transition-colors">
+                            <label class="gap-space-xs p-space-xs bg-surface-container-low/70 hover:bg-surface-container-low flex cursor-pointer items-center rounded-xl border border-outline/10 transition-colors">
                                 <input
                                     class="text-primary focus:ring-primary-container border-surface-variant h-4 w-4 rounded"
                                     name="logistics[]"
@@ -192,11 +192,11 @@
                                 />
                                 <span class="font-body-sm text-body-sm text-on-surface">Helicopter Return Option</span>
                             </label>
-                            <label class="gap-space-xs p-space-xs bg-surface-container-low/70 hover:bg-surface-container-low flex cursor-pointer items-center rounded transition-colors">
+                            <label class="gap-space-xs p-space-xs bg-surface-container-low/70 hover:bg-surface-container-low flex cursor-pointer items-center rounded-xl border border-outline/10 transition-colors">
                                 <input
                                     class="text-primary focus:ring-primary-container border-surface-variant h-4 w-4 rounded"
                                     name="logistics[]"
-                                    value="Garmin inReach Rented Dispatch Unit"
+                                    value="Garmin inReach Satellite Communicator"
                                     type="checkbox"
                                 />
                                 <span class="font-body-sm text-body-sm text-on-surface">Garmin inReach Rental</span>
@@ -208,20 +208,20 @@
                         <label class="font-label-sm text-label-sm text-on-surface font-bold uppercase">Trek Objectives &amp; Medical Notes</label>
                         <textarea
                             name="notes"
-                            class="p-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border-surface-container focus:ring-primary-container w-full rounded-lg border shadow-sm transition-all focus:ring-2 focus:outline-none"
+                            class="p-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full rounded-xl shadow-sm transition-all focus:ring-2 focus:outline-none"
                             placeholder="Detail your fitness background, destination ambitions, preferred gear requirements, or any specific acclimatization pace adjustments needed..."
                             rows="4"
                         ></textarea>
                     </div>
 
-                    <div id="form-alert" class="relative hidden rounded px-4 py-3" role="alert">
+                    <div id="form-alert" class="relative hidden rounded-xl px-4 py-3 border" role="alert">
                         <span class="block sm:inline" id="form-message"></span>
                     </div>
 
                     <div class="pt-space-sm gap-space-xs flex flex-col">
                         <button
                             id="submit-btn"
-                            class="py-space-md px-space-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-headline-sm text-headline-sm gap-space-xs flex w-full items-center justify-center rounded-lg font-bold tracking-wider uppercase shadow-md transition-all"
+                            class="py-space-md px-space-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-headline-sm text-headline-sm gap-space-xs flex w-full items-center justify-center rounded-xl font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer"
                             type="submit"
                         >
                             <x-lucide-send class="size-4" id="submit-icon" />

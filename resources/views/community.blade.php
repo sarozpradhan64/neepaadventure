@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-48">
+    <main class="bg-surface w-full pt-28">
         <div class="flex w-full flex-col">
             <!-- Immersive Editorial Hero -->
             <section class="bg-ridge-deep text-summit-white py-space-3xl lg:py-space-4xl px-gutter-mobile lg:px-gutter-desktop relative w-full overflow-hidden">

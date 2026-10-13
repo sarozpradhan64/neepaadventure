@@ -5,7 +5,7 @@
     :image="$album->cover_image"
 >
     <x-header />
-    <main class="bg-surface w-full pt-32 pb-20">
+    <main class="bg-surface w-full pt-28 pb-20">
         <div class="max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop">
             <div class="mb-space-xl gap-space-sm flex flex-col justify-between md:flex-row md:items-end border-b border-surface-container-high pb-8">
                 <div>
@@ -20,10 +20,10 @@
                     @endif
                 </div>
                 <!-- View Switchers -->
-                <div class="bg-surface-container flex items-center rounded-lg p-1 mt-4 md:mt-0">
+                <div class="bg-surface-container flex items-center rounded-xl p-1 mt-4 md:mt-0 border border-outline/10">
                     <button
                         aria-label="Grid layout"
-                        class="p-space-2xs bg-surface-container-lowest text-on-surface rounded shadow-sm transition-colors toggle-view-btn"
+                        class="p-space-2xs bg-surface-container-lowest text-on-surface rounded-lg shadow-sm transition-colors toggle-view-btn"
                         data-view="grid"
                         title="Grid View"
                     >
@@ -31,7 +31,7 @@
                     </button>
                     <button
                         aria-label="List layout"
-                        class="p-space-2xs text-tertiary hover:text-on-surface rounded transition-colors toggle-view-btn"
+                        class="p-space-2xs text-tertiary hover:text-on-surface rounded-lg transition-colors toggle-view-btn"
                         data-view="list"
                         title="List View"
                     >
@@ -43,7 +43,7 @@
             @if($album->items->count() > 0)
             <div id="gallery-container" class="grid-view gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 @foreach($album->items as $item)
-                <div class="gallery-item group bg-surface-container-lowest relative overflow-hidden rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl">
+                <div class="gallery-item group bg-surface-container-lowest relative overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30">
                     <div class="relative h-80 w-full overflow-hidden item-image-container">
                         @if($item->file_path)
                             <img src="{{ Storage::url($item->file_path) }}" alt="{{ $item->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />

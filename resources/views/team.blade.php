@@ -4,34 +4,24 @@
 >
     <x-header />
     <main class="bg-surface w-full">
-        {{-- Banner: Adventure Photo — Template 01 — hangs flush under fixed navbar --}}
-        <section class="w-full pt-48 pb-space-3xl px-gutter-mobile lg:px-gutter-desktop"
-                 style="background: {!! !empty($websiteSettings['team_banner_image']) ? 'linear-gradient(90deg, var(--color-ridge-deep) 0%, rgba(15,24,33,0.82) 42%, rgba(15,24,33,0.22) 100%), url(' . Storage::url($websiteSettings['team_banner_image']) . ') center/cover no-repeat' : 'linear-gradient(90deg, var(--color-ridge-deep) 0%, rgba(15,24,33,0.82) 42%, rgba(15,24,33,0.22) 100%), linear-gradient(135deg,#2b3530,#4a5e50 45%,#131c18 46%,#c8c3a8)' !!}; position:relative; isolation:isolate; overflow:hidden;">
-
-            {{-- Sun glow --}}
-            <div class="absolute" style="right:13%; top:20%; width:88px; height:88px; border-radius:50%; background:radial-gradient(circle, var(--color-primary-container) 0%, var(--color-amber-flare) 100%); filter:blur(2px); opacity:.85;"></div>
-
-            {{-- Mountain silhouette --}}
-            <div class="absolute inset-x-0 bottom-0" style="height:75%; z-index:1;
-                background:
-                    linear-gradient(145deg,transparent 35%,#171d19 35.2% 49%,transparent 49.2%),
-                    linear-gradient(25deg,transparent 40%,#29352e 40.2% 62%,transparent 62.2%),
-                    linear-gradient(160deg,transparent 48%,#a9b1a1 48.2% 63%,transparent 63.2%);
-                clip-path:polygon(0 100%,0 55%,14% 42%,25% 62%,38% 28%,52% 59%,66% 18%,79% 55%,91% 34%,100% 51%,100% 100%);
-                opacity:.7;"></div>
+        {{-- Banner: Adventure Photo — hangs flush under fixed navbar --}}
+        <section class="w-full pt-28 pb-space-3xl px-gutter-mobile lg:px-gutter-desktop relative bg-ridge-deep overflow-hidden"
+                 @if(!empty($websiteSettings['team_banner_image']))
+                 style="background: linear-gradient(rgba(15,24,33,0.78), rgba(15,24,33,0.78)), url('{{ Storage::url($websiteSettings['team_banner_image']) }}') center/cover no-repeat;"
+                 @endif>
 
             {{-- Content --}}
             <div class="relative z-10 max-w-max-content-width mx-auto py-space-xl">
-                <div class="font-badge-caption text-badge-caption font-bold tracking-widest uppercase flex items-center gap-space-xs mb-space-sm" style="color:rgba(255,255,255,.6);">
+                <div class="font-badge-caption text-badge-caption font-bold tracking-widest uppercase flex items-center gap-space-xs mb-space-sm text-summit-white/60">
                     <a href="{{ route('home') }}" class="hover:text-white transition-colors">Home</a>
-                    <span style="color:var(--color-primary-container); font-weight:900;">/</span>
-                    <span class="text-summit-white font-black">Our Team</span>
+                    <span class="text-primary font-bold">/</span>
+                    <span class="text-summit-white font-bold">Our Team</span>
                 </div>
-                <div style="width:46px;height:4px;background:var(--color-primary-container);border-radius:20px;margin-bottom:var(--spacing-space-md);"></div>
-                <h1 class="font-headline-lg text-headline-lg lg:text-display-xl text-summit-white font-extrabold tracking-tight mb-space-sm" style="line-height:.95; letter-spacing:-.03em;">
+                <div class="w-12 h-1 bg-primary rounded-full mb-space-md"></div>
+                <h1 class="font-headline-lg text-headline-lg lg:text-display-xl text-summit-white font-extrabold tracking-tight mb-space-sm leading-tight">
                     {{ $websiteSettings['team_banner_title'] ?? 'Meet Our Team' }}
                 </h1>
-                <p class="font-body-lg text-body-lg m-0 max-w-[520px]" style="color:var(--color-primary-container); opacity:.85;">
+                <p class="font-body-lg text-body-lg m-0 max-w-[520px] text-summit-white/80">
                     {{ $websiteSettings['team_banner_text'] ?? 'The guides and people behind every memorable Himalayan journey.' }}
                 </p>
             </div>

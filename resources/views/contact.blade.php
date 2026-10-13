@@ -7,13 +7,13 @@
                 <div class="gap-space-2xl grid grid-cols-1 items-start lg:grid-cols-12">
                     <!-- Column 1: Custom Trek Briefing & Inquiry Form -->
                     <div
-                        class="gap-space-lg bg-surface-container-lowest p-space-lg sm:p-space-xl flex flex-col rounded-xl shadow-md lg:col-span-7"
+                        class="gap-space-lg bg-surface-container-lowest p-space-lg sm:p-space-xl flex flex-col rounded-2xl shadow-sm border border-outline/10 lg:col-span-7"
                         id="trek-form"
                     >
                         <div class="gap-space-2xs flex flex-col">
                             <div class="flex items-center justify-between">
                                 <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">General Inquiry</span>
-                                <span class="font-label-sm text-label-sm text-primary bg-primary-container/20 px-space-xs py-space-2xs inline-flex items-center gap-1 rounded font-semibold">
+                                <span class="font-label-sm text-label-sm text-primary bg-primary-container/20 px-space-xs py-space-2xs inline-flex items-center gap-1 rounded-lg font-semibold">
                                     <x-lucide-message-square class="size-[14px]" /> We'd love to hear from you
                                 </span>
                             </div>
@@ -26,7 +26,7 @@
                             </p>
                         </div>
 
-                        <div id="contact-alert" class="relative mb-4 hidden rounded px-4 py-3" role="alert">
+                        <div id="contact-alert" class="relative mb-4 hidden rounded-xl px-4 py-3 border" role="alert">
                             <span class="block sm:inline" id="contact-message"></span>
                         </div>
 
@@ -43,7 +43,7 @@
                                     <div class="relative flex items-center">
                                         <x-lucide-user class="left-space-sm text-tertiary absolute size-[18px]" />
                                         <input
-                                            class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-lg pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                            class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none border border-outline/15"
                                             placeholder="Your Name"
                                             name="name"
                                             required=""
@@ -56,7 +56,7 @@
                                     <div class="relative flex items-center">
                                         <x-lucide-mail class="left-space-sm text-tertiary absolute size-[18px]" />
                                         <input
-                                            class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-lg pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                            class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none border border-outline/15"
                                             placeholder="you@example.com"
                                             name="email"
                                             required=""
@@ -72,7 +72,7 @@
                                     <div class="relative flex items-center">
                                         <x-lucide-phone class="left-space-sm text-tertiary absolute size-[18px]" />
                                         <input
-                                            class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-lg pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                            class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none border border-outline/15"
                                             placeholder="+1 234 567 8900"
                                             name="phone"
                                             type="tel"
@@ -84,7 +84,7 @@
                                     <div class="relative flex items-center">
                                         <x-lucide-type class="left-space-sm text-tertiary absolute size-[18px]" />
                                         <input
-                                            class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-lg pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                            class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none border border-outline/15"
                                             placeholder="What is this regarding?"
                                             name="subject"
                                             type="text"
@@ -98,7 +98,7 @@
                                 <textarea
                                     name="message"
                                     required
-                                    class="p-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-lg shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    class="p-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:ring-primary-container w-full rounded-xl shadow-sm transition-all focus:ring-2 focus:outline-none border border-outline/15"
                                     placeholder="How can we help you?"
                                     rows="6"
                                 ></textarea>
@@ -108,7 +108,7 @@
                             <div class="pt-space-sm gap-space-xs flex flex-col">
                                 <button
                                     id="contact-submit-btn"
-                                    class="py-space-md px-space-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-headline-sm text-headline-sm gap-space-xs flex w-full items-center justify-center rounded-lg font-bold tracking-wider uppercase shadow-md transition-all"
+                                    class="py-space-md px-space-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md gap-space-xs flex w-full items-center justify-center rounded-xl font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer"
                                     type="submit"
                                 >
                                     <x-lucide-send class="size-4" />
@@ -197,12 +197,12 @@
                             });
                         </script>
                     </div>
-                    <!-- Column 2: Direct Operations Desks, Khumbu Outpost & Emergency Dispatch -->
+                    <!-- Column 2: Direct Operations Desks, Khumbu Outpost & Emergency Support -->
                     <div class="gap-space-xl flex flex-col lg:col-span-5">
                         <!-- Kathmandu Central Headquarters -->
                         <div
-                            class="bg-surface-container-lowest p-space-lg gap-space-md flex flex-col rounded-xl shadow-md"
-                            id="dispatch-card"
+                            class="bg-surface-container-lowest p-space-lg gap-space-md flex flex-col rounded-2xl shadow-sm border border-outline/10"
+                            id="hq-card"
                         >
                             <div class="flex items-start justify-between">
                                 <div>
@@ -356,9 +356,9 @@
                         </div>
 
                         <!-- WhatsApp Instant Planner Widget Card -->
-                        <div class="p-space-md bg-[#25D366]/5 border-[#25D366]/20 gap-space-md flex items-center justify-between rounded-xl border shadow-sm">
+                        <div class="p-space-md bg-[#25D366]/5 border-[#25D366]/20 gap-space-md flex items-center justify-between rounded-2xl border shadow-sm">
                             <div class="gap-space-sm flex items-center">
-                                <div class="bg-[#25D366]/20 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg shadow-sm">
+                                <div class="bg-[#25D366]/20 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl shadow-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" class="text-[#25D366]">
                                         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.463 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                                     </svg>
@@ -369,7 +369,7 @@
                                 </div>
                             </div>
                             <a
-                                class="px-space-md py-space-xs bg-[#25D366] hover:bg-[#128C7E] text-white font-label-md text-label-md flex-shrink-0 rounded-lg font-semibold shadow-sm transition-colors"
+                                class="px-space-md py-space-xs bg-[#25D366] hover:bg-[#128C7E] text-white font-label-md text-label-md flex-shrink-0 rounded-xl font-semibold shadow-sm transition-colors cursor-pointer"
                                 href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact?->whatsapp ?? '') }}"
                                 rel="noopener noreferrer"
                                 target="_blank"
@@ -391,7 +391,7 @@
                                 Visit Our Briefing Center in Thamel
                             </h2>
                         </div>
-                        <div class="gap-space-xs text-tertiary font-label-sm text-label-sm bg-surface-container-lowest px-space-md py-space-xs flex items-center rounded-lg shadow-sm">
+                        <div class="gap-space-xs text-tertiary font-label-sm text-label-sm bg-surface-container-lowest px-space-md py-space-xs flex items-center rounded-xl shadow-sm border border-outline/10">
                             <x-lucide-compass class="text-primary size-[18px]" />
                             <span class="">Lat: 27.7154° N • Long: 85.3113° E • Elev: 1,400m</span>
                         </div>
@@ -399,7 +399,7 @@
                     <!-- Map Display & Nearby Landmarks Split -->
                     <div class="gap-space-xl grid grid-cols-1 items-center lg:grid-cols-12">
                         <!-- Interactive Static Map Pipeline Container -->
-                        <div class="bg-surface-dim relative min-h-[380px] overflow-hidden rounded-xl shadow-lg lg:col-span-7">
+                        <div class="bg-surface-dim relative min-h-[380px] overflow-hidden rounded-2xl shadow-lg border border-outline/10 lg:col-span-7">
                             @if ($contact?->google_maps_iframe)
                                 <div class="[&>iframe]:w-full [&>iframe]:h-full [&>iframe]:min-h-[380px] [&>iframe]:border-0 h-full min-h-[380px] w-full">
                                     {!! $contact->google_maps_iframe !!}
@@ -414,7 +414,7 @@
                                 ></div>
                             @endif
                             <!-- Overlay Pin Marker Card -->
-                            <div class="bottom-space-md left-space-md bg-surface-container-lowest/95 p-space-sm gap-space-sm absolute flex max-w-xs items-center rounded-lg shadow-md backdrop-blur-md">
+                            <div class="bottom-space-md left-space-md bg-surface-container-lowest/95 p-space-sm gap-space-sm absolute flex max-w-xs items-center rounded-xl shadow-md backdrop-blur-md border border-outline/10">
                                 <div class="bg-primary-container text-on-primary-fixed flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full">
                                     <x-lucide-map-pin class="size-[18px]" />
                                 </div>
@@ -434,7 +434,7 @@
                                 prior to their domestic flight to Lukla or mountain trailheads.
                             </p>
                             <div class="space-y-space-sm pt-space-xs">
-                                <div class="gap-space-sm p-space-sm bg-surface-container-lowest flex items-start rounded-lg shadow-sm">
+                                <div class="gap-space-sm p-space-sm bg-surface-container-lowest flex items-start rounded-xl shadow-sm border border-outline/10">
                                     <div class="bg-primary-container text-on-primary-fixed font-label-md text-label-md flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full font-bold">
                                         1
                                     </div>
@@ -445,7 +445,7 @@
                                             folder presentation.</span>
                                     </div>
                                 </div>
-                                <div class="gap-space-sm p-space-sm bg-surface-container-lowest flex items-start rounded-lg shadow-sm">
+                                <div class="gap-space-sm p-space-sm bg-surface-container-lowest flex items-start rounded-xl shadow-sm border border-outline/10">
                                     <div class="bg-primary-container text-on-primary-fixed font-label-md text-label-md flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full font-bold">
                                         2
                                     </div>
@@ -456,7 +456,7 @@
                                             adjustment and rental issuance.</span>
                                     </div>
                                 </div>
-                                <div class="gap-space-sm p-space-sm bg-surface-container-lowest flex items-start rounded-lg shadow-sm">
+                                <div class="gap-space-sm p-space-sm bg-surface-container-lowest flex items-start rounded-xl shadow-sm border border-outline/10">
                                     <div class="bg-primary-container text-on-primary-fixed font-label-md text-label-md flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full font-bold">
                                         3
                                     </div>
@@ -467,7 +467,7 @@
                                             permits with Government liaison.</span>
                                     </div>
                                 </div>
-                                <div class="gap-space-sm p-space-sm bg-surface-container-lowest flex items-start rounded-lg shadow-sm">
+                                <div class="gap-space-sm p-space-sm bg-surface-container-lowest flex items-start rounded-xl shadow-sm border border-outline/10">
                                     <div class="bg-primary-container text-on-primary-fixed font-label-md text-label-md flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full font-bold">
                                         4
                                     </div>
@@ -497,7 +497,7 @@
                 </div>
                 <div class="space-y-space-sm mx-auto max-w-3xl" id="faqAccordion">
                     <!-- Item 1 -->
-                    <div class="bg-surface-container-lowest overflow-hidden rounded-lg shadow-sm transition-all">
+                    <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
                         <button
                             class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
                             type="button"
@@ -514,7 +514,7 @@
                         </div>
                     </div>
                     <!-- Item 2 -->
-                    <div class="bg-surface-container-lowest overflow-hidden rounded-lg shadow-sm transition-all">
+                    <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
                         <button
                             class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
                             type="button"
@@ -531,7 +531,7 @@
                         </div>
                     </div>
                     <!-- Item 3 -->
-                    <div class="bg-surface-container-lowest overflow-hidden rounded-lg shadow-sm transition-all">
+                    <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
                         <button
                             class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
                             type="button"
@@ -548,7 +548,7 @@
                         </div>
                     </div>
                     <!-- Item 4 -->
-                    <div class="bg-surface-container-lowest overflow-hidden rounded-lg shadow-sm transition-all">
+                    <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
                         <button
                             class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
                             type="button"
@@ -577,27 +577,27 @@
                     </div>
                     <!-- Government and Association Partner Badges Grid -->
                     <div class="gap-space-sm pt-space-xs grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-lg text-center shadow-xs">
+                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
                             <span class="font-headline-sm text-headline-sm text-on-surface font-bold">MOCTA</span>
                             <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Ministry of Tourism</span>
                         </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-lg text-center shadow-xs">
+                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
                             <span class="font-headline-sm text-headline-sm text-on-surface font-bold">NTB</span>
                             <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Nepal Tourism Board</span>
                         </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-lg text-center shadow-xs">
+                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
                             <span class="font-headline-sm text-headline-sm text-on-surface font-bold">TAAN</span>
                             <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Trekking Agencies</span>
                         </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-lg text-center shadow-xs">
+                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
                             <span class="font-headline-sm text-headline-sm text-on-surface font-bold">NMA</span>
                             <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Trekking Assoc.</span>
                         </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-lg text-center shadow-xs">
+                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
                             <span class="font-headline-sm text-headline-sm text-on-surface font-bold">KEEP</span>
                             <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Eco-Tourism Project</span>
                         </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-lg text-center shadow-xs">
+                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
                             <span class="font-headline-sm text-headline-sm text-on-surface font-bold">IMEC</span>
                             <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Porter Protection</span>
                         </div>
@@ -609,7 +609,7 @@
                 class="p-space-md bg-ridge-deep/60 fixed inset-0 z-50 flex hidden items-center justify-center backdrop-blur-md"
                 id="formSuccessModal"
             >
-                <div class="bg-surface-container-lowest p-space-xl gap-space-md flex w-full max-w-lg flex-col items-center rounded-xl text-center shadow-2xl">
+                <div class="bg-surface-container-lowest p-space-xl gap-space-md flex w-full max-w-lg flex-col items-center rounded-2xl text-center shadow-2xl border border-outline/15">
                     <div class="bg-primary-container/20 text-primary flex h-16 w-16 items-center justify-center rounded-full">
                         <x-lucide-circle-check class="size-[36px]" />
                     </div>
@@ -624,11 +624,11 @@
                         </p>
                     </div>
                     <button
-                        class="py-space-sm px-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-lg font-bold uppercase shadow-sm transition-colors"
+                        class="py-space-sm px-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-xl font-bold uppercase shadow-sm transition-colors cursor-pointer"
                         onclick="document.getElementById('formSuccessModal').classList.add('hidden')"
                         type="button"
                     >
-                        Return to Dispatch Desk
+                        Return to Contact Page
                     </button>
                 </div>
             </div>

@@ -22,8 +22,9 @@ class CompanyInformationSeeder extends Seeder
                 'email' => 'adventureneepa@gmail.com',
                 'phone' => '+977-9808389420',
                 'whatsapp' => '+977-9808389420',
+                'whatsapp_name' => 'krishna',
                 'address' => 'Mahalaxmi 08, Lubhoo, Lalitpur',
-                'google_maps_url' => 'J9WG+4R7, ललितपुर, बागमती प्रदेश',
+                'google_maps_url' => 'https://share.google/WTq24jCzrPqTrX7z3',
             ]
         );
 

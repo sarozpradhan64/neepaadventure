@@ -141,6 +141,8 @@
     --color-primary-fixed: #ffdf9f;
     --color-tertiary-fixed-dim: #b5c9dd;
     --color-error: #ba1a1a;
+    --color-success: #25d366;
+    --color-on-success: #ffffff;
     --color-on-secondary: #ffffff;
     --color-on-surface: #121d26;
     --color-on-primary: #ffffff;

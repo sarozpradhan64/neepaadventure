@@ -50,7 +50,7 @@ class BlogController extends Controller
 
     public function show(string $slug): View
     {
-        $blog = Blog::with(['category', 'author'])
+        $blog = Blog::with(['category', 'author', 'tags', 'seoMetadata'])
             ->where('slug', $slug)
             ->where('status', true)
             ->firstOrFail();

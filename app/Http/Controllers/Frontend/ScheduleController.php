@@ -10,7 +10,10 @@ class ScheduleController extends Controller
 {
     public function index(Request $request)
     {
-        $query = ServiceDeparture::with('service')->where('start_date', '>=', now())->orderBy('start_date');
+        $query = ServiceDeparture::with('service')
+            ->where('start_date', '>=', now()->startOfDay())
+            ->whereIn('status', ['Available', 'Guaranteed'])
+            ->orderBy('start_date');
 
         if ($request->has('season') && $request->season != '') {
             if ($request->season == 'spring') {

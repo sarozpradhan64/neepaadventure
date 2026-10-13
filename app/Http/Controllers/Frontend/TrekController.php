@@ -100,11 +100,17 @@ class TrekController extends Controller
 
         $trek = Service::where('slug', $slug)
             ->where('status', true)
-            ->with(['features', 'category.parent', 'seoMetadata'])
+            ->with([
+                'features' => fn ($q) => $q->orderBy('sort_order'),
+                'category.parent',
+                'seoMetadata',
+                'galleryAlbum.items' => fn ($q) => $q->where('status', true)->orderBy('sort_order'),
+            ])
             ->firstOrFail();
 
         $departures = ServiceDeparture::where('service_id', $trek->id)
-            ->where('status', 'Available')
+            ->whereIn('status', ['Available', 'Guaranteed'])
+            ->where('start_date', '>=', now()->startOfDay())
             ->orderBy('start_date', 'asc')
             ->get();
 

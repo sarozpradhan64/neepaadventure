@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-48">
+    <main class="bg-surface w-full pt-28">
         <div class="flex w-full flex-col">
             <!-- Immersive Cinematic Hero: Bleeds cleanly beneath header -->
             <!-- About Us Generic Section -->
@@ -9,13 +9,13 @@
                     <div class="gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
                         <!-- Left: Image -->
                         <div class="relative">
-                            <div class="relative overflow-hidden rounded-xl shadow-xl">
+                            <div class="relative overflow-hidden rounded-2xl shadow-xl">
                                 <img
                                     class="h-80 w-full transform object-cover transition-transform duration-700 hover:scale-105 lg:h-96"
                                     alt="Group of trekkers walking on a scenic mountain trail in the Himalayas with a beautiful blue sky."
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH-T_vvEFdoqOoZOBFTvoDElAEOrBl2nCqehW5vdVes7CS0Ev4wPgcXWPtSHXQC5MQVCbTl5rLVPi3CE3Jei4Y4t69UHHGUb5DVNRi07EtBhAUyGWWMVgz3hcgMpAVgrgedsLsTKApZq9OtW7tCtmTCMZ1v9GgBpXWYLljR-hl89xy83ZmZfUzOCXb4uxE-cKGJ3o6Ph8TjCIUf4dke1y44J6Y2zLMm7oYDNr4TPlYaNilVlL_ZLHo"
                                 />
-                                <div class="bottom-space-sm left-space-sm bg-ridge-deep/85 px-space-md py-space-xs text-summit-white absolute rounded-lg backdrop-blur-md">
+                                <div class="bottom-space-sm left-space-sm bg-ridge-deep/85 px-space-md py-space-xs text-summit-white absolute rounded-xl backdrop-blur-md">
                                     <span class="font-badge-caption text-badge-caption text-primary-container block tracking-wider uppercase">Khumjung High Valley</span>
                                     <span class="font-body-sm text-body-sm font-medium">3,790m • Cradle of Himalayan Guides</span>
                                 </div>
@@ -24,9 +24,9 @@
                                 $founder = \Blaze\AdminCore\Models\TeamMember::where('status', true)->orderBy('sort_order')->first();
                             @endphp
                             @if($founder)
-                            <div class="bg-surface-container-lowest p-space-2xs relative -mt-12 ml-auto w-3/4 overflow-hidden rounded-xl shadow-2xl">
+                            <div class="bg-surface-container-lowest p-space-2xs relative -mt-12 ml-auto w-3/4 overflow-hidden rounded-2xl shadow-2xl border border-outline/10">
                                 <img
-                                    class="h-52 w-full rounded-lg object-cover"
+                                    class="h-52 w-full rounded-xl object-cover"
                                     alt="{{ $founder->name }}"
                                     src="{{ $founder->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($founder->image) : 'https://placehold.co/600x800' }}"
                                 />
@@ -53,7 +53,7 @@
                                 </h2>
                             </div>
                             
-                            <div class="space-y-space-xs bg-surface-container-lowest p-space-xl rounded-xl shadow-sm">
+                            <div class="space-y-space-xs bg-surface-container-lowest p-space-xl rounded-2xl shadow-sm border border-outline/10">
                                 <div class="gap-space-sm flex items-center">
                                     <div class="bg-primary-container/20 text-on-primary-container font-headline-sm text-body-md flex h-8 w-8 items-center justify-center rounded-lg font-bold">
                                         01
@@ -67,7 +67,7 @@
                                 </p>
                             </div>
                             
-                            <div class="space-y-space-xs bg-surface-container-low p-space-xl rounded-xl shadow-sm">
+                            <div class="space-y-space-xs bg-surface-container-low p-space-xl rounded-2xl shadow-sm border border-outline/10">
                                 <div class="gap-space-sm flex items-center">
                                     <div class="bg-primary-container text-on-primary-fixed font-headline-sm text-body-md flex h-8 w-8 items-center justify-center rounded-lg font-bold">
                                         02
@@ -100,9 +100,9 @@
                     </div>
                     <div class="gap-space-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                         <!-- Pillar 1 -->
-                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-xl shadow-sm transition-shadow hover:shadow-md">
+                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-2xl shadow-sm border border-outline/10 transition-shadow hover:shadow-md">
                             <div class="space-y-space-md">
-                                <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-lg">
+                                <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-mountain-snow class="size-[28px]" />
                                 </div>
                                 <div class="space-y-space-2xs">
@@ -120,9 +120,9 @@
                             </div>
                         </div>
                         <!-- Pillar 2 -->
-                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-xl shadow-sm transition-shadow hover:shadow-md">
+                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-2xl shadow-sm border border-outline/10 transition-shadow hover:shadow-md">
                             <div class="space-y-space-md">
-                                <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-lg">
+                                <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-briefcase-medical class="size-[28px]" />
                                 </div>
                                 <div class="space-y-space-2xs">
@@ -141,9 +141,9 @@
                             </div>
                         </div>
                         <!-- Pillar 3 -->
-                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-xl shadow-sm transition-shadow hover:shadow-md">
+                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-2xl shadow-sm border border-outline/10 transition-shadow hover:shadow-md">
                             <div class="space-y-space-md">
-                                <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-lg">
+                                <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-hand-heart class="size-[28px]" />
                                 </div>
                                 <div class="space-y-space-2xs">
@@ -162,9 +162,9 @@
                             </div>
                         </div>
                         <!-- Pillar 4 -->
-                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-xl shadow-sm transition-shadow hover:shadow-md">
+                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-2xl shadow-sm border border-outline/10 transition-shadow hover:shadow-md">
                             <div class="space-y-space-md">
-                                <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-lg">
+                                <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-recycle class="size-[28px]" />
                                 </div>
                                 <div class="space-y-space-2xs">
@@ -212,7 +212,7 @@
                         @endphp
                         
                         @forelse($featuredGuides as $guide)
-                        <div class="bg-surface-container-lowest group overflow-hidden rounded-xl shadow-sm transition-all hover:shadow-lg">
+                        <div class="bg-surface-container-lowest group overflow-hidden rounded-2xl shadow-sm border border-outline/10 transition-all hover:shadow-lg">
                             <div class="relative h-64 overflow-hidden">
                                 <img
                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -428,10 +428,6 @@
                 </div>
                 <div class="max-w-max-content-width space-y-space-xl relative z-10 mx-auto text-center">
                     <div class="space-y-space-sm mx-auto max-w-3xl">
-                        <div class="gap-space-xs px-space-sm py-space-2xs bg-surface-container-lowest/10 text-primary-container font-badge-caption text-badge-caption inline-flex items-center rounded-lg font-bold tracking-widest uppercase">
-                            <x-lucide-map-pin class="size-[16px]" />
-                            Bespoke • Small Group • High Pass
-                        </div>
                         <h2 class="font-display-xl text-headline-lg lg:text-display-xl text-summit-white leading-tight font-extrabold">
                             Experience Nepal with the People Who Call These Passes Home
                         </h2>
@@ -442,17 +438,15 @@
                     </div>
                     <div class="gap-space-md flex flex-wrap items-center justify-center">
                         <a
-                            class="gap-space-xs px-space-xl py-space-md bg-primary-container text-on-primary-fixed font-label-md text-label-md hover:bg-amber-flare inline-flex items-center justify-center rounded-lg font-bold tracking-wider uppercase shadow-xl transition-all"
-                            data-path="plan-your-trek"
-                            href="#"
+                            class="gap-space-xs px-space-xl py-space-md bg-primary-container text-on-primary-fixed font-label-md text-label-md hover:bg-amber-flare inline-flex items-center justify-center rounded-xl font-bold tracking-wider uppercase shadow-xl transition-all cursor-pointer"
+                            href="{{ route('plan-your-trek') }}"
                         >
                             Plan Your Custom Trek
                             <x-lucide-arrow-up-right class="size-[18px]" />
                         </a>
                         <a
-                            class="gap-space-xs px-space-xl py-space-md bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-summit-white font-label-md text-label-md inline-flex items-center justify-center rounded-lg font-semibold tracking-wider backdrop-blur-sm transition-all"
-                            data-path="contact-us"
-                            href="#"
+                            class="gap-space-xs px-space-xl py-space-md bg-surface-container-lowest/15 hover:bg-surface-container-lowest/25 text-summit-white font-label-md text-label-md inline-flex items-center justify-center rounded-xl font-semibold tracking-wider backdrop-blur-sm transition-all cursor-pointer border border-white/20"
+                            href="{{ route('contact') }}"
                         >
                             Contact Basecamp Headquarters
                             <x-lucide-message-circle class="size-[18px]" />

@@ -5,8 +5,105 @@
     :image="$trek->featured_image"
 >
     <x-header />
+@php
+    $galleryItems = $trek->galleryAlbum?->items ?? collect();
+    $totalPhotos = $galleryItems->count();
+    $galleryJson = $galleryItems->map(fn($item) => [
+        'url' => Storage::disk('public')->url($item->file_path),
+        'title' => $item->title ?? '',
+        'caption' => $item->caption ?? '',
+    ])->values();
+
+    $routeMapUrl = !empty($trek->map_image)
+        ? Storage::disk('public')->url($trek->map_image)
+        : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyHCn2xRyd59q6a9HpjHnszI6fBUVWaBPwT-VLxgVKbM77YFgu2UR0NTB0od3jHwgTTdMOZ53kQ6Oog7m8W9nOKP5YEVlTiy7KhwhejYYHOewqU2Yi-scwEgOxx-Hpj9XnVzT-3--RwEHasR8fczE0VnrhkxG1_zw8USkGgUTvlY4dT7GsAXmhv73TcyCwOhgCG5-bIr9zfhKYPxqjmjdEi6QftoW4c-nla3fKx61i_XtksWe_eGXH';
+
+    // Calculate dynamic elevation profile from features itinerary
+    $elevationPoints = collect();
+    foreach ($trek->features as $idx => $feat) {
+        $altVal = null;
+        if (!empty($feat->altitude)) {
+            if (preg_match('/(\d[\d,]*)/', $feat->altitude, $matches)) {
+                $num = (int) str_replace(',', '', $matches[1]);
+                if ($num >= 500 && $num <= 8900) {
+                    $altVal = $num;
+                }
+            }
+        }
+        if ($altVal !== null) {
+            $elevationPoints->push([
+                'day' => $feat->day_label ?? ('Day ' . ($idx + 1)),
+                'title' => $feat->title,
+                'short_title' => \Illuminate\Support\Str::limit($feat->title, 14),
+                'altitude' => $altVal,
+                'altitude_label' => number_format($altVal) . 'm',
+            ]);
+        }
+    }
+
+    $hasDynamicElevation = $elevationPoints->count() >= 2;
+    $coords = [];
+    $gridLines = [];
+    $strokeD = '';
+    $fillD = '';
+    $maxAlt = 0;
+    if ($hasDynamicElevation) {
+        $minAlt = $elevationPoints->min('altitude');
+        $maxAlt = $elevationPoints->max('altitude');
+
+        $chartMin = max(0, floor(($minAlt - 300) / 500) * 500);
+        $chartMax = ceil(($maxAlt + 300) / 500) * 500;
+        if ($chartMax <= $chartMin) {
+            $chartMax = $chartMin + 1000;
+        }
+
+        $svgWidth = 900;
+        $svgHeight = 260;
+        $topMargin = 35;
+        $bottomMargin = 55;
+        $leftMargin = 70;
+        $rightMargin = 70;
+        $usableWidth = $svgWidth - $leftMargin - $rightMargin;
+        $usableHeight = $svgHeight - $topMargin - $bottomMargin;
+
+        $pointCount = $elevationPoints->count();
+        foreach ($elevationPoints as $i => $pt) {
+            $x = $leftMargin + ($pointCount > 1 ? ($i * ($usableWidth / ($pointCount - 1))) : ($usableWidth / 2));
+            $ratio = ($pt['altitude'] - $chartMin) / ($chartMax - $chartMin);
+            $y = $topMargin + (1 - $ratio) * $usableHeight;
+            $coords[] = array_merge($pt, ['x' => round($x, 1), 'y' => round($y, 1)]);
+        }
+
+        $strokeD = 'M ' . implode(' L ', array_map(fn($c) => "{$c['x']} {$c['y']}", $coords));
+        $firstX = $coords[0]['x'];
+        $lastX = $coords[count($coords) - 1]['x'];
+        $groundY = $svgHeight - $bottomMargin + 15;
+        $fillD = "{$strokeD} L {$lastX} {$groundY} L {$firstX} {$groundY} Z";
+
+        $altStep = ceil(($chartMax - $chartMin) / 4 / 500) * 500;
+        if ($altStep <= 0) {
+            $altStep = 500;
+        }
+        for ($a = $chartMin + $altStep; $a <= $chartMax; $a += $altStep) {
+            $r = ($a - $chartMin) / ($chartMax - $chartMin);
+            $gy = round($topMargin + (1 - $r) * $usableHeight, 1);
+            $gridLines[] = ['alt' => $a, 'y' => $gy];
+        }
+    }
+@endphp
     <main class="bg-surface w-full pt-28" x-data="{
         bookingModalOpen: false,
+        galleryOpen: false,
+        activeGalleryIndex: 0,
+        galleryPhotos: {{ Js::from($galleryJson) }},
+        prevGalleryPhoto() {
+            if (!this.galleryPhotos || this.galleryPhotos.length === 0) return;
+            this.activeGalleryIndex = (this.activeGalleryIndex - 1 + this.galleryPhotos.length) % this.galleryPhotos.length;
+        },
+        nextGalleryPhoto() {
+            if (!this.galleryPhotos || this.galleryPhotos.length === 0) return;
+            this.activeGalleryIndex = (this.activeGalleryIndex + 1) % this.galleryPhotos.length;
+        },
         selectedDeparture: '{{ $departures->isNotEmpty() ? $departures->first()->id : 'custom' }}',
         selectedDepartureLabel: '{{ $departures->isNotEmpty() ? ($departures->first()->start_date?->format('M d, Y') . ' – ' . $departures->first()->end_date?->format('M d, Y')) : 'Custom / Flexible Dates' }}',
         trekkersCount: 1,
@@ -108,8 +205,8 @@
                         @php
                             $seasonYears = date('Y') . '/' . (date('Y') + 1);
                         @endphp
-                        <a href="#upcoming-departures" class="gap-space-2xs text-primary hover:text-amber-600 transition-colors flex items-center font-bold tracking-wider group cursor-pointer bg-primary/10 hover:bg-primary/20 px-3 py-1 rounded-full border border-primary/20">
-                            <span class="bg-emerald-500 h-2 w-2 animate-pulse rounded-full"></span>
+                        <a href="#upcoming-departures" class="gap-space-2xs text-primary hover:text-amber-flare transition-colors flex items-center font-bold tracking-wider group cursor-pointer bg-primary/10 hover:bg-primary/20 px-3 py-1 rounded-full border border-primary/20">
+                            <span class="bg-success h-2 w-2 animate-pulse rounded-full"></span>
                             <span>{{ $seasonYears }} Season Open</span>
                             <x-lucide-chevron-down class="size-3.5 transition-transform group-hover:translate-y-0.5" />
                         </a>
@@ -122,62 +219,137 @@
             <section class="bg-surface-container-lowest px-gutter-mobile lg:px-gutter-desktop pt-space-xl pb-space-2xl w-full">
                 <div class="max-w-max-content-width mx-auto">
                     <div class="gap-space-xs mb-space-sm flex flex-wrap items-center">
-                        <span class="bg-primary-container/20 text-on-primary-container px-space-sm py-space-2xs text-badge-caption font-badge-caption inline-flex items-center gap-1 rounded uppercase">
-                            <x-lucide-mountain class="size-[14px]" />
-                            Circuit Grade 4/5 • Demanding
-                        </span>
-                        <span class="bg-surface-container-high text-tertiary px-space-sm py-space-2xs text-badge-caption font-badge-caption inline-flex items-center gap-1 rounded uppercase">
-                            16 Days / 15 Nights
-                        </span>
-                        <span class="bg-surface-container-high text-tertiary px-space-sm py-space-2xs text-badge-caption font-badge-caption inline-flex items-center gap-1 rounded uppercase">
-                            Cho La Pass (5,420m)
-                        </span>
+                        @if ($trek->difficulty_level)
+                            <span class="bg-primary-container/20 text-on-primary-container px-space-sm py-space-2xs text-badge-caption font-badge-caption inline-flex items-center gap-1 rounded-md uppercase">
+                                <x-lucide-mountain class="size-[14px]" />
+                                Circuit Grade: {{ ucfirst($trek->difficulty_level) }}
+                            </span>
+                        @endif
+                        @if ($trek->duration)
+                            <span class="bg-surface-container-high text-tertiary px-space-sm py-space-2xs text-badge-caption font-badge-caption inline-flex items-center gap-1 rounded-md uppercase">
+                                {{ $trek->duration }}
+                            </span>
+                        @endif
+                        @if ($trek->maximum_altitude)
+                            <span class="bg-surface-container-high text-tertiary px-space-sm py-space-2xs text-badge-caption font-badge-caption inline-flex items-center gap-1 rounded-md uppercase">
+                                Max Alt: {{ $trek->maximum_altitude }}
+                            </span>
+                        @endif
                     </div>
                     <div class="gap-space-xl grid grid-cols-1 items-start lg:grid-cols-12">
                         <div class="space-y-space-md lg:col-span-8">
                             <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight uppercase">
-                                Everest Base Camp &amp; Gokyo Ri Lakes Circuit
+                                {{ $trek->title }}
                             </h1>
-                            <p class="font-body-lg text-body-lg text-tertiary max-w-3xl">
-                                A sacred circumnavigation through the high turquoise glacial lakes of Gokyo, over the
-                                glaciated Cho La Pass (5,420m), onto the legendary Khumbu Icefall moraine beneath Mt.
-                                Everest (8,848.86m).
-                            </p>
+                            @if ($trek->short_description)
+                                <p class="font-body-lg text-body-lg text-tertiary max-w-3xl">
+                                    {{ $trek->short_description }}
+                                </p>
+                            @endif
                             <!-- Imagery Mosaic Strip -->
                             <div class="gap-space-sm pt-space-xs grid grid-cols-1 sm:grid-cols-3">
-                                <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-2">
-                                    <img
-                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                        data-alt="Stunning panoramic sunrise over emerald Gokyo Lakes reflecting Mount Cho Oyu with vibrant prayer flags gently waving in high altitude Himalayan crisp breeze under clear azure sky"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl3rzSjmzyUAbsNtQo1iajDXG6R0468kIY4pBYxKG0Il4bOgcfSuo-XIKxRw4oHikE_kQCAJ7G4gLcZSdl_g7qZqLtTkkds9koIWwA105QqgSaC9BoSi63ez-J9yI4XslLzET_0spEZT6bI5G65Zb25Q7YFV31IswAajpF6tK3_s79n_tjxqnYvOdCjZ1o4umB8xkjvCFnThyPTUSDaK9bdZvk29PcfkSiIji5ZNuOv_SQAU_40aG8"
-                                    />
-                                    <div class="bg-ridge-deep/80 text-summit-white font-badge-caption text-badge-caption absolute bottom-3 left-3 flex items-center gap-1.5 rounded px-3 py-1.5 uppercase backdrop-blur-md">
-                                        <x-lucide-camera class="text-primary-container size-[16px]" />
-                                        3rd Gokyo Lake (Dudh Pokhari, 4,790m)
-                                    </div>
-                                </div>
-                                <div class="gap-space-sm flex h-72 flex-col">
-                                    <div class="group relative h-1/2 overflow-hidden rounded-xl shadow-md">
+                                @if($totalPhotos > 0)
+                                    <!-- Image 1: Main Large -->
+                                    <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-2 cursor-pointer" @click="activeGalleryIndex = 0; galleryOpen = true">
                                         <img
                                             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                            data-alt="Trekker team traversing rugged Cho La Pass glaciated terrain wearing crampons against towering sharp snow crags under bright sunlight"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuASTFDbBT_GYwEqYMyo_I5DWjTFwOpTwG5jrI0udNfRiWQ96z9-VVWetVBow8DK61WkEXZGyhFe-v7hIdl3N31mK_uWpWjGTph4SY4Va4qwx_gRjhCeJbb1a6uxFMA5LXUjVfYcXV-SO9C2i0peuGe43EW3gln8JIp4wAHJbxbE-bv5ZIAdpBIITYe2pGP6ifJU_VHBXY7-2TysV-nE_bMHt4qyVivt7UBTdgpPeRRETishS8EdoEF9"
+                                            src="{{ Storage::disk('public')->url($galleryItems[0]->file_path) }}"
+                                            alt="{{ $galleryItems[0]->title ?? $trek->title }}"
                                         />
-                                        <div class="bg-ridge-deep/75 text-summit-white font-label-sm text-label-sm absolute bottom-2 left-2 rounded px-2 py-0.5">
-                                            Cho La Glacial Pass
+                                        <div class="bg-ridge-deep/80 text-summit-white font-badge-caption text-badge-caption absolute bottom-3 left-3 flex items-center gap-1.5 rounded-md px-3 py-1.5 uppercase backdrop-blur-md max-w-[90%]">
+                                            <x-lucide-camera class="text-primary-container size-[16px] shrink-0" />
+                                            <span class="truncate">{{ $galleryItems[0]->caption ?: ($galleryItems[0]->title ?: $trek->title) }}</span>
                                         </div>
                                     </div>
-                                    <div class="group relative h-1/2 overflow-hidden rounded-xl shadow-md">
+
+                                    <!-- Right Column: Image 2 & Image 3 -->
+                                    <div class="gap-space-sm flex h-72 flex-col">
+                                        <!-- Image 2 -->
+                                        @if($totalPhotos >= 2)
+                                            <div class="group relative h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="activeGalleryIndex = 1; galleryOpen = true">
+                                                <img
+                                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    src="{{ Storage::disk('public')->url($galleryItems[1]->file_path) }}"
+                                                    alt="{{ $galleryItems[1]->title }}"
+                                                />
+                                                <div class="bg-ridge-deep/75 text-summit-white font-label-sm text-label-sm absolute bottom-2 left-2 rounded-md px-2 py-0.5 truncate max-w-[90%]">
+                                                    {{ $galleryItems[1]->caption ?: ($galleryItems[1]->title ?: '') }}
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="relative h-1/2 overflow-hidden rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
+                                                <x-lucide-mountain class="size-6 text-primary/40" />
+                                            </div>
+                                        @endif
+
+                                        <!-- Image 3 (with +N card overlay if > 3 photos) -->
+                                        @if($totalPhotos >= 3)
+                                            <div class="group relative h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="activeGalleryIndex = 2; galleryOpen = true">
+                                                <img
+                                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                    src="{{ Storage::disk('public')->url($galleryItems[2]->file_path) }}"
+                                                    alt="{{ $galleryItems[2]->title }}"
+                                                />
+                                                @if($totalPhotos > 3)
+                                                    <div class="absolute inset-0 bg-ridge-deep/75 group-hover:bg-ridge-deep/85 flex flex-col items-center justify-center text-summit-white transition-all backdrop-blur-[2px]">
+                                                        <span class="text-2xl font-black tracking-tight text-primary-container">+{{ $totalPhotos - 3 }}</span>
+                                                        <span class="text-[10px] font-bold uppercase tracking-wider text-summit-white">More Photos</span>
+                                                    </div>
+                                                @else
+                                                    <div class="bg-ridge-deep/75 text-summit-white font-label-sm text-label-sm absolute bottom-2 left-2 rounded-md px-2 py-0.5 truncate max-w-[90%]">
+                                                        {{ $galleryItems[2]->caption ?: ($galleryItems[2]->title ?: '') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        @else
+                                            <div class="relative h-1/2 overflow-hidden rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
+                                                <x-lucide-image class="size-6 text-primary/40" />
+                                            </div>
+                                        @endif
+                                    </div>
+                                @elseif($trek->featured_image)
+                                    <!-- Fallback: Service Featured Image -->
+                                    <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-3">
+                                        <img
+                                            class="h-full w-full object-cover"
+                                            src="{{ Storage::disk('public')->url($trek->featured_image) }}"
+                                            alt="{{ $trek->title }}"
+                                        />
+                                        <div class="bg-ridge-deep/80 text-summit-white font-badge-caption text-badge-caption absolute bottom-3 left-3 flex items-center gap-1.5 rounded-md px-3 py-1.5 uppercase backdrop-blur-md">
+                                            <x-lucide-camera class="text-primary-container size-[16px]" />
+                                            {{ $trek->title }}
+                                        </div>
+                                    </div>
+                                @else
+                                    <!-- Fallback Placeholder -->
+                                    <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-2">
                                         <img
                                             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                            data-alt="Everest Base Camp colorful yellow trek tents pitched on rocky Khumbu Glacier with massive seracs and ice pinnacles looming in background"
-                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK4uDIdZsdTjdxOuKwLRVtlM45dtFab_Uj0dpyR1Qx3USWrX-tPKmTzh5D32NqdDfW-m4OGyIl6tldnKZrf8mApaIXRM1tAbKiPPnevHtVCMF86C22eUAf3gg1Ti-gAr-adVdho5r94sPvqaJcEUd7Gi7Hk4tsXWj7rwTRgEjsLBM-gJ5-rl4q-SONl7STJhvGaX5SbtSGQ2vOx4JjvZQl7dT1NU78SRfg8vxU-g8ie3WgbZhRjBz6"
+                                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl3rzSjmzyUAbsNtQo1iajDXG6R0468kIY4pBYxKG0Il4bOgcfSuo-XIKxRw4oHikE_kQCAJ7G4gLcZSdl_g7qZqLtTkkds9koIWwA105QqgSaC9BoSi63ez-J9yI4XslLzET_0spEZT6bI5G65Zb25Q7YFV31IswAajpF6tK3_s79n_tjxqnYvOdCjZ1o4umB8xkjvCFnThyPTUSDaK9bdZvk29PcfkSiIji5ZNuOv_SQAU_40aG8"
+                                            alt="{{ $trek->title }}"
                                         />
-                                        <div class="bg-ridge-deep/75 text-summit-white font-label-sm text-label-sm absolute bottom-2 left-2 rounded px-2 py-0.5">
-                                            Khumbu Icefall Base
+                                        <div class="bg-ridge-deep/80 text-summit-white font-badge-caption text-badge-caption absolute bottom-3 left-3 flex items-center gap-1.5 rounded-md px-3 py-1.5 uppercase backdrop-blur-md">
+                                            <x-lucide-camera class="text-primary-container size-[16px]" />
+                                            {{ $trek->title }}
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="gap-space-sm flex h-72 flex-col">
+                                        <div class="group relative h-1/2 overflow-hidden rounded-xl shadow-md">
+                                            <img
+                                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuASTFDbBT_GYwEqYMyo_I5DWjTFwOpTwG5jrI0udNfRiWQ96z9-VVWetVBow8DK61WkEXZGyhFe-v7hIdl3N31mK_uWpWjGTph4SY4Va4qwx_gRjhCeJbb1a6uxFMA5LXUjVfYcXV-SO9C2i0peuGe43EW3gln8JIp4wAHJbxbE-bv5ZIAdpBIITYe2pGP6ifJU_VHBXY7-2TysV-nE_bMHt4qyVivt7UBTdgpPeRRETishS8EdoEF9"
+                                                alt="{{ $trek->title }}"
+                                            />
+                                        </div>
+                                        <div class="group relative h-1/2 overflow-hidden rounded-xl shadow-md">
+                                            <img
+                                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK4uDIdZsdTjdxOuKwLRVtlM45dtFab_Uj0dpyR1Qx3USWrX-tPKmTzh5D32NqdDfW-m4OGyIl6tldnKZrf8mApaIXRM1tAbKiPPnevHtVCMF86C22eUAf3gg1Ti-gAr-adVdho5r94sPvqaJcEUd7Gi7Hk4tsXWj7rwTRgEjsLBM-gJ5-rl4q-SONl7STJhvGaX5SbtSGQ2vOx4JjvZQl7dT1NU78SRfg8vxU-g8ie3WgbZhRjBz6"
+                                                alt="{{ $trek->title }}"
+                                            />
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <!-- Sticky Quick Booking Matrix -->
@@ -200,7 +372,7 @@
                                     </a>
                                 </div>
                                 <select
-                                    class="bg-surface-container-lowest text-on-surface font-body-md text-body-md p-space-sm focus:ring-primary w-full cursor-pointer rounded-lg shadow-sm focus:ring-2 focus:outline-none border border-outline/10 text-sm"
+                                    class="bg-surface-container-lowest text-on-surface font-body-md text-body-md p-space-sm focus:ring-primary w-full cursor-pointer rounded-xl shadow-sm focus:ring-2 focus:outline-none border border-outline/10 text-sm"
                                     id="departure-select"
                                     x-model="selectedDeparture"
                                     @change="
@@ -227,38 +399,38 @@
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span>Group Size Cap:</span>
-                                    <span class="text-on-surface font-semibold">Max 8 Trekkers</span>
+                                    <span class="text-on-surface font-semibold">Max {{ $trek->max_group_size ?: 8 }} Trekkers</span>
                                 </div>
                                 <div class="flex items-center justify-between">
                                     <span>Heli-Evac Coverage:</span>
                                     <span class="text-primary flex items-center gap-1 font-medium">
-                                        <x-lucide-shield-check class="size-[15px]" /> Mandatory / Monitored
+                                        <x-lucide-shield-check class="size-[15px]" /> {{ $trek->heli_evac_coverage ?: 'Mandatory / Monitored' }}
                                     </span>
                                 </div>
                             </div>
                             <div class="gap-space-xs pt-space-2xs flex flex-col">
                                 <button 
-                                    type="button"
+                                    type="button" 
                                     @click="openBooking()"
-                                    class="py-space-sm px-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase shadow-sm transition-all cursor-pointer"
+                                    class="py-space-sm px-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-xl text-center font-bold tracking-wider uppercase shadow-sm transition-all cursor-pointer"
                                 >
                                     Reserve Your Place
                                 </button>
                                 <button 
-                                    type="button"
+                                    type="button" 
                                     @click="openBooking('custom', 'Custom / Private Date Request')"
-                                    class="py-space-sm px-space-md bg-surface-container-highest hover:bg-mist-slate text-on-surface font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase transition-colors cursor-pointer"
+                                    class="py-space-sm px-space-md bg-surface-container-highest hover:bg-mist-slate text-on-surface font-label-md text-label-md w-full rounded-xl text-center font-bold tracking-wider uppercase transition-colors cursor-pointer"
                                 >
                                     Request Private / Custom Date
                                 </button>
                                 <a
                                     class="gap-space-2xs py-space-xs text-on-surface-variant hover:text-primary font-label-sm text-label-sm flex w-full items-center justify-center font-semibold transition-colors"
-                                    href="https://wa.me/97714700000"
+                                    href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->whatsapp ?? '97714700000') }}"
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
                                     <x-lucide-message-circle class="size-[18px]" />
-                                    Talk to Khumbu Operations on WhatsApp
+                                    Talk to Operations on WhatsApp
                                 </a>
                             </div>
                         </div>
@@ -274,7 +446,7 @@
                             <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
                                 Trek Duration
                             </div>
-                            <div class="font-label-md text-label-md font-bold">16 Days High Loop</div>
+                            <div class="font-label-md text-label-md font-bold">{{ $trek->duration ?: '16 Days High Loop' }}</div>
                         </div>
                     </div>
                     <div class="gap-space-xs flex items-center">
@@ -283,7 +455,7 @@
                             <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
                                 Maximum Altitude
                             </div>
-                            <div class="font-label-md text-label-md font-bold">5,545m (Kala Patthar)</div>
+                            <div class="font-label-md text-label-md font-bold">{{ $trek->maximum_altitude ?: '5,545m' }}</div>
                         </div>
                     </div>
                     <div class="gap-space-xs flex items-center">
@@ -292,7 +464,7 @@
                             <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
                                 Start &amp; End Point
                             </div>
-                            <div class="font-label-md text-label-md font-bold">Lukla (Tenzing-Hillary)</div>
+                            <div class="font-label-md text-label-md font-bold">{{ $trek->start_end_point ?: 'Lukla (Tenzing-Hillary)' }}</div>
                         </div>
                     </div>
                     <div class="gap-space-xs flex items-center">
@@ -301,7 +473,7 @@
                             <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
                                 Support Ratio
                             </div>
-                            <div class="font-label-md text-label-md font-bold">1 Guide:4 &amp; 1 Porter:2</div>
+                            <div class="font-label-md text-label-md font-bold">{{ $trek->support_ratio ?: '1 Guide:4 & 1 Porter:2' }}</div>
                         </div>
                     </div>
                     <div class="gap-space-xs col-span-2 flex items-center md:col-span-1">
@@ -310,10 +482,10 @@
                             <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
                                 Prime Seasons
                             </div>
-                            <div class="font-label-md text-label-md font-bold">Mar–May &amp; Oct–Dec</div>
+                            <div class="font-label-md text-label-md font-bold">{{ $trek->best_season ?: 'Mar–May & Oct–Dec' }}</div>
                         </div>
                     </div>
-                </div>
+                </div>    </div>
             </section>
             <!-- Interactive Elevation Profile & Route Architecture -->
             <section class="bg-surface-container-lowest py-space-2xl px-gutter-mobile lg:px-gutter-desktop w-full">
@@ -326,8 +498,12 @@
                             </h2>
                         </div>
                         <div class="gap-space-md text-body-sm text-tertiary flex items-center">
-                            <span class="flex items-center gap-1.5"><span class="bg-primary h-3 w-3 rounded-full"></span> Acclimatization Checkpoints</span>
-                            <span class="flex items-center gap-1.5"><span class="bg-tertiary h-3 w-3 rounded-full"></span> Technical Glacial Pass</span>
+                            <span class="flex items-center gap-1.5"><span class="bg-primary h-3 w-3 rounded-full"></span> Elevation Checkpoints</span>
+                            @if($hasDynamicElevation)
+                                <span class="flex items-center gap-1.5 text-xs font-mono font-semibold text-on-surface">Peak: {{ number_format($maxAlt) }}m</span>
+                            @else
+                                <span class="flex items-center gap-1.5"><span class="bg-tertiary h-3 w-3 rounded-full"></span> Technical Pass</span>
+                            @endif
                         </div>
                     </div>
                     <!-- Custom SVG Chart Container -->
@@ -346,191 +522,99 @@
                                             <stop offset="100%" stop-color="#f6ba1a" stop-opacity="0.0"></stop>
                                         </lineargradient>
                                     </defs>
-                                    <!-- Grid Horizontal Guide Lines -->
-                                    <line
-                                        stroke="#d2dce4"
-                                        stroke-dasharray="4 4"
-                                        stroke-width="1"
-                                        x1="50"
-                                        x2="870"
-                                        y1="30"
-                                        y2="30"
-                                    ></line>
-                                    <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="34">5,500m</text>
-                                    <line
-                                        stroke="#d2dce4"
-                                        stroke-dasharray="4 4"
-                                        stroke-width="1"
-                                        x1="50"
-                                        x2="870"
-                                        y1="80"
-                                        y2="80"
-                                    ></line>
-                                    <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="84">4,800m</text>
-                                    <line
-                                        stroke="#d2dce4"
-                                        stroke-dasharray="4 4"
-                                        stroke-width="1"
-                                        x1="50"
-                                        x2="870"
-                                        y1="135"
-                                        y2="135"
-                                    ></line>
-                                    <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="139">4,000m</text>
-                                    <line
-                                        stroke="#d2dce4"
-                                        stroke-dasharray="4 4"
-                                        stroke-width="1"
-                                        x1="50"
-                                        x2="870"
-                                        y1="190"
-                                        y2="190"
-                                    ></line>
-                                    <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="194">3,000m</text>
-                                    <!-- Elevation Path Fill -->
-                                    <path
-                                        d="M 60 200 L 130 220 L 210 170 L 290 145 L 360 120 L 440 85 L 500 48 L 570 38 L 640 40 L 720 30 L 790 120 L 860 200 L 860 250 L 60 250 Z"
-                                        fill="url(#elevationGrad)"
-                                    ></path>
-                                    <!-- Elevation Path Stroke -->
-                                    <path
-                                        d="M 60 200 L 130 220 L 210 170 L 290 145 L 360 120 L 440 85 L 500 48 L 570 38 L 640 40 L 720 30 L 790 120 L 860 200"
-                                        stroke="#795900"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="3"
-                                    ></path>
-                                    <!-- Data Nodes -->
-                                    <!-- Lukla -->
-                                    <circle cx="60" cy="200" fill="#795900" r="4"></circle>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#121d26"
-                                        text-anchor="middle"
-                                        x="60"
-                                        y="240"
-                                    >
-                                        Lukla
-                                    </text>
-                                    <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="60" y="252">
-                                        2,846m
-                                    </text>
-                                    <!-- Namche -->
-                                    <circle cx="210" cy="170" fill="#f6ba1a" r="5" stroke="#795900" stroke-width="2"></circle>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#121d26"
-                                        text-anchor="middle"
-                                        x="210"
-                                        y="240"
-                                    >
-                                        Namche
-                                    </text>
-                                    <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="210" y="252">
-                                        3,440m
-                                    </text>
-                                    <!-- Machhermo -->
-                                    <circle cx="360" cy="120" fill="#795900" r="4"></circle>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#121d26"
-                                        text-anchor="middle"
-                                        x="360"
-                                        y="240"
-                                    >
-                                        Machhermo
-                                    </text>
-                                    <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="360" y="252">
-                                        4,470m
-                                    </text>
-                                    <!-- Gokyo Lakes -->
-                                    <circle cx="440" cy="85" fill="#f6ba1a" r="5" stroke="#795900" stroke-width="2"></circle>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#121d26"
-                                        text-anchor="middle"
-                                        x="440"
-                                        y="240"
-                                    >
-                                        Gokyo Ri
-                                    </text>
-                                    <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="440" y="252">
-                                        5,357m
-                                    </text>
-                                    <!-- Cho La Pass -->
-                                    <circle cx="570" cy="38" fill="#0F1821" r="6" stroke="#f6ba1a" stroke-width="2"></circle>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#ba1a1a"
-                                        text-anchor="middle"
-                                        x="570"
-                                        y="20"
-                                    >
-                                        Cho La Pass
-                                    </text>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#121d26"
-                                        text-anchor="middle"
-                                        x="570"
-                                        y="240"
-                                    >
-                                        Pass Destination
-                                    </text>
-                                    <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="570" y="252">
-                                        5,420m
-                                    </text>
-                                    <!-- Everest Base Camp -->
-                                    <circle cx="640" cy="40" fill="#795900" r="5"></circle>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#121d26"
-                                        text-anchor="middle"
-                                        x="640"
-                                        y="240"
-                                    >
-                                        EBC
-                                    </text>
-                                    <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="640" y="252">
-                                        5,364m
-                                    </text>
-                                    <!-- Kala Patthar -->
-                                    <circle cx="720" cy="30" fill="#f6ba1a" r="6" stroke="#795900" stroke-width="2"></circle>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#795900"
-                                        text-anchor="middle"
-                                        x="720"
-                                        y="16"
-                                    >
-                                        Pass High
-                                    </text>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#121d26"
-                                        text-anchor="middle"
-                                        x="720"
-                                        y="240"
-                                    >
-                                        Kala Patthar
-                                    </text>
-                                    <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="720" y="252">
-                                        5,545m
-                                    </text>
-                                    <!-- Return Lukla -->
-                                    <circle cx="860" cy="200" fill="#795900" r="4"></circle>
-                                    <text
-                                        class="text-[11px] font-bold"
-                                        fill="#121d26"
-                                        text-anchor="middle"
-                                        x="860"
-                                        y="240"
-                                    >
-                                        Lukla Flight
-                                    </text>
-                                    <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="860" y="252">
-                                        2,846m
-                                    </text>
+                                    @if($hasDynamicElevation)
+                                        <!-- Dynamic Grid Horizontal Guide Lines -->
+                                        @foreach($gridLines as $gl)
+                                            <line
+                                                stroke="#d2dce4"
+                                                stroke-dasharray="4 4"
+                                                stroke-width="1"
+                                                x1="50"
+                                                x2="870"
+                                                y1="{{ $gl['y'] }}"
+                                                y2="{{ $gl['y'] }}"
+                                            ></line>
+                                            <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="{{ $gl['y'] + 4 }}">{{ number_format($gl['alt']) }}m</text>
+                                        @endforeach
+
+                                        <!-- Elevation Path Fill -->
+                                        <path
+                                            d="{{ $fillD }}"
+                                            fill="url(#elevationGrad)"
+                                        ></path>
+
+                                        <!-- Elevation Path Stroke -->
+                                        <path
+                                            d="{{ $strokeD }}"
+                                            stroke="#795900"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="3"
+                                        ></path>
+
+                                        <!-- Dynamic Data Nodes -->
+                                        @foreach($coords as $coord)
+                                            @php
+                                                $isHighest = $coord['altitude'] === $maxAlt;
+                                            @endphp
+                                            <circle
+                                                cx="{{ $coord['x'] }}"
+                                                cy="{{ $coord['y'] }}"
+                                                fill="{{ $isHighest ? '#f6ba1a' : '#795900' }}"
+                                                r="{{ $isHighest ? 6 : 4.5 }}"
+                                                stroke="{{ $isHighest ? '#795900' : '#ffffff' }}"
+                                                stroke-width="1.5"
+                                            ></circle>
+                                            @if($isHighest)
+                                                <text
+                                                    class="text-[10px] font-bold"
+                                                    fill="#795900"
+                                                    text-anchor="middle"
+                                                    x="{{ $coord['x'] }}"
+                                                    y="{{ max(14, $coord['y'] - 10) }}"
+                                                >
+                                                    Highest Point
+                                                </text>
+                                            @endif
+                                            <text
+                                                class="text-[11px] font-bold"
+                                                fill="#121d26"
+                                                text-anchor="middle"
+                                                x="{{ $coord['x'] }}"
+                                                y="235"
+                                            >
+                                                {{ $coord['short_title'] }}
+                                            </text>
+                                            <text
+                                                class="text-[10px]"
+                                                fill="#4d6072"
+                                                text-anchor="middle"
+                                                x="{{ $coord['x'] }}"
+                                                y="248"
+                                            >
+                                                {{ $coord['altitude_label'] }}
+                                            </text>
+                                        @endforeach
+                                    @else
+                                        <!-- Grid Horizontal Guide Lines -->
+                                        <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870" y1="30" y2="30"></line>
+                                        <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="34">5,500m</text>
+                                        <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870" y1="80" y2="80"></line>
+                                        <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="84">4,800m</text>
+                                        <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870" y1="135" y2="135"></line>
+                                        <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="139">4,000m</text>
+                                        <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870" y1="190" y2="190"></line>
+                                        <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="194">3,000m</text>
+                                        <path d="M 60 200 L 130 220 L 210 170 L 290 145 L 360 120 L 440 85 L 500 48 L 570 38 L 640 40 L 720 30 L 790 120 L 860 200 L 860 250 L 60 250 Z" fill="url(#elevationGrad)"></path>
+                                        <path d="M 60 200 L 130 220 L 210 170 L 290 145 L 360 120 L 440 85 L 500 48 L 570 38 L 640 40 L 720 30 L 790 120 L 860 200" stroke="#795900" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+                                        <circle cx="60" cy="200" fill="#795900" r="4"></circle>
+                                        <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="60" y="240">Start</text>
+                                        <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="60" y="252">2,846m</text>
+                                        <circle cx="720" cy="30" fill="#f6ba1a" r="6" stroke="#795900" stroke-width="2"></circle>
+                                        <text class="text-[11px] font-bold" fill="#795900" text-anchor="middle" x="720" y="16">Pass High</text>
+                                        <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="720" y="240">Kala Patthar</text>
+                                        <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="720" y="252">5,545m</text>
+                                    @endif
                                 </svg>
                             </div>
                         </div>
@@ -692,7 +776,7 @@
                                     Garmin inReach SOS
                                 </div>
                                 <p class="font-body-sm text-body-sm text-tertiary">
-                                    Continuous 10-minute satellite breadcrumb ping directly tied to Kathmandu dispatch.
+                                    Continuous 10-minute satellite breadcrumb ping directly tied to Kathmandu operations base.
                                 </p>
                             </div>
                             <div class="bg-surface-container-low p-space-md space-y-1 rounded-lg">
@@ -731,7 +815,7 @@
                                         <div class="text-tertiary">Required for the glaciated Cho La saddle</div>
                                     </div>
                                 </div>
-                                <span class="font-badge-caption text-badge-caption bg-amber-flare/20 text-on-primary-container rounded px-2 py-0.5 font-bold uppercase">Crucial</span>
+                                <span class="font-badge-caption text-badge-caption bg-amber-flare/20 text-on-primary-container rounded-md px-2 py-0.5 font-bold uppercase">Crucial</span>
                             </div>
                             <div class="p-space-sm bg-surface-container-low flex items-center justify-between rounded-lg">
                                 <div class="gap-space-xs flex items-center">
@@ -743,7 +827,7 @@
                                         <div class="text-tertiary">High-loft goose down or trek synthetic fill</div>
                                     </div>
                                 </div>
-                                <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary rounded px-2 py-0.5 uppercase">Provided / Rent</span>
+                                <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary rounded-md px-2 py-0.5 uppercase">Provided / Rent</span>
                             </div>
                             <div class="p-space-sm bg-surface-container-low flex items-center justify-between rounded-lg">
                                 <div class="gap-space-xs flex items-center">
@@ -755,7 +839,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary rounded px-2 py-0.5 uppercase">Provided / Rent</span>
+                                <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary rounded-md px-2 py-0.5 uppercase">Provided / Rent</span>
                             </div>
                             <div class="p-space-sm bg-surface-container-low flex items-center justify-between rounded-lg">
                                 <div class="gap-space-xs flex items-center">
@@ -769,7 +853,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span class="font-badge-caption text-badge-caption bg-amber-flare/20 text-on-primary-container rounded px-2 py-0.5 font-bold uppercase">Crucial</span>
+                                <span class="font-badge-caption text-badge-caption bg-amber-flare/20 text-on-primary-container rounded-md px-2 py-0.5 font-bold uppercase">Crucial</span>
                             </div>
                         </div>
                     </div>
@@ -785,8 +869,8 @@
                             <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">
                                 Fixed & Guaranteed Schedules
                             </span>
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
-                                <span class="size-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-success/10 text-success">
+                                <span class="size-1.5 rounded-full bg-success animate-pulse"></span>
                                 {{ date('Y') }}/{{ date('Y') + 1 }} Season Open
                             </span>
                         </div>
@@ -831,7 +915,7 @@
                                             <span class="text-base sm:text-lg font-bold text-on-surface">
                                                 {{ $departure->start_date?->format('M d, Y') }} &ndash; {{ $departure->end_date?->format('M d, Y') }}
                                             </span>
-                                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-success/10 text-success border border-success/20">
                                                 <x-lucide-check-circle-2 class="size-3" /> Guaranteed Run
                                             </span>
                                         </div>
@@ -840,7 +924,7 @@
                                                 <x-lucide-clock class="size-3.5 text-primary" /> {{ $trek->duration ?: '16 Days' }}
                                             </span>
                                             <span class="flex items-center gap-1 font-medium">
-                                                <x-lucide-map-pin class="size-3.5 text-amber-500" /> {{ $trek->start_end_point ?: 'Kathmandu' }}
+                                                <x-lucide-map-pin class="size-3.5 text-amber-flare" /> {{ $trek->start_end_point ?: 'Kathmandu' }}
                                             </span>
                                             <span class="flex items-center gap-1 font-medium">
                                                 <x-lucide-users class="size-3.5 text-primary" /> Max {{ $departure->seats_total }} Trekkers
@@ -854,16 +938,16 @@
                                     <div class="space-y-1 text-left lg:text-right">
                                         <div class="flex items-center lg:justify-end gap-2">
                                             @if($spotsLeft === 0)
-                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-rose-500/10 text-rose-600 border border-rose-500/20">
+                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-error/10 text-error border border-error/20">
                                                     Sold Out
                                                 </span>
                                             @elseif($isFewSpots)
-                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-amber-500/10 text-amber-600 border border-amber-500/20 flex items-center gap-1">
-                                                    <span class="size-1.5 rounded-full bg-amber-500 animate-ping"></span>
+                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-primary-container/20 text-on-primary-fixed-variant border border-primary/20 flex items-center gap-1">
+                                                    <span class="size-1.5 rounded-full bg-amber-flare animate-ping"></span>
                                                     Only {{ $spotsLeft }} {{ Str::plural('Spot', $spotsLeft) }} Left
                                                 </span>
                                             @else
-                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+                                                <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase bg-success/10 text-success border border-success/20">
                                                     {{ $spotsLeft }} Spots Available
                                                 </span>
                                             @endif
@@ -885,7 +969,7 @@
                                         </div>
 
                                         <button 
-                                            type="button"
+                                            type="button" 
                                             @click="openBooking('{{ $departure->id }}', '{{ $departure->start_date?->format('M d, Y') }} – {{ $departure->end_date?->format('M d, Y') }}')"
                                             class="px-5 py-3 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-sm hover:shadow-md flex items-center gap-1.5 group/btn shrink-0 cursor-pointer"
                                         >
@@ -907,7 +991,7 @@
                             We operate flexible weekly departures during the peak Spring & Autumn seasons. Contact our alpine logistics team to open a guaranteed group date or schedule a private trek on your preferred days.
                         </p>
                         <div class="pt-2">
-                            <a href="{{ route('plan-your-trek') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary/90 text-on-primary font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all">
+                            <a href="{{ route('plan-your-trek') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-bold text-xs uppercase tracking-wider rounded-xl shadow-md transition-all">
                                 Request Private / Custom Date
                             </a>
                         </div>
@@ -915,7 +999,7 @@
                 @endif
 
                 <!-- Departure Guarantee Badges Strip -->
-                {{-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-outline/10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-6 border-t border-outline/10">
                     <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
                         <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
                             <x-lucide-shield-check class="size-5" />
@@ -952,7 +1036,7 @@
                             <div class="text-[11px] text-tertiary mt-0.5">Continuous satellite safety & rescue link.</div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </section>
 
@@ -963,28 +1047,49 @@
                     <div>
                         <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-widest uppercase">Geographic Tracking</span>
                         <h2 class="font-headline-md text-headline-md text-on-surface uppercase">
-                            Khumbu High Circuit Waypoints
+                            {{ $trek->title }} Route &amp; Waypoints
                         </h2>
                     </div>
-                    <span class="text-body-sm text-tertiary font-mono">Centerpoint: 27.9881° N, 86.9250° E</span>
+                    @if ($trek->maximum_altitude)
+                        <span class="text-body-sm text-tertiary font-mono">Max Elevation: {{ $trek->maximum_altitude }}</span>
+                    @else
+                        <span class="text-body-sm text-tertiary font-mono">Himalayan Expedition Trail</span>
+                    @endif
                 </div>
                 <div
-                    class="p-space-md relative flex h-80 w-full items-end rounded-xl bg-cover bg-center shadow-inner"
-                    data-location="Everest Base Camp, Khumbu, Nepal"
-                    style="
-                        background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyHCn2xRyd59q6a9HpjHnszI6fBUVWaBPwT-VLxgVKbM77YFgu2UR0NTB0od3jHwgTTdMOZ53kQ6Oog7m8W9nOKP5YEVlTiy7KhwhejYYHOewqU2Yi-scwEgOxx-Hpj9XnVzT-3--RwEHasR8fczE0VnrhkxG1_zw8USkGgUTvlY4dT7GsAXmhv73TcyCwOhgCG5-bIr9zfhKYPxqjmjdEi6QftoW4c-nla3fKx61i_XtksWe_eGXH');
-                    "
+                    class="p-space-md relative flex min-h-[22rem] sm:min-h-[26rem] w-full items-end rounded-xl bg-cover bg-center shadow-inner overflow-hidden group"
+                    data-location="{{ $trek->title }}"
+                    style="background-image: url('{{ $routeMapUrl }}');"
                 >
                     <div class="bg-ridge-deep/90 p-space-md text-summit-white space-y-space-2xs max-w-md rounded-lg shadow-md backdrop-blur-md">
                         <div class="gap-space-2xs text-primary-container font-badge-caption text-badge-caption flex items-center font-bold uppercase">
                             <x-lucide-map-pin class="size-[16px]" />
-                            Interactive Waypoint Active
+                            {{ !empty($trek->map_image) ? 'Expedition Route Map Active' : 'Interactive Waypoint Preview' }}
                         </div>
-                        <div class="font-headline-sm text-headline-sm">Gokyo Ri • Cho La • Everest Base Camp</div>
+                        <div class="font-headline-sm text-headline-sm">
+                            @if (!empty($trek->start_point) && !empty($trek->end_point))
+                                {{ $trek->start_point }} • {{ $trek->end_point }}
+                            @elseif (!empty($trek->maximum_altitude))
+                                High Alpine Route • {{ $trek->maximum_altitude }}
+                            @else
+                                {{ $trek->title }}
+                            @endif
+                        </div>
                         <p class="font-body-sm text-body-sm text-mist-slate">
-                            Full GPX track coordinates delivered to confirmed trekkers for Garmin Fenix / Apple Watch
-                            Ultra offline navigation.
+                            Full GPX track coordinates and detailed topographical checkpoints delivered to confirmed trekkers for Garmin Fenix / Apple Watch offline navigation.
                         </p>
+                        @if (!empty($trek->map_image))
+                            <div class="pt-2">
+                                <a 
+                                    href="{{ $routeMapUrl }}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-container hover:underline uppercase tracking-wider"
+                                >
+                                    <x-lucide-external-link class="size-3.5" /> Open Full Resolution Map
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -1078,11 +1183,11 @@
                     <button 
                         type="button"
                         @click="openBooking()"
-                        class="py-space-md px-space-xl bg-ridge-deep hover:bg-tertiary text-summit-white font-label-md text-label-md rounded-lg font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer"
+                        class="py-space-md px-space-xl bg-ridge-deep hover:bg-tertiary text-summit-white font-label-md text-label-md rounded-xl font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer"
                     >
                         Book This Circuit (${{ number_format((float) $trek->price_from, 0) }})
                     </button>
-                    <button class="py-space-md px-space-xl bg-surface-container-lowest hover:bg-mist-slate text-on-surface font-label-md text-label-md rounded-lg font-bold tracking-wider uppercase shadow-sm transition-all">
+                    <button class="py-space-md px-space-xl bg-surface-container-lowest hover:bg-mist-slate text-on-surface font-label-md text-label-md rounded-xl font-bold tracking-wider uppercase shadow-sm transition-all cursor-pointer">
                         Download PDF Blog
                     </button>
                 </div>
@@ -1326,7 +1431,7 @@
 
                     <!-- Modal Body: Success View -->
                     <div x-show="submitted" class="p-8 text-center space-y-5">
-                        <div class="size-16 rounded-full bg-emerald-500/10 text-emerald-600 mx-auto flex items-center justify-center">
+                        <div class="size-16 rounded-full bg-success/10 text-success mx-auto flex items-center justify-center">
                             <x-lucide-check-circle-2 class="size-9" />
                         </div>
                         <div class="space-y-2">
@@ -1357,6 +1462,100 @@
                 </div>
             </div>
         </div>
+
+        <!-- Interactive Gallery Lightbox Modal -->
+        <template x-if="galleryPhotos && galleryPhotos.length > 0">
+            <div 
+                x-cloak
+                x-show="galleryOpen"
+                @keydown.escape.window="galleryOpen = false"
+                @keydown.arrow-left.window="if (galleryOpen) prevGalleryPhoto()"
+                @keydown.arrow-right.window="if (galleryOpen) nextGalleryPhoto()"
+                class="fixed inset-0 z-50 flex flex-col justify-between overflow-hidden bg-black/95 text-white backdrop-blur-md"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Expedition Photo Gallery"
+            >
+                <!-- Top Toolbar -->
+                <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 z-10 bg-black/40">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-bold tracking-widest uppercase text-primary-container px-3 py-1 rounded-full bg-white/10 border border-white/10">
+                            Expedition Gallery
+                        </span>
+                        <span class="text-sm text-white/70 font-mono">
+                            <span x-text="activeGalleryIndex + 1"></span> / <span x-text="galleryPhotos.length"></span>
+                        </span>
+                    </div>
+                    <button 
+                        type="button"
+                        @click="galleryOpen = false"
+                        class="p-2 rounded-full hover:bg-white/15 text-white/80 hover:text-white transition-colors cursor-pointer"
+                        aria-label="Close Gallery"
+                    >
+                        <x-lucide-x class="size-6" />
+                    </button>
+                </div>
+
+                <!-- Main Image Stage with Navigation Buttons -->
+                <div class="relative flex-1 flex items-center justify-center p-4 sm:p-8 min-h-0">
+                    <!-- Previous Button -->
+                    <button 
+                        type="button"
+                        x-show="galleryPhotos.length > 1"
+                        @click="prevGalleryPhoto()"
+                        class="absolute left-4 z-10 p-3 rounded-full bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/10 transition-transform active:scale-95 cursor-pointer backdrop-blur-sm"
+                        aria-label="Previous Photo"
+                    >
+                        <x-lucide-chevron-left class="size-6" />
+                    </button>
+
+                    <!-- Active Image Display -->
+                    <div class="relative max-h-full max-w-full flex flex-col items-center justify-center">
+                        <img 
+                            :src="galleryPhotos[activeGalleryIndex]?.url" 
+                            :alt="galleryPhotos[activeGalleryIndex]?.title || '{{ $trek->title }}'" 
+                            class="max-h-[68vh] max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300"
+                        />
+                        <div 
+                            x-show="galleryPhotos[activeGalleryIndex]?.caption || galleryPhotos[activeGalleryIndex]?.title" 
+                            class="mt-3 text-center max-w-2xl px-4"
+                        >
+                            <p 
+                                class="text-sm sm:text-base font-medium text-white/90" 
+                                x-text="galleryPhotos[activeGalleryIndex]?.caption || galleryPhotos[activeGalleryIndex]?.title"
+                            ></p>
+                        </div>
+                    </div>
+
+                    <!-- Next Button -->
+                    <button 
+                        type="button"
+                        x-show="galleryPhotos.length > 1"
+                        @click="nextGalleryPhoto()"
+                        class="absolute right-4 z-10 p-3 rounded-full bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/10 transition-transform active:scale-95 cursor-pointer backdrop-blur-sm"
+                        aria-label="Next Photo"
+                    >
+                        <x-lucide-chevron-right class="size-6" />
+                    </button>
+                </div>
+
+                <!-- Bottom Thumbnails Strip -->
+                <div class="px-6 py-4 border-t border-white/10 bg-black/40 overflow-x-auto">
+                    <div class="flex items-center gap-2 mx-auto justify-center min-w-max">
+                        <template x-for="(photo, idx) in galleryPhotos" :key="idx">
+                            <button
+                                type="button"
+                                @click="activeGalleryIndex = idx"
+                                :class="activeGalleryIndex === idx ? 'ring-2 ring-primary scale-105 opacity-100' : 'opacity-50 hover:opacity-80'"
+                                class="relative h-14 w-20 rounded-md overflow-hidden transition-all shrink-0 cursor-pointer border border-white/10"
+                            >
+                                <img :src="photo.url" :alt="photo.title" class="h-full w-full object-cover" />
+                            </button>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
     </main>
     <x-footer />
 </x-layouts.app>

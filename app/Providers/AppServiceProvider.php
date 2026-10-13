@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use Blaze\AdminCore\Models\Affiliation;
 use Blaze\AdminCore\Models\ContactInformation;
 use Blaze\AdminCore\Models\LegalDocument;
 use Blaze\AdminCore\Models\Menu;
+use Blaze\AdminCore\Models\PaymentMethod;
 use Blaze\AdminCore\Models\SocialLink;
 use Blaze\AdminCore\Models\TeamMember;
 use Blaze\AdminCore\Models\WebsiteSetting;
@@ -38,13 +40,25 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view): void {
-            $view->with([
+            $data = [
                 'contact' => ContactInformation::cached(),
                 'socials' => SocialLink::cached(),
                 'websiteSettings' => WebsiteSetting::cached(),
                 'navLegalDocuments' => LegalDocument::cached(),
                 'navMenus' => Menu::cachedTree(),
-            ]);
+            ];
+
+            $currentData = $view->getData();
+
+            if (! array_key_exists('affiliations', $currentData)) {
+                $data['affiliations'] = Affiliation::cached();
+            }
+
+            if (! array_key_exists('paymentMethods', $currentData)) {
+                $data['paymentMethods'] = PaymentMethod::cached();
+            }
+
+            $view->with($data);
         });
 
         TeamMember::saving(function ($member) {

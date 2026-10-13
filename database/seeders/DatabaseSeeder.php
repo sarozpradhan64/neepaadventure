@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             CompanyInformationSeeder::class,
             TrekDataSeeder::class,
+            NepalServicesSeeder::class,
             TestimonialSeeder::class,
             ProjectSeeder::class,
             HomePageSettingsSeeder::class,
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
             JobSeeder::class,
             DefaultMenuSeeder::class,
             HomepageSectionSeeder::class,
+            AffiliationAndPaymentSeeder::class,
         ]);
     }
 }

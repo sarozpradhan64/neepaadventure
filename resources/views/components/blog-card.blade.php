@@ -9,7 +9,7 @@
     'date',
 ])
 
-<article class="bg-surface-container-lowest flex flex-col overflow-hidden rounded-lg shadow-sm transition-all hover:shadow-md">
+<article class="bg-surface-container-lowest flex flex-col overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
     <div class="relative h-48 w-full">
         @if($image)
             <img
@@ -24,7 +24,7 @@
         @endif
 
         @if($category)
-            <span class="top-space-sm left-space-sm px-space-xs py-space-2xs bg-ridge-deep text-summit-white font-badge-caption text-badge-caption absolute rounded uppercase">
+            <span class="top-space-sm left-space-sm px-space-xs py-space-2xs bg-ridge-deep text-summit-white font-badge-caption text-badge-caption absolute rounded-md uppercase">
                 {{ $category }}
             </span>
         @endif

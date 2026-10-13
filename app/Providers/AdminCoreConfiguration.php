@@ -132,6 +132,12 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
                 placeholder: 'e.g. Mandatory / Monitored',
                 validationRule: 'nullable|string|max:255',
             ),
+            ServiceFormField::make(
+                name: 'map_image',
+                type: 'file',
+                label: 'Route / Waypoint Map Image',
+                validationRule: 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:10240',
+            ),
         ];
     }
 

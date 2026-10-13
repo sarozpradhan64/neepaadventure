@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-24">
+    <main class="bg-surface w-full pt-28">
         <div class="flex w-full flex-col">
             <!-- 2. Categorized Trek Projects Directory -->
             <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface-container-low w-full"
@@ -22,7 +22,7 @@
                         <div class="gap-space-xs pt-space-md flex flex-wrap items-center justify-center"
                             id="project-filters">
                             <button
-                                class="filter-btn active px-space-md py-space-xs font-label-sm text-label-sm bg-ridge-deep text-summit-white rounded-lg font-bold tracking-wider uppercase shadow-sm transition-all"
+                                class="filter-btn active px-space-md py-space-xs font-label-sm text-label-sm bg-primary-container text-on-primary-fixed rounded-lg font-bold tracking-wider uppercase shadow-sm transition-all"
                                 data-filter="all">
                                 All Projects ({{ $projects->count() }})
                             </button>
@@ -38,7 +38,7 @@
                     <!-- Project Cards Grid -->
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" id="projects-grid">
                         @forelse ($projects as $project)
-                            <div class="project-item bg-surface-container-lowest flex flex-col overflow-hidden rounded-xl shadow-md transition-all hover:-translate-y-1"
+                            <div class="project-item bg-surface-container-lowest flex flex-col overflow-hidden rounded-2xl shadow-sm border border-outline/10 transition-all hover:shadow-xl hover:-translate-y-1"
                                 data-category="{{ $project->category->slug ?? '' }}">
                                 <div class="relative h-56 w-full">
                                     <img class="h-full w-full object-cover" alt="{{ $project->title }}"
@@ -90,7 +90,7 @@
                                     <div
                                         class="pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-lg flex items-center justify-between">
                                         <button
-                                            class="py-space-2xs px-space-sm bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm text-on-surface inline-flex w-full items-center justify-center gap-1.5 rounded-lg font-bold transition-all"
+                                            class="py-space-2xs px-space-sm bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm text-on-surface inline-flex w-full items-center justify-center gap-1.5 rounded-xl font-bold transition-all"
                                             onclick="openProjectModal('{{ addslashes($project->dossier_title ?? $project->title) }}', '{{ addslashes($project->dossier_description ?? $project->short_description) }}', '{{ addslashes($project->client_name ?? '') }}', '{{ addslashes($project->lead_by ?? '') }}', '{{ addslashes($project->inclusions ?? '') }}')">
                                             <x-lucide-eye class="size-[16px]" />
                                             <span>View Project</span>
@@ -123,10 +123,10 @@
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                         <!-- Step 1 -->
                         <div
-                            class="p-space-lg bg-surface-container-lowest space-y-space-sm border-primary flex flex-col justify-between rounded-xl border-t-4 shadow-md">
+                            class="p-space-lg bg-surface-container-lowest space-y-space-sm border-primary flex flex-col justify-between rounded-2xl border-t-4 border-x border-b border-outline/10 shadow-sm">
                             <div class="space-y-space-xs">
                                 <div
-                                    class="bg-surface-container-high text-primary flex h-12 w-12 items-center justify-center rounded-lg">
+                                    class="bg-surface-container-high text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-timeline class="size-[28px]" />
                                 </div>
                                 <span
@@ -147,10 +147,10 @@
                         </div>
                         <!-- Step 2 -->
                         <div
-                            class="p-space-lg bg-surface-container-lowest space-y-space-sm border-secondary flex flex-col justify-between rounded-xl border-t-4 shadow-md">
+                            class="p-space-lg bg-surface-container-lowest space-y-space-sm border-secondary flex flex-col justify-between rounded-2xl border-t-4 border-x border-b border-outline/10 shadow-sm">
                             <div class="space-y-space-xs">
                                 <div
-                                    class="bg-surface-container-high text-primary flex h-12 w-12 items-center justify-center rounded-lg">
+                                    class="bg-surface-container-high text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-languages class="size-[28px]" />
                                 </div>
                                 <span
@@ -172,10 +172,10 @@
                         </div>
                         <!-- Step 3 -->
                         <div
-                            class="p-space-lg bg-surface-container-lowest space-y-space-sm border-amber-flare flex flex-col justify-between rounded-xl border-t-4 shadow-md">
+                            class="p-space-lg bg-surface-container-lowest space-y-space-sm border-amber-flare flex flex-col justify-between rounded-2xl border-t-4 border-x border-b border-outline/10 shadow-sm">
                             <div class="space-y-space-xs">
                                 <div
-                                    class="bg-surface-container-high text-primary flex h-12 w-12 items-center justify-center rounded-lg">
+                                    class="bg-surface-container-high text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-satellite class="size-[28px]" />
                                 </div>
                                 <span
@@ -191,16 +191,16 @@
                             </div>
                             <div
                                 class="font-label-sm text-label-sm text-amber-flare flex items-center gap-1 font-semibold">
-                                <span>24/7 Active Field Dispatch</span>
+                                <span>24/7 Active Field Operations</span>
                                 <x-lucide-circle-check class="size-[16px]" />
                             </div>
                         </div>
                         <!-- Step 4 -->
                         <div
-                            class="p-space-lg bg-surface-container-lowest space-y-space-sm border-tertiary flex flex-col justify-between rounded-xl border-t-4 shadow-md">
+                            class="p-space-lg bg-surface-container-lowest space-y-space-sm border-tertiary flex flex-col justify-between rounded-2xl border-t-4 border-x border-b border-outline/10 shadow-sm">
                             <div class="space-y-space-xs">
                                 <div
-                                    class="bg-surface-container-high text-primary flex h-12 w-12 items-center justify-center rounded-lg">
+                                    class="bg-surface-container-high text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-award class="size-[28px]" />
                                 </div>
                                 <span
@@ -245,15 +245,15 @@
                     </p>
                     <div class="gap-space-md pt-space-sm flex flex-wrap items-center justify-center">
                         <button
-                            class="gap-space-xs px-space-xl py-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md inline-flex items-center rounded-lg font-bold tracking-wider uppercase shadow-xl transition-all hover:-translate-y-0.5"
+                            class="gap-space-xs px-space-xl py-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md inline-flex items-center rounded-xl font-bold tracking-wider uppercase shadow-xl transition-all hover:-translate-y-0.5 cursor-pointer"
                             onclick="openPlanCustomModal()">
                             <span>Plan a Custom Group Project</span>
                             <x-lucide-flag class="size-[20px]" />
                         </button>
-                        <a class="gap-space-xs px-space-xl py-space-md bg-summit-white/10 hover:bg-summit-white/20 text-summit-white font-label-md text-label-md inline-flex items-center rounded-lg font-bold tracking-wider uppercase shadow-md transition-all"
-                            href="#">
-                            <x-lucide-download class="size-[20px]" />
-                            <span>Download Trek Case Study Guide (PDF)</span>
+                        <a class="gap-space-xs px-space-xl py-space-md bg-summit-white/10 hover:bg-summit-white/20 text-summit-white font-label-md text-label-md inline-flex items-center rounded-xl font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer border border-white/20"
+                            href="{{ route('contact') }}">
+                            <x-lucide-message-circle class="size-[20px]" />
+                            <span>Inquire for Custom Expedition</span>
                         </a>
                     </div>
                     <div
@@ -273,7 +273,7 @@
             <div class="bg-ridge-deep/80 p-space-md fixed inset-0 z-50 flex hidden items-center justify-center backdrop-blur-md"
                 id="case-study-modal">
                 <div
-                    class="bg-surface-container-lowest p-space-xl space-y-space-md relative max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-xl shadow-2xl">
+                    class="bg-surface-container-lowest p-space-xl space-y-space-md relative max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl shadow-2xl border border-outline/15">
                     <button
                         class="text-tertiary hover:text-on-surface p-space-2xs hover:bg-surface-container-high absolute top-4 right-4 rounded-lg transition-colors"
                         onclick="closeProjectModal()">
@@ -319,7 +319,7 @@
                     </div>
                     <div class="pt-space-xs flex gap-2">
                         <button
-                            class="py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md flex-1 rounded-lg font-bold tracking-wider uppercase shadow-md transition-all"
+                            class="py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md flex-1 rounded-xl font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer"
                             onclick="
                                 closeProjectModal();
                                 openPlanCustomModal();
@@ -327,7 +327,7 @@
                             Request Similar Itinerary
                         </button>
                         <button
-                            class="px-space-md py-space-sm bg-surface-container-high hover:bg-surface-container text-on-surface font-label-md text-label-md rounded-lg font-semibold transition-colors"
+                            class="px-space-md py-space-sm bg-surface-container-high hover:bg-surface-container text-on-surface font-label-md text-label-md rounded-xl font-semibold transition-colors cursor-pointer"
                             onclick="closeProjectModal()">
                             Close
                         </button>
@@ -338,9 +338,9 @@
             <div class="bg-ridge-deep/80 p-space-md fixed inset-0 z-50 flex hidden items-center justify-center backdrop-blur-md"
                 id="plan-modal">
                 <div
-                    class="bg-surface-container-lowest p-space-xl space-y-space-md relative w-full max-w-lg rounded-xl shadow-2xl">
+                    class="bg-surface-container-lowest p-space-xl space-y-space-md relative w-full max-w-lg rounded-2xl shadow-2xl border border-outline/15">
                     <button
-                        class="text-tertiary hover:text-on-surface p-space-2xs hover:bg-surface-container-high absolute top-4 right-4 rounded-lg transition-colors"
+                        class="text-tertiary hover:text-on-surface p-space-2xs hover:bg-surface-container-high absolute top-4 right-4 rounded-xl transition-colors cursor-pointer"
                         onclick="closePlanCustomModal()">
                         <x-lucide-x class="size-[24px]" />
                     </button>
@@ -362,7 +362,7 @@
                                 class="font-label-sm text-label-sm text-on-surface mb-space-2xs block font-semibold">Lead
                                 Organizer / Contact Name</label>
                             <input
-                                class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-lg shadow-sm focus:ring-2 focus:outline-none"
+                                class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-xl border border-outline/15 shadow-sm focus:ring-2 focus:outline-none"
                                 placeholder="e.g. Alexey Volkov or Dr. Sarah Jenkins" required=""
                                 type="text" />
                         </div>
@@ -371,7 +371,7 @@
                                 <label
                                     class="font-label-sm text-label-sm text-on-surface mb-space-2xs block font-semibold">Email</label>
                                 <input
-                                    class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-lg shadow-sm focus:ring-2 focus:outline-none"
+                                    class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-xl border border-outline/15 shadow-sm focus:ring-2 focus:outline-none"
                                     placeholder="alexey@club.org" required="" type="email" />
                             </div>
                             <div>
@@ -379,7 +379,7 @@
                                     class="font-label-sm text-label-sm text-on-surface mb-space-2xs block font-semibold">Team
                                     Country</label>
                                 <input
-                                    class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-lg shadow-sm focus:ring-2 focus:outline-none"
+                                    class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-xl border border-outline/15 shadow-sm focus:ring-2 focus:outline-none"
                                     placeholder="e.g. Russia, UK, USA" required="" type="text" />
                             </div>
                         </div>
@@ -389,7 +389,7 @@
                                     class="font-label-sm text-label-sm text-on-surface mb-space-2xs block font-semibold">Target
                                     Route / Objective</label>
                                 <select
-                                    class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-lg shadow-sm focus:ring-2 focus:outline-none">
+                                    class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-xl border border-outline/15 shadow-sm focus:ring-2 focus:outline-none">
                                     <option value="abc">Annapurna Sanctuary (ABC)</option>
                                     <option value="ebc">Everest Base Camp &amp; Gokyo</option>
                                     <option value="manaslu">Manaslu Circuit (Larkya La)</option>
@@ -403,7 +403,7 @@
                                     class="font-label-sm text-label-sm text-on-surface mb-space-2xs block font-semibold">Estimated
                                     Team Size</label>
                                 <select
-                                    class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-lg shadow-sm focus:ring-2 focus:outline-none">
+                                    class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-xl border border-outline/15 shadow-sm focus:ring-2 focus:outline-none">
                                     <option value="small">Small Team (2 - 5 Climbers)</option>
                                     <option selected="" value="medium">Club Group (6 - 12 Climbers)</option>
                                     <option value="large">Large Delegation (13 - 25+ Climbers)</option>
@@ -415,11 +415,11 @@
                                 class="font-label-sm text-label-sm text-on-surface mb-space-2xs block font-semibold">Special
                                 Language, Nutrition, or Timing Needs</label>
                             <textarea
-                                class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-lg shadow-sm focus:ring-2 focus:outline-none"
+                                class="px-space-md py-space-xs bg-surface-container-lowest text-on-surface focus:ring-primary font-body-md w-full rounded-xl border border-outline/15 shadow-sm focus:ring-2 focus:outline-none"
                                 placeholder="e.g., Russian-speaking guide required, high-protein menu, January winter dates..." rows="2"></textarea>
                         </div>
                         <button
-                            class="py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md mt-space-sm w-full rounded-lg font-bold tracking-wider uppercase shadow-md transition-all"
+                            class="py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md mt-space-sm w-full rounded-xl font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer"
                             type="submit">
                             Request Custom Trek Proposal
                         </button>

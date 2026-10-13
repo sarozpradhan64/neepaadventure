@@ -182,7 +182,7 @@
                             @endif
 
                             <div>
-                                <a href="#" class="bg-primary text-on-primary hover:bg-primary/90 font-label-lg px-space-xl py-space-sm inline-flex items-center justify-center rounded-full transition-colors">
+                                <a href="{{ route('about') }}" class="bg-primary-container text-on-primary-fixed hover:bg-amber-flare font-label-md px-space-xl py-space-sm inline-flex items-center justify-center rounded-xl font-bold uppercase tracking-wider transition-colors shadow-sm">
                                     Read Our Full Story
                                 </a>
                             </div>
@@ -350,7 +350,7 @@
 
                         {{-- 2026/27 GUARANTEED DEPARTURES --}}
                         @case('departures')
-                            <section class="py-space-3xl relative w-full overflow-hidden bg-white">
+                            <section class="py-space-3xl relative w-full overflow-hidden bg-surface">
                                 <!-- Decorative background elements -->
                                 <div class="absolute inset-0 pointer-events-none overflow-hidden">
                                     <div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary-container/10 blur-[100px]"></div>
@@ -369,7 +369,7 @@
                                                 <span class="font-badge-caption text-badge-caption font-bold tracking-[0.2em] uppercase">Limited Slots</span>
                                             </div>
                                             <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">
-                                                2026/27 <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-amber-500">Guaranteed Departures</span>
+                                                2026/27 <span class="text-primary font-bold">Guaranteed Departures</span>
                                             </h2>
                                             <p class="font-body-md text-body-md text-tertiary">
                                                 Lock in your adventure early. Fixed departure dates with confirmed groups, expert lead guides, and early-bird savings.
@@ -425,7 +425,7 @@
                                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                                         <!-- Feature 1 -->
                                         <div
-                                            class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-xl shadow-sm transition-all hover:shadow-md">
+                                            class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm transition-all hover:shadow-md">
                                             <div>
                                                 <div
                                                     class="bg-primary-container/20 text-primary mb-space-lg group-hover:bg-primary group-hover:text-on-primary flex h-12 w-12 items-center justify-center rounded-lg transition-colors">
@@ -447,7 +447,7 @@
                                         </div>
                                         <!-- Feature 2 -->
                                         <div
-                                            class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-xl shadow-sm transition-all hover:shadow-md">
+                                            class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm transition-all hover:shadow-md">
                                             <div>
                                                 <div
                                                     class="bg-primary-container/20 text-primary mb-space-lg group-hover:bg-primary group-hover:text-on-primary flex h-12 w-12 items-center justify-center rounded-lg transition-colors">
@@ -469,7 +469,7 @@
                                         </div>
                                         <!-- Feature 3 -->
                                         <div
-                                            class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-xl shadow-sm transition-all hover:shadow-md">
+                                            class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm transition-all hover:shadow-md">
                                             <div>
                                                 <div
                                                     class="bg-primary-container/20 text-primary mb-space-lg group-hover:bg-primary group-hover:text-on-primary flex h-12 w-12 items-center justify-center rounded-lg transition-colors">
@@ -491,7 +491,7 @@
                                         </div>
                                         <!-- Feature 4 -->
                                         <div
-                                            class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-xl shadow-sm transition-all hover:shadow-md">
+                                            class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm transition-all hover:shadow-md">
                                             <div>
                                                 <div
                                                     class="bg-primary-container/20 text-primary mb-space-lg group-hover:bg-primary group-hover:text-on-primary flex h-12 w-12 items-center justify-center rounded-lg transition-colors">
@@ -541,7 +541,7 @@
                                                     </div>
                                                     <div class="text-summit-white absolute right-6 bottom-6 left-6">
                                                         <span
-                                                            class="px-space-sm bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption rounded py-1 font-bold tracking-wider uppercase">
+                                                            class="px-space-sm bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption rounded-lg py-1 font-bold tracking-wider uppercase">
                                                             {{ $featuredGuide->designation ?? $featuredGuide->role ?? 'Trek Leader' }}
                                                         </span>
                                                         <h3 class="font-headline-md text-headline-md text-summit-white mt-2 font-bold">
@@ -562,7 +562,7 @@
                                                 </div>
                                                 <div class="text-summit-white absolute right-6 bottom-6 left-6">
                                                     <span
-                                                        class="px-space-sm bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption rounded py-1 font-bold tracking-wider uppercase">
+                                                        class="px-space-sm bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption rounded-lg py-1 font-bold tracking-wider uppercase">
                                                         Chief Trek Leader
                                                     </span>
                                                     <h3 class="font-headline-md text-headline-md text-summit-white mt-2 font-bold">
@@ -651,7 +651,7 @@
                                                 </div>
                                             </div>
                                             <div class="pt-space-sm gap-space-md flex items-center">
-                                                <a class="px-space-lg py-space-sm bg-ridge-deep text-summit-white font-label-md text-label-md hover:bg-tertiary rounded-lg font-bold tracking-wider uppercase transition-all"
+                                                <a class="px-space-lg py-space-sm bg-ridge-deep text-summit-white font-label-md text-label-md hover:bg-tertiary rounded-xl font-bold tracking-wider uppercase transition-all shadow-sm"
                                                     href="{{ route('about') }}#team-leaders">
                                                     Meet All {{ $totalGuides > 0 ? $totalGuides : 24 }} Guides
                                                 </a>
@@ -682,7 +682,7 @@
                                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-3">
                                         @if(isset($testimonials) && $testimonials->isNotEmpty())
                                             @foreach($testimonials->take(3) as $testimonial)
-                                                <div class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-xl shadow-sm">
+                                                <div class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm">
                                                     <div>
                                                         <div class="text-primary mb-space-sm flex items-center gap-1">
                                                             @for($i = 0; $i < ($testimonial->rating ?? 5); $i++)
@@ -712,7 +712,7 @@
                                         @else
                                             <!-- Review Card 1 -->
                                             <div
-                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-xl shadow-sm">
+                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm">
                                                 <div>
                                                     <div class="text-primary mb-space-sm flex items-center gap-1">
                                                         <x-lucide-star class="size-[18px]" />
@@ -744,7 +744,7 @@
                                             </div>
                                             <!-- Review Card 2 -->
                                             <div
-                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-xl shadow-sm">
+                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm">
                                                 <div>
                                                     <div class="text-primary mb-space-sm flex items-center gap-1">
                                                         <x-lucide-star class="size-[18px]" />
@@ -776,7 +776,7 @@
                                             </div>
                                             <!-- Review Card 3 -->
                                             <div
-                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-xl shadow-sm">
+                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm">
                                                 <div>
                                                     <div class="text-primary mb-space-sm flex items-center gap-1">
                                                         <x-lucide-star class="size-[18px]" />
@@ -824,7 +824,7 @@
                                             <span class="font-badge-caption text-badge-caption text-primary font-bold uppercase tracking-[0.2em]">{{ $section->subtitle ?: 'Get Inspired' }}</span>
                                             <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">{{ $section->title ?: 'Latest Travel Guides' }}</h2>
                                         </div>
-                                        <a href="{{ route('blog') }}" class="gap-space-xs px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-container font-label-md text-label-md inline-flex items-center rounded py-3 tracking-wider uppercase transition-colors self-start sm:self-auto">
+                                        <a href="{{ route('blog') }}" class="gap-space-xs px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md inline-flex items-center rounded-xl py-3 tracking-wider uppercase transition-colors self-start sm:self-auto shadow-sm">
                                             <span>{{ $section->button_text ?: 'View All Posts' }}</span>
                                             <x-lucide-arrow-right class="size-[18px]" />
                                         </a>
@@ -880,13 +880,13 @@
                                             </p>
                                         </div>
                                         <div class="gap-space-md flex w-full shrink-0 flex-col items-center sm:w-auto sm:flex-row">
-                                            <a class="px-space-xl py-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase shadow-lg transition-all sm:w-auto"
-                                                data-path="plan-your-trek" href="#">
+                                            <a class="px-space-xl py-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-xl text-center font-bold tracking-wider uppercase shadow-lg transition-all sm:w-auto"
+                                                href="{{ route('plan-your-trek') }}">
                                                 {{ $section->button_text ?: 'Talk to an Expert' }}
                                             </a>
-                                            <a class="px-space-xl py-space-md bg-summit-white/10 hover:bg-summit-white/20 text-summit-white font-label-md text-label-md w-full rounded-lg text-center font-bold tracking-wider uppercase backdrop-blur-sm transition-all sm:w-auto"
-                                                data-path="treks" href="#">
-                                                Download Catalog
+                                            <a class="px-space-xl py-space-md bg-summit-white/10 hover:bg-summit-white/20 text-summit-white font-label-md text-label-md w-full rounded-xl text-center font-bold tracking-wider uppercase backdrop-blur-sm transition-all sm:w-auto"
+                                                href="{{ route('treks') }}">
+                                                Explore Catalog
                                             </a>
                                         </div>
                                     </div>

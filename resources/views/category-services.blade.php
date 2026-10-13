@@ -39,7 +39,7 @@
 
                     <div class="gap-space-md flex items-center">
                         <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-semibold uppercase tracking-wider">
-                            <span class="bg-emerald-500 h-2 w-2 animate-pulse rounded-full"></span>
+                            <span class="bg-primary h-2 w-2 animate-pulse rounded-full"></span>
                             2025/2026 Season Open
                         </span>
                      </div>
@@ -54,7 +54,7 @@
                     @else
                         <img src="{{ asset('images/himalaya_hero.jpg') }}" alt="{{ $category->name }}" class="h-full w-full object-cover">
                     @endif
-                    <div class="bg-slate-950/75 absolute inset-0 mix-blend-multiply"></div>
+                    <div class="bg-ridge-deep/80 absolute inset-0 mix-blend-multiply"></div>
                     <div class="bg-gradient-to-t from-surface via-transparent to-transparent absolute inset-0"></div>
                 </div>
 
