@@ -15,6 +15,36 @@ use Illuminate\View\View;
 
 class TrekController extends Controller
 {
+    public function search(Request $request): View
+    {
+        $query = Service::where('status', true)
+            ->with(['features', 'category'])
+            ->orderBy('sort_order');
+
+        if ($request->filled('search')) {
+            $search = trim((string) $request->input('search'));
+            $query->where(function ($q) use ($search): void {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('short_description', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('category')) {
+            $categorySlug = $request->input('category');
+            $cat = ServiceCategory::where('slug', $categorySlug)->where('status', true)->first();
+            if ($cat) {
+                $categoryIds = $cat->getAllCategoryIds();
+                $query->whereIn('service_category_id', $categoryIds);
+            }
+        }
+
+        $services = $query->get();
+        $categories = ServiceCategory::whereNull('parent_id')->where('status', true)->orderBy('sort_order')->get();
+
+        return view('search', compact('services', 'categories'));
+    }
+
     public function index(Request $request): RedirectResponse
     {
         $firstCategory = ServiceCategory::whereNull('parent_id')

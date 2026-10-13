@@ -78,8 +78,7 @@
                         ];
                     @endphp
                     @php
-                        $defaultCategory = \Blaze\AdminCore\Models\ServiceCategory::whereNull('parent_id')->where('status', true)->orderBy('sort_order')->first();
-                        $searchAction = $defaultCategory ? route('services.category', $defaultCategory->slug) : route('treks');
+                        $searchAction = route('search');
                     @endphp
                     <!-- Interactive Floating Trip Search & Filter Bar -->
                     <div
