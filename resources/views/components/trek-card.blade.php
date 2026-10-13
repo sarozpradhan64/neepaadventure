@@ -64,10 +64,15 @@
                 <!-- Inclusions checklist -->
                 <div class="mb-space-lg bg-surface-container-low p-space-sm text-on-surface font-body-sm text-body-sm space-y-1.5 rounded-lg">
                     @foreach ($inclusions as $inclusion)
-                        <div class="gap-space-2xs flex items-center">
-                            <x-lucide-circle-check class="text-primary size-[16px]" />
-                            <span>{{ $inclusion }}</span>
-                        </div>
+                        @php
+                            $cleanInclusion = trim(strip_tags($inclusion));
+                        @endphp
+                        @if ($cleanInclusion !== '')
+                            <div class="gap-space-2xs flex items-center">
+                                <x-lucide-circle-check class="text-primary size-[16px] shrink-0" />
+                                <span class="line-clamp-1">{{ $cleanInclusion }}</span>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
             @endif

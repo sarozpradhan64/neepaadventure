@@ -3,7 +3,7 @@
     <main class="bg-surface w-full pt-48">
         <div class="flex w-full flex-col">
             <!-- HERO SECTION WITH TOP OVERLAY AND NEGATIVE MARGIN CLEARANCE -->
-            <section class="bg-ridge-deep relative -mt-20 w-full overflow-hidden pt-36 pb-24">
+            <section class="bg-ridge-deep relative -mt-20 w-full overflow-hidden pt-40 pb-28">
                 <!-- Hero Background Visual with Atmospheric Gradient Scrim -->
                 <div class="absolute inset-0 h-full w-full scale-105 transform bg-cover bg-center opacity-45 mix-blend-luminosity transition-transform duration-1000"
                     data-alt="Vast cinematic panorama of Ama Dablam and Mount Everest at golden hour sunrise in Nepal, towering snow-covered jagged passes against a clear alpine sky with warm golden sun rays hitting pristine glaciers and prayer flags fluttering on an ancient stone ridge, ultra-wide professional landscape photography."
@@ -19,7 +19,7 @@
                     class="bg-primary-container/20 pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full blur-3xl">
                 </div>
                 <div
-                    class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto flex flex-col items-center text-center">
+                    class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto flex flex-col items-center text-center gap-0">
                     @php
                         $heroTitle =
                             $websiteSettings['hero_title'] ?? "Conquer the World's Highest Passes with Guide Mastery";
@@ -43,16 +43,21 @@
                             }
                         }
                     @endphp
-                    <!-- Main Headline -->
                     <h1
-                        class="font-display-xl text-display-xl font-extrabold text-summit-white mb-space-md max-w-4xl leading-[1.08] tracking-tight drop-shadow-md">
+                        class="font-display-xl text-display-xl font-extrabold text-summit-white mb-5 max-w-4xl leading-[1.08] tracking-tight drop-shadow-md">
                         {!! $heroTitle !!}
                     </h1>
                     <!-- Subheadline -->
                     <p
-                        class="font-body-lg text-body-lg text-surface-container mb-space-xl mx-auto max-w-2xl opacity-90">
+                        class="font-body-lg text-body-lg text-surface-container mx-auto max-w-xl opacity-85 mb-10">
                         {{ $heroText }}
                     </p>
+                    <!-- Divider -->
+                    <div class="mb-8 flex w-full max-w-3xl items-center gap-4">
+                        <div class="h-px flex-1 bg-summit-white/15"></div>
+                        <span class="text-summit-white/40 text-xs font-medium uppercase tracking-widest">Find Your Adventure</span>
+                        <div class="h-px flex-1 bg-summit-white/15"></div>
+                    </div>
                     @php
                         $heroStats = json_decode($websiteSettings['hero_stats'] ?? '[]', true) ?: [];
                         
@@ -78,32 +83,39 @@
                     @endphp
                     <!-- Interactive Floating Trip Search & Filter Bar -->
                     <div
-                        class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-2xl rounded-full p-2 text-left mb-space-xl relative z-20 border border-outline/10">
+                        class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-[0_8px_40px_rgba(0,0,0,0.4)] rounded-2xl p-3 text-left mb-10 relative z-20 border border-outline/10">
                         <form action="{{ $searchAction }}" method="GET" class="flex items-center gap-2">
                             <div class="relative flex-1">
-                                <x-lucide-search class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary size-[22px]" />
+                                <x-lucide-search class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary size-[20px]" />
                                 <input type="text" name="search" placeholder="Search Treks, Tours, Adventure & Authentic Nepal Experiences" 
-                                    class="w-full h-14 pl-12 pr-4 bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
+                                    class="w-full h-13 pl-12 pr-4 bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
                             </div>
                             <button type="submit"
-                                class="h-12 px-8 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-full transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0">
+                                class="h-11 px-7 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0">
+                                <x-lucide-compass class="size-[16px]" />
                                 <span>Explore</span>
                             </button>
                         </form>
                     </div>
                     <!-- Quick Trust Proof Badges -->
                     <div
-                        class="gap-space-sm text-summit-white font-label-sm text-label-sm flex flex-wrap items-center justify-center -mb-8 relative z-20">
+                        class="flex flex-wrap items-center justify-center gap-3 relative z-20">
                         @foreach($heroStats as $index => $stat)
                             @php
                                 $icon = !empty($stat['icon']) ? $stat['icon'] : $statIcons[$index % count($statIcons)];
-                                $text = trim(($stat['value'] ?? '') . ' ' . ($stat['label'] ?? ''));
+                                $value = trim($stat['value'] ?? '');
+                                $label = trim($stat['label'] ?? '');
                             @endphp
-                            @if($text)
+                            @if($label)
                             <div
-                                class="gap-space-2xs px-space-sm py-space-2xs bg-summit-white/10 flex items-center rounded-full backdrop-blur-sm">
-                                @svg('lucide-'.$icon, 'text-primary-container size-[18px]')
-                                <span class="text-summit-white font-semibold">{{ $text }}</span>
+                                class="flex items-center gap-2.5 rounded-xl bg-summit-white/10 border border-summit-white/15 px-4 py-2.5 backdrop-blur-sm">
+                                @svg('lucide-'.$icon, 'text-primary-container size-[16px] shrink-0')
+                                <div class="flex items-baseline gap-1.5">
+                                    @if($value)
+                                        <span class="text-primary-container font-black text-sm">{{ $value }}</span>
+                                    @endif
+                                    <span class="text-summit-white/80 text-xs font-medium">{{ $label }}</span>
+                                </div>
                             </div>
                             @endif
                         @endforeach
@@ -234,8 +246,12 @@
                                                 
                                                 $inclusionsList = [];
                                                 if (!empty($trek->inclusions)) {
-                                                    $lines = array_filter(array_map('trim', explode("\n", $trek->inclusions)));
-                                                    $inclusionsList = array_slice($lines, 0, 2);
+                                                    if (preg_match_all('/<li[^>]*>(.*?)<\/li>/is', $trek->inclusions, $matches)) {
+                                                        $rawItems = $matches[1];
+                                                    } else {
+                                                        $rawItems = explode("\n", $trek->inclusions);
+                                                    }
+                                                    $inclusionsList = array_slice(array_values(array_filter(array_map(fn($item) => trim(html_entity_decode(strip_tags($item))), $rawItems))), 0, 2);
                                                 }
                                             @endphp
                                             <x-trek-card 
@@ -304,8 +320,12 @@
                                                 
                                                 $inclusionsList = [];
                                                 if (!empty($trek->inclusions)) {
-                                                    $lines = array_filter(array_map('trim', explode("\n", $trek->inclusions)));
-                                                    $inclusionsList = array_slice($lines, 0, 2);
+                                                    if (preg_match_all('/<li[^>]*>(.*?)<\/li>/is', $trek->inclusions, $matches)) {
+                                                        $rawItems = $matches[1];
+                                                    } else {
+                                                        $rawItems = explode("\n", $trek->inclusions);
+                                                    }
+                                                    $inclusionsList = array_slice(array_values(array_filter(array_map(fn($item) => trim(html_entity_decode(strip_tags($item))), $rawItems))), 0, 2);
                                                 }
                                             @endphp
                                             <x-trek-card 
