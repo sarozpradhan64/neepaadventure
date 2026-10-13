@@ -645,69 +645,6 @@
                 </div>
             </div>
         </section>
-        <!-- Lead Trek Guide Profile Card (using provided image) -->
-        <section class="bg-surface-container py-space-3xl px-gutter-mobile lg:px-gutter-desktop w-full">
-            <div class="max-w-max-content-width mx-auto">
-                <div class="bg-surface-container-lowest p-space-xl gap-space-xl grid grid-cols-1 items-center rounded-2xl shadow-md md:grid-cols-12">
-                    <div class="flex justify-center md:col-span-5">
-                        <div class="relative w-full max-w-sm overflow-hidden rounded-xl shadow-lg">
-                            <img
-                                alt="Lead Mountain Guide Dawa Tenzing Sherpa in alpine yellow down gear against Himalayan snowy destination passes"
-                                class="h-96 w-full object-cover object-top"
-                                src="https://lh3.googleusercontent.com/aida/AEtjO1VNGjPQgJtSEnKl7zmmZzJYfc2-mrQtN77I7_Zo0q3gEzI2Z5x0Mh_OQMKMAW_76HUyDq5X7_0BBA17p7KTzJJAsZ92x8NEAFMIYhuu2YI2WG_GB5qRh8-NQzDoptJLfnUTvLhVL0LbVJiiEC1xZ4Jade3ASI7IQXptmn7FXMDCwJqwTgJpIhrTXBd-mGGV41b6WSIPuDu-99EFB_CaiwdCGAD62wUmqyPS2OyVhPrAzTY7dUOqpbq5qA"
-                            />
-                            <div class="bg-ridge-deep/85 text-summit-white font-badge-caption text-badge-caption absolute bottom-3 left-3 rounded px-3 py-1 uppercase">
-                                11x Everest • Certified
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-space-md md:col-span-7">
-                        <div class="space-y-space-2xs">
-                            <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-wider uppercase">Meet Your Lead Alpine Guide</span>
-                            <h3 class="font-headline-lg text-headline-lg text-on-surface uppercase">
-                                Dawa Tenzing Sherpa
-                            </h3>
-                            <p class="font-label-md text-label-md text-tertiary">
-                                Senior Sirdar &amp; Wilderness Medical Trek Leader
-                            </p>
-                        </div>
-                        <p class="font-body-md text-body-md text-tertiary">
-                            Born and raised in the Khumjung village of Khumbu, Dawa has completed over 35 high-altitude
-                            crossings of the Cho La and Renjo La passes, along with 11 successful destinations of Mount
-                            Everest (Sagarmatha). Certified by both the Nepal Trekking Association and the International
-                            Federation of Mountain Guides Associations.
-                        </p>
-                        <div class="gap-space-sm pt-space-xs grid grid-cols-3">
-                            <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
-                                <div class="font-headline-sm text-headline-sm text-on-surface font-bold">35+</div>
-                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                    Cho La Passes
-                                </div>
-                            </div>
-                            <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
-                                <div class="font-headline-sm text-headline-sm text-on-surface font-bold">100%</div>
-                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                    Safety Record
-                                </div>
-                            </div>
-                            <div class="bg-surface-container-low p-space-sm rounded-lg text-center">
-                                <div class="font-headline-sm text-headline-sm text-on-surface font-bold">WFR</div>
-                                <div class="font-badge-caption text-badge-caption text-tertiary uppercase">
-                                    Wilderness First
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pt-space-xs gap-space-md flex items-center">
-                            <span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
-                                <x-lucide-shield-check class="text-primary size-[18px]" />
-                                Trained in Gamow Hyperbaric Chambers &amp; High Altitude Cerebral Edema (HACE)
-                                mitigation
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Medical Safety & Gear Checklist Bento Grid -->
         <section class="bg-surface-container-low py-space-3xl px-gutter-mobile lg:px-gutter-desktop w-full">
             <div class="max-w-max-content-width space-y-space-2xl mx-auto">
@@ -978,7 +915,7 @@
                 @endif
 
                 <!-- Departure Guarantee Badges Strip -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-outline/10">
+                {{-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-outline/10">
                     <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
                         <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
                             <x-lucide-shield-check class="size-5" />
@@ -1015,7 +952,7 @@
                             <div class="text-[11px] text-tertiary mt-0.5">Continuous satellite safety & rescue link.</div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </section>
 
