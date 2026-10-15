@@ -28,12 +28,8 @@
             <section class="bg-surface relative px-gutter-mobile lg:px-gutter-desktop pt-space-2xl pb-space-2xl w-full border-b border-outline/10 overflow-hidden">
                 <div class="max-w-max-content-width gap-space-lg mx-auto flex flex-col">
                     <div class="space-y-space-xs max-w-3xl">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary mb-1">
-                            <x-lucide-book-open class="size-3.5" />
-                            <span class="font-badge-caption text-badge-caption font-bold tracking-[0.2em] uppercase">Alpine Knowledge Base</span>
-                        </div>
-                        <h1 class="font-display-md text-display-md font-black text-on-surface tracking-tight">
-                            Nepal Travel Guides &amp; <span class="text-primary font-bold">Field Journal</span>
+                        <h1 class="font-display-xl text-display-xl font-black text-on-surface tracking-tight">
+                            Nepal Travel Guides
                         </h1>
                         <p class="font-body-lg text-body-lg text-tertiary">
                             Expert trekking notes, route safety updates, permit protocols, and authentic cultural perspectives directly from our Kathmandu operations team and high-altitude Sherpa leads.
