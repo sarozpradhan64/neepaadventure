@@ -291,12 +291,6 @@
                         
                         <!-- Briefing Content -->
                         <div class="gap-space-sm relative z-10 flex max-w-xl flex-col">
-                            <div class="gap-space-xs flex items-center">
-                                <span class="bg-primary-container h-2.5 w-2.5 rounded-full animate-ping"></span>
-                                <span class="font-badge-caption text-badge-caption text-primary-container font-bold tracking-widest uppercase">
-                                    Kathmandu Operations Briefing
-                                </span>
-                            </div>
                             <h2 class="font-headline-lg text-headline-lg font-black text-summit-white tracking-tight">
                                 Himalayan Updates &amp; Weather Alerts
                             </h2>
