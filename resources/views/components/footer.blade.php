@@ -276,9 +276,6 @@
                                     </button>
                                 @endforeach
                             </div>
-                            <p class="text-[11px] text-tertiary/75 pt-1">
-                                <span>256-Bit SSL Encrypted. Click any payment badge to view wire &amp; card deposit details.</span>
-                            </p>
                         </div>
                     @endif
                 </div>
