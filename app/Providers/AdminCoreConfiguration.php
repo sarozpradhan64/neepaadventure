@@ -12,7 +12,9 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
      */
     public function modules(): array
     {
-        return parent::modules();
+        return array_merge(parent::modules(), [
+            'downloads' => false,
+        ]);
     }
 
     /**

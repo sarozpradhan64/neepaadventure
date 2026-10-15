@@ -452,25 +452,6 @@
                             <x-lucide-message-circle class="size-[18px]" />
                         </a>
                     </div>
-                    <!-- Trust Badges Strip -->
-                    <div class="pt-space-xl gap-space-xl text-mist-slate font-label-sm text-label-sm flex flex-wrap items-center justify-center opacity-80">
-                        <div class="gap-space-2xs flex items-center">
-                            <x-lucide-shield-check class="text-primary-container size-[20px]" />
-                            Nepal Tourism Board Registered
-                        </div>
-                        <div class="gap-space-2xs flex items-center">
-                            <x-lucide-shield class="text-primary-container size-[20px]" />
-                            TAAN Licensed Agency
-                        </div>
-                        <div class="gap-space-2xs flex items-center">
-                            <x-lucide-users class="text-primary-container size-[20px]" />
-                            NMA Member in Good Standing
-                        </div>
-                        <div class="gap-space-2xs flex items-center">
-                            <x-lucide-heart class="text-primary-container size-[20px]" />
-                            International Porter Protection Partner
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
