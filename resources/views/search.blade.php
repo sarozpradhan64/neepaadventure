@@ -137,7 +137,7 @@
                                 <article class="group bg-surface-container-lowest flex flex-col justify-between overflow-hidden rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-outline/10">
                                     <div>
                                         {{-- Card Image --}}
-                                        <div class="bg-surface-dim relative h-64 w-full overflow-hidden">
+                                        <a href="{{ $trek->url }}" class="bg-surface-dim relative block h-64 w-full overflow-hidden">
                                             @if($trek->featured_image)
                                                 <img
                                                     class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -169,7 +169,7 @@
                                                     </div>
                                                 @endif
                                             </div>
-                                        </div>
+                                        </a>
 
                                         {{-- Card Content --}}
                                         <div class="p-6 space-y-4">

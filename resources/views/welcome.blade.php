@@ -853,42 +853,78 @@
 
                         {{-- FINAL CALL TO ACTION BANNER --}}
                         @case('cta')
-                            <section class="bg-ridge-deep py-space-3xl relative w-full overflow-hidden">
-                                <!-- Atmospheric mountain background -->
-                                <div class="pointer-events-none absolute inset-0 h-full w-full bg-cover bg-center opacity-25 mix-blend-screen"
-                                    data-alt="Silhouetted mountain ranges of the Himalayas at twilight with deep blue and gold atmospheric gradient and twinkling Himalayan tea house lights in the valley below."
-                                    style="
-                                        background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBXePxF8MuSeK46xEujkhtG8vhxYAqOJILD6pYygp8iqloHj91ZYKR5w21kX8bFHqJuGAlzhQRNSXMHbFiIthpJ_l_9sk9xP5yqn_ZFbVbgJe8LI8W1kOBH9RgMKaRLHh4QzKCIePzu8si3aTM1sX8lNw5meRTk9zAP0pnjPtMvWoGPmjx4fa5scTXalsGChHu623kMP_JPOs0a170I1pMpFF0PzuaoS7sc0h6Hs-gcvTq5sn9VlECt');
-                                    ">
-                                </div>
-                                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto">
-                                    <div
-                                        class="from-surface-container-lowest/10 to-surface-container-lowest/5 p-space-xl lg:p-space-3xl border-summit-white/10 gap-space-2xl flex flex-col items-center justify-between rounded-2xl border bg-gradient-to-r text-center backdrop-blur-xl lg:flex-row lg:text-left">
-                                        <div class="space-y-space-sm max-w-xl">
-                                            <div
-                                                class="gap-space-xs px-space-sm bg-primary-container/20 text-primary-container font-badge-caption text-badge-caption inline-flex items-center rounded-full py-1 font-bold tracking-wider uppercase">
-                                                <x-lucide-headphones class="size-[16px]" />
-                                                {{ $section->subtitle ?: 'Fast Response Trek Desk' }}
+                            <section class="bg-ridge-deep py-space-2xl relative w-full overflow-hidden">
+                                <div class="max-w-4xl px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto text-center">
+                                    @php
+                                        // Fetch Krishna from teams (TeamMember), case-insensitive search
+                                        $krishnaMember = \Blaze\AdminCore\Models\TeamMember::where('status', true)
+                                            ->where('name', 'like', '%Krishna%')
+                                            ->first()
+                                            ?? \Blaze\AdminCore\Models\TeamMember::where('status', true)->first();
+
+                                        $expertName = $krishnaMember?->name ?? 'Krishna';
+                                        $expertRole = $krishnaMember?->designation ?? 'Travel & Trekking Specialist';
+                                        $expertImage = $krishnaMember?->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($krishnaMember->image) : null;
+
+                                        $whatsappRaw = $krishnaMember?->phone ?? $contact?->whatsapp ?? '+977-9808389420';
+                                        $whatsappClean = preg_replace('/[^0-9]/', '', $whatsappRaw);
+                                        $whatsappUrl = 'https://wa.me/' . $whatsappClean . '?text=' . urlencode('Hello ' . $expertName . ', I would like to plan my trek in Nepal.');
+                                    @endphp
+
+                                    <!-- Eyebrow Badge -->
+                                    <div class="inline-flex items-center gap-2 rounded-full border border-summit-white/10 bg-summit-white/5 px-3.5 py-1 text-badge-caption font-badge-caption tracking-wider uppercase text-primary-container">
+                                        <x-lucide-compass class="size-3.5" />
+                                        <span>{{ $section->subtitle ?: 'Ask to travel experts' }}</span>
+                                    </div>
+
+                                    <!-- Heading & Description -->
+                                    <h2 class="mt-4 font-headline-lg text-headline-lg font-bold text-summit-white tracking-tight">
+                                        {{ $section->title ?: 'Plan my trips' }}
+                                    </h2>
+                                    <p class="mt-3 text-body-md text-surface-container/75 max-w-xl mx-auto leading-relaxed">
+                                        Connect directly with our local Himalayan travel specialists for tailored itineraries, advice, and seamless journey planning.
+                                    </p>
+
+                                    <!-- Expert Contact Card (Krishna) -->
+                                    <div class="mt-8 inline-flex items-center gap-3.5 rounded-full border border-summit-white/10 bg-summit-white/5 px-4 py-2 text-left backdrop-blur-sm">
+                                        <div class="relative">
+                                            @if($expertImage)
+                                                <img src="{{ $expertImage }}" alt="{{ $expertName }}" class="size-11 rounded-full object-cover ring-1 ring-summit-white/20" />
+                                            @else
+                                                <div class="size-11 rounded-full bg-primary-container/20 text-primary-container ring-1 ring-primary-container/30 flex items-center justify-center font-bold text-sm">
+                                                    {{ strtoupper(substr($expertName, 0, 1)) }}
+                                                </div>
+                                            @endif
+                                            <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full bg-emerald-500 ring-2 ring-ridge-deep" title="Available to chat"></span>
+                                        </div>
+                                        <div>
+                                            <div class="font-label-md text-label-md font-semibold text-summit-white leading-tight">
+                                                {{ $expertName }}
                                             </div>
-                                            <h2
-                                                class="font-headline-lg text-headline-lg text-summit-white leading-tight tracking-tight">
-                                                {{ $section->title ?: 'Ready to Walk Among the Himalayan Giants?' }}
-                                            </h2>
-                                            <p class="font-body-lg text-body-lg text-surface-container opacity-85">
-                                                Receive a personalized day-by-day itinerary, custom teahouse selection, and a
-                                                complimentary altitude readiness assessment within 2 hours.
-                                            </p>
+                                            <div class="text-xs text-surface-container/60 mt-0.5">
+                                                {{ $expertRole }}
+                                            </div>
                                         </div>
-                                        <div class="gap-space-md flex w-full shrink-0 flex-col items-center sm:w-auto sm:flex-row">
-                                            <a class="px-space-xl py-space-md bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md w-full rounded-xl text-center font-bold tracking-wider uppercase shadow-lg transition-all sm:w-auto"
-                                                href="{{ route('plan-your-trek') }}">
-                                                {{ $section->button_text ?: 'Talk to an Expert' }}
+                                    </div>
+
+                                    <!-- Action Buttons -->
+                                    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+                                        @if($whatsappClean)
+                                            <a href="{{ $whatsappUrl }}"
+                                               target="_blank"
+                                               rel="noopener noreferrer"
+                                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] px-6 py-3 text-label-md font-label-md font-semibold text-white shadow-sm transition-colors">
+                                                <svg class="size-4 fill-current shrink-0" viewBox="0 0 24 24">
+                                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.646 5.426l-.999 3.647 3.842-.772zm11.391-7.009c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                                                </svg>
+                                                <span>Chat on WhatsApp</span>
                                             </a>
-                                            <a class="px-space-xl py-space-md bg-summit-white/10 hover:bg-summit-white/20 text-summit-white font-label-md text-label-md w-full rounded-xl text-center font-bold tracking-wider uppercase backdrop-blur-sm transition-all sm:w-auto"
-                                                href="{{ route('treks') }}">
-                                                Explore Catalog
-                                            </a>
-                                        </div>
+                                        @endif
+                                        <a href="{{ route('plan-your-trek') }}"
+                                           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary-container hover:bg-amber-flare px-6 py-3 text-label-md font-label-md font-semibold text-on-primary-fixed shadow-sm transition-colors">
+                                            <span>{{ $section->button_text ?: 'Plan My Trip' }}</span>
+                                            <x-lucide-arrow-right class="size-4 shrink-0" />
+                                        </a>
                                     </div>
                                 </div>
                             </section>

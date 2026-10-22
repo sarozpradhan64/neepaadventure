@@ -233,6 +233,7 @@ h6,
     min-height: 2.375rem !important;
     padding: 0.25rem 0.5rem !important;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    width: 100% !important;
 }
 
 .ss-main:focus, .ss-main.ss-open-below, .ss-main.ss-open-above {
@@ -246,6 +247,20 @@ h6,
     background-color: var(--popover) !important;
     color: var(--popover-foreground) !important;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+
+.ss-content .ss-optgroup-label {
+    font-weight: 700 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: var(--primary) !important;
+    padding: 0.5rem 0.75rem 0.25rem !important;
+    border-top: 1px dashed var(--border) !important;
+}
+
+.ss-content .ss-optgroup-label:first-child {
+    border-top: none !important;
 }
 
 .ss-content .ss-search {

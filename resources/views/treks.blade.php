@@ -228,7 +228,7 @@
                                 data-price="{{ $trek->price_from }}"
                             >
                                 <div>
-                                    <div class="bg-surface-dim relative h-64 w-full overflow-hidden">
+                                    <a href="{{ $trek->url }}" class="bg-surface-dim relative block h-64 w-full overflow-hidden">
                                         @if ($trek->featuredImage)
                                             <img
                                                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -255,11 +255,13 @@
                                                 {{ $trek->duration }}
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <div class="p-space-lg space-y-space-md">
                                         <div>
                                             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors">
-                                                {{ $trek->title }}
+                                                <a href="{{ $trek->url }}">
+                                                    {{ $trek->title }}
+                                                </a>
                                             </h3>
                                             <div class="font-body-md text-body-md text-tertiary mt-1 line-clamp-2">
                                                 {!! strip_tags($trek->description) !!}

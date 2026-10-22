@@ -16,7 +16,7 @@
 
 <div class="bg-surface-container-lowest group flex flex-col overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40">
     <!-- Card Image & Badges -->
-    <div class="relative h-60 w-full overflow-hidden">
+    <a href="{{ $href }}" class="relative block h-60 w-full overflow-hidden">
         <div
             class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
             data-alt="{{ $imageAlt }}"
@@ -35,7 +35,7 @@
                 {{ $altitude }}
             </div>
         @endif
-    </div>
+    </a>
 
     <!-- Card Body -->
     <div class="p-space-lg flex flex-1 flex-col justify-between">
@@ -55,7 +55,9 @@
             </div>
 
             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary mb-space-xs leading-tight transition-colors">
-                {{ $title }}
+                <a href="{{ $href }}">
+                    {{ $title }}
+                </a>
             </h3>
 
             <p class="font-body-sm text-body-sm text-tertiary mb-space-md line-clamp-2">{{ $description }}</p>
