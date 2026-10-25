@@ -38,24 +38,24 @@
                                 <x-lucide-mountain class="size-[18px]" />
                                 Authentic Guide-Led Circuits &amp; High Passes
                             </div>
-                            <h1 class="font-display-md text-display-md text-summit-white font-extrabold tracking-tight drop-shadow-lg">
+                            <h1 class="font-display-md text-2xl sm:text-3xl md:text-4xl lg:text-display-md text-summit-white font-extrabold tracking-tight drop-shadow-lg">
                                 Nepal Trekking Treks &amp; Classic High Passes
                             </h1>
-                            <p class="font-body-xl text-body-xl text-mist-slate/90 max-w-2xl drop-shadow">
+                            <p class="font-body-xl text-base sm:text-body-xl text-mist-slate/90 max-w-2xl drop-shadow">
                                 Curated, low-impact alpine journeys through sacred glacial basins, ancient
                                 trans-Himalayan trade trails, and legendary 5,000m+ passes.
                             </p>
                         </div>
                         <!-- Season & Availability Quick Indicator -->
-                        <div class="bg-surface-container-lowest/95 p-space-md gap-space-md flex min-w-[280px] items-center rounded-xl shadow-xl backdrop-blur-sm border border-surface-container-high/50">
-                            <div class="bg-amber-flare/20 text-amber-flare flex h-14 w-14 items-center justify-center rounded-xl">
-                                <x-lucide-sun class="size-[28px]" />
+                        <div class="bg-surface-container-lowest/95 p-space-md gap-space-md flex w-full sm:w-auto min-w-[260px] items-center rounded-xl shadow-xl backdrop-blur-sm border border-surface-container-high/50">
+                            <div class="bg-amber-flare/20 text-amber-flare flex h-12 w-12 sm:h-14 sm:w-14 shrink-0 items-center justify-center rounded-xl">
+                                <x-lucide-sun class="size-[24px] sm:size-[28px]" />
                             </div>
                             <div>
                                 <div class="font-label-sm text-label-sm text-tertiary font-bold tracking-wider uppercase">
                                     Current Window
                                 </div>
-                                <div class="font-headline-sm text-headline-sm text-on-surface font-extrabold">
+                                <div class="font-headline-sm text-base sm:text-headline-sm text-on-surface font-extrabold">
                                     Spring &amp; Autumn Pass
                                 </div>
                                 <div class="font-body-sm text-body-sm text-primary font-medium" id="catalog-count-indicator">
@@ -67,11 +67,11 @@
                 </div>
             </section>
             <!-- Interactive Facet / Filtering Command Bar -->
-            <section class="bg-surface-container-lowest py-space-sm px-gutter-mobile lg:px-gutter-desktop sticky top-20 z-40 w-full shadow-md">
+            <section class="bg-surface-container-lowest py-3 sm:py-space-sm px-gutter-mobile lg:px-gutter-desktop relative lg:sticky lg:top-28 z-30 w-full shadow-md">
                 <div class="max-w-max-content-width space-y-space-sm mx-auto">
-                    <div class="gap-space-sm flex flex-wrap items-center justify-between">
+                    <div class="gap-space-sm flex flex-col md:flex-row md:items-center justify-between">
                         <!-- Search input -->
-                        <div class="relative max-w-md min-w-[240px] flex-1">
+                        <div class="relative w-full md:max-w-md">
                             <x-lucide-search class="text-tertiary absolute top-1/2 left-3 size-[20px] -translate-y-1/2" />
                             <input
                                 class="pr-space-md bg-surface text-body-md text-on-surface placeholder:text-tertiary focus:bg-surface-container-low w-full rounded-xl py-2.5 pl-10 transition-all focus:outline-none border border-outline/10 focus:border-primary"
@@ -82,11 +82,11 @@
                             />
                         </div>
                         <!-- Filter Selectors -->
-                        <div class="gap-space-xs flex flex-wrap items-center">
+                        <div class="gap-2 sm:gap-space-xs flex flex-wrap items-center w-full md:w-auto">
                             <!-- Region Select -->
-                            <div class="relative">
+                            <div class="relative flex-1 min-w-[140px] sm:flex-initial">
                                 <select
-                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary"
+                                    class="bg-surface hover:bg-surface-container text-on-surface px-3 sm:px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary w-full"
                                     id="region-filter"
                                 >
                                     <option value="all" {{ request('region') == 'all' || !request('region') ? 'selected' : '' }}>All Himalayan Regions</option>
@@ -99,9 +99,9 @@
                                 <x-lucide-chevron-down class="text-tertiary pointer-events-none absolute top-1/2 right-2.5 size-[18px] -translate-y-1/2" />
                             </div>
                             <!-- Duration Select -->
-                            <div class="relative">
+                            <div class="relative flex-1 min-w-[120px] sm:flex-initial">
                                 <select
-                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary"
+                                    class="bg-surface hover:bg-surface-container text-on-surface px-3 sm:px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary w-full"
                                     id="duration-filter"
                                 >
                                     <option value="all">Any Duration</option>
@@ -112,9 +112,9 @@
                                 <x-lucide-chevron-down class="text-tertiary pointer-events-none absolute top-1/2 right-2.5 size-[18px] -translate-y-1/2" />
                             </div>
                             <!-- Max Altitude Select -->
-                            <div class="relative">
+                            <div class="relative flex-1 min-w-[130px] sm:flex-initial">
                                 <select
-                                    class="bg-surface hover:bg-surface-container text-on-surface px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary"
+                                    class="bg-surface hover:bg-surface-container text-on-surface px-3 sm:px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 transition-colors focus:outline-none border border-outline/10 focus:border-primary w-full"
                                     id="altitude-filter"
                                 >
                                     <option value="all">Altitude (All)</option>
@@ -125,9 +125,9 @@
                                 <x-lucide-chevron-down class="text-tertiary pointer-events-none absolute top-1/2 right-2.5 size-[18px] -translate-y-1/2" />
                             </div>
                             <!-- Sort Selector -->
-                            <div class="relative">
+                            <div class="relative flex-1 min-w-[140px] sm:flex-initial">
                                 <select
-                                    class="bg-surface-container text-on-surface-variant px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 font-semibold transition-colors focus:outline-none border border-outline/10"
+                                    class="bg-surface-container text-on-surface-variant px-3 sm:px-space-md font-label-md text-label-md cursor-pointer appearance-none rounded-xl py-2 pr-8 font-semibold transition-colors focus:outline-none border border-outline/10 w-full"
                                     id="sort-selector"
                                 >
                                     <option value="popular">Sort: Most Popular</option>
@@ -138,7 +138,7 @@
                                 <x-lucide-arrow-down-up class="text-tertiary pointer-events-none absolute top-1/2 right-2.5 size-[18px] -translate-y-1/2" />
                             </div>
                             <button
-                                class="text-tertiary hover:text-on-surface hover:bg-surface-container rounded-xl p-2 transition-colors border border-outline/10"
+                                class="text-tertiary hover:text-on-surface hover:bg-surface-container rounded-xl p-2 transition-colors border border-outline/10 shrink-0"
                                 id="reset-filters"
                                 title="Reset Filters"
                             >
@@ -147,35 +147,35 @@
                         </div>
                     </div>
                     <!-- Quick Category / Season Toggles -->
-                    <div class="gap-space-xs pt-space-2xs text-label-sm font-label-sm flex flex-wrap items-center">
-                        <span class="text-tertiary pr-2 font-bold tracking-wider uppercase">Difficulty:</span>
+                    <div class="gap-space-xs pt-space-2xs text-label-sm font-label-sm flex items-center overflow-x-auto no-scrollbar pb-1 -mx-gutter-mobile px-gutter-mobile lg:mx-0 lg:px-0 lg:flex-wrap">
+                        <span class="text-tertiary pr-2 font-bold tracking-wider uppercase shrink-0">Difficulty:</span>
                         <button
-                            class="difficulty-pill active-pill bg-surface-container-high text-on-surface rounded-full px-3.5 py-1.5 font-semibold"
+                            class="difficulty-pill active-pill bg-surface-container-high text-on-surface rounded-full px-3.5 py-1.5 font-semibold shrink-0"
                             data-difficulty="all"
                         >
                             All
                         </button>
                         @foreach($difficulties as $difficulty)
                         <button
-                            class="difficulty-pill bg-surface text-tertiary hover:text-on-surface rounded-full px-3.5 py-1.5 transition-colors capitalize border border-outline/10"
+                            class="difficulty-pill bg-surface text-tertiary hover:text-on-surface rounded-full px-3.5 py-1.5 transition-colors capitalize border border-outline/10 shrink-0"
                             data-difficulty="{{ $difficulty }}"
                         >
                             {{ $difficulty }}
                         </button>
                         @endforeach
                         
-                        <div class="bg-surface-container-highest mx-2 hidden h-4 w-px sm:block"></div>
+                        <div class="bg-surface-container-highest mx-2 hidden h-4 w-px sm:block shrink-0"></div>
                         
-                        <span class="text-tertiary hidden pr-2 font-bold tracking-wider uppercase sm:inline">Season:</span>
+                        <span class="text-tertiary hidden pr-2 font-bold tracking-wider uppercase sm:inline shrink-0">Season:</span>
                         <button
-                            class="season-pill active-pill bg-surface-container-high text-on-surface rounded-full px-3.5 py-1.5 font-semibold"
+                            class="season-pill active-pill bg-surface-container-high text-on-surface rounded-full px-3.5 py-1.5 font-semibold shrink-0"
                             data-season="all"
                         >
                             All
                         </button>
                         @foreach($seasons as $season)
                         <button
-                            class="season-pill bg-surface text-tertiary hover:text-on-surface rounded-full px-3.5 py-1.5 transition-colors capitalize border border-outline/10"
+                            class="season-pill bg-surface text-tertiary hover:text-on-surface rounded-full px-3.5 py-1.5 transition-colors capitalize border border-outline/10 shrink-0"
                             data-season="{{ $season }}"
                         >
                             {{ $season }}

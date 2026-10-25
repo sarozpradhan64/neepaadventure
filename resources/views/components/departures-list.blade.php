@@ -10,7 +10,7 @@
 <div class="group relative bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline/10 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
     <div class="flex flex-col md:flex-row">
         <!-- Date Block -->
-        <div class="bg-surface-container-low/60 md:w-52 p-space-lg flex flex-col justify-center items-center text-center border-b md:border-b-0 md:border-r border-dashed border-outline/20 group-hover:bg-primary/5 transition-colors shrink-0">
+        <div class="bg-surface-container-low/60 md:w-52 p-4 sm:p-space-lg flex flex-col justify-center items-center text-center border-b md:border-b-0 md:border-r border-dashed border-outline/20 group-hover:bg-primary/5 transition-colors shrink-0">
             @if($isSameMonth)
                 <span class="font-label-sm font-bold text-primary tracking-widest uppercase mb-1">
                     {{ $startDate->format('M Y') }}
@@ -32,7 +32,7 @@
         </div>
         
         <!-- Content Block -->
-        <div class="flex-1 p-space-lg flex flex-col justify-center">
+        <div class="flex-1 p-4 sm:p-space-lg flex flex-col justify-center">
             <div class="flex items-start justify-between gap-4 mb-2">
                 <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface group-hover:text-primary transition-colors">
                     <a href="{{ $service->url ?? '#' }}" class="hover:underline">
@@ -77,29 +77,29 @@
         </div>
 
         <!-- Action & Price Block -->
-        <div class="p-space-lg md:w-64 bg-surface-container-lowest flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center border-t md:border-t-0 md:border-l border-outline/10 shrink-0">
-            <div class="text-left md:text-right mb-0 md:mb-4">
+        <div class="p-4 sm:p-space-lg md:w-64 bg-surface-container-lowest flex flex-col sm:flex-row md:flex-col items-start sm:items-center md:items-end justify-between md:justify-center gap-3 border-t md:border-t-0 md:border-l border-outline/10 shrink-0">
+            <div class="text-left md:text-right mb-0 md:mb-4 w-full sm:w-auto">
                 @if($service->price_from)
                     @if($service->discount_amount > 0)
                         <div class="flex items-center md:justify-end gap-2 mb-1">
                             <span class="line-through text-tertiary font-body-sm">US${{ number_format((float) $service->price_from) }}</span>
                             <span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase bg-error/10 text-error border border-error/20">Save ${{ number_format((float) $service->discount_amount) }}</span>
                         </div>
-                        <div class="font-headline-md text-headline-md font-black text-on-surface">US${{ number_format((float) ($service->price_from - $service->discount_amount)) }}</div>
+                        <div class="font-headline-md text-xl sm:text-headline-md font-black text-on-surface">US${{ number_format((float) ($service->price_from - $service->discount_amount)) }}</div>
                     @else
-                        <div class="font-headline-md text-headline-md font-black text-on-surface">US${{ number_format((float) $service->price_from) }}</div>
+                        <div class="font-headline-md text-xl sm:text-headline-md font-black text-on-surface">US${{ number_format((float) $service->price_from) }}</div>
                     @endif
                 @else
-                    <div class="font-headline-md text-headline-md font-black text-on-surface">TBA</div>
+                    <div class="font-headline-md text-xl sm:text-headline-md font-black text-on-surface">TBA</div>
                 @endif
             </div>
             @if($spotsLeft <= 0)
-                <a href="{{ $service ? $service->url : '#' }}" class="inline-flex items-center justify-center gap-2 bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all w-full md:w-auto border border-outline/10">
+                <a href="{{ $service ? $service->url : '#' }}" class="inline-flex items-center justify-center gap-2 bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all w-full sm:w-auto border border-outline/10">
                     Join Waitlist
                     <x-lucide-arrow-right class="size-4" />
                 </a>
             @else
-                <a href="{{ $service ? $service->url : '#' }}" class="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-fixed hover:bg-amber-flare text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md w-full md:w-auto group/btn">
+                <a href="{{ $service ? $service->url : '#' }}" class="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-fixed hover:bg-amber-flare text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all shadow-sm hover:shadow-md w-full sm:w-auto group/btn">
                     Book Now 
                     <x-lucide-arrow-right class="size-4 group-hover/btn:translate-x-1 transition-transform" />
                 </a>

@@ -1,14 +1,14 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-48 pb-24">
+    <main class="bg-surface w-full pt-28 pb-16 sm:pt-36 sm:pb-24">
         <div class="max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop">
             <div class="space-y-8">
                 <div class="text-center">
-                    <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
+                    <h1 class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface font-bold tracking-tight">
                         {{ $page->title }}
                     </h1>
                     @if($page->sub_title)
-                        <p class="mt-4 font-body-lg text-body-lg text-tertiary">
+                        <p class="mt-4 font-body-lg text-base sm:text-body-lg text-tertiary">
                             {{ $page->sub_title }}
                         </p>
                     @endif

@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-48 pb-24">
+    <main class="bg-surface w-full pt-28 pb-16 sm:pt-36 sm:pb-24">
         <div class="max-w-3xl mx-auto px-gutter-mobile lg:px-gutter-desktop">
             <div class="mb-8">
                 <a href="{{ route('careers.index') }}" class="inline-flex items-center text-primary font-label-md hover:underline mb-6">
@@ -14,7 +14,7 @@
                     </div>
                 @endif
                 
-                <h1 class="font-headline-lg text-headline-lg text-on-surface font-bold mb-6">
+                <h1 class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface font-bold mb-6">
                     {{ $job->title }}
                 </h1>
                 

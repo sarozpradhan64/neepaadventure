@@ -11,15 +11,15 @@
                             class="font-label-sm text-label-sm text-primary font-bold tracking-widest uppercase">Verified
                             Client Treks &amp; Field Reports</span>
                         <h2
-                            class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
+                            class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
                             Trek Projects Directory
                         </h2>
-                        <p class="font-body-md text-body-md text-tertiary">
+                        <p class="font-body-md text-base sm:text-body-md text-tertiary">
                             Discover how international trekking clubs, university alpine teams, and private groups
                             achieved their dream Himalayan destinations and traverses under Neepa Adventure leadership.
                         </p>
                         <!-- Dynamic Filter Controls -->
-                        <div class="gap-space-xs pt-space-md flex flex-wrap items-center justify-center"
+                        <div class="gap-2 sm:gap-space-xs pt-space-md flex flex-wrap items-center justify-center"
                             id="project-filters">
                             <button
                                 class="filter-btn active px-space-md py-space-xs font-label-sm text-label-sm bg-primary-container text-on-primary-fixed rounded-lg font-bold tracking-wider uppercase shadow-sm transition-all"
@@ -52,7 +52,7 @@
                                         {{ $project->location ?? '' }}
                                     </span>
                                 </div>
-                                <div class="p-space-lg space-y-space-md flex flex-1 flex-col justify-between">
+                                <div class="p-4 sm:p-space-lg space-y-space-md flex flex-1 flex-col justify-between">
                                     <div>
                                         <div
                                             class="text-tertiary font-label-sm text-label-sm mb-space-2xs flex items-center justify-between font-semibold tracking-wider uppercase">
@@ -68,7 +68,7 @@
                                         </p>
                                     </div>
                                     <div class="border-surface-container-high space-y-2 border-t pt-2">
-                                        <div class="text-body-sm grid grid-cols-2 gap-2">
+                                        <div class="text-body-sm grid grid-cols-1 sm:grid-cols-2 gap-2">
                                             <div class="text-tertiary">
                                                 Max Altitude:
                                                 <strong class="text-on-surface">{{ $project->max_altitude }}</strong>
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                     <div
-                                        class="pt-space-sm bg-surface-container-low/50 -mx-space-lg -mb-space-lg p-space-lg flex items-center justify-between">
+                                        class="pt-space-sm bg-surface-container-low/50 -mx-4 sm:-mx-space-lg -mb-4 sm:-mb-space-lg p-4 sm:p-space-lg flex items-center justify-between">
                                         <button
                                             class="py-space-2xs px-space-sm bg-surface-container-high hover:bg-primary-container hover:text-on-primary-fixed font-label-sm text-label-sm text-on-surface inline-flex w-full items-center justify-center gap-1.5 rounded-xl font-bold transition-all"
                                             onclick="openProjectModal('{{ addslashes($project->dossier_title ?? $project->title) }}', '{{ addslashes($project->dossier_description ?? $project->short_description) }}', '{{ addslashes($project->client_name ?? '') }}', '{{ addslashes($project->lead_by ?? '') }}', '{{ addslashes($project->inclusions ?? '') }}')">

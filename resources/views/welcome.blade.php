@@ -1,9 +1,9 @@
 <x-layouts.app>
     <x-header />
-    <main class="bg-surface w-full pt-48">
+    <main class="bg-surface w-full">
         <div class="flex w-full flex-col">
-            <!-- HERO SECTION WITH TOP OVERLAY AND NEGATIVE MARGIN CLEARANCE -->
-            <section class="bg-ridge-deep relative -mt-20 w-full overflow-hidden pt-40 pb-28">
+            <!-- HERO SECTION WITH TOP OVERLAY AND RESPONSIVE VIEWPORT CLEARANCE -->
+            <section class="bg-ridge-deep relative w-full overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-28">
                 <!-- Hero Background Visual with Atmospheric Gradient Scrim -->
                 <div class="absolute inset-0 h-full w-full scale-105 transform bg-cover bg-center opacity-45 mix-blend-luminosity transition-transform duration-1000"
                     data-alt="Vast cinematic panorama of Ama Dablam and Mount Everest at golden hour sunrise in Nepal, towering snow-covered jagged passes against a clear alpine sky with warm golden sun rays hitting pristine glaciers and prayer flags fluttering on an ancient stone ridge, ultra-wide professional landscape photography."
@@ -16,7 +16,7 @@
                     class="from-ridge-deep via-ridge-deep/75 pointer-events-none absolute inset-0 bg-gradient-to-t to-transparent">
                 </div>
                 <div
-                    class="bg-primary-container/20 pointer-events-none absolute -top-32 right-1/4 h-96 w-96 rounded-full blur-3xl">
+                    class="bg-primary-container/20 pointer-events-none absolute -top-32 right-1/4 h-72 sm:h-96 w-72 sm:w-96 rounded-full blur-3xl">
                 </div>
                 <div
                     class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto flex flex-col items-center text-center gap-0">
@@ -44,18 +44,18 @@
                         }
                     @endphp
                     <h1
-                        class="font-display-xl text-display-xl font-extrabold text-summit-white mb-5 max-w-4xl leading-[1.08] tracking-tight drop-shadow-md">
+                        class="font-display-xl text-3xl sm:text-4xl md:text-5xl lg:text-display-xl font-extrabold text-summit-white mb-4 sm:mb-5 max-w-4xl leading-[1.12] sm:leading-[1.08] tracking-tight drop-shadow-md px-1">
                         {!! $heroTitle !!}
                     </h1>
                     <!-- Subheadline -->
                     <p
-                        class="font-body-lg text-body-lg text-surface-container mx-auto max-w-xl opacity-85 mb-10">
+                        class="font-body-lg text-sm sm:text-base md:text-body-lg text-surface-container mx-auto max-w-xl opacity-85 mb-6 sm:mb-10 px-2 leading-relaxed">
                         {{ $heroText }}
                     </p>
                     <!-- Divider -->
-                    <div class="mb-8 flex w-full max-w-3xl items-center gap-4">
+                    <div class="mb-6 sm:mb-8 flex w-full max-w-3xl items-center gap-3 sm:gap-4 px-4">
                         <div class="h-px flex-1 bg-summit-white/15"></div>
-                        <span class="text-summit-white/40 text-xs font-medium uppercase tracking-widest">Find Your Adventure</span>
+                        <span class="text-summit-white/40 text-[11px] sm:text-xs font-medium uppercase tracking-widest whitespace-nowrap">Find Your Adventure</span>
                         <div class="h-px flex-1 bg-summit-white/15"></div>
                     </div>
                     @php
@@ -82,15 +82,15 @@
                     @endphp
                     <!-- Interactive Floating Trip Search & Filter Bar -->
                     <div
-                        class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-[0_8px_40px_rgba(0,0,0,0.4)] rounded-2xl p-3 text-left mb-10 relative z-20 border border-outline/10">
-                        <form action="{{ $searchAction }}" method="GET" class="flex items-center gap-2">
+                        class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-[0_8px_40px_rgba(0,0,0,0.4)] rounded-2xl p-2 sm:p-3 text-left mb-6 sm:mb-10 relative z-20 border border-outline/10">
+                        <form action="{{ $searchAction }}" method="GET" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                             <div class="relative flex-1">
-                                <x-lucide-search class="absolute left-4 top-1/2 -translate-y-1/2 text-tertiary size-[20px]" />
+                                <x-lucide-search class="absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 text-tertiary size-[18px] sm:size-[20px]" />
                                 <input type="text" name="search" placeholder="Search Treks, Tours, Adventure & Authentic Nepal Experiences" 
-                                    class="w-full h-13 pl-12 pr-4 bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
+                                    class="w-full h-11 sm:h-13 pl-10 sm:pl-12 pr-4 bg-transparent font-body-md text-sm sm:text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
                             </div>
                             <button type="submit"
-                                class="h-11 px-7 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0">
+                                class="h-11 px-5 sm:px-7 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs sm:text-label-md font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0 cursor-pointer">
                                 <x-lucide-compass class="size-[16px]" />
                                 <span>Explore</span>
                             </button>
@@ -98,7 +98,7 @@
                     </div>
                     <!-- Quick Trust Proof Badges -->
                     <div
-                        class="flex flex-wrap items-center justify-center gap-3 relative z-20">
+                        class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 relative z-20 px-2">
                         @foreach($heroStats as $index => $stat)
                             @php
                                 $icon = !empty($stat['icon']) ? $stat['icon'] : $statIcons[$index % count($statIcons)];
@@ -107,13 +107,13 @@
                             @endphp
                             @if($label)
                             <div
-                                class="flex items-center gap-2.5 rounded-xl bg-summit-white/10 border border-summit-white/15 px-4 py-2.5 backdrop-blur-sm">
-                                @svg('lucide-'.$icon, 'text-primary-container size-[16px] shrink-0')
-                                <div class="flex items-baseline gap-1.5">
+                                class="flex items-center gap-2 sm:gap-2.5 rounded-xl bg-summit-white/10 border border-summit-white/15 px-3 py-2 sm:px-4 sm:py-2.5 backdrop-blur-sm">
+                                @svg('lucide-'.$icon, 'text-primary-container size-3.5 sm:size-[16px] shrink-0')
+                                <div class="flex items-baseline gap-1 sm:gap-1.5 text-xs sm:text-sm">
                                     @if($value)
-                                        <span class="text-primary-container font-black text-sm">{{ $value }}</span>
+                                        <span class="text-primary-container font-black">{{ $value }}</span>
                                     @endif
-                                    <span class="text-summit-white/80 text-xs font-medium">{{ $label }}</span>
+                                    <span class="text-summit-white/80 text-[11px] sm:text-xs font-medium">{{ $label }}</span>
                                 </div>
                             </div>
                             @endif
@@ -135,11 +135,11 @@
                     ? asset('storage/' . $websiteSettings['who_are_we_image']) 
                     : 'https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2000&auto=format&fit=crop';
             @endphp
-            <section class="bg-surface-container-lowest pt-[5rem] pb-space-3xl w-full">
+            <section class="bg-surface-container-lowest py-space-2xl md:py-space-3xl w-full">
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
-                    <div class="gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
+                    <div class="gap-space-xl lg:gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
                         <!-- Image Side -->
-                        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg h-[400px] lg:h-[550px]">
+                        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg h-[280px] sm:h-[380px] lg:h-[550px]">
                             <img src="{{ $whoImage }}" alt="{{ $whoTitle }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                             <!-- Small decorative element on image -->
@@ -214,22 +214,22 @@
                                             </p>
                                         </div>
                                         <!-- Filter Pill Tabs -->
-                                        <div class="gap-space-2xs bg-surface-container-high flex flex-wrap self-start rounded-xl p-1.5 md:self-auto"
+                                        <div class="gap-1 sm:gap-space-2xs bg-surface-container-high flex flex-nowrap overflow-x-auto no-scrollbar sm:flex-wrap self-start rounded-xl p-1 sm:p-1.5 md:self-auto max-w-full"
                                             id="trekTabs">
                                             <button
-                                                class="px-space-md py-space-2xs font-label-md text-label-md bg-primary-container text-on-primary-fixed rounded-lg font-bold shadow-sm">
+                                                class="px-3 sm:px-space-md py-1.5 sm:py-space-2xs font-label-md text-xs sm:text-label-md bg-primary-container text-on-primary-fixed rounded-lg font-bold shadow-sm whitespace-nowrap cursor-pointer">
                                                 All Treks
                                             </button>
                                             <button
-                                                class="px-space-md py-space-2xs font-label-md text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all">
+                                                class="px-3 sm:px-space-md py-1.5 sm:py-space-2xs font-label-md text-xs sm:text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer">
                                                 Classic High Passes
                                             </button>
                                             <button
-                                                class="px-space-md py-space-2xs font-label-md text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all">
+                                                class="px-3 sm:px-space-md py-1.5 sm:py-space-2xs font-label-md text-xs sm:text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer">
                                                 Remote &amp; Forbidden
                                             </button>
                                             <button
-                                                class="px-space-md py-space-2xs font-label-md text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all">
+                                                class="px-3 sm:px-space-md py-1.5 sm:py-space-2xs font-label-md text-xs sm:text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer">
                                                 6,000m Destinations
                                             </button>
                                         </div>

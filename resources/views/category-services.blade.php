@@ -66,16 +66,16 @@
                                 Himalayan Exploration &bull; {{ $category->parent?->name ?? 'Curated Adventures' }}
                             </div>
 
-                            <h1 class="font-display-md text-display-md text-summit-white font-extrabold tracking-tight drop-shadow-lg">
+                            <h1 class="font-display-md text-2xl sm:text-3xl md:text-4xl lg:text-display-md text-summit-white font-extrabold tracking-tight drop-shadow-lg">
                                 {{ $category->name }}
                             </h1>
 
                             @if($category->description)
-                                <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-2xl drop-shadow leading-relaxed">
+                                <p class="font-body-lg text-base sm:text-body-lg text-mist-slate/90 max-w-2xl drop-shadow leading-relaxed">
                                     {!! strip_tags($category->description) !!}
                                 </p>
                             @else
-                                <p class="font-body-lg text-body-lg text-mist-slate/90 max-w-2xl drop-shadow leading-relaxed">
+                                <p class="font-body-lg text-base sm:text-body-lg text-mist-slate/90 max-w-2xl drop-shadow leading-relaxed">
                                     Discover verified itineraries, classic circuits, and alpine expeditions across {{ $category->name }}. Fully supported by certified mountain guides.
                                 </p>
                             @endif
@@ -84,13 +84,13 @@
 
                     {{-- Child Categories Sub-Pills (if any) --}}
                     @if($childCategories->isNotEmpty())
-                        <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-2">
-                            <span class="text-xs font-bold uppercase tracking-wider text-white/70 mr-2 flex items-center gap-1.5">
+                        <div class="mt-8 pt-6 border-t border-white/10 flex items-center gap-2 overflow-x-auto no-scrollbar -mx-gutter-mobile px-gutter-mobile sm:mx-0 sm:px-0 sm:flex-wrap">
+                            <span class="text-xs font-bold uppercase tracking-wider text-white/70 mr-2 flex items-center gap-1.5 shrink-0">
                                 <x-lucide-layers class="size-3.5" /> Sub-Regions:
                             </span>
                             @foreach($childCategories as $child)
                                 <a href="{{ route('services.category', $child->slug) }}" 
-                                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all bg-white/15 hover:bg-white/25 text-white backdrop-blur-sm border border-white/20 hover:scale-105 shadow-sm">
+                                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all bg-white/15 hover:bg-white/25 text-white backdrop-blur-sm border border-white/20 hover:scale-105 shadow-sm shrink-0">
                                     <span>{{ $child->name }}</span>
                                     @if($child->services_count ?? null)
                                         <span class="bg-white/20 text-white rounded-full px-2 py-0.5 text-[10px]">{{ $child->services_count }}</span>
@@ -103,7 +103,7 @@
             </section>
 
             <!-- Search & Filter Ribbon -->
-            <section class="bg-surface-container-lowest py-space-sm px-gutter-mobile lg:px-gutter-desktop sticky top-20 z-40 w-full shadow-sm border-b border-outline/10">
+            <section class="bg-surface-container-lowest py-space-sm px-gutter-mobile lg:px-gutter-desktop relative lg:sticky lg:top-28 z-30 w-full shadow-sm border-b border-outline/10">
                 <div class="max-w-max-content-width mx-auto flex flex-wrap items-center justify-between gap-space-sm">
                     <!-- Search input -->
                     <form action="{{ route('services.category', $category->slug) }}" method="GET" class="relative max-w-md min-w-[260px] flex-1">

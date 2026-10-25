@@ -10,7 +10,7 @@
             <div class="mb-space-xl gap-space-sm flex flex-col justify-between md:flex-row md:items-end border-b border-surface-container-high pb-8">
                 <div>
                     <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase"><a href="{{ route('gallery') }}" class="hover:text-primary-container">Gallery</a> / {{ $album->title }}</span>
-                    <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight uppercase mt-2">
+                    <h1 class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase mt-2">
                         {{ $album->title }}
                     </h1>
                     @if($album->description)
@@ -44,7 +44,7 @@
             <div id="gallery-container" class="grid-view gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 @foreach($album->items as $item)
                 <div class="gallery-item group bg-surface-container-lowest relative overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30">
-                    <div class="relative h-80 w-full overflow-hidden item-image-container">
+                    <div class="relative h-64 sm:h-80 w-full overflow-hidden item-image-container">
                         @if($item->file_path)
                             <img src="{{ Storage::url($item->file_path) }}" alt="{{ $item->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                         @else
@@ -91,12 +91,21 @@
         }
         #gallery-container.list-view .gallery-item {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
         }
         #gallery-container.list-view .item-image-container {
-            width: 300px;
-            height: 200px;
+            width: 100%;
+            height: 220px;
             flex-shrink: 0;
+        }
+        @media (min-width: 640px) {
+            #gallery-container.list-view .gallery-item {
+                flex-direction: row;
+            }
+            #gallery-container.list-view .item-image-container {
+                width: 300px;
+                height: 200px;
+            }
         }
         #gallery-container.list-view .item-scrim {
             display: none;

@@ -1,40 +1,43 @@
 <header x-data="{ mobileMenuOpen: false }"
     class="bg-surface-container-lowest/95 fixed top-0 z-50 w-full shadow-[0_1px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl">
     {{-- Top bar --}}
-    <div class="bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop">
-        <div class="max-w-max-content-width text-body-sm mx-auto flex h-9 items-center justify-between">
-            <div class="gap-space-md flex items-center">
+    <div class="bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop border-b border-outline/5">
+        <div class="max-w-max-content-width text-body-sm mx-auto flex h-9 items-center justify-between overflow-x-auto no-scrollbar">
+            <div class="gap-2 sm:gap-space-md flex items-center shrink-0">
                 @if ($contact?->registration_number)
-                    <span class="gap-space-2xs text-on-surface-variant font-label-sm text-label-sm flex items-center">
-                        <x-lucide-file-text class="text-primary size-[16px]" />
-                        Regd: {{ $contact->registration_number }}
+                    <span class="gap-1 sm:gap-space-2xs text-on-surface-variant font-label-sm text-[11px] sm:text-label-sm flex items-center whitespace-nowrap">
+                        <x-lucide-file-text class="text-primary size-3.5 sm:size-[16px] shrink-0" />
+                        <span class="hidden xs:inline">Regd:</span> {{ $contact->registration_number }}
                     </span>
-                    <div class="h-4 w-px bg-outline/20 hidden md:block"></div>
+                    <div class="h-3 sm:h-4 w-px bg-outline/20"></div>
                 @endif
-                @foreach ($socials ?? [] as $social)
-                    <a href="{{ $social->url }}" target="_blank" rel="noopener noreferrer"
-                        class="text-tertiary hover:text-primary gap-space-2xs font-label-sm text-label-sm flex items-center font-semibold tracking-wider uppercase transition-colors"
-                        aria-label="{{ $social->platform }}">
-                        @if (strtolower($social->platform) === 'facebook')
-                            <x-lucide-facebook class="size-[16px]" />
-                        @elseif (strtolower($social->platform) === 'instagram')
-                            <x-lucide-instagram class="size-[16px]" />
-                        @elseif (strtolower($social->platform) === 'twitter' || strtolower($social->platform) === 'x')
-                            <x-lucide-twitter class="size-[16px]" />
-                        @elseif (strtolower($social->platform) === 'youtube')
-                            <x-lucide-youtube class="size-[16px]" />
-                        @elseif (strtolower($social->platform) === 'tiktok')
-                            <svg class="size-[16px]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-                            </svg>
-                        @else
-                            {{ $social->platform }}
-                        @endif
-                    </a>
-                @endforeach
+                <div class="flex items-center gap-2 sm:gap-3">
+                    @foreach ($socials ?? [] as $social)
+                        <a href="{{ $social->url }}" target="_blank" rel="noopener noreferrer"
+                            class="text-tertiary hover:text-primary gap-1 font-label-sm text-[11px] sm:text-label-sm flex items-center font-semibold tracking-wider uppercase transition-colors shrink-0"
+                            aria-label="{{ $social->platform }}">
+                            @if (strtolower($social->platform) === 'facebook')
+                                <x-lucide-facebook class="size-3.5 sm:size-[16px]" />
+                            @elseif (strtolower($social->platform) === 'instagram')
+                                <x-lucide-instagram class="size-3.5 sm:size-[16px]" />
+                            @elseif (strtolower($social->platform) === 'twitter' || strtolower($social->platform) === 'x')
+                                <x-lucide-twitter class="size-3.5 sm:size-[16px]" />
+                            @elseif (strtolower($social->platform) === 'youtube')
+                                <x-lucide-youtube class="size-3.5 sm:size-[16px]" />
+                            @elseif (strtolower($social->platform) === 'tiktok')
+                                <svg class="size-3.5 sm:size-[16px]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                                </svg>
+                            @else
+                                <x-lucide-globe class="size-3.5 sm:size-[16px]" />
+                                <span class="hidden sm:inline">{{ $social->platform }}</span>
+                            @endif
+                        </a>
+                    @endforeach
+                </div>
             </div>
-            <div class="gap-space-lg hidden items-center md:flex">
+            <div class="gap-space-lg hidden items-center md:flex shrink-0">
                 <a class="gap-space-2xs text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center transition-colors"
                     href="tel:{{ preg_replace('/[^0-9+]/', '', $contact?->phone ?? '') }}">
                     <x-lucide-phone class="text-primary size-[16px]" />
@@ -53,15 +56,15 @@
 
     {{-- Main nav bar --}}
     <div
-        class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop gap-space-md mx-auto flex h-20 items-center justify-between">
-        <div class="gap-space-md flex items-center">
-            <a href="{{ route('home') }}" class="flex items-center gap-4">
+        class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop gap-2 sm:gap-space-md mx-auto flex h-16 sm:h-20 items-center justify-between">
+        <div class="gap-2 sm:gap-space-md flex items-center min-w-0">
+            <a href="{{ route('home') }}" class="flex items-center gap-2 sm:gap-3 min-w-0">
                 @if (!empty($websiteSettings['logo']))
                     <img src="{{ Storage::url($websiteSettings['logo']) }}"
-                        alt="{{ $contact?->company_name ?? config('app.name') }}" class="h-16 w-auto object-contain">
+                        alt="{{ $contact?->company_name ?? config('app.name') }}" class="h-10 sm:h-14 md:h-16 w-auto object-contain shrink-0">
                 @endif
                 <span
-                    class="font-headline-xs text-headline-xs text-on-surface font-bold tracking-tight uppercase">{{ $contact?->company_name ?? config('app.name') }}</span>
+                    class="font-headline-xs text-xs sm:text-sm md:text-headline-xs text-on-surface font-bold tracking-tight uppercase truncate max-w-[150px] xs:max-w-[190px] sm:max-w-xs md:max-w-none">{{ $contact?->company_name ?? config('app.name') }}</span>
             </a>
         </div>
 
@@ -339,16 +342,16 @@
             @endforeach
         </nav>
 
-        <div class="gap-space-sm flex items-center">
+        <div class="gap-1.5 sm:gap-space-sm flex items-center shrink-0">
             <a href="{{ route('treks') }}" aria-label="Search Treks"
-                class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex h-10 w-10 items-center justify-center rounded-lg transition-colors">
-                <x-lucide-search class="size-6" />
+                class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl transition-colors">
+                <x-lucide-search class="size-5 sm:size-6" />
             </a>
-            <a class="px-space-lg py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md hidden items-center justify-center rounded-lg font-bold tracking-wider uppercase shadow-[0_1px_3px_rgba(25,39,53,0.08)] transition-all sm:inline-flex"
+            <a class="px-space-md sm:px-space-lg py-2 sm:py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs sm:text-label-md hidden items-center justify-center rounded-xl font-bold tracking-wider uppercase shadow-[0_1px_3px_rgba(25,39,53,0.08)] transition-all sm:inline-flex"
                 href="{{ route('plan-your-trek') }}">Plan Your Trek</a>
             <button @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Open Mobile Navigation"
-                class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex h-10 w-10 items-center justify-center rounded-lg xl:hidden">
-                <x-lucide-menu class="size-6" />
+                class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xl:hidden cursor-pointer">
+                <x-lucide-menu class="size-5 sm:size-6" />
             </button>
         </div>
     </div>
@@ -370,7 +373,7 @@
                 x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
                 x-transition:leave="transition ease-in-out duration-300 transform"
                 x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-                class="fixed inset-y-0 right-0 z-[10000] w-full overflow-y-auto bg-surface px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-outline/10">
+                class="fixed inset-y-0 right-0 z-[10000] w-full max-w-full sm:max-w-sm md:max-w-md overflow-y-auto bg-surface px-5 sm:px-6 py-5 sm:py-6 sm:ring-1 sm:ring-outline/10 shadow-2xl">
                 <div class="flex items-center justify-between">
                     <a href="{{ route('home') }}" class="-m-1.5 p-1.5 flex items-center gap-2">
                         @if (!empty($websiteSettings['logo']))

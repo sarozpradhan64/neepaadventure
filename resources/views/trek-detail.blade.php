@@ -91,7 +91,7 @@
         }
     }
 @endphp
-    <main class="bg-surface w-full pt-28" x-data="{
+    <main class="bg-surface w-full pt-28 pb-20 lg:pb-0" x-data="{
         bookingModalOpen: false,
         galleryOpen: false,
         activeGalleryIndex: 0,
@@ -238,11 +238,11 @@
                     </div>
                     <div class="gap-space-xl grid grid-cols-1 items-start lg:grid-cols-12">
                         <div class="space-y-space-md lg:col-span-8">
-                            <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight uppercase">
+                            <h1 class="font-headline-lg text-2xl sm:text-3xl md:text-4xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
                                 {{ $trek->title }}
                             </h1>
                             @if ($trek->short_description)
-                                <p class="font-body-lg text-body-lg text-tertiary max-w-3xl">
+                                <p class="font-body-lg text-base sm:text-body-lg text-tertiary max-w-3xl">
                                     {{ $trek->short_description }}
                                 </p>
                             @endif
@@ -250,7 +250,7 @@
                             <div class="gap-space-sm pt-space-xs grid grid-cols-1 sm:grid-cols-3">
                                 @if($totalPhotos > 0)
                                     <!-- Image 1: Main Large -->
-                                    <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-2 cursor-pointer" @click="activeGalleryIndex = 0; galleryOpen = true">
+                                    <div class="group relative h-56 sm:h-72 overflow-hidden rounded-xl shadow-md sm:col-span-2 cursor-pointer" @click="activeGalleryIndex = 0; galleryOpen = true">
                                         <img
                                             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                             src="{{ Storage::disk('public')->url($galleryItems[0]->file_path) }}"
@@ -263,10 +263,10 @@
                                     </div>
 
                                     <!-- Right Column: Image 2 & Image 3 -->
-                                    <div class="gap-space-sm flex h-72 flex-col">
+                                    <div class="gap-space-sm flex h-40 sm:h-72 flex-row sm:flex-col">
                                         <!-- Image 2 -->
                                         @if($totalPhotos >= 2)
-                                            <div class="group relative h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="activeGalleryIndex = 1; galleryOpen = true">
+                                            <div class="group relative w-1/2 sm:w-full h-full sm:h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="activeGalleryIndex = 1; galleryOpen = true">
                                                 <img
                                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                     src="{{ Storage::disk('public')->url($galleryItems[1]->file_path) }}"
@@ -277,14 +277,14 @@
                                                 </div>
                                             </div>
                                         @else
-                                            <div class="relative h-1/2 overflow-hidden rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
+                                            <div class="relative w-1/2 sm:w-full h-full sm:h-1/2 overflow-hidden rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
                                                 <x-lucide-mountain class="size-6 text-primary/40" />
                                             </div>
                                         @endif
 
                                         <!-- Image 3 (with +N card overlay if > 3 photos) -->
                                         @if($totalPhotos >= 3)
-                                            <div class="group relative h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="activeGalleryIndex = 2; galleryOpen = true">
+                                            <div class="group relative w-1/2 sm:w-full h-full sm:h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="activeGalleryIndex = 2; galleryOpen = true">
                                                 <img
                                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                     src="{{ Storage::disk('public')->url($galleryItems[2]->file_path) }}"
@@ -292,7 +292,7 @@
                                                 />
                                                 @if($totalPhotos > 3)
                                                     <div class="absolute inset-0 bg-ridge-deep/75 group-hover:bg-ridge-deep/85 flex flex-col items-center justify-center text-summit-white transition-all backdrop-blur-[2px]">
-                                                        <span class="text-2xl font-black tracking-tight text-primary-container">+{{ $totalPhotos - 3 }}</span>
+                                                        <span class="text-xl sm:text-2xl font-black tracking-tight text-primary-container">+{{ $totalPhotos - 3 }}</span>
                                                         <span class="text-[10px] font-bold uppercase tracking-wider text-summit-white">More Photos</span>
                                                     </div>
                                                 @else
@@ -302,12 +302,14 @@
                                                 @endif
                                             </div>
                                         @else
-                                            <div class="relative h-1/2 overflow-hidden rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
-                                                <x-lucide-image class="size-6 text-primary/40" />
+                                            <div class="relative w-1/2 sm:w-full h-full sm:h-1/2 overflow-hidden rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
+                                                <x-lucide-mountain class="size-6 text-primary/40" />
                                             </div>
                                         @endif
                                     </div>
-                                @elseif($trek->featured_image)
+                                @endif
+                            </div>
+                        @elseif($trek->featured_image)
                                     <!-- Fallback: Service Featured Image -->
                                     <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-3">
                                         <img
@@ -1556,6 +1558,33 @@
                 </div>
             </div>
         </template>
+
+        <!-- Mobile Sticky Bottom Booking CTA Bar -->
+        <div class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-surface-container-lowest/95 backdrop-blur-xl border-t border-outline/15 px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] flex items-center justify-between gap-3">
+            <div class="min-w-0">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-tertiary">From Rate</div>
+                <div class="flex items-baseline gap-1">
+                    <span class="text-lg font-black text-on-surface">${{ number_format((float) $trek->price_from, 0) }}</span>
+                    <span class="text-[10px] text-tertiary">USD</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <a 
+                    href="#upcoming-departures"
+                    class="bg-surface-container hover:bg-surface-container-high text-on-surface px-3 py-2 rounded-xl text-xs font-bold transition-colors border border-outline/15"
+                >
+                    Dates
+                </a>
+                <button 
+                    type="button"
+                    @click="openBooking()"
+                    class="bg-primary hover:bg-primary/90 text-on-primary-fixed px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider shadow-sm transition-transform active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                >
+                    <span>Book Now</span>
+                    <x-lucide-arrow-right class="size-3.5" />
+                </button>
+            </div>
+        </div>
     </main>
     <x-footer />
 </x-layouts.app>

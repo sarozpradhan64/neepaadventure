@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             DefaultMenuSeeder::class,
             HomepageSectionSeeder::class,
             AffiliationAndPaymentSeeder::class,
+            LegalDocumentSeeder::class,
         ]);
     }
 }

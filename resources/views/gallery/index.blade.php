@@ -9,7 +9,7 @@
                     <div class="mb-space-xl gap-space-sm flex flex-col justify-between md:flex-row md:items-end">
                         <div>
                             <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">Documentary Spotlight</span>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight uppercase">
+                            <h2 class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
                                 Featured Albums
                             </h2>
                         </div>
@@ -18,7 +18,7 @@
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                         @foreach($featuredAlbums as $album)
                         <a href="{{ route('gallery.show', $album->slug) }}" class="group bg-surface-container-lowest relative overflow-hidden rounded-2xl border border-outline/10 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/30">
-                            <div class="relative h-80 overflow-hidden">
+                            <div class="relative h-64 sm:h-80 overflow-hidden">
                                 @if($album->cover_image)
                                     <img src="{{ Storage::url($album->cover_image) }}" alt="{{ $album->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                                 @else
@@ -54,7 +54,7 @@
                             <div class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">
                                 The Archive
                             </div>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight uppercase">
+                            <h2 class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
                                 All Albums
                             </h2>
                         </div>
@@ -63,7 +63,7 @@
                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" id="gallery-grid">
                         @foreach($albums as $album)
                         <a href="{{ route('gallery.show', $album->slug) }}" class="gallery-item group bg-surface-container-lowest relative overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30">
-                            <div class="relative h-80 overflow-hidden">
+                            <div class="relative h-64 sm:h-80 overflow-hidden">
                                 @if($album->cover_image)
                                     <img src="{{ Storage::url($album->cover_image) }}" alt="{{ $album->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                                 @else

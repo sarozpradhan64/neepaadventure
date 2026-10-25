@@ -565,43 +565,96 @@
                     </div>
                 </div>
             </section>
-            <!-- Accreditation & Official Partner Trust Badges -->
+            <!-- Accreditation & Official Legal Governance / Partner Trust Badges -->
+            @php
+                $docs = $legalDocuments ?? $navLegalDocuments ?? \Blaze\AdminCore\Models\LegalDocument::cached();
+            @endphp
             <section class="bg-surface-container-lowest py-space-xl px-gutter-mobile lg:px-gutter-desktop w-full shadow-sm">
                 <div class="max-w-max-content-width gap-space-lg mx-auto flex flex-col">
                     <div class="gap-space-md flex flex-col items-center justify-between text-center md:flex-row md:text-left">
                         <div>
                             <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-wider uppercase">Official Alpine Governance</span>
-                            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">Registered &amp; Fully Licensed Trek Operator</span>
+                            <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Registered &amp; Fully Licensed Trek Operator</h2>
                         </div>
-                        <span class="text-body-sm text-tertiary font-body-sm">Govt. License No: 89432/071/072 • Central Bank Foreign Exchange Authorized</span>
-                    </div>
-                    <!-- Government and Association Partner Badges Grid -->
-                    <div class="gap-space-sm pt-space-xs grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
-                            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">MOCTA</span>
-                            <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Ministry of Tourism</span>
-                        </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
-                            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">NTB</span>
-                            <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Nepal Tourism Board</span>
-                        </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
-                            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">TAAN</span>
-                            <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Trekking Agencies</span>
-                        </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
-                            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">NMA</span>
-                            <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Trekking Assoc.</span>
-                        </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
-                            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">KEEP</span>
-                            <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Eco-Tourism Project</span>
-                        </div>
-                        <div class="p-space-sm bg-surface-container-low flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10">
-                            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">IMEC</span>
-                            <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Porter Protection</span>
+                        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                            @if(!empty($contact?->registration_number))
+                                <span class="text-body-sm text-tertiary font-body-sm">Govt. Reg. No: {{ $contact->registration_number }}</span>
+                                <span class="text-tertiary/40 hidden sm:inline">•</span>
+                            @else
+                                <span class="text-body-sm text-tertiary font-body-sm">Govt. Authorized &bull; Central Bank Licensed</span>
+                                <span class="text-tertiary/40 hidden sm:inline">•</span>
+                            @endif
+                            <a href="{{ route('legal.index') }}" class="inline-flex items-center gap-1.5 text-label-sm font-bold text-primary hover:text-amber-flare transition-colors">
+                                <span>All Legal Documents</span>
+                                <x-lucide-arrow-right class="size-4" />
+                            </a>
                         </div>
                     </div>
+
+                    @if($docs->isNotEmpty())
+                        <!-- Dynamic Legal Documents Grid -->
+                        <div class="gap-space-sm pt-space-xs grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                            @foreach($docs as $doc)
+                                @php
+                                    $isImage = $doc->file_path && preg_match('/\.(jpg|jpeg|png|webp|gif)$/i', $doc->file_path);
+                                @endphp
+                                <a 
+                                    href="{{ route('legal-document.show', $doc->slug) }}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    class="group p-4 sm:p-space-md bg-surface-container-low hover:bg-surface-container hover:border-primary/40 rounded-xl transition-all duration-300 shadow-xs border border-outline/10 flex items-start gap-3.5 hover:shadow-md hover:-translate-y-0.5"
+                                >
+                                    <div class="size-11 rounded-lg bg-primary-container/20 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-on-primary-fixed transition-colors">
+                                        @if($isImage)
+                                            <x-lucide-file-check-2 class="size-5" />
+                                        @else
+                                            <x-lucide-shield-check class="size-5" />
+                                        @endif
+                                    </div>
+                                    <div class="min-w-0 flex-1">
+                                        <div class="flex items-center justify-between gap-1">
+                                            <span class="font-label-sm text-[11px] font-bold text-primary uppercase tracking-wider">Verified License</span>
+                                            <x-lucide-external-link class="size-3.5 text-tertiary group-hover:text-primary transition-colors shrink-0" />
+                                        </div>
+                                        <h3 class="font-headline-sm text-body-md text-on-surface font-bold leading-snug line-clamp-2 mt-0.5 group-hover:text-primary transition-colors">
+                                            {{ $doc->title }}
+                                        </h3>
+                                        <span class="text-[11px] text-tertiary font-medium mt-1 inline-flex items-center gap-1 group-hover:text-primary transition-colors">
+                                            <span>View Certificate</span>
+                                        </span>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    @else
+                        <!-- Fallback Government & Association Partner Badges Grid -->
+                        <div class="gap-space-sm pt-space-xs grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+                            <a href="{{ route('legal.index') }}" class="group p-space-sm bg-surface-container-low hover:bg-surface-container hover:border-primary/30 flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10 transition-all">
+                                <span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors">MOCTA</span>
+                                <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Ministry of Tourism</span>
+                            </a>
+                            <a href="{{ route('legal.index') }}" class="group p-space-sm bg-surface-container-low hover:bg-surface-container hover:border-primary/30 flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10 transition-all">
+                                <span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors">NTB</span>
+                                <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Nepal Tourism Board</span>
+                            </a>
+                            <a href="{{ route('legal.index') }}" class="group p-space-sm bg-surface-container-low hover:bg-surface-container hover:border-primary/30 flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10 transition-all">
+                                <span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors">TAAN</span>
+                                <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Trekking Agencies</span>
+                            </a>
+                            <a href="{{ route('legal.index') }}" class="group p-space-sm bg-surface-container-low hover:bg-surface-container hover:border-primary/30 flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10 transition-all">
+                                <span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors">NMA</span>
+                                <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Trekking Assoc.</span>
+                            </a>
+                            <a href="{{ route('legal.index') }}" class="group p-space-sm bg-surface-container-low hover:bg-surface-container hover:border-primary/30 flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10 transition-all">
+                                <span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors">KEEP</span>
+                                <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Eco-Tourism Project</span>
+                            </a>
+                            <a href="{{ route('legal.index') }}" class="group p-space-sm bg-surface-container-low hover:bg-surface-container hover:border-primary/30 flex flex-col items-center justify-center rounded-xl text-center shadow-xs border border-outline/10 transition-all">
+                                <span class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors">IMEC</span>
+                                <span class="font-badge-caption text-badge-caption text-tertiary mt-1 uppercase">Porter Protection</span>
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </section>
             <!-- Interactive Submission Success Modal -->

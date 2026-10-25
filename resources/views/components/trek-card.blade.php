@@ -38,7 +38,7 @@
     </a>
 
     <!-- Card Body -->
-    <div class="p-space-lg flex flex-1 flex-col justify-between">
+    <div class="p-4 sm:p-space-lg flex flex-1 flex-col justify-between">
         <div>
             <div class="text-tertiary font-label-sm text-label-sm mb-space-2xs flex items-center justify-between">
                 @if ($duration)
@@ -81,10 +81,10 @@
         </div>
 
         <!-- Pricing & Action Row -->
-        <div class="pt-space-md flex items-center justify-between">
+        <div class="pt-space-md flex items-center justify-between gap-2">
             <div>
                 <span class="font-badge-caption text-badge-caption text-tertiary block uppercase">From Kathmandu</span>
-                <span class="font-headline-sm text-headline-sm text-on-surface font-bold">{{ $price }}</span>
+                <span class="font-headline-sm text-lg sm:text-headline-sm text-on-surface font-bold">{{ $price }}</span>
                 <span class="text-body-sm text-tertiary">/ person</span>
             </div>
 

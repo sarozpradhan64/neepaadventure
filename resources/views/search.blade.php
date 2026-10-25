@@ -20,7 +20,7 @@
                         <span class="text-summit-white font-semibold">Search</span>
                     </nav>
 
-                    <h1 class="font-display-md text-display-md font-extrabold text-summit-white tracking-tight drop-shadow-md max-w-2xl leading-tight">
+                    <h1 class="font-display-md text-2xl sm:text-3xl md:text-4xl lg:text-display-md font-extrabold text-summit-white tracking-tight drop-shadow-md max-w-2xl leading-tight">
                         @if(request('search'))
                             Results for <span class="text-primary-container">"{{ request('search') }}"</span>
                         @else
@@ -30,7 +30,7 @@
 
                     {{-- Search Form --}}
                     <form action="{{ route('search') }}" method="GET"
-                          class="w-full max-w-2xl bg-surface-container-lowest shadow-[0_8px_40px_rgba(0,0,0,0.5)] rounded-2xl p-3 flex items-center gap-2 border border-outline/10">
+                          class="w-full max-w-2xl bg-surface-container-lowest shadow-[0_8px_40px_rgba(0,0,0,0.5)] rounded-2xl p-2 sm:p-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 border border-outline/10">
                         @if(request('category'))
                             <input type="hidden" name="category" value="{{ request('category') }}">
                         @endif
@@ -43,18 +43,18 @@
                                 value="{{ request('search', '') }}"
                                 placeholder="Search treks, tours, adventures…"
                                 autofocus
-                                class="w-full h-12 pl-12 pr-4 bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary"
+                                class="w-full h-11 sm:h-12 pl-12 pr-4 bg-transparent font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary"
                             >
                         </div>
                         @if(request('search'))
                             <a href="{{ route('search', request()->except('search')) }}"
-                               class="text-tertiary hover:text-on-surface transition-colors p-2 rounded-lg hover:bg-surface-container-low"
+                               class="text-tertiary hover:text-on-surface transition-colors p-2 rounded-lg hover:bg-surface-container-low self-end sm:self-center"
                                title="Clear search">
                                 <x-lucide-x class="size-[18px]" />
                             </a>
                         @endif
                         <button type="submit"
-                            class="h-11 px-6 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-xl transition-all flex items-center gap-2 shadow-md active:scale-95 shrink-0">
+                            class="h-11 px-6 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 shadow-md active:scale-95 shrink-0 cursor-pointer">
                             <x-lucide-compass class="size-[16px]" />
                             <span>Search</span>
                         </button>
@@ -62,15 +62,15 @@
 
                     {{-- Category Filter Pills --}}
                     @if($categories->isNotEmpty())
-                        <div class="flex flex-wrap items-center justify-center gap-2">
+                        <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar w-full py-1 -mx-gutter-mobile px-gutter-mobile sm:mx-0 sm:px-0">
                             <a href="{{ route('search', request()->except('category')) }}"
-                               class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all border backdrop-blur-sm
+                               class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all border backdrop-blur-sm shrink-0
                                       {{ !request('category') ? 'bg-primary-container text-on-primary-fixed border-primary-container shadow-md' : 'bg-summit-white/10 text-summit-white border-summit-white/20 hover:bg-summit-white/20' }}">
                                 All
                             </a>
                             @foreach($categories as $cat)
                                 <a href="{{ route('search', array_merge(request()->except('category'), ['category' => $cat->slug])) }}"
-                                   class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all border backdrop-blur-sm
+                                   class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all border backdrop-blur-sm shrink-0
                                           {{ request('category') === $cat->slug ? 'bg-primary-container text-on-primary-fixed border-primary-container shadow-md' : 'bg-summit-white/10 text-summit-white border-summit-white/20 hover:bg-summit-white/20' }}">
                                     {{ $cat->name }}
                                 </a>

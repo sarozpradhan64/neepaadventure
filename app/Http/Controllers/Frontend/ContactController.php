@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Blaze\AdminCore\Models\ContactInformation;
 use Blaze\AdminCore\Models\ContactMessage;
 use Blaze\AdminCore\Models\Enquiry;
+use Blaze\AdminCore\Models\LegalDocument;
 use Blaze\AdminCore\Models\Service;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('contact');
+        $legalDocuments = LegalDocument::where('status', true)->latest()->get();
+
+        return view('contact', compact('legalDocuments'));
     }
 
     public function store(Request $request)

@@ -1,20 +1,20 @@
 <x-layouts.app title="Write a Review - {{ config('app.name') }}">
     <x-header />
 
-    <main class="bg-surface w-full pt-40 pb-24">
+    <main class="bg-surface w-full pt-28 pb-16 sm:pt-36 sm:pb-24">
         <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
             <div class="mb-space-2xl text-center max-w-2xl mx-auto">
-                <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-space-sm">
+                <h1 class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight mb-space-sm">
                     Write a Review
                 </h1>
-                <p class="font-body-md text-body-md text-tertiary">
+                <p class="font-body-md text-base sm:text-body-md text-tertiary">
                     We'd love to hear about your experience with us! Please share your thoughts below.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-2xl">
                 <!-- Review Form -->
-                <div class="lg:col-span-7 bg-surface-container-lowest p-space-xl rounded-2xl shadow-sm border border-outline/10">
+                <div class="lg:col-span-7 bg-surface-container-lowest p-5 sm:p-space-xl rounded-2xl shadow-sm border border-outline/10">
                     <div id="review-success" class="bg-green-50 text-green-700 p-4 rounded-lg mb-6 border border-green-200 hidden">
                     </div>
                     
