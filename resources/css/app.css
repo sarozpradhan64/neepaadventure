@@ -151,7 +151,7 @@
     --spacing-gutter-mobile: clamp(1rem, 3vw, 1.25rem);
     --spacing-gutter-tablet: 1.5rem;
     --spacing-gutter-desktop: 2rem;
-    --spacing-max-content-width: 1280px;
+    --spacing-max-content-width: 1440px;
     --spacing-space-2xs: 0.25rem;
     --spacing-space-xs: 0.5rem;
     --spacing-space-sm: 0.75rem;
