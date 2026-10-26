@@ -178,7 +178,7 @@
                             href="https://wa.me/{{ $waClean }}" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            class="inline-flex items-center gap-2 px-3.5 py-2.5 bg-success/10 hover:bg-success/20 text-success rounded-xl text-xs font-semibold transition-colors border border-success/20 w-full justify-center"
+                            class="inline-flex items-center gap-2 px-3.5 py-2.5 text-success rounded-xl text-xs font-semibold transition-colors border border-success/20 w-full justify-center"
                         >
                             <x-lucide-message-circle class="size-4" />
                             <span>Chat on WhatsApp</span>
@@ -346,8 +346,6 @@
         <div class="pt-space-xl mt-space-xl border-t border-outline/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-tertiary">
             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-center md:text-left">
                 <span>&copy; {{ date('Y') }} {{ $contact?->company_name ?? config('app.name') }}. All rights reserved.</span>
-                <span class="hidden md:inline">&bull;</span>
-                <span class="text-tertiary/75">Govt. Licensed Trekking &amp; Expedition Agency</span>
             </div>
 
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-center md:text-right">

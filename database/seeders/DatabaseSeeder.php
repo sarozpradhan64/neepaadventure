@@ -17,19 +17,20 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            AdminSeeder::class,
-            CompanyInformationSeeder::class,
-            TrekDataSeeder::class,
-            NepalServicesSeeder::class,
-            TestimonialSeeder::class,
-            ProjectSeeder::class,
-            HomePageSettingsSeeder::class,
-            SeoSettingsSeeder::class,
-            JobSeeder::class,
-            DefaultMenuSeeder::class,
-            HomepageSectionSeeder::class,
-            AffiliationAndPaymentSeeder::class,
-            LegalDocumentSeeder::class,
+            // AdminSeeder::class,
+            // CompanyInformationSeeder::class,
+            // TrekDataSeeder::class,
+            // NepalServicesSeeder::class,
+            // TestimonialSeeder::class,
+            // ProjectSeeder::class,
+            // HomePageSettingsSeeder::class,
+            // SeoSettingsSeeder::class,
+            // JobSeeder::class,
+            // DefaultMenuSeeder::class,
+            // HomepageSectionSeeder::class,
+            // AffiliationAndPaymentSeeder::class,
+            // LegalDocumentSeeder::class,
+            FaqSeeder::class,
         ]);
     }
 }

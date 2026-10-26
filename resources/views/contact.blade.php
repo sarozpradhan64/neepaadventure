@@ -484,6 +484,10 @@
                 </div>
             </section>
             <!-- High-Altitude Operations FAQ Accordion -->
+            @php
+                $contactFaqs = $faqs ?? \Blaze\AdminCore\Models\Faq::where('status', true)->where('is_contact_page', true)->orderBy('sort_order')->get();
+            @endphp
+            @if($contactFaqs->isNotEmpty())
             <section class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop py-space-3xl mx-auto w-full">
                 <div class="gap-space-xs mb-space-2xl mx-auto flex max-w-2xl flex-col items-center text-center">
                     <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">Field Readiness Inquiries</span>
@@ -495,76 +499,38 @@
                         execution.
                     </p>
                 </div>
-                <div class="space-y-space-sm mx-auto max-w-3xl" id="faqAccordion">
-                    <!-- Item 1 -->
-                    <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
-                        <button
-                            class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
-                            type="button"
-                        >
-                            <span class="">How soon before departure must trekking &amp; trekking permits be finalized?</span>
-                            <x-lucide-chevron-down class="text-tertiary size-4 transform transition-transform duration-200" />
-                        </button>
-                        <div class="faq-content px-space-md pb-space-md text-tertiary font-body-md text-body-md hidden">
-                            Standard trekking permits (TIMS, Sagarmatha, ACAP) take 24–48 hours to stamp at Nepal
-                            Tourism Board. For restricted zones (Manaslu, Upper Mustang, Nar Phu, Dolpo) and NMA Pass
-                            Trekking permits (Island Pass, Mera, Lobuche), we require your passport scans and
-                            high-resolution photos at least 15 business days in advance to secure government officer
-                            assignments.
+                <div class="space-y-space-sm mx-auto max-w-3xl" id="faqAccordion" x-data="{ active: null }">
+                    @foreach($contactFaqs as $index => $faq)
+                        <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
+                            <button
+                                @click="active = (active === {{ $index }} ? null : {{ $index }})"
+                                class="p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold cursor-pointer transition-colors"
+                                type="button"
+                                :aria-expanded="active === {{ $index }} ? 'true' : 'false'"
+                            >
+                                <span>{{ $faq->question }}</span>
+                                <x-lucide-chevron-down
+                                    class="text-tertiary size-4 transform transition-transform duration-200 shrink-0 ml-3"
+                                    x-bind:class="{ 'rotate-180 text-primary': active === {{ $index }} }"
+                                />
+                            </button>
+                            <div
+                                x-show="active === {{ $index }}"
+                                x-cloak
+                                x-transition:enter="transition ease-out duration-200"
+                                x-transition:enter-start="opacity-0 -translate-y-1"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                class="px-space-md pb-space-md text-tertiary font-body-md text-body-md leading-relaxed"
+                            >
+                                <div class="prose prose-sm max-w-none text-tertiary">
+                                    {!! $faq->answer !!}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
-                        <button
-                            class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
-                            type="button"
-                        >
-                            <span class="">Do you accommodate custom route adjustments due to weather or acclimatization?</span>
-                            <x-lucide-chevron-down class="text-tertiary size-4 transform transition-transform duration-200" />
-                        </button>
-                        <div class="faq-content px-space-md pb-space-md text-tertiary font-body-md text-body-md hidden">
-                            Absolutely. Safety is our non-negotiable metric. Every lead Guide is equipped with
-                            pulse oximeters, Lake Louise Acute Mountain Sickness (AMS) score sheets, and Garmin inReach
-                            satellite devices. If weather conditions close high passes (such as Cho La or Thorong La) or
-                            acclimatization requires extra rest days, our operations desk dynamically recalibrates your
-                            teahouse bookings without logistical friction.
-                        </div>
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
-                        <button
-                            class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
-                            type="button"
-                        >
-                            <span class="">How are payments, deposits, and emergency rescue bonds handled?</span>
-                            <x-lucide-chevron-down class="text-tertiary size-4 transform transition-transform duration-200" />
-                        </button>
-                        <div class="faq-content px-space-md pb-space-md text-tertiary font-body-md text-body-md hidden">
-                            A 25% deposit secures your trek slots, pass permits, and domestic Lukla/Pokhara flight
-                            reservations via direct bank wire transfer or major credit card through Nepal Investment
-                            Mega Bank (NIMB) secure gateway. The remaining balance can be settled in Kathmandu before
-                            departure. We also coordinate cashless medical evacuation guarantees directly with your
-                            trekking travel insurance provider (e.g., Ripcord, Global Rescue, Allianz).
-                        </div>
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="bg-surface-container-lowest overflow-hidden rounded-xl shadow-sm border border-outline/10 transition-all">
-                        <button
-                            class="faq-toggle p-space-md font-headline-sm text-headline-sm text-on-surface hover:text-primary flex w-full items-center justify-between text-left font-semibold"
-                            type="button"
-                        >
-                            <span class="">Can we meet our Lead Guide Sirdar before heading to Lukla or Pokhara?</span>
-                            <x-lucide-chevron-down class="text-tertiary size-4 transform transition-transform duration-200" />
-                        </button>
-                        <div class="faq-content px-space-md pb-space-md text-tertiary font-body-md text-body-md hidden">
-                            Yes. On Day 1 in Kathmandu, our official Trek Welcome Dinner &amp; Strategy Briefing
-                            introduces you directly to your assigned Lead Guide, Sirdar, and Assistant Guides. You will
-                            review maps, discuss pacing, adjust individual preferences, and conduct an intimate
-                            equipment Q&amp;A session together.
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </section>
+            @endif
             <!-- Accreditation & Official Legal Governance / Partner Trust Badges -->
             @php
                 $docs = $legalDocuments ?? $navLegalDocuments ?? \Blaze\AdminCore\Models\LegalDocument::cached();
