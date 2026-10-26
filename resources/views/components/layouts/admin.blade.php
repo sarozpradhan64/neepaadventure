@@ -53,6 +53,12 @@
                                     Profile
                                 </a>
                             @endif
+                            @if (app(\Blaze\AdminCore\AdminCoreConfiguration::class)->enabled('help'))
+                                <a href="{{ route('admin.help.index') }}" class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground transition-colors w-full text-left">
+                                    <x-lucide-circle-help class="size-4" />
+                                    Help & Guide
+                                </a>
+                            @endif
                             <form method="POST" action="{{ route('admin.cache.clear') }}" class="block w-full">
                                 @csrf
                                 <button type="submit" class="flex w-full items-center gap-2 px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground transition-colors text-left">

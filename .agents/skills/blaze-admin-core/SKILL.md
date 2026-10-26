@@ -74,6 +74,7 @@ It provides a ready-made, authentication-protected admin dashboard with core CMS
 - `DownloadController` — Downloads CRUD
 - `EnquiryController` — Enquiries viewer (read-only from admin)
 - `ContactMessageController` — Contact messages viewer
+- `HelpController` — Comprehensive admin portal documentation & guide
 - `ProjectController` — Projects CRUD
 - `ProjectCategoryController` — Project Categories CRUD
 - `ProjectImageController` — Project Images CRUD
@@ -102,6 +103,7 @@ It provides a ready-made, authentication-protected admin dashboard with core CMS
 | `GET /admin/contact-messages`    | `admin.contact-messages.index` | Auth       |
 | `GET /admin/projects`            | `admin.projects.index`         | Auth       |
 | `GET /admin/services`            | `admin.services.index`         | Auth       |
+| `GET /admin/help`                | `admin.help.index`             | Auth       |
 | `POST /admin/reorder/{resource}` | `admin.reorder`                | Auth       |
 
 ### Views (all via `admin-core::` namespace)
@@ -123,6 +125,7 @@ admin-core::projects.index / form
 admin-core::project_categories.index / form
 admin-core::services.index / form
 admin-core::service_categories.index / form
+admin-core::help.index
 ```
 
 ---
@@ -297,6 +300,7 @@ use Blaze\AdminCore\Http\Controllers\GalleryItemController;
 use Blaze\AdminCore\Http\Controllers\DownloadController;
 use Blaze\AdminCore\Http\Controllers\EnquiryController;
 use Blaze\AdminCore\Http\Controllers\ContactMessageController;
+use Blaze\AdminCore\Http\Controllers\HelpController;
 use Blaze\AdminCore\Http\Controllers\ProjectController;
 use Blaze\AdminCore\Http\Controllers\ServiceController;
 use Blaze\AdminCore\Http\Controllers\ReorderController;
@@ -345,3 +349,26 @@ Instead, use the **Form Builder Hook**:
    }
    ```
 3. **Automatic UI:** The `admin-core` package automatically reads this configuration and renders the appropriate input fields in the create/edit forms, handles validation, and saves the data.
+
+---
+
+## 10. Help & Documentation System (`admin.help.index`)
+
+The package provides a built-in, searchable, interactive **Help & Knowledge Base** view accessible at `/admin/help` (`admin.help.index`).
+
+### Features Covered:
+- **Instant Alpine.js Search & Filter Chips:** Fast real-time topic searching across all portal features.
+- **Quick Start Guide:** 3-step setup (Company Info & Socials &rarr; Logo/Favicon/Hero &rarr; Services & Content).
+- **Content Modules Walkthrough:** Services, Categories, Features, Projects, Portfolio, Blogs, Pages, Navigation Menus, Tags, FAQs, and Downloads.
+- **Inbound Lead Workflows:** Lifecycle explanation for Enquiries (`new`, `in_progress`, `completed`, `spam`), Contact Messages, and Newsletter subscribers.
+- **Company & Trust Elements:** Company Contact, Social Links, Team Profiles, Legal Certifications, Affiliations ("Our Partners"), Payment Methods ("We Accept"), Testimonials (1-5 star ratings), and Careers/Job applications.
+- **Media & Gallery Standards:** Bulk uploads, album linking, and the complete **Image Dimensions Cheat Sheet** (Hero: 1920x1080, Services: 1200x800, OG Social: 1200x630, Team: 600x600).
+- **Settings & SEO:** Complete breakdown of the 5 Settings tabs (Homepage, About Us, System, SEO, Subpages) and SEO best practices (Meta title/description lengths, OpenGraph cards).
+- **Troubleshooting & FAQs:** Resolving caching issues, drag-to-reorder usage, custom terminology labels, and developer customization patterns.
+
+### Configuration:
+The module is enabled by default in `AdminCoreConfiguration`:
+```php
+'help' => true,
+```
+To disable it on a specific site, override `modules()` in the project's `AdminCoreConfiguration` subclass and set `'help' => false`.
