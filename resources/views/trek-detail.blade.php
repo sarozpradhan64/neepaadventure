@@ -20,24 +20,74 @@
 
     // Calculate dynamic elevation profile from features itinerary
     $elevationPoints = collect();
-    foreach ($trek->features as $idx => $feat) {
+    $rawFeatures = $trek->features ?? collect();
+
+    $prevAlt = null;
+    $maxAscent = 0;
+    $totalGain = 0;
+    $acclimatizationCount = 0;
+
+    foreach ($rawFeatures as $idx => $feat) {
         $altVal = null;
         if (!empty($feat->altitude)) {
-            if (preg_match('/(\d[\d,]*)/', $feat->altitude, $matches)) {
-                $num = (int) str_replace(',', '', $matches[1]);
-                if ($num >= 500 && $num <= 8900) {
-                    $altVal = $num;
-                }
+            if (is_numeric($feat->altitude)) {
+                $altVal = (int) $feat->altitude;
+            } elseif (preg_match('/(\d[\d,]*)/', (string) $feat->altitude, $matches)) {
+                $altVal = (int) str_replace(',', '', $matches[1]);
             }
         }
+
+        // Fallback: extract altitude from title or description if altitude field is empty
+        if ($altVal === null || $altVal <= 0) {
+            $textToSearch = ($feat->title ?? '') . ' ' . strip_tags($feat->description ?? '');
+            if (preg_match('/(?:elev(?:ation)?|altitude|peak|summit|pass)?\s*[:(]?\s*(\d{1,2}[,.]?\d{3})\s*(?:m|meters|metres)\b/i', $textToSearch, $m)) {
+                $altVal = (int) str_replace([',', '.'], '', $m[1]);
+            }
+        }
+
+        // Validate realistic alpine elevation (between 100m and 8900m)
+        if ($altVal !== null && ($altVal < 100 || $altVal > 8900)) {
+            $altVal = null;
+        }
+
         if ($altVal !== null) {
+            $text = strtolower(($feat->title ?? '') . ' ' . ($feat->description ?? ''));
+            $isAcclimatization = str_contains($text, 'acclimatiz') || str_contains($text, 'rest day') || str_contains($text, 'contingency') || str_contains($text, 'buffer day');
+            if ($isAcclimatization) {
+                $acclimatizationCount++;
+            }
+
+            $delta = 0;
+            if ($prevAlt !== null) {
+                $delta = $altVal - $prevAlt;
+                if ($delta > 0) {
+                    $totalGain += $delta;
+                    if ($delta > $maxAscent) {
+                        $maxAscent = $delta;
+                    }
+                }
+            }
+
+            $cleanTitle = preg_replace('/^(?:trek|fly|drive|hike|climb|cross|early morning (?:hike|trek|climb|flight))\s+(?:to|from|through)?\s*/i', '', $feat->title ?? '');
+            $cleanTitle = preg_replace('/\s*\(.*?\)/', '', $cleanTitle);
+            $cleanTitle = trim($cleanTitle);
+            if (empty($cleanTitle)) {
+                $cleanTitle = $feat->title ?? ('Stage ' . ($idx + 1));
+            }
+
             $elevationPoints->push([
-                'day' => $feat->day_label ?? ('Day ' . ($idx + 1)),
+                'index' => $idx,
+                'day' => $feat->day_label ?: ('Day ' . ($idx + 1)),
                 'title' => $feat->title,
-                'short_title' => \Illuminate\Support\Str::limit($feat->title, 14),
+                'short_title' => \Illuminate\Support\Str::limit($cleanTitle, 16),
                 'altitude' => $altVal,
+                'altitude_ft' => number_format((int) round($altVal * 3.28084)),
                 'altitude_label' => number_format($altVal) . 'm',
+                'delta' => $delta,
+                'is_acclimatization' => $isAcclimatization,
             ]);
+
+            $prevAlt = $altVal;
         }
     }
 
@@ -46,45 +96,89 @@
     $gridLines = [];
     $strokeD = '';
     $fillD = '';
+    $minAlt = 0;
     $maxAlt = 0;
+    $startAlt = 0;
+    $endAlt = 0;
+    $svgWidth = 900;
+    $highestPoint = null;
+
     if ($hasDynamicElevation) {
         $minAlt = $elevationPoints->min('altitude');
         $maxAlt = $elevationPoints->max('altitude');
+        $startAlt = $elevationPoints->first()['altitude'];
+        $endAlt = $elevationPoints->last()['altitude'];
 
-        $chartMin = max(0, floor(($minAlt - 300) / 500) * 500);
-        $chartMax = ceil(($maxAlt + 300) / 500) * 500;
+        $padding = max(200, (int) round(($maxAlt - $minAlt) * 0.1));
+        $chartMin = max(0, (int) (floor(($minAlt - $padding) / 500) * 500));
+        $chartMax = (int) (ceil(($maxAlt + $padding) / 500) * 500);
         if ($chartMax <= $chartMin) {
             $chartMax = $chartMin + 1000;
         }
 
-        $svgWidth = 900;
-        $svgHeight = 260;
-        $topMargin = 35;
-        $bottomMargin = 55;
+        $pointCount = $elevationPoints->count();
+        $nodeSpacing = max(68, min(100, (int) floor(1000 / max(1, $pointCount))));
+        $svgWidth = max(900, ($pointCount * $nodeSpacing) + 140);
+        $svgHeight = 270;
+        $topMargin = 45;
+        $bottomMargin = 65;
         $leftMargin = 70;
         $rightMargin = 70;
         $usableWidth = $svgWidth - $leftMargin - $rightMargin;
         $usableHeight = $svgHeight - $topMargin - $bottomMargin;
 
-        $pointCount = $elevationPoints->count();
         foreach ($elevationPoints as $i => $pt) {
             $x = $leftMargin + ($pointCount > 1 ? ($i * ($usableWidth / ($pointCount - 1))) : ($usableWidth / 2));
             $ratio = ($pt['altitude'] - $chartMin) / ($chartMax - $chartMin);
             $y = $topMargin + (1 - $ratio) * $usableHeight;
-            $coords[] = array_merge($pt, ['x' => round($x, 1), 'y' => round($y, 1)]);
+            $isHigh = ($pt['altitude'] === $maxAlt);
+            $coordData = array_merge($pt, [
+                'x' => round($x, 1),
+                'y' => round($y, 1),
+                'is_highest' => $isHigh,
+            ]);
+            $coords[] = $coordData;
+            if ($isHigh && $highestPoint === null) {
+                $highestPoint = $coordData;
+            }
         }
 
-        $strokeD = 'M ' . implode(' L ', array_map(fn($c) => "{$c['x']} {$c['y']}", $coords));
+        // Generate smooth cubic spline / Catmull-Rom path for natural mountain curve
+        $pathCmds = [];
+        $len = count($coords);
+        for ($i = 0; $i < $len; $i++) {
+            if ($i === 0) {
+                $pathCmds[] = "M {$coords[0]['x']} {$coords[0]['y']}";
+            } else {
+                $p0 = $coords[max(0, $i - 2)];
+                $p1 = $coords[$i - 1];
+                $p2 = $coords[$i];
+                $p3 = $coords[min($len - 1, $i + 1)];
+
+                $cp1x = round($p1['x'] + ($p2['x'] - $p0['x']) / 6, 1);
+                $cp1y = round($p1['y'] + ($p2['y'] - $p0['y']) / 6, 1);
+                $cp2x = round($p2['x'] - ($p3['x'] - $p1['x']) / 6, 1);
+                $cp2y = round($p2['y'] - ($p3['y'] - $p1['y']) / 6, 1);
+
+                $pathCmds[] = "C {$cp1x} {$cp1y}, {$cp2x} {$cp2y}, {$p2['x']} {$p2['y']}";
+            }
+        }
+        $strokeD = implode(' ', $pathCmds);
+
         $firstX = $coords[0]['x'];
-        $lastX = $coords[count($coords) - 1]['x'];
-        $groundY = $svgHeight - $bottomMargin + 15;
+        $lastX = $coords[$len - 1]['x'];
+        $groundY = $svgHeight - $bottomMargin + 18;
         $fillD = "{$strokeD} L {$lastX} {$groundY} L {$firstX} {$groundY} Z";
 
-        $altStep = ceil(($chartMax - $chartMin) / 4 / 500) * 500;
-        if ($altStep <= 0) {
-            $altStep = 500;
+        $range = $chartMax - $chartMin;
+        $step = 500;
+        if ($range > 3500) {
+            $step = 1000;
+        } elseif ($range <= 1500) {
+            $step = 250;
         }
-        for ($a = $chartMin + $altStep; $a <= $chartMax; $a += $altStep) {
+
+        for ($a = $chartMin + $step; $a <= $chartMax; $a += $step) {
             $r = ($a - $chartMin) / ($chartMax - $chartMin);
             $gy = round($topMargin + (1 - $r) * $usableHeight, 1);
             $gridLines[] = ['alt' => $a, 'y' => $gy];
@@ -307,9 +401,7 @@
                                             </div>
                                         @endif
                                     </div>
-                                @endif
-                            </div>
-                        @elseif($trek->featured_image)
+                                @elseif($trek->featured_image)
                                     <!-- Fallback: Service Featured Image -->
                                     <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-3">
                                         <img
@@ -499,148 +591,355 @@
                                 Elevation &amp; Acclimatization Curve
                             </h2>
                         </div>
-                        <div class="gap-space-md text-body-sm text-tertiary flex items-center">
-                            <span class="flex items-center gap-1.5"><span class="bg-primary h-3 w-3 rounded-full"></span> Elevation Checkpoints</span>
+                        <div class="gap-space-md text-body-sm text-tertiary flex flex-wrap items-center">
                             @if($hasDynamicElevation)
-                                <span class="flex items-center gap-1.5 text-xs font-mono font-semibold text-on-surface">Peak: {{ number_format($maxAlt) }}m</span>
+                                <span class="flex items-center gap-1.5"><span class="bg-primary h-3 w-3 rounded-full"></span> {{ $elevationPoints->count() }} Route Checkpoints</span>
+                                <span class="bg-surface-container px-2.5 py-1 rounded-md text-xs font-mono font-semibold text-on-surface">Peak: {{ number_format($maxAlt) }}m</span>
+                                <span class="bg-surface-container px-2.5 py-1 rounded-md text-xs font-mono text-tertiary">Start: {{ number_format($startAlt) }}m</span>
                             @else
-                                <span class="flex items-center gap-1.5"><span class="bg-tertiary h-3 w-3 rounded-full"></span> Technical Pass</span>
+                                <span class="flex items-center gap-1.5"><span class="bg-primary h-3 w-3 rounded-full"></span> Max Altitude: {{ $trek->maximum_altitude ?: 'Himalayan Pass' }}</span>
                             @endif
                         </div>
                     </div>
-                    <!-- Custom SVG Chart Container -->
-                    <div class="bg-surface-container-low p-space-md md:p-space-lg rounded-xl shadow-sm">
-                        <div class="w-full overflow-x-auto">
-                            <div class="relative min-w-[760px]">
-                                <svg
-                                    class="h-64 w-full overflow-visible"
-                                    fill="none"
-                                    viewbox="0 0 900 260"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <defs>
-                                        <lineargradient id="elevationGrad" x1="0%" x2="0%" y1="0%" y2="100%">
-                                            <stop offset="0%" stop-color="#f6ba1a" stop-opacity="0.45"></stop>
-                                            <stop offset="100%" stop-color="#f6ba1a" stop-opacity="0.0"></stop>
-                                        </lineargradient>
-                                    </defs>
-                                    @if($hasDynamicElevation)
-                                        <!-- Dynamic Grid Horizontal Guide Lines -->
+
+                    @if($hasDynamicElevation)
+                        <!-- Dynamic SVG Chart Container with Alpine.js Tooltip Interaction -->
+                        <div 
+                            class="bg-surface-container-low p-space-md md:p-space-lg rounded-2xl shadow-sm border border-outline/10 relative"
+                            x-data="{ 
+                                activePoint: null,
+                                tooltipX: 0,
+                                tooltipY: 0,
+                                setPoint(pt, evt) {
+                                    this.activePoint = pt;
+                                    const rect = evt.currentTarget.getBoundingClientRect();
+                                    const parentRect = this.$el.getBoundingClientRect();
+                                    this.tooltipX = rect.left - parentRect.left + (rect.width / 2);
+                                    this.tooltipY = rect.top - parentRect.top - 12;
+                                },
+                                clearPoint() {
+                                    this.activePoint = null;
+                                }
+                            }"
+                        >
+                            <!-- Floating Alpine.js Telemetry Card / Tooltip -->
+                            <div 
+                                x-show="activePoint" 
+                                x-cloak
+                                x-transition:enter="transition ease-out duration-150"
+                                x-transition:enter-start="opacity-0 translate-y-1 scale-95"
+                                x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                                class="absolute z-30 pointer-events-none -translate-x-1/2 -translate-y-full mb-2 min-w-[200px] max-w-xs bg-ridge-deep/95 backdrop-blur-md text-summit-white rounded-xl p-3 shadow-xl border border-outline/20 text-left"
+                                :style="`left: ${tooltipX}px; top: ${tooltipY}px;`"
+                            >
+                                <div class="flex items-center justify-between gap-2 border-b border-outline/20 pb-1.5 mb-1.5">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-primary-container" x-text="activePoint?.day"></span>
+                                    <template x-if="activePoint?.is_highest">
+                                        <span class="text-[9px] font-black uppercase px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-400/30">
+                                            Peak Alt
+                                        </span>
+                                    </template>
+                                    <template x-if="activePoint?.is_acclimatization && !activePoint?.is_highest">
+                                        <span class="text-[9px] font-bold uppercase px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                                            Rest/Acclimatize
+                                        </span>
+                                    </template>
+                                </div>
+                                <div class="font-headline-sm text-xs font-bold truncate text-summit-white mb-1" x-text="activePoint?.title"></div>
+                                <div class="flex items-baseline justify-between gap-2 text-xs">
+                                    <div class="font-mono font-bold text-summit-white text-sm">
+                                        <span x-text="activePoint?.altitude_label"></span>
+                                        <span class="text-[10px] text-tertiary font-normal" x-text="`(${activePoint?.altitude_ft} ft)`"></span>
+                                    </div>
+                                    <template x-if="activePoint?.delta !== undefined && activePoint?.delta !== 0">
+                                        <span 
+                                            class="text-[11px] font-mono font-semibold"
+                                            :class="activePoint.delta > 0 ? 'text-amber-300' : 'text-sky-300'"
+                                            x-text="`${activePoint.delta > 0 ? '+' : ''}${activePoint.delta}m`"
+                                        ></span>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <!-- Horizontal Scrollable Canvas Area -->
+                            <div class="w-full overflow-x-auto pb-2 scrollbar-thin">
+                                <div class="relative" style="min-width: {{ $svgWidth }}px;">
+                                    <svg
+                                        class="h-72 w-full overflow-visible"
+                                        fill="none"
+                                        viewBox="0 0 {{ $svgWidth }} 270"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <defs>
+                                            <linearGradient id="elevationGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+                                                <stop offset="0%" stop-color="#f6ba1a" stop-opacity="0.45"></stop>
+                                                <stop offset="80%" stop-color="#f6ba1a" stop-opacity="0.08"></stop>
+                                                <stop offset="100%" stop-color="#f6ba1a" stop-opacity="0.0"></stop>
+                                            </linearGradient>
+                                            <filter id="nodeShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                                <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.2"/>
+                                            </filter>
+                                        </defs>
+
+                                        <!-- Dynamic Horizontal Grid Lines -->
                                         @foreach($gridLines as $gl)
                                             <line
                                                 stroke="#d2dce4"
                                                 stroke-dasharray="4 4"
                                                 stroke-width="1"
-                                                x1="50"
-                                                x2="870"
+                                                x1="55"
+                                                x2="{{ $svgWidth - 45 }}"
                                                 y1="{{ $gl['y'] }}"
                                                 y2="{{ $gl['y'] }}"
                                             ></line>
-                                            <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="{{ $gl['y'] + 4 }}">{{ number_format($gl['alt']) }}m</text>
+                                            <text class="font-mono text-[11px]" fill="#526070" x="12" y="{{ $gl['y'] + 4 }}">{{ number_format($gl['alt']) }}m</text>
                                         @endforeach
 
-                                        <!-- Elevation Path Fill -->
+                                        <!-- Mountain Profile Fill Area -->
                                         <path
                                             d="{{ $fillD }}"
                                             fill="url(#elevationGrad)"
                                         ></path>
 
-                                        <!-- Elevation Path Stroke -->
+                                        <!-- Mountain Profile Stroke Curve -->
                                         <path
                                             d="{{ $strokeD }}"
-                                            stroke="#795900"
+                                            stroke="#d49806"
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
                                             stroke-width="3"
                                         ></path>
 
-                                        <!-- Dynamic Data Nodes -->
+                                        <!-- Vertical Guide Lines & Interactive Checkpoint Nodes -->
                                         @foreach($coords as $coord)
                                             @php
-                                                $isHighest = $coord['altitude'] === $maxAlt;
+                                                $isHighest = $coord['is_highest'];
+                                                $isAcclimatize = $coord['is_acclimatization'];
+                                                $groundY = 270 - 65 + 18;
                                             @endphp
-                                            <circle
-                                                cx="{{ $coord['x'] }}"
-                                                cy="{{ $coord['y'] }}"
-                                                fill="{{ $isHighest ? '#f6ba1a' : '#795900' }}"
-                                                r="{{ $isHighest ? 6 : 4.5 }}"
-                                                stroke="{{ $isHighest ? '#795900' : '#ffffff' }}"
-                                                stroke-width="1.5"
-                                            ></circle>
-                                            @if($isHighest)
+
+                                            <!-- Vertical drop line -->
+                                            <line 
+                                                x1="{{ $coord['x'] }}" 
+                                                x2="{{ $coord['x'] }}" 
+                                                y1="{{ $coord['y'] }}" 
+                                                y2="{{ $groundY }}" 
+                                                stroke="{{ $isHighest ? '#d49806' : '#d2dce4' }}" 
+                                                stroke-width="{{ $isHighest ? '1.5' : '1' }}"
+                                                stroke-dasharray="{{ $isHighest ? 'none' : '3 3' }}"
+                                                opacity="{{ $isHighest ? '0.7' : '0.45' }}"
+                                            />
+
+                                            <!-- Node Marker Group with hover events -->
+                                            <g 
+                                                class="cursor-pointer transition-transform duration-200"
+                                                @mouseenter="setPoint({{ Js::from($coord) }}, $event)"
+                                                @mouseleave="clearPoint()"
+                                                @click="setPoint({{ Js::from($coord) }}, $event)"
+                                            >
+                                                @if($isHighest)
+                                                    <!-- Outer pulsing beacon for Highest Point -->
+                                                    <circle
+                                                        cx="{{ $coord['x'] }}"
+                                                        cy="{{ $coord['y'] }}"
+                                                        fill="#f6ba1a"
+                                                        fill-opacity="0.25"
+                                                        r="12"
+                                                        class="animate-ping"
+                                                    ></circle>
+                                                    <circle
+                                                        cx="{{ $coord['x'] }}"
+                                                        cy="{{ $coord['y'] }}"
+                                                        fill="#f6ba1a"
+                                                        r="7"
+                                                        stroke="#5c4300"
+                                                        stroke-width="2.5"
+                                                        filter="url(#nodeShadow)"
+                                                    ></circle>
+
+                                                    <!-- Peak Callout Badge -->
+                                                    <rect
+                                                        x="{{ $coord['x'] - 52 }}"
+                                                        y="{{ max(12, $coord['y'] - 32) }}"
+                                                        width="104"
+                                                        height="20"
+                                                        rx="10"
+                                                        fill="#0f1821"
+                                                        stroke="#f6ba1a"
+                                                        stroke-width="1.5"
+                                                    />
+                                                    <text
+                                                        class="text-[10px] font-extrabold uppercase font-mono tracking-wider"
+                                                        fill="#f6ba1a"
+                                                        text-anchor="middle"
+                                                        x="{{ $coord['x'] }}"
+                                                        y="{{ max(26, $coord['y'] - 18) }}"
+                                                    >
+                                                        ★ {{ $coord['altitude_label'] }}
+                                                    </text>
+                                                @elseif($isAcclimatize)
+                                                    <!-- Acclimatization rest node -->
+                                                    <circle
+                                                        cx="{{ $coord['x'] }}"
+                                                        cy="{{ $coord['y'] }}"
+                                                        fill="#25d366"
+                                                        r="5.5"
+                                                        stroke="#ffffff"
+                                                        stroke-width="2"
+                                                        filter="url(#nodeShadow)"
+                                                    ></circle>
+                                                @else
+                                                    <!-- Standard Stage Node -->
+                                                    <circle
+                                                        cx="{{ $coord['x'] }}"
+                                                        cy="{{ $coord['y'] }}"
+                                                        fill="#526070"
+                                                        r="4.5"
+                                                        stroke="#ffffff"
+                                                        stroke-width="1.8"
+                                                        filter="url(#nodeShadow)"
+                                                    ></circle>
+                                                @endif
+
+                                                <!-- Invisible larger hit area for easy tapping / hover -->
+                                                <circle
+                                                    cx="{{ $coord['x'] }}"
+                                                    cy="{{ $coord['y'] }}"
+                                                    fill="transparent"
+                                                    r="18"
+                                                ></circle>
+
+                                                <!-- Milestone Labels below baseline -->
                                                 <text
-                                                    class="text-[10px] font-bold"
-                                                    fill="#795900"
+                                                    class="text-[10px] font-bold uppercase tracking-wider"
+                                                    fill="{{ $isHighest ? '#d49806' : ($isAcclimatize ? '#25d366' : '#795900') }}"
                                                     text-anchor="middle"
                                                     x="{{ $coord['x'] }}"
-                                                    y="{{ max(14, $coord['y'] - 10) }}"
+                                                    y="238"
                                                 >
-                                                    Highest Point
+                                                    {{ $coord['day'] }}
                                                 </text>
-                                            @endif
-                                            <text
-                                                class="text-[11px] font-bold"
-                                                fill="#121d26"
-                                                text-anchor="middle"
-                                                x="{{ $coord['x'] }}"
-                                                y="235"
-                                            >
-                                                {{ $coord['short_title'] }}
-                                            </text>
-                                            <text
-                                                class="text-[10px]"
-                                                fill="#4d6072"
-                                                text-anchor="middle"
-                                                x="{{ $coord['x'] }}"
-                                                y="248"
-                                            >
-                                                {{ $coord['altitude_label'] }}
-                                            </text>
+
+                                                <text
+                                                    class="text-[10px] font-bold font-mono"
+                                                    fill="#121d26"
+                                                    text-anchor="middle"
+                                                    x="{{ $coord['x'] }}"
+                                                    y="251"
+                                                >
+                                                    {{ $coord['altitude_label'] }}
+                                                </text>
+
+                                                <text
+                                                    class="text-[9px] font-medium"
+                                                    fill="#526070"
+                                                    text-anchor="middle"
+                                                    x="{{ $coord['x'] }}"
+                                                    y="263"
+                                                >
+                                                    {{ $coord['short_title'] }}
+                                                </text>
+                                            </g>
                                         @endforeach
-                                    @else
-                                        <!-- Grid Horizontal Guide Lines -->
-                                        <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870" y1="30" y2="30"></line>
-                                        <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="34">5,500m</text>
-                                        <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870" y1="80" y2="80"></line>
-                                        <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="84">4,800m</text>
-                                        <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870" y1="135" y2="135"></line>
-                                        <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="139">4,000m</text>
-                                        <line stroke="#d2dce4" stroke-dasharray="4 4" stroke-width="1" x1="50" x2="870" y1="190" y2="190"></line>
-                                        <text class="font-mono text-[11px]" fill="#4d6072" x="15" y="194">3,000m</text>
-                                        <path d="M 60 200 L 130 220 L 210 170 L 290 145 L 360 120 L 440 85 L 500 48 L 570 38 L 640 40 L 720 30 L 790 120 L 860 200 L 860 250 L 60 250 Z" fill="url(#elevationGrad)"></path>
-                                        <path d="M 60 200 L 130 220 L 210 170 L 290 145 L 360 120 L 440 85 L 500 48 L 570 38 L 640 40 L 720 30 L 790 120 L 860 200" stroke="#795900" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
-                                        <circle cx="60" cy="200" fill="#795900" r="4"></circle>
-                                        <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="60" y="240">Start</text>
-                                        <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="60" y="252">2,846m</text>
-                                        <circle cx="720" cy="30" fill="#f6ba1a" r="6" stroke="#795900" stroke-width="2"></circle>
-                                        <text class="text-[11px] font-bold" fill="#795900" text-anchor="middle" x="720" y="16">Pass High</text>
-                                        <text class="text-[11px] font-bold" fill="#121d26" text-anchor="middle" x="720" y="240">Kala Patthar</text>
-                                        <text class="text-[10px]" fill="#4d6072" text-anchor="middle" x="720" y="252">5,545m</text>
-                                    @endif
-                                </svg>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                        <div class="mt-space-md p-space-sm bg-surface-container-lowest gap-space-xs text-body-sm text-tertiary flex flex-wrap items-center justify-between rounded">
-                            <span class="flex items-center gap-1">
-                                <x-lucide-briefcase-medical class="text-primary size-[18px]" />
-                                Daily Morning &amp; Evening SpO2 / Pulse Saturation Logs required for all team members.
-                            </span>
-                            <span class="text-on-surface font-mono font-semibold">Max Ascend Gradient: +600m / day (safe acclimatization)</span>
+
+                        <!-- Dynamic Alpine Telemetry Strip -->
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-1">
+                            <div class="bg-surface-container-low p-4 rounded-xl border border-outline/10 shadow-sm flex items-start gap-3">
+                                <div class="p-2.5 bg-primary/15 text-primary rounded-xl shrink-0">
+                                    <x-lucide-mountain class="size-5" />
+                                </div>
+                                <div class="min-w-0">
+                                    <span class="text-[11px] font-bold text-tertiary uppercase tracking-wider block">Peak Elevation</span>
+                                    <div class="text-base sm:text-lg font-black text-on-surface truncate">
+                                        {{ number_format($maxAlt) }}m
+                                        <span class="text-xs text-tertiary font-normal">/ {{ number_format(round($maxAlt * 3.28084)) }}ft</span>
+                                    </div>
+                                    <span class="text-[11px] text-tertiary truncate block">{{ $highestPoint['title'] ?? 'Summit Point' }}</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-surface-container-low p-4 rounded-xl border border-outline/10 shadow-sm flex items-start gap-3">
+                                <div class="p-2.5 bg-primary/15 text-primary rounded-xl shrink-0">
+                                    <x-lucide-trending-up class="size-5" />
+                                </div>
+                                <div class="min-w-0">
+                                    <span class="text-[11px] font-bold text-tertiary uppercase tracking-wider block">Max Daily Ascent</span>
+                                    <div class="text-base sm:text-lg font-black text-on-surface truncate">
+                                        +{{ number_format($maxAscent) }}m
+                                        <span class="text-xs text-tertiary font-normal">/ day</span>
+                                    </div>
+                                    <span class="text-[11px] text-tertiary block">
+                                        @if($maxAscent <= 600)
+                                            Safe acclimatization gradient
+                                        @else
+                                            Acclimatization monitored
+                                        @endif
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="bg-surface-container-low p-4 rounded-xl border border-outline/10 shadow-sm flex items-start gap-3">
+                                <div class="p-2.5 bg-primary/15 text-primary rounded-xl shrink-0">
+                                    <x-lucide-activity class="size-5" />
+                                </div>
+                                <div class="min-w-0">
+                                    <span class="text-[11px] font-bold text-tertiary uppercase tracking-wider block">Total Gain</span>
+                                    <div class="text-base sm:text-lg font-black text-on-surface truncate">
+                                        +{{ number_format($totalGain) }}m
+                                    </div>
+                                    <span class="text-[11px] text-tertiary block">Start: {{ number_format($startAlt) }}m</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-surface-container-low p-4 rounded-xl border border-outline/10 shadow-sm flex items-start gap-3">
+                                <div class="p-2.5 bg-primary/15 text-primary rounded-xl shrink-0">
+                                    <x-lucide-shield-check class="size-5" />
+                                </div>
+                                <div class="min-w-0">
+                                    <span class="text-[11px] font-bold text-tertiary uppercase tracking-wider block">Acclimatization</span>
+                                    <div class="text-base sm:text-lg font-black text-on-surface truncate">
+                                        {{ $acclimatizationCount > 0 ? $acclimatizationCount . ' Buffer ' . Str::plural('Stage', $acclimatizationCount) : 'Paced Ascent' }}
+                                    </div>
+                                    <span class="text-[11px] text-tertiary block">Twice-daily SpO2 logs</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <!-- Informative overview when detailed day-by-day points are pending -->
+                        <div class="bg-surface-container-low p-8 rounded-2xl border border-outline/10 text-center max-w-xl mx-auto space-y-4">
+                            <div class="bg-primary/10 text-primary w-14 h-14 rounded-2xl flex items-center justify-center mx-auto">
+                                <x-lucide-mountain class="size-7" />
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-on-surface uppercase">Maximum Altitude: {{ $trek->maximum_altitude ?: 'Alpine Route' }}</h3>
+                                <p class="text-sm text-tertiary mt-1 leading-relaxed">
+                                    The full topological cross-section for this itinerary will be mapped once specific camp waypoint telemetry is updated by our operations desk.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-center gap-4 text-xs font-semibold text-tertiary pt-2 border-t border-outline/10">
+                                <span>Duration: <strong class="text-on-surface">{{ $trek->duration ?: 'Custom' }}</strong></span>
+                                <span>&bull;</span>
+                                <span>Grade: <strong class="text-on-surface">{{ ucfirst($trek->difficulty_level ?: 'Moderate') }}</strong></span>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </section>
+
             <!-- Detailed Day-by-Day Timeline / Accordion -->
             <section class="bg-surface-container-low py-space-3xl px-gutter-mobile lg:px-gutter-desktop w-full">
                 <div class="max-w-max-content-width mx-auto">
                     <div class="mb-space-xl max-w-2xl">
                         <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-widest uppercase">Trek Milestones</span>
                         <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">
-                            The 16-Day High Circuit Itinerary
+                            The {{ $trek->duration ?: ($trek->features->count() ? $trek->features->count() . '-Day' : 'Trek') }} Itinerary
                         </h2>
                         <p class="font-body-md text-body-md text-tertiary pt-space-2xs">
-                            Built with an acclimatization buffer day at Namche Bazaar and contingency weather hours over
-                            the Cho La Glacier.
+                            Comprehensive daily stages, trail elevations, trekking hours, and lodging stops across {{ $trek->title }}.
                         </p>
                     </div>
                     <div class="space-y-space-md">
