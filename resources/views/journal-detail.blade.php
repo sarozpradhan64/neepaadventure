@@ -38,7 +38,7 @@
 
                     <!-- Category Pill -->
                     <div class="pt-space-xs pb-space-sm">
-                        <span class="gap-space-2xs px-3 py-1 bg-primary/20 text-primary font-badge-caption text-xs inline-flex items-center rounded-lg tracking-widest uppercase border border-primary/30 font-bold backdrop-blur-sm">
+                        <span class="gap-space-2xs px-3 py-1 bg-primary-container/20 text-primary-container font-badge-caption text-xs inline-flex items-center rounded-lg tracking-widest uppercase border border-primary-container/30 font-bold backdrop-blur-sm">
                             <x-lucide-mountain class="size-3.5" />
                             {{ $blog->category?->name ?? 'Field Guide' }}
                         </span>
