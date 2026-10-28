@@ -51,15 +51,6 @@
                         $searchAction = route('search');
                     @endphp
 
-                    <!-- Eyebrow Badge -->
-                    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 sm:py-2 rounded-full bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-summit-white tracking-wider uppercase mb-5 sm:mb-6 shadow-lg transition-all">
-                        <span class="flex h-2 w-2 relative">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-80"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
-                        </span>
-                        <span>Certified Himalayan Mountain Expedition Leaders</span>
-                    </div>
-
                     <!-- Main Headline -->
                     <h1 class="font-display-xl text-3xl sm:text-5xl md:text-6xl font-extrabold text-summit-white mb-4 sm:mb-5 max-w-4xl leading-[1.12] sm:leading-[1.08] tracking-tight drop-shadow-xl px-1">
                         {!! $heroTitle !!}
@@ -196,84 +187,6 @@
             @if(isset($homepageSections) && $homepageSections->isNotEmpty())
                 @foreach($homepageSections as $section)
                     @switch($section->section_type)
-                        {{-- SIGNATURE TREKS --}}
-                        @case('signature_treks')
-                            <section class="py-space-3xl bg-surface w-full">
-                                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
-                                    <!-- Section Header with Categorical Filter Tabs -->
-                                    <div class="mb-space-2xl gap-space-lg flex flex-col justify-between md:flex-row md:items-end">
-                                        <div>
-                                            <div
-                                                class="font-badge-caption text-badge-caption text-primary mb-space-2xs font-bold tracking-[0.2em] uppercase">
-                                                {{ $section->subtitle ?: 'Curated Himalayan Routes' }}
-                                            </div>
-                                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                                                {{ $section->title ?: 'Signature Treks' }}
-                                            </h2>
-                                            <p class="font-body-md text-body-md text-tertiary mt-space-2xs max-w-xl">
-                                                From standard high passes to technical destinations, all journeys feature experienced
-                                                local leaders, private logistics, and satellite rescue systems.
-                                            </p>
-                                        </div>
-                                        <!-- Filter Pill Tabs -->
-                                        <div class="gap-1 sm:gap-space-2xs bg-surface-container-high flex flex-nowrap overflow-x-auto no-scrollbar sm:flex-wrap self-start rounded-xl p-1 sm:p-1.5 md:self-auto max-w-full"
-                                            id="trekTabs">
-                                            <button
-                                                class="px-3 sm:px-space-md py-1.5 sm:py-space-2xs font-label-md text-xs sm:text-label-md bg-primary-container text-on-primary-fixed rounded-lg font-bold shadow-sm whitespace-nowrap cursor-pointer">
-                                                All Treks
-                                            </button>
-                                            <button
-                                                class="px-3 sm:px-space-md py-1.5 sm:py-space-2xs font-label-md text-xs sm:text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer">
-                                                Classic High Passes
-                                            </button>
-                                            <button
-                                                class="px-3 sm:px-space-md py-1.5 sm:py-space-2xs font-label-md text-xs sm:text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer">
-                                                Remote &amp; Forbidden
-                                            </button>
-                                            <button
-                                                class="px-3 sm:px-space-md py-1.5 sm:py-space-2xs font-label-md text-xs sm:text-label-md text-tertiary hover:text-on-surface hover:bg-surface-container-lowest rounded-lg font-medium transition-all whitespace-nowrap cursor-pointer">
-                                                6,000m Destinations
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- 4-Card Trek Grid -->
-                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-                                        @foreach($treks->take(4) as $trek)
-                                            @php
-                                                $badgeClass = $loop->index % 4 === 0 ? 'bg-primary-container text-on-primary-fixed' : 
-                                                              ($loop->index % 4 === 1 ? 'bg-ridge-deep/80 text-summit-white' : 
-                                                              ($loop->index % 4 === 2 ? 'bg-tertiary text-summit-white' : 
-                                                              'bg-primary text-summit-white'));
-                                                
-                                                $inclusionsList = [];
-                                                if (!empty($trek->inclusions)) {
-                                                    if (preg_match_all('/<li[^>]*>(.*?)<\/li>/is', $trek->inclusions, $matches)) {
-                                                        $rawItems = $matches[1];
-                                                    } else {
-                                                        $rawItems = explode("\n", $trek->inclusions);
-                                                    }
-                                                    $inclusionsList = array_slice(array_values(array_filter(array_map(fn($item) => trim(html_entity_decode(strip_tags($item))), $rawItems))), 0, 2);
-                                                }
-                                            @endphp
-                                            <x-trek-card 
-                                                title="{{ $trek->title }}"
-                                                image="{{ $trek->featured_image ? asset('storage/' . $trek->featured_image) : 'https://placehold.co/600x400?text=Neepa+Adventure' }}"
-                                                badge="{{ $trek->difficulty_level ?? 'Featured Trek' }}" 
-                                                badgeClass="{{ $badgeClass }}"
-                                                altitude="{{ $trek->maximum_altitude ?? 'TBA' }}" 
-                                                duration="{{ $trek->duration ?? 'TBA' }}" 
-                                                rating="5.0" 
-                                                reviews="100+"
-                                                description="{{ Str::limit($trek->short_description ?? strip_tags($trek->description), 120) }}"
-                                                :inclusions="$inclusionsList" 
-                                                price="${{ number_format((float)($trek->price_from ?? 0)) }}"
-                                                href="{{ $trek->url }}" 
-                                            />
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </section>
-                            @break
 
                         {{-- CURATED / CUSTOM SERVICES SECTION --}}
                         @case('custom_services')
