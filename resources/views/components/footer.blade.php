@@ -1,4 +1,4 @@
-<footer class="bg-surface-container-lowest w-full border-t border-outline/10 text-on-surface">
+<footer class="bg-ridge-deep w-full text-summit-white">
     <!-- Main Navigation & Content Columns -->
     <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop py-space-3xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-y-10 gap-x-8 lg:gap-x-12">
@@ -17,7 +17,7 @@
                     @endif
                 </a>
 
-                <p class="font-body-sm text-xs text-tertiary max-w-sm leading-relaxed">
+                <p class="font-body-sm text-xs text-surface-container/60 max-w-sm leading-relaxed">
                     {{ $websiteSettings['slogan'] ?? 'Bespoke Himalayan expeditions, classic high passes, and authentic guide-led journeys across Nepal.' }}
                 </p>
 
@@ -25,20 +25,20 @@
                 <div class="space-y-2.5 text-xs text-tertiary pt-1">
                     @if ($contact?->registration_number)
                         <div class="flex items-center gap-2">
-                            <x-lucide-file-badge class="size-4 text-primary shrink-0" />
-                            <span class="font-medium">Govt. Reg. No: <strong class="text-on-surface">{{ $contact->registration_number }}</strong></span>
+                            <x-lucide-file-badge class="size-4 text-primary-container shrink-0" />
+                            <span class="font-medium">Govt. Reg. No: <strong class="text-summit-white">{{ $contact->registration_number }}</strong></span>
                         </div>
                     @endif
 
                     <div class="flex items-start gap-2">
-                        <x-lucide-map-pin class="size-4 text-primary shrink-0 mt-0.5" />
+                        <x-lucide-map-pin class="size-4 text-primary-container shrink-0 mt-0.5" />
                         <span>{{ $contact?->address ?? 'Kathmandu, Nepal' }}</span>
                     </div>
 
                     @if ($contact?->phone)
                         <div class="flex items-center gap-2">
-                            <x-lucide-phone class="size-4 text-primary shrink-0" />
-                            <a class="hover:text-primary transition-colors font-medium text-on-surface"
+                            <x-lucide-phone class="size-4 text-primary-container shrink-0" />
+                            <a class="hover:text-primary-container transition-colors font-medium text-summit-white"
                                 href="tel:{{ preg_replace('/[^0-9+]/', '', $contact->phone) }}">
                                 {{ $contact->phone }}
                             </a>
@@ -47,8 +47,8 @@
 
                     @if ($contact?->email)
                         <div class="flex items-center gap-2">
-                            <x-lucide-mail class="size-4 text-primary shrink-0" />
-                            <a class="hover:text-primary transition-colors text-on-surface font-medium"
+                            <x-lucide-mail class="size-4 text-primary-container shrink-0" />
+                            <a class="hover:text-primary-container transition-colors text-summit-white font-medium"
                                 href="mailto:{{ $contact->email }}">
                                 {{ $contact->email }}
                             </a>
@@ -57,7 +57,7 @@
 
                     @if ($contact?->working_hours)
                         <div class="flex items-center gap-2">
-                            <x-lucide-clock class="size-4 text-primary shrink-0" />
+                            <x-lucide-clock class="size-4 text-primary-container shrink-0" />
                             <span>{{ $contact->working_hours }}</span>
                         </div>
                     @endif
@@ -73,7 +73,7 @@
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     aria-label="{{ $social->platform }}"
-                                    class="size-9 rounded-xl bg-surface-container-low hover:bg-primary-container text-tertiary hover:text-on-primary-fixed border border-outline/10 hover:border-primary/30 flex items-center justify-center transition-all shadow-xs hover:scale-105"
+                                    class="size-9 rounded-xl bg-primary/20 hover:bg-primary-container text-surface-container hover:text-on-primary-fixed border border-summit-white/10 hover:border-primary-container/30 flex items-center justify-center transition-all shadow-xs hover:scale-105"
                                 >
                                     @if (strtolower($social->platform) === 'facebook')
                                         <x-lucide-facebook class="size-4" />
@@ -101,47 +101,47 @@
 
             <!-- Col 2: Himalayan Expeditions (3 cols) -->
             <div class="lg:col-span-3 space-y-space-sm">
-                <div class="font-label-md text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
-                    <span class="size-1.5 rounded-full bg-primary"></span>
+                <div class="font-label-md text-xs font-bold text-summit-white uppercase tracking-wider flex items-center gap-1.5">
+                    <span class="size-1.5 rounded-full bg-primary-container"></span>
                     Himalayan Expeditions
                 </div>
-                <ul class="space-y-2 font-body-sm text-xs text-tertiary">
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('treks') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Nepal Trekking Catalog</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('schedules') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Guaranteed Departures</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('services.category', 'trekking') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Classic High Passes</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('services.category', 'tours-experiences') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Tours &amp; Experiences</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('services.category', 'adventures') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Peak Climbing &amp; Alpine</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('plan-your-trek') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Plan Custom Itinerary</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('search') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Search Himalayan Routes</a></li>
+                <ul class="space-y-2 font-body-sm text-xs text-surface-container/60">
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('treks') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Nepal Trekking Catalog</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('schedules') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Guaranteed Departures</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('services.category', 'trekking') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Classic High Passes</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('services.category', 'tours-experiences') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Tours &amp; Experiences</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('services.category', 'adventures') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Peak Climbing &amp; Alpine</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('plan-your-trek') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Plan Custom Itinerary</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('search') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Search Himalayan Routes</a></li>
                 </ul>
             </div>
 
             <!-- Col 3: Company & Stories (2 cols) -->
             <div class="lg:col-span-2 space-y-space-sm">
-                <div class="font-label-md text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
-                    <span class="size-1.5 rounded-full bg-primary"></span>
+                <div class="font-label-md text-xs font-bold text-summit-white uppercase tracking-wider flex items-center gap-1.5">
+                    <span class="size-1.5 rounded-full bg-primary-container"></span>
                     Company &amp; Community
                 </div>
-                <ul class="space-y-2 font-body-sm text-xs text-tertiary">
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('about') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Our Story</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('team') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Mountain Guides</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('reviews') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Client Reviews</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('write-review') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Write a Review</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('blog') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Travel Guides &amp; Blog</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('projects') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Trek Case Studies</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('gallery') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Photo Gallery</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('careers.index') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Careers</a></li>
-                    <li><a class="hover:text-primary transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('contact') }}"><x-lucide-chevron-right class="size-3 text-outline" /> Contact Us</a></li>
+                <ul class="space-y-2 font-body-sm text-xs text-surface-container/60">
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('about') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Our Story</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('team') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Mountain Guides</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('reviews') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Client Reviews</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('write-review') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Write a Review</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('blog') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Travel Guides &amp; Blog</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('projects') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Trek Case Studies</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('gallery') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Photo Gallery</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('careers.index') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Careers</a></li>
+                    <li><a class="hover:text-primary-container transition-colors flex items-center gap-1.5 py-0.5" href="{{ route('contact') }}"><x-lucide-chevron-right class="size-3 text-primary-container/40" /> Contact Us</a></li>
                 </ul>
             </div>
 
             <!-- Col 4: Newsletter & Direct Messaging (3 cols) -->
             <div class="lg:col-span-3 space-y-space-sm">
-                <div class="font-label-md text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
-                    <span class="size-1.5 rounded-full bg-primary"></span>
+                <div class="font-label-md text-xs font-bold text-summit-white uppercase tracking-wider flex items-center gap-1.5">
+                    <span class="size-1.5 rounded-full bg-primary-container"></span>
                     Kathmandu Briefing
                 </div>
-                <p class="font-body-sm text-xs text-tertiary leading-relaxed">
+                <p class="font-body-sm text-xs text-surface-container/60 leading-relaxed">
                     Subscribe for seasonal pass advisories, permit regulations, and early-bird slots.
                 </p>
 
@@ -154,7 +154,7 @@
                             name="email" 
                             placeholder="Enter your email address" 
                             required
-                            class="w-full px-3.5 py-2.5 bg-surface-container-low border border-outline/15 rounded-xl text-xs text-on-surface placeholder:text-tertiary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all shadow-xs"
+                            class="w-full px-3.5 py-2.5 bg-primary/20 border border-summit-white/15 rounded-xl text-xs text-summit-white placeholder:text-surface-container/40 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent transition-all shadow-xs"
                         />
                     </div>
                     <button 
@@ -205,8 +205,8 @@
                     {{-- 1. OUR AFFILIATIONS --}}
                     @if(isset($affiliations) && $affiliations->isNotEmpty())
                         <div class="space-y-space-xs">
-                            <div class="font-label-md text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
-                                <x-lucide-award class="size-3.5 text-primary" />
+                            <div class="font-label-md text-xs font-bold text-summit-white uppercase tracking-wider flex items-center gap-1.5">
+                                <x-lucide-award class="size-3.5 text-primary-container" />
                                 Our Affiliations
                             </div>
                             <div class="flex flex-wrap items-center gap-4 pt-1">
@@ -239,8 +239,8 @@
                     {{-- 2. ACCEPTED PAYMENT METHODS --}}
                     @if(isset($paymentMethods) && $paymentMethods->isNotEmpty())
                         <div class="space-y-space-xs lg:text-right">
-                            <div class="font-label-md text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5 lg:justify-end">
-                                <x-lucide-lock class="size-3.5 text-primary" />
+                            <div class="font-label-md text-xs font-bold text-summit-white uppercase tracking-wider flex items-center gap-1.5 lg:justify-end">
+                                <x-lucide-lock class="size-3.5 text-primary-container" />
                                 We Accept
                             </div>
                             <div class="flex flex-wrap items-center gap-3 pt-1 lg:justify-end">
@@ -343,21 +343,21 @@
         @endif
 
         <!-- 4. Bottom Legal / Copyright Bar -->
-        <div class="pt-space-xl mt-space-xl border-t border-outline/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-tertiary">
+        <div class="pt-space-xl mt-space-xl border-t border-summit-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-surface-container/50">
             <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-center md:text-left">
                 <span>&copy; {{ date('Y') }} {{ $contact?->company_name ?? config('app.name') }}. All rights reserved.</span>
             </div>
 
             <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-center md:text-right">
-                <a class="hover:text-primary transition-colors font-medium" href="{{ route('legal.index') }}">Legal &amp; Policies</a>
+                <a class="hover:text-primary-container transition-colors font-medium" href="{{ route('legal.index') }}">Legal &amp; Policies</a>
                 @if(isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
                     @foreach($navLegalDocuments->take(3) as $legalDoc)
-                        <a class="hover:text-primary transition-colors text-tertiary/80" href="{{ route('legal-document.show', $legalDoc->slug) }}" target="_blank">
+                        <a class="hover:text-primary-container transition-colors text-surface-container/40" href="{{ route('legal-document.show', $legalDoc->slug) }}" target="_blank">
                             {{ $legalDoc->title }}
                         </a>
                     @endforeach
                 @endif
-                <a class="hover:text-primary transition-colors text-tertiary/80" href="{{ route('contact') }}">Support</a>
+                <a class="hover:text-primary-container transition-colors text-surface-container/40" href="{{ route('contact') }}">Support</a>
             </div>
         </div>
     </div>

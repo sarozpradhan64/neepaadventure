@@ -84,18 +84,17 @@
                     <div class="gap-space-md grid grid-cols-1 sm:grid-cols-2">
                         <div class="gap-space-2xs flex flex-col">
                             <label class="font-label-sm text-label-sm text-on-surface font-bold uppercase">Target Mountain Region</label>
-                            <div class="relative flex items-center">
-                                <x-lucide-mountain class="left-space-sm text-tertiary absolute size-[18px]" />
-                                <select
+                            <div class="relative flex items-center has-leading-icon">
+                                <x-lucide-mountain class="left-space-sm text-tertiary pointer-events-none absolute size-[18px] z-10" />
+                                <x-ui.select
                                     name="service_id"
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full cursor-pointer appearance-none rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    placeholder="Select a Region / Service"
+                                    class="w-full"
                                 >
-                                    <option value="">Select a Region / Service</option>
                                     @foreach ($services as $service)
-                                        <option value="{{ $service->id }}">{{ $service->title }}</option>
+                                        <x-ui.select-item value="{{ $service->id }}">{{ $service->title }}</x-ui.select-item>
                                     @endforeach
-                                </select>
-                                <x-lucide-chevron-down class="right-space-sm text-tertiary pointer-events-none absolute size-[18px]" />
+                                </x-ui.select>
                             </div>
                         </div>
                         <div class="gap-space-2xs flex flex-col">
@@ -115,49 +114,51 @@
                     <div class="gap-space-md grid grid-cols-1 sm:grid-cols-2">
                         <div class="gap-space-2xs flex flex-col">
                             <label class="font-label-sm text-label-sm text-on-surface font-bold uppercase">Roster &amp; Group Size</label>
-                            <div class="relative flex items-center">
-                                <x-lucide-users class="left-space-sm text-tertiary absolute size-[18px]" />
-                                <select
+                            <div class="relative flex items-center has-leading-icon">
+                                <x-lucide-users class="left-space-sm text-tertiary pointer-events-none absolute size-[18px] z-10" />
+                                <x-ui.select
                                     name="group_size"
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full cursor-pointer appearance-none rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    value="Solo Alpine Trekker (1:1 Guide)"
+                                    :search="false"
+                                    class="w-full"
                                 >
-                                    <option value="Solo Alpine Trekker (1:1 Guide)">
+                                    <x-ui.select-item value="Solo Alpine Trekker (1:1 Guide)">
                                         Solo Alpine Trekker (1:1 Guide)
-                                    </option>
-                                    <option value="Couple / Pair (2 Pax)">Couple / Pair (2 Pax)</option>
-                                    <option value="Private Small Party (3 – 5 Pax)">
+                                    </x-ui.select-item>
+                                    <x-ui.select-item value="Couple / Pair (2 Pax)">Couple / Pair (2 Pax)</x-ui.select-item>
+                                    <x-ui.select-item value="Private Small Party (3 – 5 Pax)">
                                         Private Small Party (3 – 5 Pax)
-                                    </option>
-                                    <option value="Trek Team (6 – 10 Pax)">Trek Team (6 – 10 Pax)</option>
-                                    <option value="Alpine Club / University Group (10+ Pax)">
+                                    </x-ui.select-item>
+                                    <x-ui.select-item value="Trek Team (6 – 10 Pax)">Trek Team (6 – 10 Pax)</x-ui.select-item>
+                                    <x-ui.select-item value="Alpine Club / University Group (10+ Pax)">
                                         Alpine Club / University Group (10+ Pax)
-                                    </option>
-                                </select>
-                                <x-lucide-chevron-down class="right-space-sm text-tertiary pointer-events-none absolute size-[18px]" />
+                                    </x-ui.select-item>
+                                </x-ui.select>
                             </div>
                         </div>
                         <div class="gap-space-2xs flex flex-col">
                             <label class="font-label-sm text-label-sm text-on-surface font-bold uppercase">High-Altitude Experience</label>
-                            <div class="relative flex items-center">
-                                <x-lucide-footprints class="left-space-sm text-tertiary absolute size-[18px]" />
-                                <select
+                            <div class="relative flex items-center has-leading-icon">
+                                <x-lucide-footprints class="left-space-sm text-tertiary pointer-events-none absolute size-[18px] z-10" />
+                                <x-ui.select
                                     name="experience"
-                                    class="pr-space-sm py-space-sm bg-surface-container-lowest text-on-surface font-body-md text-body-md border border-outline/15 focus:ring-primary-container w-full cursor-pointer appearance-none rounded-xl pl-10 shadow-sm transition-all focus:ring-2 focus:outline-none"
+                                    value="First time in the Himalaya (Beginner to Altitude)"
+                                    :search="false"
+                                    class="w-full"
                                 >
-                                    <option value="First time in the Himalaya (Beginner to Altitude)">
+                                    <x-ui.select-item value="First time in the Himalaya (Beginner to Altitude)">
                                         First time in the Himalaya
-                                    </option>
-                                    <option value="Experienced up to 4,000m - 5,000m (Kilimanjaro/Alps)">
+                                    </x-ui.select-item>
+                                    <x-ui.select-item value="Experienced up to 4,000m - 5,000m (Kilimanjaro/Alps)">
                                         Experienced up to 4,000m - 5,000m
-                                    </option>
-                                    <option value="High Pass Ascent completed (6,000m / Mera / Island)">
+                                    </x-ui.select-item>
+                                    <x-ui.select-item value="High Pass Ascent completed (6,000m / Mera / Island)">
                                         High Pass Ascent completed
-                                    </option>
-                                    <option value="Technical Multi-Pitch / 7,000m+ Veteran">
+                                    </x-ui.select-item>
+                                    <x-ui.select-item value="Technical Multi-Pitch / 7,000m+ Veteran">
                                         Technical Multi-Pitch / 7,000m+ Veteran
-                                    </option>
-                                </select>
-                                <x-lucide-chevron-down class="right-space-sm text-tertiary pointer-events-none absolute size-[18px]" />
+                                    </x-ui.select-item>
+                                </x-ui.select>
                             </div>
                         </div>
                     </div>
@@ -225,7 +226,7 @@
                             type="submit"
                         >
                             <x-lucide-send class="size-4" id="submit-icon" />
-                            <span id="submit-text">Submit Trek Brief</span>
+                            <span id="submit-text">Submit Inquiry</span>
                         </button>
                     </div>
                 </form>
@@ -291,7 +292,7 @@
                         // Reset loading state
                         submitBtn.disabled = false;
                         submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-                        submitText.textContent = 'Submit Trek Brief';
+                        submitText.textContent = 'Submit Inquiry';
                     });
             });
         });

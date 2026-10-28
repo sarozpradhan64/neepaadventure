@@ -23,3 +23,6 @@ Maintain strict border-radius hierarchy across all frontend templates:
 - **`rounded-lg` or `rounded-md` (8px / 6px)**: Badges, difficulty/altitude chips, packing list items, social buttons, and affiliation/payment logos.
 - **`rounded-full` (9999px)**: Avatars, difficulty/season filter toggle pills, live telemetry ping dots, and status indicators.
 - **`<main>` Top Padding**: Pages under the fixed `<x-header />` must strictly use `pt-28` (never `pt-48` or `pt-32`).
+
+## 4. UI Elements & Badge Restrictions
+- **No Eyebrow Badges**: NEVER add, generate, or use "eyebrow badges" (small pill tags, category chips, or uppercase mini-badges positioned above section titles or headings such as `WHO WE ARE`, `FEATURED EXPEDITIONS`, `OUR SERVICES`, etc.). Headings must lead directly without an eyebrow badge above them.

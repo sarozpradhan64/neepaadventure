@@ -1,12 +1,12 @@
 <header x-data="{ mobileMenuOpen: false }"
-    class="bg-surface-container-lowest/95 fixed top-0 z-50 w-full shadow-[0_1px_8px_rgba(0,0,0,0.04)] backdrop-blur-xl">
+    class="bg-white/98 border-b border-glacier-border fixed top-0 z-50 w-full shadow-[0_2px_12px_rgba(11,79,138,0.08)] backdrop-blur-xl">
     {{-- Top bar --}}
-    <div class="bg-surface-container-low px-gutter-mobile lg:px-gutter-desktop border-b border-outline/5">
+    <div class="bg-ridge-deep px-gutter-mobile lg:px-gutter-desktop border-b border-on-primary/10">
         <div class="max-w-max-content-width text-body-sm mx-auto flex h-9 items-center justify-between overflow-x-auto no-scrollbar">
             <div class="gap-2 sm:gap-space-md flex items-center shrink-0">
                 @if ($contact?->registration_number)
-                    <span class="gap-1 sm:gap-space-2xs text-on-surface-variant font-label-sm text-[11px] sm:text-label-sm flex items-center whitespace-nowrap">
-                        <x-lucide-file-text class="text-primary size-3.5 sm:size-[16px] shrink-0" />
+                    <span class="gap-1 sm:gap-space-2xs text-surface-container/70 font-label-sm text-[11px] sm:text-label-sm flex items-center whitespace-nowrap">
+                        <x-lucide-file-text class="text-primary-container size-3.5 sm:size-[16px] shrink-0" />
                         <span class="hidden xs:inline">Regd:</span> {{ $contact->registration_number }}
                     </span>
                     <div class="h-3 sm:h-4 w-px bg-outline/20"></div>
@@ -14,7 +14,7 @@
                 <div class="flex items-center gap-2 sm:gap-3">
                     @foreach ($socials ?? [] as $social)
                         <a href="{{ $social->url }}" target="_blank" rel="noopener noreferrer"
-                            class="text-tertiary hover:text-primary gap-1 font-label-sm text-[11px] sm:text-label-sm flex items-center font-semibold tracking-wider uppercase transition-colors shrink-0"
+                            class="text-surface-container/60 hover:text-summit-white gap-1 font-label-sm text-[11px] sm:text-label-sm flex items-center font-semibold tracking-wider uppercase transition-colors shrink-0"
                             aria-label="{{ $social->platform }}">
                             @if (strtolower($social->platform) === 'facebook')
                                 <x-lucide-facebook class="size-3.5 sm:size-[16px]" />
@@ -38,15 +38,15 @@
                 </div>
             </div>
             <div class="gap-space-lg hidden items-center md:flex shrink-0">
-                <a class="gap-space-2xs text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center transition-colors"
-                    href="tel:{{ preg_replace('/[^0-9+]/', '', $contact?->phone ?? '') }}">
-                    <x-lucide-phone class="text-primary size-[16px]" />
+                    <a class="gap-space-2xs text-surface-container/70 hover:text-summit-white font-label-sm text-label-sm flex items-center transition-colors"
+                        href="tel:{{ preg_replace('/[^0-9+]/', '', $contact?->phone ?? '') }}">
+                        <x-lucide-phone class="text-primary-container size-[16px]" />
                     {{ $contact?->phone ?? 'Contact us' }}
                 </a>
                 @if ($contact?->email)
-                    <a class="gap-space-2xs text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center transition-colors"
+                    <a class="gap-space-2xs text-surface-container/70 hover:text-summit-white font-label-sm text-label-sm flex items-center transition-colors"
                         href="mailto:{{ $contact->email }}">
-                        <x-lucide-mail class="text-primary size-[16px]" />
+                        <x-lucide-mail class="text-primary-container size-[16px]" />
                         {{ $contact->email }}
                     </a>
                 @endif
@@ -64,7 +64,7 @@
                         alt="{{ $contact?->company_name ?? config('app.name') }}" class="h-10 sm:h-14 md:h-16 w-auto object-contain shrink-0">
                 @endif
                 <span
-                    class="font-headline-xs text-xs sm:text-sm md:text-headline-xs text-on-surface font-bold tracking-tight uppercase truncate max-w-[150px] xs:max-w-[190px] sm:max-w-xs md:max-w-none">{{ $contact?->company_name ?? config('app.name') }}</span>
+                    class="font-headline-xs text-xs sm:text-sm md:text-headline-xs text-primary font-bold tracking-tight uppercase truncate max-w-[150px] xs:max-w-[190px] sm:max-w-xs md:max-w-none">{{ $contact?->company_name ?? config('app.name') }}</span>
             </a>
         </div>
 
@@ -142,13 +142,10 @@
                         @if($childTabs->isNotEmpty())
                             {{-- Case 1: Child service categories exist -> render clickable tabs on the left, corresponding services on the right --}}
                             <div class="group relative py-6" x-data="{ activeTab: '{{ $childTabs->first()->id }}' }">
-                                <a class="relative px-3 py-2 font-label-md text-label-md rounded-lg transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-on-surface font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 font-medium' }}"
+                                <a class="relative px-3.5 py-2 font-label-md text-label-md rounded-xl transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-amber-500 font-bold' : 'text-on-surface hover:text-amber-500 hover:bg-surface-container-high/40 font-medium' }}"
                                     href="{{ $menu->url }}">
                                     <span>{{ $menu->title }}</span>
-                                    <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-primary' : 'opacity-50' }}" />
-                                    @if($isMenuActive)
-                                        <span class="absolute bottom-0 inset-x-2 h-[2.5px] rounded-full bg-primary"></span>
-                                    @endif
+                                    <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-amber-500' : 'opacity-50 group-hover:text-amber-500' }}" />
                                 </a>
                                 <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[920px] max-w-[95vw]">
                                     <div class="bg-surface rounded-2xl shadow-2xl border border-outline/10 overflow-hidden flex min-h-[420px]">
@@ -159,7 +156,7 @@
                                                     href="{{ route('services.category', $childCat->slug) }}"
                                                     @mouseenter="activeTab = '{{ $childCat->id }}'"
                                                     @click="activeTab = '{{ $childCat->id }}'"
-                                                    :class="activeTab === '{{ $childCat->id }}' ? 'bg-sky-50/70 dark:bg-sky-950/30 text-primary font-bold border-r-2 border-primary' : 'text-on-surface hover:text-primary hover:bg-surface/50 border-r-2 border-transparent'"
+                                                    :class="activeTab === '{{ $childCat->id }}' ? 'bg-surface-container-high/40 text-amber-500 font-bold' : 'text-on-surface hover:text-amber-500 hover:bg-surface/50 border-r-2 border-transparent'"
                                                     class="flex items-center justify-between py-2.5 px-4 text-sm font-semibold transition-all group/tab"
                                                 >
                                                     <span class="truncate">{{ $childCat->name }}</span>
@@ -188,8 +185,8 @@
                                                                     <ul class="space-y-2.5">
                                                                         @forelse($subCat->services as $srv)
                                                                             <li>
-                                                                                <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors">
-                                                                                    <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
+                                                                                <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-amber-500 transition-colors">
+                                                                                    <span class="text-on-surface-variant group-hover/srv:text-amber-500 font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                                                     @if($srv->duration)
                                                                                         <span class="text-[10px] text-primary font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
                                                                                     @endif
@@ -205,8 +202,8 @@
                                                     @elseif($childCat->services && $childCat->services->isNotEmpty())
                                                         <div class="grid grid-cols-2 gap-4">
                                                             @foreach($childCat->services as $srv)
-                                                                <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container-low transition-all">
-                                                                    <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
+                                                                <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-amber-500 transition-colors p-2 rounded-lg hover:bg-surface-container-low transition-all">
+                                                                    <span class="text-on-surface-variant group-hover/srv:text-amber-500 font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                                     @if($srv->duration)
                                                                         <span class="text-[10px] text-primary font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
                                                                     @endif
@@ -227,13 +224,10 @@
                         @else
                             {{-- Case 2: Child service category does not exist -> list all available services directly without left sidebar --}}
                             <div class="group relative py-6">
-                                <a class="relative px-3 py-2 font-label-md text-label-md rounded-lg transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-on-surface font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 font-medium' }}"
+                                <a class="relative px-3.5 py-2 font-label-md text-label-md rounded-xl transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-amber-500 font-bold' : 'text-on-surface hover:text-amber-500 hover:bg-surface-container-high/40 font-medium' }}"
                                     href="{{ $menu->url }}">
                                     <span>{{ $menu->title }}</span>
-                                    <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-primary' : 'opacity-50' }}" />
-                                    @if($isMenuActive)
-                                        <span class="absolute bottom-0 inset-x-2 h-[2.5px] rounded-full bg-primary"></span>
-                                    @endif
+                                    <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-amber-500' : 'opacity-50 group-hover:text-amber-500' }}" />
                                 </a>
                                 <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[640px] max-w-[95vw]">
                                     <div class="bg-surface rounded-2xl shadow-2xl border border-outline/10 p-6 overflow-hidden">
@@ -246,8 +240,8 @@
                                         @if($directServices->isNotEmpty())
                                             <div class="grid grid-cols-2 gap-x-6 gap-y-3 max-h-[400px] overflow-y-auto">
                                                 @foreach($directServices as $srv)
-                                                    <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-primary transition-colors py-1">
-                                                        <span class="text-on-surface-variant group-hover/srv:text-primary font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
+                                                    <a href="{{ $srv->url }}" class="group/srv flex items-start justify-between gap-3 text-xs hover:text-amber-500 transition-colors py-1">
+                                                        <span class="text-on-surface-variant group-hover/srv:text-amber-500 font-medium transition-colors leading-relaxed">{{ $srv->title }}</span>
                                                         @if($srv->duration)
                                                             <span class="text-[10px] text-primary font-semibold uppercase tracking-wider shrink-0 whitespace-nowrap pt-0.5">{{ $srv->duration }}</span>
                                                         @endif
@@ -266,13 +260,10 @@
                     @else
                         {{-- Standard Dropdown Menu --}}
                         <div class="group relative py-6">
-                            <a class="relative px-3 py-2 font-label-md text-label-md rounded-lg transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-on-surface font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 font-medium' }}"
+                            <a class="relative px-3.5 py-2 font-label-md text-label-md rounded-xl transition-all duration-200 flex items-center gap-1.5 {{ $isMenuActive ? 'text-amber-500 font-bold' : 'text-on-surface hover:text-amber-500 hover:bg-surface-container-high/40 font-medium' }}"
                                 href="{{ $menu->url }}">
                                 <span>{{ $menu->title }}</span>
-                                <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-primary' : 'opacity-50' }}" />
-                                @if($isMenuActive)
-                                    <span class="absolute bottom-0 inset-x-2 h-[2.5px] rounded-full bg-primary"></span>
-                                @endif
+                                <x-lucide-chevron-down class="size-4 transition-transform group-hover:rotate-180 {{ $isMenuActive ? 'text-amber-500' : 'opacity-50 group-hover:text-amber-500' }}" />
                             </a>
                             <div class="absolute left-1/2 top-full -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 w-[350px]">
                                 <div class="bg-surface rounded-2xl shadow-xl border border-outline/10 p-4">
@@ -285,21 +276,18 @@
                                             $isChildActive = $checkUrlActive($child->url);
                                         @endphp
                                         <a href="{{ $child->url }}"
-                                            class="flex items-center gap-3 p-3 rounded-xl transition-all {{ $isChildActive ? 'bg-primary/10 shadow-[inset_0_0_0_1px_rgba(246,186,26,0.25)] text-on-surface font-semibold' : 'hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface' }}">
+                                            class="flex items-center gap-3 p-3 rounded-xl transition-all {{ $isChildActive ? 'bg-surface-container-high/50 text-amber-500 font-bold' : 'hover:bg-surface-container-high text-on-surface-variant hover:text-amber-500' }}">
                                             @if($child->icon)
-                                                <div class="{{ $isChildActive ? 'bg-primary text-on-primary-fixed shadow-sm' : 'bg-primary/10 text-primary' }} rounded-lg p-2 transition-colors">
+                                                <div class="{{ $isChildActive ? 'bg-amber-500/10 text-amber-500' : 'bg-primary/10 text-primary' }} rounded-lg p-2 transition-colors">
                                                     <x-dynamic-component :component="'lucide-' . $child->icon" class="size-5" />
                                                 </div>
                                             @endif
                                             <div class="flex-1">
-                                                <div class="text-body-sm font-semibold {{ $isChildActive ? 'text-primary' : 'text-on-surface' }}">{{ $child->title }}</div>
+                                                <div class="text-body-sm font-semibold {{ $isChildActive ? 'text-amber-500' : 'text-on-surface' }}">{{ $child->title }}</div>
                                                 @if($child->subtitle)
                                                     <div class="text-body-xs text-on-surface-variant">{{ $child->subtitle }}</div>
                                                 @endif
                                             </div>
-                                            @if($isChildActive)
-                                                <span class="size-1.5 rounded-full bg-primary"></span>
-                                            @endif
                                         </a>
                                     @endforeach
                                     @if(strtolower($menu->title) === 'about us' && isset($navLegalDocuments) && $navLegalDocuments->isNotEmpty())
@@ -311,17 +299,14 @@
                                                 Legal & Policies</h3>
                                         </div>
                                         <a href="{{ route('legal.index') }}"
-                                            class="flex items-center gap-3 p-3 rounded-xl transition-all {{ $isLegalActive ? 'bg-primary/10 shadow-[inset_0_0_0_1px_rgba(246,186,26,0.25)] text-on-surface font-semibold' : 'hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface' }}">
-                                            <div class="{{ $isLegalActive ? 'bg-primary text-on-primary-fixed shadow-sm' : 'bg-primary/10 text-primary' }} rounded-lg p-2 transition-colors">
+                                            class="flex items-center gap-3 p-3 rounded-xl transition-all {{ $isLegalActive ? 'bg-surface-container-high/50 text-amber-500 font-bold' : 'hover:bg-surface-container-high text-on-surface-variant hover:text-amber-500' }}">
+                                            <div class="{{ $isLegalActive ? 'bg-amber-500/10 text-amber-500' : 'bg-primary/10 text-primary' }} rounded-lg p-2 transition-colors">
                                                 <x-lucide-scale class="size-4" />
                                             </div>
                                             <div class="flex-1">
-                                                <div class="text-body-sm font-semibold {{ $isLegalActive ? 'text-primary' : 'text-on-surface' }}">Legal Documents</div>
+                                                <div class="text-body-sm font-semibold {{ $isLegalActive ? 'text-amber-500' : 'text-on-surface' }}">Legal Documents</div>
                                                 <div class="text-body-xs text-on-surface-variant">View all policies</div>
                                             </div>
-                                            @if($isLegalActive)
-                                                <span class="size-1.5 rounded-full bg-primary"></span>
-                                            @endif
                                         </a>
                                     @endif
                                 </div>
@@ -330,12 +315,9 @@
                     @endif
                 @else
                     <div class="py-6">
-                        <a class="relative px-3 py-2 font-label-md text-label-md rounded-lg transition-all duration-200 inline-flex items-center {{ $isMenuActive ? 'text-on-surface font-bold' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 font-medium' }}"
+                        <a class="relative px-3.5 py-2 font-label-md text-label-md rounded-xl transition-all duration-200 inline-flex items-center {{ $isMenuActive ? 'text-amber-500 font-bold' : 'text-on-surface hover:text-amber-500 hover:bg-surface-container-high/40 font-medium' }}"
                             href="{{ $menu->url }}">
                             <span>{{ $menu->title }}</span>
-                            @if($isMenuActive)
-                                <span class="absolute bottom-0 inset-x-2 h-[2.5px] rounded-full bg-primary"></span>
-                            @endif
                         </a>
                     </div>
                 @endif
@@ -344,11 +326,11 @@
 
         <div class="gap-1.5 sm:gap-space-sm flex items-center shrink-0">
             <a href="{{ route('treks') }}" aria-label="Search Treks"
-                class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl transition-colors">
+                class="text-on-surface-variant hover:text-amber-500 hover:bg-surface-container-high/40 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl transition-colors">
                 <x-lucide-search class="size-5 sm:size-6" />
             </a>
-            <a class="px-space-md sm:px-space-lg py-2 sm:py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs sm:text-label-md hidden items-center justify-center rounded-xl font-bold tracking-wider uppercase shadow-[0_1px_3px_rgba(25,39,53,0.08)] transition-all sm:inline-flex"
-                href="{{ route('plan-your-trek') }}">Plan Your Trek</a>
+            <a class="px-space-md sm:px-space-lg py-2 sm:py-space-sm bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs sm:text-label-md hidden items-center justify-center rounded-xl font-bold tracking-wider uppercase shadow-[0_2px_8px_rgba(255,210,0,0.4)] transition-all sm:inline-flex"
+                href="{{ route('plan-your-trek') }}">Book Now</a>
             <button @click="mobileMenuOpen = !mobileMenuOpen" aria-label="Open Mobile Navigation"
                 class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl xl:hidden cursor-pointer">
                 <x-lucide-menu class="size-5 sm:size-6" />
@@ -418,9 +400,9 @@
                                 @if($menu->children->isNotEmpty())
                                     <div x-data="{ open: {{ $isMobileMenuActive ? 'true' : 'false' }} }">
                                         <button @click="open = !open"
-                                            class="-mx-3 flex w-full items-center justify-between rounded-xl py-2 pl-3 pr-3.5 text-base font-semibold leading-7 transition-colors {{ $isMobileMenuActive ? 'bg-primary/10 text-on-surface font-bold border-l-4 border-primary pl-2' : 'hover:bg-surface-container-low text-on-surface' }}">
+                                            class="-mx-3 flex w-full items-center justify-between rounded-xl py-2 px-3 text-base font-semibold leading-7 transition-colors {{ $isMobileMenuActive ? 'text-amber-500 font-bold' : 'hover:bg-surface-container-low text-on-surface hover:text-amber-500' }}">
                                             <span>{{ $menu->title }}</span>
-                                            <x-lucide-chevron-down class="size-4 transition-transform duration-200 {{ $isMobileMenuActive ? 'text-primary' : '' }}"
+                                            <x-lucide-chevron-down class="size-4 transition-transform duration-200 {{ $isMobileMenuActive ? 'text-amber-500' : '' }}"
                                                 x-bind:class="{ 'rotate-180': open }" />
                                         </button>
                                         <div x-show="open" class="mt-2 space-y-1 pl-2" x-transition>
@@ -431,29 +413,29 @@
                                                 @endphp
                                                 @if($hasSub)
                                                     <div x-data="{ childOpen: false }" class="pl-3">
-                                                        <button @click="childOpen = !childOpen" class="flex w-full items-center justify-between py-1.5 pr-3 text-sm font-semibold text-on-surface hover:text-primary">
+                                                        <button @click="childOpen = !childOpen" class="flex w-full items-center justify-between py-1.5 pr-3 text-sm font-semibold text-on-surface hover:text-amber-500">
                                                             <span>{{ $child->title }}</span>
                                                             <x-lucide-chevron-down class="size-3.5 transition-transform" x-bind:class="{ 'rotate-180': childOpen }" />
                                                         </button>
                                                         <div x-show="childOpen" class="space-y-1 pl-3 my-1">
                                                             @if($child->serviceCategory && $child->serviceCategory->children->isNotEmpty())
                                                                 @foreach($child->serviceCategory->children as $subCat)
-                                                                    <a href="{{ route('services.category', $subCat->slug) }}" class="block text-xs font-bold text-primary pt-1 hover:underline">{{ $subCat->name }}</a>
+                                                                    <a href="{{ route('services.category', $subCat->slug) }}" class="block text-xs font-bold text-primary pt-1 hover:text-amber-500 hover:underline">{{ $subCat->name }}</a>
                                                                     @foreach($subCat->services as $srv)
-                                                                        <a href="{{ $srv->url }}" class="block py-1 pl-2 text-xs text-on-surface-variant hover:text-primary">
+                                                                        <a href="{{ $srv->url }}" class="block py-1 pl-2 text-xs text-on-surface-variant hover:text-amber-500">
                                                                             {{ $srv->title }}
                                                                         </a>
                                                                     @endforeach
                                                                 @endforeach
                                                             @elseif($child->serviceCategory && $child->serviceCategory->services->isNotEmpty())
                                                                 @foreach($child->serviceCategory->services as $srv)
-                                                                    <a href="{{ $srv->url }}" class="block py-1 text-xs text-on-surface-variant hover:text-primary">
+                                                                    <a href="{{ $srv->url }}" class="block py-1 text-xs text-on-surface-variant hover:text-amber-500">
                                                                         {{ $srv->title }}
                                                                     </a>
                                                                 @endforeach
                                                             @elseif($child->children->isNotEmpty())
                                                                 @foreach($child->children as $subItem)
-                                                                    <a href="{{ $subItem->url }}" class="block py-1 text-xs text-on-surface-variant hover:text-primary">
+                                                                    <a href="{{ $subItem->url }}" class="block py-1 text-xs text-on-surface-variant hover:text-amber-500">
                                                                         {{ $subItem->title }}
                                                                     </a>
                                                                 @endforeach
@@ -462,11 +444,8 @@
                                                     </div>
                                                 @else
                                                     <a href="{{ $child->url }}"
-                                                        class="flex items-center justify-between rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 transition-colors {{ $isChildActive ? 'bg-primary/10 text-primary font-bold shadow-[inset_0_0_0_1px_rgba(246,186,26,0.2)]' : 'hover:bg-surface-container-low text-on-surface-variant hover:text-primary' }}">
+                                                        class="flex items-center justify-between rounded-lg py-2 px-3 text-sm font-semibold leading-7 transition-colors {{ $isChildActive ? 'text-amber-500 font-bold' : 'hover:bg-surface-container-low text-on-surface-variant hover:text-amber-500' }}">
                                                         <span>{{ $child->title }}</span>
-                                                        @if($isChildActive)
-                                                            <span class="size-1.5 rounded-full bg-primary"></span>
-                                                        @endif
                                                     </a>
                                                 @endif
                                             @endforeach
@@ -475,18 +454,15 @@
                                                     $isLegalActive = request()->routeIs('legal.*') || request()->is('legal*');
                                                 @endphp
                                                 <a href="{{ route('legal.index') }}"
-                                                    class="flex items-center justify-between rounded-lg py-2 pl-4 pr-3 text-sm font-semibold leading-7 transition-colors {{ $isLegalActive ? 'bg-primary/10 text-primary font-bold shadow-[inset_0_0_0_1px_rgba(246,186,26,0.2)]' : 'hover:bg-surface-container-low text-on-surface-variant hover:text-primary' }}">
+                                                    class="flex items-center justify-between rounded-lg py-2 px-3 text-sm font-semibold leading-7 transition-colors {{ $isLegalActive ? 'text-amber-500 font-bold' : 'hover:bg-surface-container-low text-on-surface-variant hover:text-amber-500' }}">
                                                     <span>Legal Documents</span>
-                                                    @if($isLegalActive)
-                                                        <span class="size-1.5 rounded-full bg-primary"></span>
-                                                    @endif
                                                 </a>
                                             @endif
                                         </div>
                                     </div>
                                 @else
                                     <a href="{{ $menu->url }}"
-                                        class="-mx-3 block rounded-xl px-3 py-2 text-base font-semibold leading-7 transition-colors {{ $isMobileMenuActive ? 'bg-primary/10 text-on-surface font-bold border-l-4 border-primary pl-2' : 'text-on-surface hover:bg-surface-container-low' }}">{{ $menu->title }}</a>
+                                        class="-mx-3 block rounded-xl px-3 py-2 text-base font-semibold leading-7 transition-colors {{ $isMobileMenuActive ? 'text-amber-500 font-bold' : 'text-on-surface hover:text-amber-500 hover:bg-surface-container-low' }}">{{ $menu->title }}</a>
                                 @endif
                             @endforeach
                         </div>

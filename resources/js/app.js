@@ -153,18 +153,61 @@ window.initSlimSelect = function (element, options = {}) {
     if (!selectEl) return null;
     if (selectEl._slimSelect) return selectEl._slimSelect;
 
+    const placeholder =
+        selectEl.getAttribute("placeholder") ||
+        selectEl.querySelector("option[data-placeholder='true']")?.textContent?.trim() ||
+        "Select option(s)...";
+
+    const isRequired = selectEl.required || selectEl.hasAttribute("required");
+    const showSearch = selectEl.dataset.search !== "false" && options.settings?.showSearch !== false;
+    const allowDeselect =
+        options.settings?.allowDeselect !== undefined
+            ? options.settings.allowDeselect
+            : !isRequired && !selectEl.multiple;
+
     selectEl._slimSelect = new SlimSelect({
         select: selectEl,
         settings: {
-            placeholderText:
-                selectEl.getAttribute("placeholder") || "Select option(s)...",
+            placeholderText: placeholder,
             searchPlaceholder: "Search...",
-            allowDeselect: true,
+            searchText: "No results found",
+            searchingText: "Searching...",
+            showSearch: showSearch,
+            allowDeselect: allowDeselect,
             closeOnSelect: !selectEl.multiple,
             ...(options.settings || {}),
         },
+        events: {
+            afterChange: (newVal) => {
+                selectEl.dispatchEvent(new Event("change", { bubbles: true }));
+                selectEl.dispatchEvent(new Event("input", { bubbles: true }));
+                if (options.events?.afterChange) {
+                    options.events.afterChange(newVal);
+                }
+            },
+            ...(options.events || {}),
+        },
         ...options,
     });
+
+    if (selectEl.dataset.size && selectEl._slimSelect?.main?.element) {
+        selectEl._slimSelect.main.element.dataset.size = selectEl.dataset.size;
+    }
+
+    const form = selectEl.closest("form");
+    if (form && !selectEl._slimResetAttached) {
+        selectEl._slimResetAttached = true;
+        form.addEventListener("reset", () => {
+            setTimeout(() => {
+                if (selectEl._slimSelect) {
+                    const selected = selectEl.multiple
+                        ? Array.from(selectEl.selectedOptions).map((o) => o.value)
+                        : selectEl.value;
+                    selectEl._slimSelect.setSelected(selected);
+                }
+            }, 10);
+        });
+    }
 
     return selectEl._slimSelect;
 };

@@ -2,15 +2,20 @@
     'name' => null,
     'value' => '',
     'native' => false,
+    'slim' => true,
     'size' => 'default',
     'multiple' => false,
     'options' => null,
     'placeholder' => '',
+    'search' => true,
+    'searchPlaceholder' => 'Search...',
+    'allowDeselect' => null,
     'color' => null,
     'indicator' => 'check', // check | checkbox | radio — how a selected option is marked (custom listbox only)
 ])
 
 @php
+    $isSlim = $slim && ! $native;
     $hasOptions = is_array($options) && count($options) > 0;
     // Normalise to [value => label]: associative keys are values; a plain list uses value === label.
     $normalized = [];
@@ -29,6 +34,7 @@
         ->map(fn ($v) => (string) $v)
         ->values();
     $initialValue = $multiple ? $selectedValues : (string) $value;
+    $parentValue = $value;
 
     // `color` brands the trigger's focus ring locally (overrides the ring/primary tokens).
     $colorStyle = $color ? "--ring: {$color}; --primary: {$color}; --primary-foreground: #ffffff;" : '';
@@ -41,7 +47,7 @@
     // travelling as a data attribute so a morph can re-point it. No-op without Livewire.
     $wireModel = \Illuminate\View\ComponentAttributeBag::hasMacro('wire') ? $attributes->wire('model') : null;
     $hasWire = $wireModel && is_string($wireModel->value()) && $wireModel->value() !== '';
-    if (! $native && $hasWire) {
+    if (! $native && ! $isSlim && $hasWire) {
         $attributes = $attributes->whereDoesntStartWith('wire:model')->merge(
             array_filter([
                 'data-blat-model' => $wireModel->value(),
@@ -75,6 +81,56 @@
             {{ $slot }}
         @endif
     </select>
+@elseif ($isSlim)
+    @php
+        $slimOptionsHtml = '';
+        if ($hasOptions) {
+            foreach ($normalized as $val => $lab) {
+                $isSelected = $selectedValues->contains((string) $val);
+                $slimOptionsHtml .= '<option value="' . e($val) . '"' . ($isSelected ? ' selected' : '') . '>' . e($lab) . '</option>' . "\n";
+            }
+        } else {
+            $rawSlot = (string) $slot;
+            // Match all <optgroup>...</optgroup> and <option>...</option> tags
+            preg_match_all('/<optgroup[\s\S]*?<\/optgroup>|<option[\s\S]*?<\/option>/i', $rawSlot, $matches);
+            if (! empty($matches[0])) {
+                $slimOptionsHtml = implode("\n", $matches[0]);
+            } else {
+                $slimOptionsHtml = $rawSlot;
+            }
+        }
+
+        // Prepend placeholder if defined and not already present in options
+        $hasDataPlaceholder = str_contains($slimOptionsHtml, 'data-placeholder="true"');
+        if (! $hasDataPlaceholder && $placeholder !== '' && ! $multiple) {
+            $isPlaceholderSelected = $selectedValues->isEmpty() || $selectedValues->contains('');
+            $placeholderHtml = '<option data-placeholder="true" value=""' . ($isPlaceholderSelected ? ' selected' : '') . '>' . e($placeholder) . '</option>' . "\n";
+            $slimOptionsHtml = $placeholderHtml . $slimOptionsHtml;
+        }
+
+        $settings = array_filter([
+            'showSearch' => $search ? null : false,
+            'searchPlaceholder' => $searchPlaceholder !== 'Search...' ? $searchPlaceholder : null,
+            'allowDeselect' => $allowDeselect !== null ? (bool) $allowDeselect : null,
+        ], fn ($v) => $v !== null);
+    @endphp
+    <div
+        data-slot="select"
+        x-data="slimSelect({{ count($settings) ? json_encode(['settings' => $settings]) : '' }})"
+        @if ($style) style="{{ $style }}" @endif
+        class="w-full relative"
+    >
+        <select
+            @if ($name) name="{{ $name }}{{ $multiple ? '[]' : '' }}" @endif
+            @if ($multiple) multiple @endif
+            @if ($placeholder !== '') placeholder="{{ $placeholder }}" @endif
+            data-size="{{ $size }}"
+            data-search="{{ $search ? 'true' : 'false' }}"
+            {{ $attributes->twMerge('slim-select w-full') }}
+        >
+            {!! $slimOptionsHtml !!}
+        </select>
+    </div>
 @else
     <div
         data-slot="select"

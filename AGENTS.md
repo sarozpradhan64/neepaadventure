@@ -132,3 +132,6 @@ Before relying on a package's API, confirm its installed version:
 - After the feature tests pass, ask the user to run the complete suite with `php artisan test --compact`.
 
 </laravel-boost-guidelines>
+
+## UI Rules & Design Constraints
+- **Strictly No Eyebrow Badges**: Never add, generate, or include eyebrow badges (small pill tags, category chips, or uppercase mini-badges placed above section titles, e.g., "WHO WE ARE", "FEATURED TREKS", etc.). All section headings and page titles must lead directly without an eyebrow badge above them.

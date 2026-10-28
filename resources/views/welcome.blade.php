@@ -2,24 +2,19 @@
     <x-header />
     <main class="bg-surface w-full">
         <div class="flex w-full flex-col">
-            <!-- HERO SECTION WITH TOP OVERLAY AND RESPONSIVE VIEWPORT CLEARANCE -->
-            <section class="bg-ridge-deep relative w-full overflow-hidden pt-28 pb-14 sm:pt-36 sm:pb-20 md:pt-40 md:pb-28">
-                <!-- Hero Background Visual with Atmospheric Gradient Scrim -->
-                <div class="absolute inset-0 h-full w-full scale-105 transform bg-cover bg-center opacity-45 mix-blend-luminosity transition-transform duration-1000"
-                    data-alt="Vast cinematic panorama of Ama Dablam and Mount Everest at golden hour sunrise in Nepal, towering snow-covered jagged passes against a clear alpine sky with warm golden sun rays hitting pristine glaciers and prayer flags fluttering on an ancient stone ridge, ultra-wide professional landscape photography."
-                    style="
-                        background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBWm4bd_ZWSqeS4ZDUw6ieD9YH3wcgE-xDdiyCrLoZmNc38H_eVcehQRfzRaWV2oN-t64VYglXgF1h-4DHdB6nMBgmwPowMu-4r9ywUCBGFZjJisMPG4RtnRpF5UPMcIJNyW23CJQSCb9TOEbxfDuGF94E8WzXAW0uWithmsHUIg76y_5CnaMVtehdmjneAMWNTMHBcs6ppEQZqOk3MgezQ92YbpYMIPFMh_GChKQXV_cHcKCDVRVpR');
-                    ">
+            <!-- HERO SECTION WITH CINEMATIC HIMALAYAN VISUAL & TRIP FINDER -->
+            <section class="bg-slate-950 relative w-full overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24 md:pt-44 md:pb-32">
+                <!-- Hero Background Visual (Natural Himalayan Golden Hour Panorama) -->
+                <div class="absolute inset-0 h-full w-full scale-105 transform bg-cover bg-center opacity-85 sm:opacity-90 transition-transform duration-1000"
+                    data-alt="Vast cinematic panorama of Mount Everest and Himalayan passes at golden hour sunrise in Nepal"
+                    style="background-image: url('{{ asset('images/himalaya_hero.jpg') }}');">
                 </div>
-                <!-- Ambient Radial Warmth Gradient -->
-                <div
-                    class="from-ridge-deep via-ridge-deep/75 pointer-events-none absolute inset-0 bg-gradient-to-t to-transparent">
-                </div>
-                <div
-                    class="bg-primary-container/20 pointer-events-none absolute -top-32 right-1/4 h-72 sm:h-96 w-72 sm:w-96 rounded-full blur-3xl">
-                </div>
-                <div
-                    class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto flex flex-col items-center text-center gap-0">
+
+                <!-- Neutral Cinematic Scrim & Vignette (No blue wash - lets natural mountain photography shine) -->
+                <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/30 to-slate-950/90"></div>
+                <div class="pointer-events-none absolute inset-0 bg-black/20"></div>
+
+                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto flex flex-col items-center text-center">
                     @php
                         $heroTitle =
                             $websiteSettings['hero_title'] ?? "Conquer the World's Highest Passes with Guide Mastery";
@@ -34,7 +29,7 @@
                                 if (str_contains($heroTitle, $word)) {
                                     $heroTitle = str_replace(
                                         $word,
-                                        '<span class="text-primary-container inline-block font-black drop-shadow-lg">' .
+                                        '<span class="text-primary-container inline-block font-black drop-shadow-md">' .
                                             $word .
                                             '</span>',
                                         $heroTitle,
@@ -42,47 +37,41 @@
                                 }
                             }
                         }
-                    @endphp
-                    <h1
-                        class="font-display-xl text-3xl sm:text-4xl md:text-5xl lg:text-display-xl font-extrabold text-summit-white mb-4 sm:mb-5 max-w-4xl leading-[1.12] sm:leading-[1.08] tracking-tight drop-shadow-md px-1">
-                        {!! $heroTitle !!}
-                    </h1>
-                    <!-- Subheadline -->
-                    <p
-                        class="font-body-lg text-sm sm:text-base md:text-body-lg text-surface-container mx-auto max-w-xl opacity-85 mb-6 sm:mb-10 px-2 leading-relaxed">
-                        {{ $heroText }}
-                    </p>
-                    <!-- Divider -->
-                    <div class="mb-6 sm:mb-8 flex w-full max-w-3xl items-center gap-3 sm:gap-4 px-4">
-                        <div class="h-px flex-1 bg-summit-white/15"></div>
-                        <span class="text-summit-white/40 text-[11px] sm:text-xs font-medium uppercase tracking-widest whitespace-nowrap">Find Your Adventure</span>
-                        <div class="h-px flex-1 bg-summit-white/15"></div>
-                    </div>
-                    @php
+
                         $heroStats = json_decode($websiteSettings['hero_stats'] ?? '[]', true) ?: [];
-                        
-                        if(empty($heroStats)) {
+                        if (empty($heroStats)) {
                             $heroStats = [
                                 ['value' => '500+', 'label' => 'Happy Clients'],
                                 ['value' => '100%', 'label' => 'Success Rate'],
                                 ['value' => '', 'label' => 'Eco-Friendly'],
-                                ['value' => '24/7', 'label' => 'Rescue']
+                                ['value' => '24/7', 'label' => 'Rescue Support'],
                             ];
                         }
-                        
-                        $statIcons = [
-                            'star',
-                            'shield-check',
-                            'leaf',
-                            'siren'
-                        ];
-                    @endphp
-                    @php
+                        $statIcons = ['star', 'shield-check', 'leaf', 'siren'];
                         $searchAction = route('search');
                     @endphp
-                    <!-- Interactive Floating Trip Search & Filter Bar -->
-                    <div
-                        class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-[0_8px_40px_rgba(0,0,0,0.4)] rounded-2xl p-2 sm:p-3 text-left mb-6 sm:mb-10 relative z-20 border border-outline/10">
+
+                    <!-- Eyebrow Badge -->
+                    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 sm:py-2 rounded-full bg-white/10 hover:bg-white/15 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-semibold text-summit-white tracking-wider uppercase mb-5 sm:mb-6 shadow-lg transition-all">
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-80"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
+                        </span>
+                        <span>Certified Himalayan Mountain Expedition Leaders</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="font-display-xl text-3xl sm:text-5xl md:text-6xl font-extrabold text-summit-white mb-4 sm:mb-5 max-w-4xl leading-[1.12] sm:leading-[1.08] tracking-tight drop-shadow-xl px-1">
+                        {!! $heroTitle !!}
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="font-body-lg text-sm sm:text-base md:text-lg text-slate-200/90 mx-auto max-w-2xl mb-7 sm:mb-9 px-2 leading-relaxed drop-shadow">
+                        {{ $heroText }}
+                    </p>
+
+                    <!-- Interactive Floating Trip Search Bar (Single Input as Original) -->
+                    <div class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-[0_12px_45px_rgba(0,0,0,0.4)] rounded-2xl p-2 sm:p-2.5 text-left mb-6 sm:mb-8 relative z-20 border border-outline/10">
                         <form action="{{ $searchAction }}" method="GET" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                             <div class="relative flex-1">
                                 <x-lucide-search class="absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 text-tertiary size-[18px] sm:size-[20px]" />
@@ -90,15 +79,29 @@
                                     class="w-full h-11 sm:h-13 pl-10 sm:pl-12 pr-4 bg-transparent font-body-md text-sm sm:text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
                             </div>
                             <button type="submit"
-                                class="h-11 px-5 sm:px-7 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs sm:text-label-md font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0 cursor-pointer">
+                                class="h-11 sm:h-13 px-6 sm:px-7 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs sm:text-label-md font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0 cursor-pointer">
                                 <x-lucide-compass class="size-[16px]" />
                                 <span>Explore</span>
                             </button>
                         </form>
                     </div>
-                    <!-- Quick Trust Proof Badges -->
-                    <div
-                        class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 relative z-20 px-2">
+
+                    <!-- Quick Action CTAs -->
+                    <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
+                        <a href="{{ route('services.category', 'trekking') }}"
+                            class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transition-all active:scale-95">
+                            <x-lucide-compass class="size-4" />
+                            <span>Explore Expeditions</span>
+                        </a>
+                        <a href="{{ route('plan-your-trek') }}"
+                            class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-white/10 hover:bg-white/20 text-summit-white border border-white/25 backdrop-blur-md font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-md transition-all active:scale-95">
+                            <x-lucide-calendar class="size-4 text-primary-container" />
+                            <span>Plan Custom Trek</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Proof Badges -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3.5 relative z-20 px-2">
                         @foreach($heroStats as $index => $stat)
                             @php
                                 $icon = !empty($stat['icon']) ? $stat['icon'] : $statIcons[$index % count($statIcons)];
@@ -106,14 +109,13 @@
                                 $label = trim($stat['label'] ?? '');
                             @endphp
                             @if($label)
-                            <div
-                                class="flex items-center gap-2 sm:gap-2.5 rounded-xl bg-summit-white/10 border border-summit-white/15 px-3 py-2 sm:px-4 sm:py-2.5 backdrop-blur-sm">
-                                @svg('lucide-'.$icon, 'text-primary-container size-3.5 sm:size-[16px] shrink-0')
+                            <div class="flex items-center gap-2 sm:gap-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 px-3.5 py-2 sm:px-4 sm:py-2.5 backdrop-blur-md transition-all shadow-sm">
+                                @svg('lucide-'.$icon, 'text-primary-container size-3.5 sm:size-4 shrink-0')
                                 <div class="flex items-baseline gap-1 sm:gap-1.5 text-xs sm:text-sm">
                                     @if($value)
-                                        <span class="text-primary-container font-black">{{ $value }}</span>
+                                        <span class="text-primary-container font-black tracking-tight">{{ $value }}</span>
                                     @endif
-                                    <span class="text-summit-white/80 text-[11px] sm:text-xs font-medium">{{ $label }}</span>
+                                    <span class="text-summit-white/90 text-[11px] sm:text-xs font-medium">{{ $label }}</span>
                                 </div>
                             </div>
                             @endif
@@ -666,15 +668,15 @@
 
                         {{-- TRAVELLER REVIEWS --}}
                         @case('reviews')
-                            <section class="py-space-3xl bg-surface-container-low w-full">
+                            <section class="py-space-3xl bg-ridge-deep w-full">
                                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
                                     <div class="mb-space-2xl gap-space-md flex flex-col justify-between md:flex-row md:items-end">
                                         <div>
                                             <div
-                                                class="font-badge-caption text-badge-caption text-primary mb-space-2xs font-bold tracking-[0.2em] uppercase">
+                                                class="font-badge-caption text-badge-caption text-primary-container mb-space-2xs font-bold tracking-[0.2em] uppercase">
                                                 {{ $section->subtitle ?: 'Voices from the Pass' }}
                                             </div>
-                                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                                            <h2 class="font-headline-lg text-headline-lg text-summit-white tracking-tight">
                                                 {{ $section->title ?: 'Hear From Our Clients' }}
                                             </h2>
                                         </div>
@@ -682,26 +684,26 @@
                                     <div class="gap-space-lg grid grid-cols-1 md:grid-cols-3">
                                         @if(isset($testimonials) && $testimonials->isNotEmpty())
                                             @foreach($testimonials->take(3) as $testimonial)
-                                                <div class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm">
+                                                <div class="bg-primary/20 p-space-lg flex flex-col justify-between rounded-2xl border border-summit-white/10 shadow-sm">
                                                     <div>
-                                                        <div class="text-primary mb-space-sm flex items-center gap-1">
+                                                        <div class="text-primary-container mb-space-sm flex items-center gap-1">
                                                             @for($i = 0; $i < ($testimonial->rating ?? 5); $i++)
                                                                 <x-lucide-star class="size-[18px]" />
                                                             @endfor
                                                         </div>
-                                                        <h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-2xs">
+                                                        <h4 class="font-headline-sm text-headline-sm text-summit-white mb-space-2xs">
                                                             "{{ $testimonial->title ?: $testimonial->trip_name ?: 'Exceptional Experience' }}"
                                                         </h4>
-                                                        <p class="font-body-md text-body-md text-tertiary mb-space-md">
+                                                        <p class="font-body-md text-body-md text-surface-container/70 mb-space-md">
                                                             "{!! Str::limit(strip_tags($testimonial->content), 200) !!}"
                                                         </p>
                                                     </div>
                                                     <div class="pt-space-md flex items-center justify-between">
                                                         <div>
-                                                            <div class="font-label-md text-label-md text-on-surface font-bold">
+                                                            <div class="font-label-md text-label-md text-summit-white font-bold">
                                                                 {{ $testimonial->name }}
                                                             </div>
-                                                            <div class="font-body-sm text-body-sm text-tertiary">
+                                                            <div class="font-body-sm text-body-sm text-surface-container/60">
                                                                 {{ $testimonial->trip_name ?: $testimonial->country }}
                                                             </div>
                                                         </div>
@@ -712,19 +714,19 @@
                                         @else
                                             <!-- Review Card 1 -->
                                             <div
-                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm">
+                                                class="bg-primary/20 p-space-lg flex flex-col justify-between rounded-2xl border border-summit-white/10 shadow-sm">
                                                 <div>
-                                                    <div class="text-primary mb-space-sm flex items-center gap-1">
+                                                    <div class="text-primary-container mb-space-sm flex items-center gap-1">
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                     </div>
-                                                    <h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-2xs">
+                                                    <h4 class="font-headline-sm text-headline-sm text-summit-white mb-space-2xs">
                                                         "Flawless Cho La Pass crossing"
                                                     </h4>
-                                                    <p class="font-body-md text-body-md text-tertiary mb-space-md">
+                                                    <p class="font-body-md text-body-md text-surface-container/70 mb-space-md">
                                                         "We had unexpected fresh snow on Cho La, but Dawa and Ang Karma guided our group
                                                         with absolute calm and expertise. Their attention to our pulse ox twice daily made
                                                         everyone feel confident and safe."
@@ -732,31 +734,31 @@
                                                 </div>
                                                 <div class="pt-space-md flex items-center justify-between">
                                                     <div>
-                                                        <div class="font-label-md text-label-md text-on-surface font-bold">
+                                                        <div class="font-label-md text-label-md text-summit-white font-bold">
                                                             Marcus &amp; Elena Vance
                                                         </div>
-                                                        <div class="font-body-sm text-body-sm text-tertiary">
+                                                        <div class="font-body-sm text-body-sm text-surface-container/60">
                                                             Everest &amp; Gokyo Lakes • Oct 2024
                                                         </div>
                                                     </div>
-                                                    <x-lucide-shield-check class="text-primary size-[24px]" />
+                                                    <x-lucide-shield-check class="text-primary-container size-[24px]" />
                                                 </div>
                                             </div>
                                             <!-- Review Card 2 -->
                                             <div
-                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm">
+                                                class="bg-primary/20 p-space-lg flex flex-col justify-between rounded-2xl border border-summit-white/10 shadow-sm">
                                                 <div>
-                                                    <div class="text-primary mb-space-sm flex items-center gap-1">
+                                                    <div class="text-primary-container mb-space-sm flex items-center gap-1">
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                     </div>
-                                                    <h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-2xs">
+                                                    <h4 class="font-headline-sm text-headline-sm text-summit-white mb-space-2xs">
                                                         "My first 6,000m destination on Island Pass"
                                                     </h4>
-                                                    <p class="font-body-md text-body-md text-tertiary mb-space-md">
+                                                    <p class="font-body-md text-body-md text-surface-container/70 mb-space-md">
                                                         "The trekking refresher at High Camp was thorough. On destination day, my trekking
                                                         Guide Pemba paced me like clockwork up the headwall. Standing at 6,189m at sunrise
                                                         is an experience I will cherish forever."
@@ -764,31 +766,31 @@
                                                 </div>
                                                 <div class="pt-space-md flex items-center justify-between">
                                                     <div>
-                                                        <div class="font-label-md text-label-md text-on-surface font-bold">
+                                                        <div class="font-label-md text-label-md text-summit-white font-bold">
                                                             Dr. Julian Richter
                                                         </div>
-                                                        <div class="font-body-sm text-body-sm text-tertiary">
+                                                        <div class="font-body-sm text-body-sm text-surface-container/60">
                                                             Island Pass Trek • Nov 2024
                                                         </div>
                                                     </div>
-                                                    <x-lucide-shield-check class="text-primary size-[24px]" />
+                                                    <x-lucide-shield-check class="text-primary-container size-[24px]" />
                                                 </div>
                                             </div>
                                             <!-- Review Card 3 -->
                                             <div
-                                                class="bg-surface-container-lowest p-space-lg flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm">
+                                                class="bg-primary/20 p-space-lg flex flex-col justify-between rounded-2xl border border-summit-white/10 shadow-sm">
                                                 <div>
-                                                    <div class="text-primary mb-space-sm flex items-center gap-1">
+                                                    <div class="text-primary-container mb-space-sm flex items-center gap-1">
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                         <x-lucide-star class="size-[18px]" />
                                                     </div>
-                                                    <h4 class="font-headline-sm text-headline-sm text-on-surface mb-space-2xs">
+                                                    <h4 class="font-headline-sm text-headline-sm text-summit-white mb-space-2xs">
                                                         "Untamed beauty around Manaslu"
                                                     </h4>
-                                                    <p class="font-body-md text-body-md text-tertiary mb-space-md">
+                                                    <p class="font-body-md text-body-md text-surface-container/70 mb-space-md">
                                                         "No crowd jams, raw Tibetan culture, and incredible Guide care. Even when my bag
                                                         zipper tore, our porter carried special repair tape. Outstanding logistics from
                                                         Kathmandu airport to the mountain and back."
@@ -796,14 +798,14 @@
                                                 </div>
                                                 <div class="pt-space-md flex items-center justify-between">
                                                     <div>
-                                                        <div class="font-label-md text-label-md text-on-surface font-bold">
+                                                        <div class="font-label-md text-label-md text-summit-white font-bold">
                                                             Chloe Deschenes
                                                         </div>
-                                                        <div class="font-body-sm text-body-sm text-tertiary">
+                                                        <div class="font-body-sm text-body-sm text-surface-container/60">
                                                             Manaslu Circuit • Apr 2024
                                                         </div>
                                                     </div>
-                                                    <x-lucide-shield-check class="text-primary size-[24px]" />
+                                                    <x-lucide-shield-check class="text-primary-container size-[24px]" />
                                                 </div>
                                             </div>
                                         @endif
@@ -853,7 +855,9 @@
 
                         {{-- FINAL CALL TO ACTION BANNER --}}
                         @case('cta')
-                            <section class="bg-ridge-deep py-space-2xl relative w-full overflow-hidden">
+                            <section class="bg-primary py-space-3xl relative w-full overflow-hidden border-t border-primary/20">
+                                <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent"></div>
+                                <div class="pointer-events-none absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-primary-container/10 blur-3xl"></div>
                                 <div class="max-w-4xl px-gutter-mobile lg:px-gutter-desktop relative z-10 mx-auto text-center">
                                     @php
                                         // Fetch Krishna from teams (TeamMember), case-insensitive search
@@ -872,7 +876,7 @@
                                     @endphp
 
                                     <!-- Eyebrow Badge -->
-                                    <div class="inline-flex items-center gap-2 rounded-full border border-summit-white/10 bg-summit-white/5 px-3.5 py-1 text-badge-caption font-badge-caption tracking-wider uppercase text-primary-container">
+                                    <div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-badge-caption font-badge-caption tracking-wider uppercase text-primary-container backdrop-blur-sm">
                                         <x-lucide-compass class="size-3.5" />
                                         <span>{{ $section->subtitle ?: 'Ask to travel experts' }}</span>
                                     </div>
@@ -881,27 +885,27 @@
                                     <h2 class="mt-4 font-headline-lg text-headline-lg font-bold text-summit-white tracking-tight">
                                         {{ $section->title ?: 'Plan my trips' }}
                                     </h2>
-                                    <p class="mt-3 text-body-md text-surface-container/75 max-w-xl mx-auto leading-relaxed">
+                                    <p class="mt-3 text-body-md text-white/85 max-w-xl mx-auto leading-relaxed">
                                         Connect directly with our local Himalayan travel specialists for tailored itineraries, advice, and seamless journey planning.
                                     </p>
 
                                     <!-- Expert Contact Card (Krishna) -->
-                                    <div class="mt-8 inline-flex items-center gap-3.5 rounded-full border border-summit-white/10 bg-summit-white/5 px-4 py-2 text-left backdrop-blur-sm">
+                                    <div class="mt-8 inline-flex items-center gap-3.5 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-left backdrop-blur-md shadow-sm">
                                         <div class="relative">
                                             @if($expertImage)
-                                                <img src="{{ $expertImage }}" alt="{{ $expertName }}" class="size-11 rounded-full object-cover ring-1 ring-summit-white/20" />
+                                                <img src="{{ $expertImage }}" alt="{{ $expertName }}" class="size-11 rounded-full object-cover ring-1 ring-white/30" />
                                             @else
                                                 <div class="size-11 rounded-full bg-primary-container/20 text-primary-container ring-1 ring-primary-container/30 flex items-center justify-center font-bold text-sm">
                                                     {{ strtoupper(substr($expertName, 0, 1)) }}
                                                 </div>
                                             @endif
-                                            <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full bg-emerald-500 ring-2 ring-ridge-deep" title="Available to chat"></span>
+                                            <span class="absolute -bottom-0.5 -right-0.5 size-3 rounded-full bg-emerald-400 ring-2 ring-primary" title="Available to chat"></span>
                                         </div>
                                         <div>
                                             <div class="font-label-md text-label-md font-semibold text-summit-white leading-tight">
                                                 {{ $expertName }}
                                             </div>
-                                            <div class="text-xs text-surface-container/60 mt-0.5">
+                                            <div class="text-xs text-white/70 mt-0.5">
                                                 {{ $expertRole }}
                                             </div>
                                         </div>
@@ -913,7 +917,7 @@
                                             <a href="{{ $whatsappUrl }}"
                                                target="_blank"
                                                rel="noopener noreferrer"
-                                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] px-6 py-3 text-label-md font-label-md font-semibold text-white shadow-sm transition-colors">
+                                               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] px-6 py-3 text-label-md font-label-md font-semibold text-white shadow-md transition-colors">
                                                 <svg class="size-4 fill-current shrink-0" viewBox="0 0 24 24">
                                                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.646 5.426l-.999 3.647 3.842-.772zm11.391-7.009c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
                                                 </svg>
@@ -921,7 +925,7 @@
                                             </a>
                                         @endif
                                         <a href="{{ route('plan-your-trek') }}"
-                                           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary-container hover:bg-amber-flare px-6 py-3 text-label-md font-label-md font-semibold text-on-primary-fixed shadow-sm transition-colors">
+                                           class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary-container hover:bg-amber-flare px-6 py-3 text-label-md font-label-md font-semibold text-on-primary-fixed shadow-md transition-colors">
                                             <span>{{ $section->button_text ?: 'Plan My Trip' }}</span>
                                             <x-lucide-arrow-right class="size-4 shrink-0" />
                                         </a>

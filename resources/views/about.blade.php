@@ -415,7 +415,8 @@
                 </div>
             </section> --}}
             <!-- High Impact Bottom Conversion Banner -->
-            <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-ridge-deep text-summit-white relative w-full overflow-hidden">
+            <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-primary text-summit-white relative w-full overflow-hidden border-t border-primary/20">
+                <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent"></div>
                 <div class="absolute inset-0 z-0">
                     <div
                         class="h-full w-full bg-cover bg-center opacity-25"
@@ -424,7 +425,7 @@
                             background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD8h3Ti78C47vGC4B8hYmPifSTaMZgBOXAvkchoXGGS6ZYW92w2qAn4GP9gW6ZCiCuKDAUFv05k4HO-VjtX7nrE7GZ7ZvwiB6BCg6PrnJS0R-6mNMD6eHvs78kxKQsin6RwX7POD8vHGn_ttYa5kYcURkdx4_MtJFVGD_n45OMjPzUAgNiTiVrGq6RLclIHN6WC9BZB2cnXCh7f9UfaNsj9B7LiUVGFEeavRSHCntYVXoIF4rFqPL_f');
                         "
                     ></div>
-                    <div class="from-ridge-deep via-ridge-deep/90 to-ridge-deep/70 absolute inset-0 bg-gradient-to-r"></div>
+                    <div class="from-primary via-primary/90 to-primary/75 absolute inset-0 bg-gradient-to-r"></div>
                 </div>
                 <div class="max-w-max-content-width space-y-space-xl relative z-10 mx-auto text-center">
                     <div class="space-y-space-sm mx-auto max-w-3xl">

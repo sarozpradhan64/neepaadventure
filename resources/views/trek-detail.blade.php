@@ -1299,45 +1299,6 @@
                     </div>
                 @endif
 
-                <!-- Departure Guarantee Badges Strip -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-6 border-t border-outline/10">
-                    <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
-                        <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
-                            <x-lucide-shield-check class="size-5" />
-                        </div>
-                        <div>
-                            <div class="text-xs font-bold text-on-surface uppercase tracking-wider">100% Guaranteed Runs</div>
-                            <div class="text-[11px] text-tertiary mt-0.5">Your trip is guaranteed to depart once booked.</div>
-                        </div>
-                    </div>
-                    <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
-                        <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
-                            <x-lucide-users class="size-5" />
-                        </div>
-                        <div>
-                            <div class="text-xs font-bold text-on-surface uppercase tracking-wider">Max 8 Trekkers</div>
-                            <div class="text-[11px] text-tertiary mt-0.5">Intimate small teams ensure safety & attention.</div>
-                        </div>
-                    </div>
-                    <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
-                        <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
-                            <x-lucide-repeat class="size-5" />
-                        </div>
-                        <div>
-                            <div class="text-xs font-bold text-on-surface uppercase tracking-wider">Free Date Shift</div>
-                            <div class="text-[11px] text-tertiary mt-0.5">Transfer your booking up to 30 days before departure.</div>
-                        </div>
-                    </div>
-                    <div class="bg-surface-container-lowest p-4 rounded-xl flex items-start gap-3 border border-outline/10 shadow-sm">
-                        <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
-                            <x-lucide-radio class="size-5" />
-                        </div>
-                        <div>
-                            <div class="text-xs font-bold text-on-surface uppercase tracking-wider">Garmin Monitored</div>
-                            <div class="text-[11px] text-tertiary mt-0.5">Continuous satellite safety & rescue link.</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 

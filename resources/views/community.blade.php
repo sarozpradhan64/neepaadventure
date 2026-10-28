@@ -813,9 +813,11 @@
                 </div>
             </section>
             <!-- High-Impact Purpose-Driven Call to Action -->
-            <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-ridge-deep text-summit-white relative w-full overflow-hidden">
+            <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-primary text-summit-white relative w-full overflow-hidden border-t border-primary/20">
+                <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent"></div>
+                <div class="pointer-events-none absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary-container/10 blur-3xl"></div>
                 <div class="max-w-max-content-width space-y-space-lg relative z-10 mx-auto text-center">
-                    <div class="gap-space-xs px-space-md py-space-2xs bg-summit-white/10 inline-flex items-center rounded-full backdrop-blur-md">
+                    <div class="gap-space-xs px-space-md py-space-2xs bg-white/15 inline-flex items-center rounded-full backdrop-blur-md border border-white/20">
                         <x-lucide-handshake class="text-primary-container size-[18px]" />
                         <span class="font-badge-caption text-badge-caption text-primary-container tracking-wider uppercase">Partner With Our Alpine Communities</span>
                     </div>

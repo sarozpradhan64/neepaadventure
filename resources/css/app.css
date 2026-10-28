@@ -13,38 +13,40 @@
 @import "./blatui.css";
 
 :root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.852 0.199 91.936);
-    --primary-foreground: oklch(0.421 0.095 57.708);
-    --secondary: oklch(0.967 0.001 286.375);
-    --secondary-foreground: oklch(0.21 0.006 285.885);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
+    --background: #F4F8FC;
+    --foreground: #1F2937;
+    --card: #FFFFFF;
+    --card-foreground: #1F2937;
+    --popover: #FFFFFF;
+    --popover-foreground: #1F2937;
+    /* Alpine Blue primary */
+    --primary: #0B4F8A;
+    --primary-foreground: #FFFFFF;
+    /* Sun Yellow accent → primary-container */
+    --secondary: #F4F8FC;
+    --secondary-foreground: #1F2937;
+    --muted: #F4F8FC;
+    --muted-foreground: #687280;
+    --accent: #EBF4FF;
+    --accent-foreground: #0B4F8A;
     --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
+    --border: #DCE6EF;
+    --input: #DCE6EF;
+    --ring: #0B4F8A;
+    --chart-1: #0B4F8A;
+    --chart-2: #FFD200;
+    --chart-3: #687280;
+    --chart-4: #082B49;
+    --chart-5: #1F2937;
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.681 0.162 75.834);
-    --sidebar-primary-foreground: oklch(0.987 0.026 102.212);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    --sidebar: #F4F8FC;
+    --sidebar-foreground: #1F2937;
+    --sidebar-primary: #0B4F8A;
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: #EBF4FF;
+    --sidebar-accent-foreground: #0B4F8A;
+    --sidebar-border: #DCE6EF;
+    --sidebar-ring: #0B4F8A;
 }
 
 .dark {
@@ -81,7 +83,7 @@
     --sidebar-ring: oklch(0.556 0 0);
 }
 @theme {
-        --color-background: var(--background);
+    --color-background: var(--background);
     --color-foreground: var(--foreground);
 
     --color-card: var(--card);
@@ -91,63 +93,87 @@
     --color-popover-foreground: var(--popover-foreground);
 
     --color-primary: var(--primary);
-    -- color-primary-foreground: var(--primary-foreground);
+    --color-primary-foreground: var(--primary-foreground);
 
     --color-secondary: var(--secondary);
-    --color-on-secondary-fixed: #0e1d2a;
-    --color-alpine-snow: #f7f9fa;
-    --color-on-primary-fixed: #261a00;
-    --color-secondary-fixed: #d5e4f7;
-    --color-primary-fixed-dim: #f9bd1e;
-    --color-outline-variant: #d3c5ac;
-    --color-on-primary-container: #684c00;
-    --color-summit-white: #ffffff;
-    --color-inverse-on-surface: #e7f2ff;
-    --color-surface-container: #e4effc;
-    --color-surface: #f7f9ff;
-    --color-secondary-fixed-dim: #b9c8da;
-    --color-on-tertiary-fixed-variant: #364959;
-    --color-secondary-container: #d5e4f7;
-    --color-amber-flare: #d49806;
-    --color-mist-slate: #e2e7ec;
-    --color-surface-bright: #f7f9ff;
-    --color-primary-container: #f6ba1a;
-    --color-background: #f7f9ff;
-    --color-tertiary: #4d6072;
-    --color-ridge-deep: #0f1821;
-    --color-surface-variant: #d8e4f1;
-    --color-glacier-border: #d2dce4;
-    --color-error-container: #ffdad6;
-    --color-surface-container-lowest: #ffffff;
-    --color-on-secondary-fixed-variant: #3a4857;
-    --color-surface-container-high: #dee9f7;
-    --color-on-error-container: #93000a;
-    --color-inverse-primary: #f9bd1e;
-    --color-on-error: #ffffff;
-    --color-on-tertiary: #ffffff;
-    --color-on-primary-fixed-variant: #5c4300;
-    --color-on-surface-variant: #4f4633;
-    --color-inverse-surface: #27323b;
-    --color-on-secondary-container: #586676;
-    --color-surface-container-low: #ecf4ff;
-    --color-surface-tint: #795900;
-    --color-surface-dim: #d0dbe8;
-    --color-surface-container-highest: #d8e4f1;
-    --color-tertiary-fixed: #d1e5f9;
-    --color-on-tertiary-container: #405363;
-    --color-on-tertiary-fixed: #081d2c;
-    --color-tertiary-container: #b2c6da;
-    --color-secondary: #526070;
-    --color-primary-fixed: #ffdf9f;
-    --color-tertiary-fixed-dim: #b5c9dd;
+
+    /* ─── Neepa Adventure Alpine Blue + Sun Yellow Palette ─── */
+
+    /* Sun Yellow — primary CTAs, badge highlights, active states */
+    --color-primary-container: #FFD200;
+    --color-on-primary-container: #082B49;
+    /* On-yellow text: Deep Navy for max contrast */
+    --color-on-primary-fixed: #082B49;
+    --color-on-primary-fixed-variant: #0B4F8A;
+    --color-primary-fixed: #FFF3A3;
+    --color-primary-fixed-dim: #FFD200;
+    --color-inverse-primary: #FFD200;
+
+    /* Alpine Blue secondary */
+    --color-secondary-fixed: #D0E6FA;
+    --color-secondary-fixed-dim: #A8CFEF;
+    --color-on-secondary-fixed: #082B49;
+    --color-on-secondary-fixed-variant: #0B4F8A;
+    --color-secondary-container: #D0E6FA;
+    --color-on-secondary-container: #0B4F8A;
+    --color-on-secondary: #FFFFFF;
+
+    /* Sun Yellow hover (slightly deeper for hover states) */
+    --color-amber-flare: #E6BD00;
+
+    /* Surfaces — Ice Blue canvas */
+    --color-surface: #F4F8FC;
+    --color-surface-bright: #FFFFFF;
+    --color-surface-dim: #DCE6EF;
+    --color-surface-variant: #D0E0EE;
+    --color-surface-container-lowest: #FFFFFF;
+    --color-surface-container-low: #F4F8FC;
+    --color-surface-container: #E8F0F8;
+    --color-surface-container-high: #DCE6EF;
+    --color-surface-container-highest: #D0DCEC;
+    --color-alpine-snow: #F4F8FC;
+    --color-mist-slate: #DCE6EF;
+    --color-glacier-border: #DCE6EF;
+    --color-background: #F4F8FC;
+
+    /* Text — Slate */
+    --color-on-surface: #1F2937;
+    --color-on-surface-variant: #687280;
+    --color-on-background: #1F2937;
+    --color-on-primary: #FFFFFF;
+    --color-on-tertiary: #FFFFFF;
+
+    /* Deep Navy — footer, dark sections */
+    --color-ridge-deep: #082B49;
+    --color-inverse-surface: #082B49;
+    --color-inverse-on-surface: #F4F8FC;
+
+    /* Tertiary — Cool Gray */
+    --color-tertiary: #687280;
+    --color-tertiary-container: #D0E6FA;
+    --color-tertiary-fixed: #D0E6FA;
+    --color-tertiary-fixed-dim: #A8CFEF;
+    --color-on-tertiary-container: #0B4F8A;
+    --color-on-tertiary-fixed: #082B49;
+    --color-on-tertiary-fixed-variant: #0B4F8A;
+
+    /* Summit White */
+    --color-summit-white: #FFFFFF;
+
+    /* Outline / Borders — Light Blue Gray */
+    --color-outline: #687280;
+    --color-outline-variant: #DCE6EF;
+    --color-surface-tint: #0B4F8A;
+
+    /* Status */
     --color-error: #ba1a1a;
+    --color-on-error: #ffffff;
+    --color-error-container: #ffdad6;
+    --color-on-error-container: #93000a;
     --color-success: #25d366;
     --color-on-success: #ffffff;
-    --color-on-secondary: #ffffff;
-    --color-on-surface: #121d26;
-    --color-on-primary: #ffffff;
-    --color-outline: #827660;
-    --color-on-background: #121d26;
+
+    /* Spacing */
     --spacing-gutter-mobile: clamp(1rem, 3vw, 1.25rem);
     --spacing-gutter-tablet: 1.5rem;
     --spacing-gutter-desktop: 2rem;
@@ -274,6 +300,7 @@ h6,
     background-color: var(--popover) !important;
     color: var(--popover-foreground) !important;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+    z-index: 50 !important;
 }
 
 .ss-content .ss-optgroup-label {
@@ -359,4 +386,40 @@ h6,
     color: var(--muted-foreground) !important;
     font-size: 0.875rem !important;
 }
+
+.ss-main[data-size="sm"] {
+    min-height: 2rem !important;
+    height: 2rem !important;
+    padding: 0.125rem 0.5rem !important;
+    font-size: 0.8125rem !important;
+}
+
+.ss-main[data-size="lg"] {
+    min-height: 2.75rem !important;
+    height: 2.75rem !important;
+    font-size: 1rem !important;
+}
+
+.ss-main.ss-disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+    background-color: var(--muted) !important;
+}
+
+.has-leading-icon .ss-main {
+    padding-left: 2.5rem !important;
+    border-radius: 0.75rem !important;
+    min-height: 2.75rem !important;
+    background-color: var(--color-surface-container-lowest, #ffffff) !important;
+    border: 1px solid rgba(130, 118, 96, 0.15) !important;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+}
+
+.has-leading-icon .ss-main:focus,
+.has-leading-icon .ss-main.ss-open-below,
+.has-leading-icon .ss-main.ss-open-above {
+    border-color: #0B4F8A !important;
+    box-shadow: 0 0 0 2px rgba(11, 79, 138, 0.25) !important;
+}
+
 
