@@ -202,6 +202,12 @@
                 }
             }
         },
+        handlePaste(event) {
+            if (window.handleRtePaste && window.handleRtePaste(event, this.$refs.editor)) {
+                this.refresh();
+                this.sync();
+            }
+        },
     }"
     {{ $attributes->whereDoesntStartWith('class') }}
     :class="fullscreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col !rounded-none m-0 bg-background border-0' : '{{ $baseClasses }}'"
@@ -289,6 +295,7 @@
         @keyup="refresh()"
         @mouseup="refresh()"
         @focus="refresh()"
+        @paste="handlePaste($event)"
         class="empty:before:text-muted-foreground prose prose-sm max-w-none px-3 py-3 outline-none empty:before:pointer-events-none empty:before:content-[attr(data-placeholder)]"
         :class="fullscreen ? 'flex-1 overflow-y-auto max-h-none h-full' : 'min-h-40'"
     >

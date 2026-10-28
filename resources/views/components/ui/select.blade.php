@@ -98,6 +98,33 @@
             } else {
                 $slimOptionsHtml = $rawSlot;
             }
+
+            if ($selectedValues->isNotEmpty()) {
+                $slimOptionsHtml = preg_replace_callback(
+                    '/<option\b([^>]*)>(.*?)<\/option>/is',
+                    function ($m) use ($selectedValues) {
+                        $attrs = $m[1];
+                        $content = $m[2];
+
+                        if (preg_match('/value=(["\'])(.*?)\1/i', $attrs, $valMatch)) {
+                            $optVal = $valMatch[2];
+                        } elseif (preg_match('/value=([^\s>]+)/i', $attrs, $valMatch)) {
+                            $optVal = $valMatch[1];
+                        } else {
+                            $optVal = trim(strip_tags($content));
+                        }
+
+                        $cleanAttrs = preg_replace('/\s+selected(=["\']?selected["\']?)?/i', '', $attrs);
+
+                        if ($selectedValues->contains((string) $optVal)) {
+                            return '<option' . $cleanAttrs . ' selected>' . $content . '</option>';
+                        }
+
+                        return '<option' . $cleanAttrs . '>' . $content . '</option>';
+                    },
+                    $slimOptionsHtml
+                );
+            }
         }
 
         // Prepend placeholder if defined and not already present in options

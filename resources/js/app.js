@@ -242,6 +242,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+import './rte-word-cleaner.js';
+
 window.Alpine = Alpine;
 Alpine.start();
+
+
 
