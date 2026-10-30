@@ -37,6 +37,20 @@
                                     <div class="font-body-sm text-body-sm text-tertiary">
                                         {{ $founder->designation ?? 'Founder' }}
                                     </div>
+                                    @php
+                                        $founderFb = $founder->facebook_url ?? $founder->facebook_link ?? null;
+                                        $founderIg = $founder->instagram_url ?? $founder->instagram_link ?? null;
+                                        $founderLi = $founder->linkedin_url ?? $founder->linkedin_link ?? null;
+                                        $founderTw = $founder->twitter_url ?? $founder->twitter_link ?? null;
+                                    @endphp
+                                    @if($founderFb || $founderIg || $founderLi || $founderTw)
+                                        <div class="mt-2 pt-2 border-t border-outline/10 flex items-center gap-1.5">
+                                            @if($founderFb)<a href="{{ $founderFb }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $founder->name }} on Facebook" class="size-6 rounded-full bg-surface-container hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_8px_rgba(255,210,0,0.4)] text-tertiary transition-all flex items-center justify-center"><x-lucide-facebook class="size-3" /></a>@endif
+                                            @if($founderIg)<a href="{{ $founderIg }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $founder->name }} on Instagram" class="size-6 rounded-full bg-surface-container hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_8px_rgba(255,210,0,0.4)] text-tertiary transition-all flex items-center justify-center"><x-lucide-instagram class="size-3" /></a>@endif
+                                            @if($founderLi)<a href="{{ $founderLi }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $founder->name }} on LinkedIn" class="size-6 rounded-full bg-surface-container hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_8px_rgba(255,210,0,0.4)] text-tertiary transition-all flex items-center justify-center"><x-lucide-linkedin class="size-3" /></a>@endif
+                                            @if($founderTw)<a href="{{ $founderTw }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $founder->name }} on Twitter / X" class="size-6 rounded-full bg-surface-container hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_8px_rgba(255,210,0,0.4)] text-tertiary transition-all flex items-center justify-center"><x-lucide-twitter class="size-3" /></a>@endif
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             @endif
@@ -224,6 +238,12 @@
                                         {{ $guide->department ?? 'Trek Leader' }}
                                     </span>
                                 </div>
+                                @if($guide->is_guide)
+                                    <div class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-primary-container text-on-primary-fixed font-badge-caption text-[11px] font-extrabold tracking-wider uppercase shadow-md border border-primary-container/60 hover:bg-amber-flare hover:shadow-[0_2px_12px_rgba(255,210,0,0.55)] group-hover:bg-amber-flare group-hover:shadow-[0_2px_12px_rgba(255,210,0,0.5)] transition-all duration-300 flex items-center gap-1.5 select-none">
+                                        <span class="size-1.5 rounded-full bg-on-primary-fixed inline-block"></span>
+                                        Guide
+                                    </div>
+                                @endif
                             </div>
                             <div class="p-space-lg space-y-space-sm">
                                 <div>
@@ -237,6 +257,49 @@
                                 <div class="font-body-sm text-body-sm text-tertiary leading-relaxed line-clamp-3">
                                     {!! strip_tags($guide->bio) !!}
                                 </div>
+                                @php
+                                    $guideFb = $guide->facebook_url ?? $guide->facebook_link ?? null;
+                                    $guideIg = $guide->instagram_url ?? $guide->instagram_link ?? null;
+                                    $guideLi = $guide->linkedin_url ?? $guide->linkedin_link ?? null;
+                                    $guideTw = $guide->twitter_url ?? $guide->twitter_link ?? null;
+                                    $guideEmail = $guide->email ? trim($guide->email) : null;
+                                    $guidePhone = $guide->phone ? trim($guide->phone) : null;
+                                    $hasGuideSocials = $guideFb || $guideIg || $guideLi || $guideTw || $guideEmail || $guidePhone;
+                                @endphp
+                                @if($hasGuideSocials)
+                                    <div class="pt-space-xs border-t border-outline/10 flex flex-wrap items-center gap-2">
+                                        @if($guideFb)
+                                            <a href="{{ $guideFb }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $guide->name }} on Facebook" title="Facebook" class="size-8 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_10px_rgba(255,210,0,0.45)] text-tertiary transition-all duration-200 flex items-center justify-center hover:scale-110">
+                                                <x-lucide-facebook class="size-4" />
+                                            </a>
+                                        @endif
+                                        @if($guideIg)
+                                            <a href="{{ $guideIg }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $guide->name }} on Instagram" title="Instagram" class="size-8 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_10px_rgba(255,210,0,0.45)] text-tertiary transition-all duration-200 flex items-center justify-center hover:scale-110">
+                                                <x-lucide-instagram class="size-4" />
+                                            </a>
+                                        @endif
+                                        @if($guideLi)
+                                            <a href="{{ $guideLi }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $guide->name }} on LinkedIn" title="LinkedIn" class="size-8 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_10px_rgba(255,210,0,0.45)] text-tertiary transition-all duration-200 flex items-center justify-center hover:scale-110">
+                                                <x-lucide-linkedin class="size-4" />
+                                            </a>
+                                        @endif
+                                        @if($guideTw)
+                                            <a href="{{ $guideTw }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $guide->name }} on Twitter / X" title="Twitter / X" class="size-8 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_10px_rgba(255,210,0,0.45)] text-tertiary transition-all duration-200 flex items-center justify-center hover:scale-110">
+                                                <x-lucide-twitter class="size-4" />
+                                            </a>
+                                        @endif
+                                        @if($guideEmail)
+                                            <a href="mailto:{{ $guideEmail }}" aria-label="Email {{ $guide->name }}" title="Email: {{ $guideEmail }}" class="size-8 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_10px_rgba(255,210,0,0.45)] text-tertiary transition-all duration-200 flex items-center justify-center hover:scale-110">
+                                                <x-lucide-mail class="size-4" />
+                                            </a>
+                                        @endif
+                                        @if($guidePhone)
+                                            <a href="tel:{{ $guidePhone }}" aria-label="Call {{ $guide->name }}" title="Call: {{ $guidePhone }}" class="size-8 rounded-full bg-surface-container-low hover:bg-primary-container hover:text-on-primary-fixed border border-outline/10 hover:border-primary-container hover:shadow-[0_2px_10px_rgba(255,210,0,0.45)] text-tertiary transition-all duration-200 flex items-center justify-center hover:scale-110">
+                                                <x-lucide-phone class="size-4" />
+                                            </a>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         @empty

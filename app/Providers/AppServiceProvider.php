@@ -68,20 +68,18 @@ class AppServiceProvider extends ServiceProvider
                 unset($member->role);
             }
 
-            // The package controller validates these, but they don't exist in the DB schema
-            if (array_key_exists('twitter_url', $member->getAttributes())) {
-                unset($member->twitter_url);
-            }
-            if (array_key_exists('instagram_url', $member->getAttributes())) {
-                unset($member->instagram_url);
-            }
-
             if (request()->routeIs('admin.team-members.*') && in_array(request()->method(), ['POST', 'PUT', 'PATCH'])) {
                 $member->is_guide = request()->boolean('is_guide');
                 $member->featured = request()->boolean('featured');
                 // The form sends 'is_active', but the DB column might be 'status' based on schema
                 if (request()->has('is_active')) {
                     $member->status = request()->boolean('is_active');
+                }
+                if (request()->has('email')) {
+                    $member->email = request()->input('email');
+                }
+                if (request()->has('phone')) {
+                    $member->phone = request()->input('phone');
                 }
             }
 

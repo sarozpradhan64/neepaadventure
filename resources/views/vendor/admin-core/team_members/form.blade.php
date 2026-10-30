@@ -56,6 +56,31 @@
                                 </x-ui.field>
                             </div>
 
+                            <div class="grid grid-cols-2 gap-4">
+                                <x-ui.field>
+                                    <x-ui.field-label for="email">Email</x-ui.field-label>
+                                    <x-ui.input
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        placeholder="guide@neepaadventure.com"
+                                        value="{{ old('email', $teamMember->email ?? '') }}"
+                                    />
+                                    <x-ui.field-error name="email" />
+                                </x-ui.field>
+                                <x-ui.field>
+                                    <x-ui.field-label for="phone">Phone / WhatsApp</x-ui.field-label>
+                                    <x-ui.input
+                                        id="phone"
+                                        name="phone"
+                                        type="text"
+                                        placeholder="+977 9800000000"
+                                        value="{{ old('phone', $teamMember->phone ?? '') }}"
+                                    />
+                                    <x-ui.field-error name="phone" />
+                                </x-ui.field>
+                            </div>
+
                             <x-ui.field>
                                 <x-ui.field-label for="bio">Bio</x-ui.field-label>
                                 <x-ui.rich-text-editor name="bio">
