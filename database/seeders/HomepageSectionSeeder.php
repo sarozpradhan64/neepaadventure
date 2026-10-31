@@ -17,6 +17,17 @@ class HomepageSectionSeeder extends Seeder
 
         $sections = [
             [
+                'section_type' => 'about_us',
+                'title' => 'Setting the Standard in Trekking Excellence',
+                'subtitle' => 'Who We Are',
+                'content' => 'We believe in building more than just itineraries; we build trust through unparalleled safety, expert guidance, and sustainable practices. Join us to experience the mountains with true professionals.',
+                'button_text' => 'Read Our Full Story',
+                'button_url' => '/about-us',
+                'settings' => ['service_ids' => []],
+                'sort_order' => 1,
+                'status' => true,
+            ],
+            [
                 'section_type' => 'custom_services',
                 'title' => 'Our Best-Selling Trips for 2026',
                 'subtitle' => 'Top Recommended Adventures',

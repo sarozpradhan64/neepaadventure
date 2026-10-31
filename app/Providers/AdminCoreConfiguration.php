@@ -278,4 +278,86 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
             ),
         ];
     }
+
+    /**
+     * Homepage section definitions specific to Neepa Adventure.
+     *
+     * @return array<int, array{
+     *     type: string,
+     *     name: string,
+     *     title: string,
+     *     subtitle?: string,
+     *     button_text?: string,
+     *     button_url?: string,
+     *     badgeClass?: string
+     * }>
+     */
+    public function homepageSectionDefinitions(): array
+    {
+        return [
+            [
+                'type' => 'about_us',
+                'name' => 'About Us',
+                'title' => 'Setting the Standard in Trekking Excellence',
+                'subtitle' => 'Who We Are',
+                'button_text' => 'Read Our Full Story',
+                'button_url' => '/about-us',
+                'badgeClass' => 'bg-blue-500/10 text-blue-700 border-blue-300 dark:border-blue-800 hover:bg-blue-500/20',
+            ],
+            [
+                'type' => 'departures',
+                'name' => 'Departures',
+                'title' => '2026/27 Guaranteed Departures',
+                'subtitle' => 'Limited Slots',
+                'button_text' => 'Explore All Schedules',
+                'button_url' => '/schedules',
+                'badgeClass' => 'bg-emerald-500/10 text-emerald-700 border-emerald-300 dark:border-emerald-800 hover:bg-emerald-500/20',
+            ],
+            [
+                'type' => 'why_trek',
+                'name' => 'Why Trek / Standards',
+                'title' => 'Built on Guide Heritage & Clinical Safety',
+                'subtitle' => 'The Neepa Standard',
+                'button_text' => 'Learn More',
+                'button_url' => '/about-us',
+                'badgeClass' => 'bg-purple-500/10 text-purple-700 border-purple-300 dark:border-purple-800 hover:bg-purple-500/20',
+            ],
+            [
+                'type' => 'team_guides',
+                'name' => 'Guides & Leaders',
+                'title' => 'Meet Our Trek Leaders',
+                'subtitle' => 'The Mountain Guardians',
+                'button_text' => 'Meet All Guides',
+                'button_url' => '/about-us/team',
+                'badgeClass' => 'bg-cyan-500/10 text-cyan-700 border-cyan-300 dark:border-cyan-800 hover:bg-cyan-500/20',
+            ],
+            [
+                'type' => 'reviews',
+                'name' => 'Reviews & Feedback',
+                'title' => 'Hear From Our Clients',
+                'subtitle' => 'Voices from the Pass',
+                'button_text' => 'Write a Review',
+                'button_url' => '/write-review',
+                'badgeClass' => 'bg-rose-500/10 text-rose-700 border-rose-300 dark:border-rose-800 hover:bg-rose-500/20',
+            ],
+            [
+                'type' => 'blogs',
+                'name' => 'Blogs & Guides',
+                'title' => 'Latest Travel Guides',
+                'subtitle' => 'Get Inspired',
+                'button_text' => 'View All Posts',
+                'button_url' => '/blogs',
+                'badgeClass' => 'bg-indigo-500/10 text-indigo-700 border-indigo-300 dark:border-indigo-800 hover:bg-indigo-500/20',
+            ],
+            [
+                'type' => 'cta',
+                'name' => 'CTA Banner',
+                'title' => 'Ready to Walk Among the Himalayan Giants?',
+                'subtitle' => 'Fast Response Trek Desk',
+                'button_text' => 'Talk to an Expert',
+                'button_url' => '/plan-your-trek',
+                'badgeClass' => 'bg-amber-500/10 text-amber-700 border-amber-300 dark:border-amber-800 hover:bg-amber-500/20',
+            ],
+        ];
+    }
 }

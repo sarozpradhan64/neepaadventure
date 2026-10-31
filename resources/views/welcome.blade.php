@@ -82,12 +82,12 @@
                         <a href="{{ route('services.category', 'trekking') }}"
                             class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transition-all active:scale-95">
                             <x-lucide-compass class="size-4" />
-                            <span>Explore Expeditions</span>
+                            <span>Explore Treks</span>
                         </a>
                         <a href="{{ route('plan-your-trek') }}"
                             class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-white/10 hover:bg-white/20 text-summit-white border border-white/25 backdrop-blur-md font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-md transition-all active:scale-95">
                             <x-lucide-calendar class="size-4 text-primary-container" />
-                            <span>Plan Custom Trek</span>
+                            <span>Plan Your Adventure</span>
                         </a>
                     </div>
 
@@ -114,79 +114,80 @@
                     </div>
                 </div>
             </section>
-            <!-- WHO ARE WE SECTION -->
-            @php
-                $whoTitle = $websiteSettings['who_are_we_title'] ?? 'Setting the Standard in Trekking Excellence';
-                $whoSubtitle = $websiteSettings['who_are_we_subtitle'] ?? 'Who We Are';
-                $whoText = $websiteSettings['who_are_we_text'] ?? 'We believe in building more than just itineraries; we build trust through unparalleled safety, expert guidance, and sustainable practices. Join us to experience the mountains with true professionals.';
-                $whoBullets = json_decode($websiteSettings['who_are_we_bullets'] ?? '[]', true) ?: [
-                    'Uncompromising safety standards on every trek.',
-                    'Decades of proven Himalayan expertise.',
-                    'Commitment to sustainable and ethical practices.'
-                ];
-                $whoImage = !empty($websiteSettings['who_are_we_image']) 
-                    ? asset('storage/' . $websiteSettings['who_are_we_image']) 
-                    : 'https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2000&auto=format&fit=crop';
-            @endphp
-            <section class="bg-surface-container-lowest py-space-2xl md:py-space-3xl w-full">
-                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
-                    <div class="gap-space-xl lg:gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
-                        <!-- Image Side -->
-                        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg h-[280px] sm:h-[380px] lg:h-[550px]">
-                            <img src="{{ $whoImage }}" alt="{{ $whoTitle }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <!-- Small decorative element on image -->
-                            <div class="absolute bottom-6 left-6 right-6">
-                                <div class="bg-surface/90 backdrop-blur-md p-space-md rounded-xl inline-flex items-center gap-4 shadow-sm">
-                                    <div class="bg-primary text-on-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
-                                        <x-lucide-shield-check class="size-6" />
-                                    </div>
-                                    <div>
-                                        <div class="font-headline-sm font-bold text-on-surface">Trusted by Thousands</div>
-                                        <div class="font-body-sm text-tertiary">Verified Excellence</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Text Side -->
-                        <div class="flex flex-col justify-center">
-                            <div class="font-badge-caption text-badge-caption text-primary mb-space-xs font-bold tracking-[0.2em] uppercase">
-                                {{ $whoSubtitle }}
-                            </div>
-                            <h2 id="{{ Str::slug($whoTitle) ?: 'who-we-are' }}" class="font-headline-lg text-headline-lg text-on-surface mb-space-md tracking-tight">
-                                {{ $whoTitle }}
-                            </h2>
-                            <p class="font-body-lg text-body-lg text-tertiary mb-space-lg leading-relaxed">
-                                {{ $whoText }}
-                            </p>
-                            
-                            @if(!empty($whoBullets))
-                                <div class="space-y-4 mb-space-lg">
-                                    @foreach($whoBullets as $bullet)
-                                        <div class="flex items-start gap-3">
-                                            <div class="text-primary mt-1 shrink-0">
-                                                <x-lucide-check-circle class="size-5" />
-                                            </div>
-                                            <p class="font-body-md text-on-surface">{{ $bullet }}</p>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
-
-                            <div>
-                                <a href="{{ route('about') }}" class="bg-primary-container text-on-primary-fixed hover:bg-amber-flare font-label-md px-space-xl py-space-sm inline-flex items-center justify-center rounded-xl font-bold uppercase tracking-wider transition-colors shadow-sm">
-                                    Read Our Full Story
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             @if(isset($homepageSections) && $homepageSections->isNotEmpty())
                 @foreach($homepageSections as $section)
                     @switch($section->section_type)
+
+                        {{-- ABOUT US / WHO ARE WE SECTION --}}
+                        @case('about_us')
+                        @case('who_are_we')
+                            @php
+                                $whoTitle = $section->title ?: ($websiteSettings['who_are_we_title'] ?? 'Setting the Standard in Trekking Excellence');
+                                $whoText = $websiteSettings['who_are_we_text'] ?? 'We believe in building more than just itineraries; we build trust through unparalleled safety, expert guidance, and sustainable practices. Join us to experience the mountains with true professionals.';
+                                $whoBullets = json_decode($websiteSettings['who_are_we_bullets'] ?? '[]', true) ?: [
+                                    'Uncompromising safety standards on every trek.',
+                                    'Decades of proven Himalayan expertise.',
+                                    'Commitment to sustainable and ethical practices.'
+                                ];
+                                $whoImage = !empty($websiteSettings['who_are_we_image']) 
+                                    ? asset('storage/' . $websiteSettings['who_are_we_image']) 
+                                    : 'https://images.unsplash.com/photo-1522163182402-834f871fd851?q=80&w=2000&auto=format&fit=crop';
+                                $whoButtonText = $section->button_text ?: 'Read Our Full Story';
+                                $whoButtonUrl = $section->button_url ?: route('about');
+                            @endphp
+                            <section class="bg-surface-container-lowest py-space-2xl md:py-space-3xl w-full">
+                                <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
+                                    <div class="gap-space-xl lg:gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
+                                        <!-- Image Side -->
+                                        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg h-[280px] sm:h-[380px] lg:h-[550px]">
+                                            <img src="{{ $whoImage }}" alt="{{ $whoTitle }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                            <!-- Small decorative element on image -->
+                                            <div class="absolute bottom-6 left-6 right-6">
+                                                <div class="bg-surface/90 backdrop-blur-md p-space-md rounded-xl inline-flex items-center gap-4 shadow-sm">
+                                                    <div class="bg-primary text-on-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-full">
+                                                        <x-lucide-shield-check class="size-6" />
+                                                    </div>
+                                                    <div>
+                                                        <div class="font-headline-sm font-bold text-on-surface">Trusted by Thousands</div>
+                                                        <div class="font-body-sm text-tertiary">Verified Excellence</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Text Side -->
+                                        <div class="flex flex-col justify-center">
+                                            <h2 id="{{ Str::slug($whoTitle) ?: 'who-we-are' }}" class="font-headline-lg text-headline-lg text-on-surface mb-space-md tracking-tight">
+                                                {{ $whoTitle }}
+                                            </h2>
+                                            <p class="font-body-lg text-body-lg text-tertiary mb-space-lg leading-relaxed">
+                                                {{ $whoText }}
+                                            </p>
+                                            
+                                            @if(!empty($whoBullets))
+                                                <div class="space-y-4 mb-space-lg">
+                                                    @foreach($whoBullets as $bullet)
+                                                        <div class="flex items-start gap-3">
+                                                            <div class="text-primary mt-1 shrink-0">
+                                                                <x-lucide-check-circle class="size-5" />
+                                                            </div>
+                                                            <p class="font-body-md text-on-surface">{{ $bullet }}</p>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            @endif
+
+                                            <div>
+                                                <a href="{{ $whoButtonUrl }}" class="bg-primary-container text-on-primary-fixed hover:bg-amber-flare font-label-md px-space-xl py-space-sm inline-flex items-center justify-center rounded-xl font-bold uppercase tracking-wider transition-colors shadow-sm">
+                                                    {{ $whoButtonText }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            @break
 
                         {{-- CURATED / CUSTOM SERVICES SECTION --}}
                         @case('custom_services')
