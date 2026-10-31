@@ -24,6 +24,7 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
     {
         return array_merge(parent::features(), [
             'hero_highlighted_text' => true,
+            'service_featured' => false,
         ]);
     }
 

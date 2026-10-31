@@ -129,20 +129,17 @@ class MenuItemTest extends TestCase
             ->assertSee('urlVal: \'/community\'', false);
     }
 
-    public function test_admin_menus_index_suggests_missing_root_paths(): void
+    public function test_admin_menus_index_does_not_suggest_missing_root_paths(): void
     {
         $user = User::factory()->create();
 
-        // With no menus created, missing root paths like Projects should be suggested
-        $response = $this->actingAs($user)
+        $this->actingAs($user)
             ->get(route('admin.menus.index'))
             ->assertOk()
-            ->assertSee('Missing Root Paths Suggested for Menus')
-            ->assertSee('Projects')
-            ->assertSee('/projects');
+            ->assertDontSee('Missing Root Paths Suggested for Menus');
 
-        // Clicking the suggested button links to create page with prefilled title and url
-        $createResponse = $this->actingAs($user)
+        // Create page still supports prefilled title and url
+        $this->actingAs($user)
             ->get(route('admin.menus.create', ['title' => 'Projects', 'url' => '/projects']))
             ->assertOk()
             ->assertSee('value="Projects"', false)
