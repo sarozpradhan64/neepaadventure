@@ -360,4 +360,31 @@ class AdminCoreConfiguration extends BaseAdminCoreConfiguration
             ],
         ];
     }
+
+    /**
+     * Available static frontend routes specific to Neepa Adventure.
+     *
+     * @return array<int, array{path: string, label: string}>
+     */
+    public function staticRoutes(): array
+    {
+        return [
+            ['path' => '/', 'label' => 'Home (/)'],
+            ['path' => '/treks', 'label' => 'Explore Treks (/treks)'],
+            ['path' => '/schedules', 'label' => 'Guaranteed Departures (/schedules)'],
+            ['path' => '/projects', 'label' => 'Projects (/projects)'],
+            ['path' => '/blogs', 'label' => 'Blogs & Guides (/blogs)'],
+            ['path' => '/gallery', 'label' => 'Photo & Video Gallery (/gallery)'],
+            ['path' => '/about-us', 'label' => 'About Us (/about-us)'],
+            ['path' => '/about-us/team', 'label' => 'Our Team (/about-us/team)'],
+            ['path' => '/about-us/story', 'label' => 'Our Story (/about-us/story)'],
+            ['path' => '/about-us/reviews', 'label' => 'Client Reviews (/about-us/reviews)'],
+            ['path' => '/about-us/careers', 'label' => 'Careers (/about-us/careers)'],
+            ['path' => '/community', 'label' => 'Community (/community)'],
+            ['path' => '/plan-your-trek', 'label' => 'Plan Your Trek (/plan-your-trek)'],
+            ['path' => '/contact', 'label' => 'Contact Us (/contact)'],
+            ['path' => '/legal', 'label' => 'Legal Documents (/legal)'],
+            ['path' => '/write-review', 'label' => 'Write a Review (/write-review)'],
+        ];
+    }
 }
