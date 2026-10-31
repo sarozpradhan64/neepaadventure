@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\ServiceDeparture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ScheduleController extends Controller
 {
@@ -26,7 +27,23 @@ class ScheduleController extends Controller
         }
 
         if ($request->ajax()) {
-            $departures = $query->take(3)->get();
+            if ($request->input('source') === 'home' || $request->has('limit')) {
+                $limit = (int) $request->input('limit', 3);
+                $departures = $query->take($limit)->get();
+
+                return view('components.departures-list', compact('departures'))->render();
+            }
+
+            $departures = $query->paginate(12);
+
+            if ($request->wantsJson() || $request->has('partial')) {
+                return response()->json([
+                    'html' => view('components.departures-list', compact('departures'))->render(),
+                    'total' => $departures->total(),
+                    'count_text' => 'Showing '.$departures->total().' confirmed '.Str::plural('departure', $departures->total()),
+                    'pagination' => $departures->hasPages() ? (string) $departures->withQueryString()->links() : '',
+                ]);
+            }
 
             return view('components.departures-list', compact('departures'))->render();
         }

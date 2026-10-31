@@ -49,36 +49,127 @@
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-space-xl gap-4">
                         <div>
                             <h2 id="available-schedules" class="font-headline-sm font-bold text-on-surface">Available Schedules</h2>
-                            <p class="text-body-sm text-tertiary">
+                            <p id="schedules-count" class="text-body-sm text-tertiary">
                                 Showing {{ $departures->total() }} confirmed {{ Str::plural('departure', $departures->total()) }}
                             </p>
                         </div>
                         
-                        <form action="{{ route('schedules') }}" method="GET" class="flex items-center gap-space-sm shrink-0">
-                            <div class="relative group">
-                                <select name="season" onchange="this.form.submit()" class="appearance-none bg-surface-container-lowest border border-outline/15 hover:border-primary/40 rounded-xl pl-4 pr-10 py-2.5 text-on-surface font-label-md font-bold focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all cursor-pointer text-sm shadow-sm">
-                                    <option value="">All Seasons</option>
-                                    <option value="autumn" {{ request('season') == 'autumn' ? 'selected' : '' }}>Autumn (Sep &ndash; Nov)</option>
-                                    <option value="spring" {{ request('season') == 'spring' ? 'selected' : '' }}>Spring (Mar &ndash; May)</option>
-                                </select>
-                                <x-lucide-chevron-down class="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-tertiary pointer-events-none group-hover:text-primary transition-colors" />
-                            </div>
-                        </form>
+                        <div class="flex items-center gap-space-sm shrink-0 w-52 sm:w-56">
+                            <x-ui.select
+                                id="season-filter"
+                                name="season"
+                                value="{{ request('season', '') }}"
+                                :search="false"
+                                :allow-deselect="false"
+                                class="w-full"
+                            >
+                                <x-ui.select-item value="">All Seasons</x-ui.select-item>
+                                <x-ui.select-item value="autumn">Autumn (Sep &ndash; Nov)</x-ui.select-item>
+                                <x-ui.select-item value="spring">Spring (Mar &ndash; May)</x-ui.select-item>
+                            </x-ui.select>
+                        </div>
                     </div>
 
-                    <div class="space-y-space-md">
+                    <div id="departures-container" class="space-y-space-md transition-opacity duration-200">
                         @include('components.departures-list', ['departures' => $departures])
                     </div>
                     
-                    @if($departures->hasPages())
-                        <div class="mt-space-2xl">
+                    <div id="pagination-container" class="mt-space-2xl transition-opacity duration-200">
+                        @if($departures->hasPages())
                             {{ $departures->withQueryString()->links() }}
-                        </div>
-                    @endif
+                        @endif
+                    </div>
                 </div>
             </section>
         </div>
     </main>
 
     <x-footer />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const seasonFilter = document.getElementById('season-filter');
+            const departuresContainer = document.getElementById('departures-container');
+            const schedulesCount = document.getElementById('schedules-count');
+            const paginationContainer = document.getElementById('pagination-container');
+
+            function fetchSchedules(fetchUrl, updateHistory = true) {
+                if (!departuresContainer) return;
+
+                departuresContainer.style.opacity = '0.5';
+                if (paginationContainer) paginationContainer.style.opacity = '0.5';
+
+                const url = new URL(fetchUrl, window.location.origin);
+                url.searchParams.set('partial', '1');
+
+                fetch(url.toString(), {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    departuresContainer.innerHTML = data.html;
+                    departuresContainer.style.opacity = '1';
+
+                    if (schedulesCount && data.count_text) {
+                        schedulesCount.textContent = data.count_text;
+                    }
+
+                    if (paginationContainer) {
+                        paginationContainer.innerHTML = data.pagination || '';
+                        paginationContainer.style.opacity = '1';
+                    }
+
+                    if (updateHistory) {
+                        const historyUrl = new URL(fetchUrl, window.location.origin);
+                        historyUrl.searchParams.delete('partial');
+                        window.history.pushState(
+                            { season: historyUrl.searchParams.get('season') || '', page: historyUrl.searchParams.get('page') || '' },
+                            '',
+                            historyUrl.toString()
+                        );
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching schedules:', error);
+                    departuresContainer.style.opacity = '1';
+                    if (paginationContainer) paginationContainer.style.opacity = '1';
+                });
+            }
+
+            if (seasonFilter && departuresContainer) {
+                seasonFilter.addEventListener('change', function () {
+                    const season = this.value;
+                    const url = new URL('{{ route('schedules') }}', window.location.origin);
+                    if (season) {
+                        url.searchParams.set('season', season);
+                    }
+                    fetchSchedules(url.toString(), true);
+                });
+            }
+
+            if (paginationContainer) {
+                paginationContainer.addEventListener('click', function (e) {
+                    const link = e.target.closest('a');
+                    if (!link || !link.href) return;
+                    e.preventDefault();
+                    fetchSchedules(link.href, true);
+                    window.scrollTo({ top: departuresContainer.offsetTop - 100, behavior: 'smooth' });
+                });
+            }
+
+            window.addEventListener('popstate', function (e) {
+                const state = e.state;
+                const season = state?.season ?? (new URLSearchParams(window.location.search).get('season') || '');
+                if (seasonFilter?._slimSelect) {
+                    seasonFilter._slimSelect.setSelected(season);
+                } else if (seasonFilter) {
+                    seasonFilter.value = season;
+                }
+                fetchSchedules(window.location.href, false);
+            });
+        });
+    </script>
 </x-layouts.app>

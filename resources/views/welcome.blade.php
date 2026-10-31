@@ -291,15 +291,18 @@
                                                 Lock in your adventure early. Fixed departure dates with confirmed groups, expert lead guides, and early-bird savings.
                                             </p>
                                         </div>
-                                        <div class="flex items-center gap-space-sm shrink-0">
-                                            <div class="relative group">
-                                                <select id="season-filter" class="appearance-none bg-surface-container-lowest border-2 border-outline/10 hover:border-primary/30 rounded-xl pl-5 pr-12 py-3 text-on-surface font-label-md font-bold focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all cursor-pointer">
-                                                    <option value="">All Seasons</option>
-                                                    <option value="autumn">Autumn (Oct - Nov)</option>
-                                                    <option value="spring">Spring (Mar - May)</option>
-                                                </select>
-                                                <x-lucide-chevron-down class="absolute right-4 top-1/2 -translate-y-1/2 size-5 text-tertiary pointer-events-none group-hover:text-primary transition-colors" />
-                                            </div>
+                                        <div class="flex items-center gap-space-sm shrink-0 w-52 sm:w-56">
+                                            <x-ui.select
+                                                id="season-filter"
+                                                name="season"
+                                                :search="false"
+                                                :allow-deselect="false"
+                                                class="w-full"
+                                            >
+                                                <x-ui.select-item value="">All Seasons</x-ui.select-item>
+                                                <x-ui.select-item value="autumn">Autumn (Oct - Nov)</x-ui.select-item>
+                                                <x-ui.select-item value="spring">Spring (Mar - May)</x-ui.select-item>
+                                            </x-ui.select>
                                         </div>
                                     </div>
 
@@ -621,7 +624,6 @@
                                                                 {{ $testimonial->trip_name ?: $testimonial->country }}
                                                             </div>
                                                         </div>
-                                                        <x-lucide-shield-check class="text-primary size-[24px]" />
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -886,7 +888,7 @@
                     
                     departuresContainer.style.opacity = '0.5';
                     
-                    fetch(`{{ route('schedules') }}?season=${season}`, {
+                    fetch(`{{ route('schedules') }}?season=${season}&source=home&limit=3`, {
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest'
                         }

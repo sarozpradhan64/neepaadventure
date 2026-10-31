@@ -163,7 +163,9 @@ window.initSlimSelect = function (element, options = {}) {
     const allowDeselect =
         options.settings?.allowDeselect !== undefined
             ? options.settings.allowDeselect
-            : !isRequired && !selectEl.multiple;
+            : (selectEl.dataset.allowDeselect !== undefined
+                ? selectEl.dataset.allowDeselect === "true"
+                : !isRequired && !selectEl.multiple);
 
     selectEl._slimSelect = new SlimSelect({
         select: selectEl,
@@ -238,7 +240,9 @@ Alpine.data("slimSelect", (options = {}) => ({
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("select.slim-select").forEach((el) => {
-        window.initSlimSelect(el);
+        if (!el.closest('[x-data*="slimSelect"]')) {
+            window.initSlimSelect(el);
+        }
     });
 });
 

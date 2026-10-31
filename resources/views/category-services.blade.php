@@ -55,7 +55,6 @@
                         <img src="{{ asset('images/himalaya_hero.jpg') }}" alt="{{ $category->name }}" class="h-full w-full object-cover">
                     @endif
                     <div class="bg-ridge-deep/80 absolute inset-0 mix-blend-multiply"></div>
-                    <div class="bg-gradient-to-t from-surface via-transparent to-transparent absolute inset-0"></div>
                 </div>
 
                 <div class="max-w-max-content-width relative z-10 mx-auto">

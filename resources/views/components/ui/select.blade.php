@@ -153,6 +153,7 @@
             @if ($placeholder !== '') placeholder="{{ $placeholder }}" @endif
             data-size="{{ $size }}"
             data-search="{{ $search ? 'true' : 'false' }}"
+            @if ($allowDeselect !== null) data-allow-deselect="{{ $allowDeselect ? 'true' : 'false' }}" @endif
             {{ $attributes->twMerge('slim-select w-full') }}
         >
             {!! $slimOptionsHtml !!}
