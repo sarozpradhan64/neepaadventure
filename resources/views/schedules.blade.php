@@ -48,7 +48,7 @@
                     
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-space-xl gap-4">
                         <div>
-                            <h2 class="font-headline-sm font-bold text-on-surface">Available Schedules</h2>
+                            <h2 id="available-schedules" class="font-headline-sm font-bold text-on-surface">Available Schedules</h2>
                             <p class="text-body-sm text-tertiary">
                                 Showing {{ $departures->total() }} confirmed {{ Str::plural('departure', $departures->total()) }}
                             </p>

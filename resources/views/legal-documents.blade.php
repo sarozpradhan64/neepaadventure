@@ -41,7 +41,7 @@
             </div>
             
             <div class="mt-16">
-                <h2 class="text-headline-md font-headline-md text-on-surface mb-8 font-bold">Registrations and Affiliations</h2>
+                <h2 id="registrations-and-affiliations" class="text-headline-md font-headline-md text-on-surface mb-8 font-bold">Registrations and Affiliations</h2>
                 
                 @if($legalDocuments->isEmpty())
                     <div class="bg-surface-container p-8 text-center rounded-xl">

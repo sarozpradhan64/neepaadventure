@@ -56,14 +56,14 @@
             <div class="prose max-w-none prose-p:text-tertiary prose-headings:text-on-surface prose-li:text-tertiary mb-12">
                 @if($job->description)
                     <div class="mb-8">
-                        <h2 class="text-2xl font-bold mb-4">Job Description</h2>
+                        <h2 id="job-description" class="text-2xl font-bold mb-4">Job Description</h2>
                         {!! $job->description !!}
                     </div>
                 @endif
 
                 @if($job->requirements)
                     <div class="mb-8">
-                        <h2 class="text-2xl font-bold mb-4">Requirements</h2>
+                        <h2 id="requirements" class="text-2xl font-bold mb-4">Requirements</h2>
                         {!! $job->requirements !!}
                     </div>
                 @endif

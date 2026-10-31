@@ -154,7 +154,7 @@
                             <div class="font-badge-caption text-badge-caption text-primary mb-space-xs font-bold tracking-[0.2em] uppercase">
                                 {{ $whoSubtitle }}
                             </div>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-md tracking-tight">
+                            <h2 id="{{ Str::slug($whoTitle) ?: 'who-we-are' }}" class="font-headline-lg text-headline-lg text-on-surface mb-space-md tracking-tight">
                                 {{ $whoTitle }}
                             </h2>
                             <p class="font-body-lg text-body-lg text-tertiary mb-space-lg leading-relaxed">
@@ -210,7 +210,7 @@
                                                     {{ $section->subtitle }}
                                                 </div>
                                             @endif
-                                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                                            <h2 id="{{ Str::slug($section->title) ?: 'curated-services' }}" class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
                                                 {{ $section->title }}
                                             </h2>
                                         </div>
@@ -283,7 +283,7 @@
                                                 </span>
                                                 <span class="font-badge-caption text-badge-caption font-bold tracking-[0.2em] uppercase">Limited Slots</span>
                                             </div>
-                                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">
+                                            <h2 id="guaranteed-departures" class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-2">
                                                 2026/27 <span class="text-primary font-bold">Guaranteed Departures</span>
                                             </h2>
                                             <p class="font-body-md text-body-md text-tertiary">
@@ -329,7 +329,7 @@
                                             class="font-badge-caption text-badge-caption text-primary mb-space-2xs font-bold tracking-[0.2em] uppercase">
                                             {{ $section->subtitle ?: 'The Neepa Standard' }}
                                         </div>
-                                        <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                                        <h2 id="{{ Str::slug($section->title ?: 'the-neepa-standard') }}" class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
                                             {{ $section->title ?: 'Built on Guide Heritage & Clinical Safety' }}
                                         </h2>
                                         <p class="font-body-md text-body-md text-tertiary mt-space-2xs">
@@ -508,7 +508,7 @@
                                                     class="font-badge-caption text-badge-caption text-primary mb-space-2xs font-bold tracking-[0.2em] uppercase">
                                                     {{ $section->subtitle ?: 'The Mountain Guardians' }}
                                                 </div>
-                                                <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+                                                <h2 id="{{ Str::slug($section->title ?: 'the-mountain-guardians') }}" class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
                                                     {{ $section->title ?: "You Are in the Hands of Nepal's Finest Trekkers" }}
                                                 </h2>
                                             </div>
@@ -589,7 +589,7 @@
                                                 class="font-badge-caption text-badge-caption text-primary-container mb-space-2xs font-bold tracking-[0.2em] uppercase">
                                                 {{ $section->subtitle ?: 'Voices from the Pass' }}
                                             </div>
-                                            <h2 class="font-headline-lg text-headline-lg text-summit-white tracking-tight">
+                                            <h2 id="{{ Str::slug($section->title ?: 'hear-from-our-clients') }}" class="font-headline-lg text-headline-lg text-summit-white tracking-tight">
                                                 {{ $section->title ?: 'Hear From Our Clients' }}
                                             </h2>
                                         </div>
@@ -737,7 +737,7 @@
                                     <div class="flex flex-col gap-space-md justify-between sm:flex-row sm:items-end">
                                         <div class="gap-space-xs flex flex-col">
                                             <span class="font-badge-caption text-badge-caption text-primary font-bold uppercase tracking-[0.2em]">{{ $section->subtitle ?: 'Get Inspired' }}</span>
-                                            <h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">{{ $section->title ?: 'Latest Travel Guides' }}</h2>
+                                            <h2 id="{{ Str::slug($section->title ?: 'latest-travel-guides') }}" class="font-headline-lg text-headline-lg text-on-surface tracking-tight">{{ $section->title ?: 'Latest Travel Guides' }}</h2>
                                         </div>
                                         <a href="{{ route('blog') }}" class="gap-space-xs px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-label-md inline-flex items-center rounded-xl py-3 tracking-wider uppercase transition-colors self-start sm:self-auto shadow-sm">
                                             <span>{{ $section->button_text ?: 'View All Posts' }}</span>
@@ -795,7 +795,7 @@
                                     </div>
 
                                     <!-- Heading & Description -->
-                                    <h2 class="mt-4 font-headline-lg text-headline-lg font-bold text-summit-white tracking-tight">
+                                    <h2 id="{{ Str::slug($section->title ?: 'plan-my-trips') }}" class="mt-4 font-headline-lg text-headline-lg font-bold text-summit-white tracking-tight">
                                         {{ $section->title ?: 'Plan my trips' }}
                                     </h2>
                                     <p class="mt-3 text-body-md text-white/85 max-w-xl mx-auto leading-relaxed">

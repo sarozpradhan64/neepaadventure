@@ -139,7 +139,7 @@
                             <div class="bg-surface-container-high w-16 h-16 rounded-2xl flex items-center justify-center mx-auto text-tertiary">
                                 <x-lucide-compass class="size-8 text-primary" />
                             </div>
-                            <h2 class="text-headline-md font-bold text-on-surface">No Routes Found in {{ $category->name }}</h2>
+                            <h2 id="no-routes-found" class="text-headline-md font-bold text-on-surface">No Routes Found in {{ $category->name }}</h2>
                             <p class="text-body-md text-tertiary">
                                 @if(request('search'))
                                     No services matched "{{ request('search') }}". Try searching with different keywords or clear your search filter.
@@ -202,7 +202,7 @@
                                         <div class="p-6 space-y-4">
                                             <div>
                                                 <a href="{{ $trek->url }}">
-                                                    <h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors line-clamp-2 leading-snug">
+                                                    <h2 id="{{ Str::slug($trek->title) }}" class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors line-clamp-2 leading-snug">
                                                         {{ $trek->title }}
                                                     </h2>
                                                 </a>
@@ -271,7 +271,7 @@
                     <span class="bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">
                         Custom Mountain Journeys
                     </span>
-                    <h2 class="text-3xl font-extrabold text-on-surface">
+                    <h2 id="{{ Str::slug('Looking for a Custom Tour in ' . $category->name) }}" class="text-3xl font-extrabold text-on-surface">
                         Looking for a Custom Tour in {{ $category->name }}?
                     </h2>
                     <p class="text-tertiary text-base max-w-2xl mx-auto leading-relaxed">

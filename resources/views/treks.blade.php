@@ -447,7 +447,7 @@
                     <div class="gap-space-xl grid grid-cols-1 items-center lg:grid-cols-12">
                         <div class="space-y-space-sm lg:col-span-8">
                             <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-wider uppercase">Private &amp; Tailor-Made Treks</span>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+                            <h2 id="need-a-private-alpine-itinerary-or-heli-shuttle-return" class="font-headline-lg text-headline-lg text-on-surface font-bold">
                                 Need a Private Alpine Itinerary or Heli-Shuttle Return?
                             </h2>
                             <p class="font-body-lg text-body-lg text-tertiary max-w-2xl">

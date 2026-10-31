@@ -17,7 +17,7 @@
                                     <x-lucide-message-square class="size-[14px]" /> We'd love to hear from you
                                 </span>
                             </div>
-                            <h2 class="font-headline-lg text-headline-md sm:text-headline-lg text-on-surface font-bold">
+                            <h2 id="contact-us" class="font-headline-lg text-headline-md sm:text-headline-lg text-on-surface font-bold">
                                 Contact Us
                             </h2>
                             <p class="font-body-md text-body-md text-tertiary">
@@ -387,7 +387,7 @@
                     <div class="gap-space-md flex flex-col justify-between md:flex-row md:items-end">
                         <div>
                             <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">{{ $contact?->company_name ?? 'Company' }} Location</span>
-                            <h2 class="font-headline-lg text-headline-md sm:text-headline-lg text-on-surface font-bold">
+                            <h2 id="visit-our-briefing-center-in-thamel" class="font-headline-lg text-headline-md sm:text-headline-lg text-on-surface font-bold">
                                 Visit Our Briefing Center in Thamel
                             </h2>
                         </div>
@@ -491,7 +491,7 @@
             <section class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop py-space-3xl mx-auto w-full">
                 <div class="gap-space-xs mb-space-2xl mx-auto flex max-w-2xl flex-col items-center text-center">
                     <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">Field Readiness Inquiries</span>
-                    <h2 class="font-headline-lg text-headline-md sm:text-headline-lg text-on-surface font-bold">
+                    <h2 id="frequently-asked-questions" class="font-headline-lg text-headline-md sm:text-headline-lg text-on-surface font-bold">
                         Frequently Asked Questions
                     </h2>
                     <p class="font-body-md text-body-md text-tertiary">
@@ -540,7 +540,7 @@
                     <div class="gap-space-md flex flex-col items-center justify-between text-center md:flex-row md:text-left">
                         <div>
                             <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-wider uppercase">Official Alpine Governance</span>
-                            <h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Registered &amp; Fully Licensed Trek Operator</h2>
+                            <h2 id="registered-fully-licensed-trek-operator" class="font-headline-sm text-headline-sm text-on-surface font-bold">Registered &amp; Fully Licensed Trek Operator</h2>
                         </div>
                         <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
                             @if(!empty($contact?->registration_number))

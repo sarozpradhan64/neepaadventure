@@ -99,7 +99,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight group-hover:text-primary transition-colors">
+                                    <h2 id="{{ Str::slug($featured->title) }}" class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight group-hover:text-primary transition-colors">
                                         <a href="{{ route('blog-detail', $featured->slug) }}">
                                             {{ $featured->title }}
                                         </a>
@@ -154,7 +154,7 @@
                     <!-- Section Header -->
                     <div class="gap-space-md flex flex-col justify-between sm:flex-row sm:items-end">
                         <div>
-                            <h2 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">
+                            <h2 id="journal-articles" class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">
                                 @if(request('category'))
                                     {{ $categories->firstWhere('slug', request('category'))?->name ?? 'Category' }} Articles
                                 @elseif(request('tag'))
@@ -287,7 +287,7 @@
                         
                         <!-- Briefing Content -->
                         <div class="gap-space-sm relative z-10 flex max-w-xl flex-col">
-                            <h2 class="font-headline-lg text-headline-lg font-black text-summit-white tracking-tight">
+                            <h2 id="himalayan-updates-weather-alerts" class="font-headline-lg text-headline-lg font-black text-summit-white tracking-tight">
                                 Himalayan Updates &amp; Weather Alerts
                             </h2>
                             <p class="font-body-md text-body-md text-surface-dim">

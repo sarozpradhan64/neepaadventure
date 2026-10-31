@@ -10,7 +10,7 @@
                         <span
                             class="font-label-sm text-label-sm text-primary font-bold tracking-widest uppercase">Verified
                             Client Treks &amp; Field Reports</span>
-                        <h2
+                        <h2 id="trek-projects-directory"
                             class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
                             Trek Projects Directory
                         </h2>
@@ -111,7 +111,7 @@
                         <span
                             class="font-label-sm text-label-sm text-primary font-bold tracking-widest uppercase">Standard
                             of Excellence for Custom Groups</span>
-                        <h2
+                        <h2 id="how-we-structure-your-custom-team-project"
                             class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
                             How We Structure Your Custom Team Project
                         </h2>
@@ -237,7 +237,7 @@
                             class="font-badge-caption text-badge-caption text-primary-container tracking-wider uppercase">Bespoke
                             Club &amp; Private Treks</span>
                     </div>
-                    <h2
+                    <h2 id="planning-a-private-trek-or-club-project-in-nepal"
                         class="font-headline-lg text-headline-lg lg:text-display-xl text-summit-white mx-auto max-w-4xl leading-tight font-extrabold tracking-tight uppercase">
                         Planning a Private Trek or Club Project in Nepal?
                     </h2>

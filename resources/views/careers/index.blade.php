@@ -24,7 +24,7 @@
         <section class="py-space-2xl px-gutter-mobile lg:px-gutter-desktop bg-surface-container-lowest border-y border-surface-container">
             <div class="max-w-max-content-width mx-auto">
                 <div class="text-center mb-12">
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Why Neepa Adventure?</h2>
+                    <h2 id="why-neepa-adventure" class="font-headline-md text-headline-md font-bold text-on-surface">Why Neepa Adventure?</h2>
                     <p class="font-body-md text-tertiary mt-2 max-w-lg mx-auto">More than a job, it's a calling to the mountains. We take pride in how we treat our team and the environment.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -57,7 +57,7 @@
         <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop" x-data="{ activeTab: 'all' }">
             <div class="max-w-max-content-width mx-auto">
                 <div class="mb-8 text-center">
-                    <h2 class="font-headline-md text-headline-md font-bold text-on-surface">Open Positions</h2>
+                    <h2 id="open-positions" class="font-headline-md text-headline-md font-bold text-on-surface">Open Positions</h2>
                     <p class="font-body-md text-tertiary mt-2">Find your next great adventure below.</p>
                 </div>
 

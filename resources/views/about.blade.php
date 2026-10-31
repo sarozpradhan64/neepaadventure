@@ -62,7 +62,7 @@
                                     <x-lucide-compass class="size-[20px]" />
                                     <span class="font-badge-caption text-badge-caption font-bold tracking-wider uppercase">Who We Are</span>
                                 </div>
-                                <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
+                                <h2 id="your-trusted-partner-for-himalayan-adventures" class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
                                     Your Trusted Partner for Himalayan Adventures
                                 </h2>
                             </div>
@@ -105,7 +105,7 @@
                         <div class="font-badge-caption text-badge-caption text-primary font-bold tracking-[0.2em] uppercase">
                             Uncompromising Benchmarks
                         </div>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+                        <h2 id="the-four-pillars-of-high-altitude-stewardship" class="font-headline-lg text-headline-lg text-on-surface font-bold">
                             The Four Pillars of High-Altitude Stewardship
                         </h2>
                         <p class="font-body-md text-body-md text-tertiary">
@@ -207,7 +207,7 @@
                             <div class="font-badge-caption text-badge-caption text-primary font-bold tracking-[0.2em] uppercase">
                                 The Guardians
                             </div>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+                            <h2 id="trek-leadership-high-altitude-directors" class="font-headline-lg text-headline-lg text-on-surface font-bold">
                                 Trek Leadership &amp; High-Altitude Directors
                             </h2>
                             <p class="font-body-md text-body-md text-tertiary">
@@ -319,7 +319,7 @@
                                     <div class="font-badge-caption text-badge-caption text-primary-container font-bold tracking-widest uppercase">
                                         Community &amp; Glacier Impact
                                     </div>
-                                    <h2 class="font-headline-lg text-headline-lg text-summit-white font-bold">
+                                    <h2 id="leaving-the-mountains-stronger-for-generations-to-come" class="font-headline-lg text-headline-lg text-summit-white font-bold">
                                         Leaving the Mountains Stronger for Generations to Come
                                     </h2>
                                     <p class="font-body-md text-body-md text-mist-slate leading-relaxed">
@@ -407,7 +407,7 @@
                         <div class="font-badge-caption text-badge-caption text-primary font-bold tracking-[0.2em] uppercase">
                             Our Path
                         </div>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+                        <h2 id="the-milestones-that-defined-our-journey" class="font-headline-lg text-headline-lg text-on-surface font-bold">
                             The Milestones That Defined Our Journey
                         </h2>
                     </div>
@@ -492,7 +492,7 @@
                 </div>
                 <div class="max-w-max-content-width space-y-space-xl relative z-10 mx-auto text-center">
                     <div class="space-y-space-sm mx-auto max-w-3xl">
-                        <h2 class="font-display-xl text-headline-lg lg:text-display-xl text-summit-white leading-tight font-extrabold">
+                        <h2 id="experience-nepal-with-the-people-who-call-these-passes-home" class="font-display-xl text-headline-lg lg:text-display-xl text-summit-white leading-tight font-extrabold">
                             Experience Nepal with the People Who Call These Passes Home
                         </h2>
                         <p class="font-body-lg text-body-lg text-mist-slate/90 mx-auto max-w-2xl">

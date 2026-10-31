@@ -587,7 +587,7 @@
                     <div class="gap-space-sm flex flex-col justify-between md:flex-row md:items-end">
                         <div>
                             <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-widest uppercase">Topographic Cross-Section</span>
-                            <h2 class="font-headline-md text-headline-md text-on-surface uppercase">
+                            <h2 id="elevation-acclimatization-curve" class="font-headline-md text-headline-md text-on-surface uppercase">
                                 Elevation &amp; Acclimatization Curve
                             </h2>
                         </div>
@@ -935,7 +935,7 @@
                 <div class="max-w-max-content-width mx-auto">
                     <div class="mb-space-xl max-w-2xl">
                         <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-widest uppercase">Trek Milestones</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">
+                        <h2 id="{{ Str::slug(($trek->duration ?: ($trek->features->count() ? $trek->features->count() . '-Day' : 'Trek')) . '-itinerary') }}" class="font-headline-lg text-headline-lg text-on-surface uppercase">
                             The {{ $trek->duration ?: ($trek->features->count() ? $trek->features->count() . '-Day' : 'Trek') }} Itinerary
                         </h2>
                         <p class="font-body-md text-body-md text-tertiary pt-space-2xs">
@@ -1002,7 +1002,7 @@
             <div class="max-w-max-content-width mx-auto">
                 <div class="mb-space-2xl mx-auto max-w-xl text-center">
                     <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-widest uppercase">Transparent Operations</span>
-                    <h2 class="font-headline-md text-headline-md text-on-surface uppercase">
+                    <h2 id="trek-inclusions-logistics" class="font-headline-md text-headline-md text-on-surface uppercase">
                         Trek Inclusions &amp; Logistics
                     </h2>
                 </div>
@@ -1175,7 +1175,7 @@
                                 {{ date('Y') }}/{{ date('Y') + 1 }} Season Open
                             </span>
                         </div>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase font-extrabold tracking-tight">
+                        <h2 id="upcoming-guaranteed-departures" class="font-headline-lg text-headline-lg text-on-surface uppercase font-extrabold tracking-tight">
                             Upcoming Guaranteed Departures
                         </h2>
                         <p class="font-body-md text-body-md text-tertiary">
@@ -1308,7 +1308,7 @@
                 <div class="gap-space-xs flex flex-col justify-between md:flex-row md:items-end">
                     <div>
                         <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-widest uppercase">Geographic Tracking</span>
-                        <h2 class="font-headline-md text-headline-md text-on-surface uppercase">
+                        <h2 id="{{ Str::slug($trek->title . '-route-waypoints') }}" class="font-headline-md text-headline-md text-on-surface uppercase">
                             {{ $trek->title }} Route &amp; Waypoints
                         </h2>
                     </div>
@@ -1361,7 +1361,7 @@
             <div class="max-w-max-content-width space-y-space-xl mx-auto">
                 <div class="mx-auto max-w-xl text-center">
                     <span class="font-badge-caption text-badge-caption text-primary block font-bold tracking-widest uppercase">Trek Proof</span>
-                    <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">
+                    <h2 id="real-journeys-real-stories" class="font-headline-lg text-headline-lg text-on-surface uppercase">
                         Real Journeys. Real Stories.
                     </h2>
                     <p class="font-body-md text-body-md text-tertiary pt-space-2xs">
@@ -1433,7 +1433,7 @@
             <div class="max-w-max-content-width gap-space-lg mx-auto flex flex-col items-center justify-between text-center lg:flex-row lg:text-left">
                 <div class="space-y-space-2xs">
                     <span class="font-badge-caption text-badge-caption text-on-primary-fixed-variant font-bold tracking-widest uppercase">Ready for the High Passes?</span>
-                    <h2 class="font-headline-lg text-headline-lg font-bold">
+                    <h2 id="secure-your-permit" class="font-headline-lg text-headline-lg font-bold">
                         Secure Your 2025 Everest &amp; Gokyo Permit
                     </h2>
                     <p class="font-body-md text-body-md text-on-primary-fixed-variant max-w-xl">

@@ -133,7 +133,7 @@
                                 <x-lucide-shield class="size-[18px]" />
                                 <span>Flagship Educational Mission</span>
                             </div>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
+                            <h2 id="the-khumbu-himalayan-childrens-initiative" class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
                                 The Khumbu Himalayan Children's Initiative
                             </h2>
                         </div>
@@ -227,7 +227,7 @@
                 <div class="max-w-max-content-width mx-auto">
                     <div class="mb-space-2xl space-y-space-xs mx-auto max-w-2xl text-center">
                         <span class="font-label-sm text-label-sm text-primary font-bold tracking-widest uppercase">Active Stewardship Field Deployments</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
+                        <h2 id="himalayan-project-directory" class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
                             Himalayan Project Directory
                         </h2>
                         <p class="font-body-md text-body-md text-tertiary">
@@ -543,7 +543,7 @@
                         <!-- Text & Narrative -->
                         <div class="space-y-space-md lg:col-span-6">
                             <span class="font-label-sm text-label-sm text-primary font-bold tracking-widest uppercase">Uncompromising Openness</span>
-                            <h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
+                            <h2 id="financial-transparency-public-ledger" class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
                                 Financial Transparency &amp; Public Ledger
                             </h2>
                             <p class="font-body-md text-body-md text-tertiary leading-relaxed">
@@ -726,7 +726,7 @@
                 <div class="max-w-max-content-width mx-auto">
                     <div class="mb-space-2xl space-y-space-xs mx-auto max-w-2xl text-center">
                         <span class="font-label-sm text-label-sm text-primary font-bold tracking-widest uppercase">Action Beyond The Trail</span>
-                        <h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
+                        <h2 id="how-trekkers-can-participate" class="font-headline-lg text-headline-lg text-on-surface font-extrabold tracking-tight uppercase">
                             How Trekkers Can Participate
                         </h2>
                         <p class="font-body-md text-body-md text-tertiary">
@@ -821,7 +821,7 @@
                         <x-lucide-handshake class="text-primary-container size-[18px]" />
                         <span class="font-badge-caption text-badge-caption text-primary-container tracking-wider uppercase">Partner With Our Alpine Communities</span>
                     </div>
-                    <h2 class="font-headline-lg text-headline-lg lg:text-display-xl text-summit-white mx-auto max-w-3xl leading-tight font-extrabold tracking-tight uppercase">
+                    <h2 id="join-a-purpose-driven-trek-or-sponsor-a-himalayan-student" class="font-headline-lg text-headline-lg lg:text-display-xl text-summit-white mx-auto max-w-3xl leading-tight font-extrabold tracking-tight uppercase">
                         Join a Purpose-Driven Trek or Sponsor a Himalayan Student
                     </h2>
                     <p class="font-body-lg text-body-lg text-mist-slate/90 mx-auto max-w-2xl">

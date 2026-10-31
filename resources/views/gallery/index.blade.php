@@ -9,7 +9,7 @@
                     <div class="mb-space-xl gap-space-sm flex flex-col justify-between md:flex-row md:items-end">
                         <div>
                             <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">Documentary Spotlight</span>
-                            <h2 class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
+                            <h2 id="featured-albums" class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
                                 Featured Albums
                             </h2>
                         </div>
@@ -54,7 +54,7 @@
                             <div class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">
                                 The Archive
                             </div>
-                            <h2 class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
+                            <h2 id="all-albums" class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
                                 All Albums
                             </h2>
                         </div>

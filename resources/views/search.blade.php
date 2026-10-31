@@ -112,7 +112,7 @@
                             <div class="bg-surface-container-high w-16 h-16 rounded-2xl flex items-center justify-center mx-auto">
                                 <x-lucide-search class="size-8 text-tertiary" />
                             </div>
-                            <h2 class="text-headline-md font-bold text-on-surface">No Adventures Found</h2>
+                            <h2 id="no-adventures-found" class="text-headline-md font-bold text-on-surface">No Adventures Found</h2>
                             <p class="text-body-md text-tertiary max-w-md mx-auto">
                                 @if(request('search'))
                                     No results matched "{{ request('search') }}". Try different keywords or browse all adventures.
@@ -175,7 +175,7 @@
                                         <div class="p-6 space-y-4">
                                             <div>
                                                 <a href="{{ $trek->url }}">
-                                                    <h2 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors line-clamp-2 leading-snug">
+                                                    <h2 id="{{ Str::slug($trek->title) }}" class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary font-bold transition-colors line-clamp-2 leading-snug">
                                                         {{ $trek->title }}
                                                     </h2>
                                                 </a>
@@ -239,7 +239,7 @@
                     <span class="bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full">
                         Custom Mountain Journeys
                     </span>
-                    <h2 class="text-3xl font-extrabold text-on-surface">
+                    <h2 id="cant-find-what-youre-looking-for" class="text-3xl font-extrabold text-on-surface">
                         Can't find what you're looking for?
                     </h2>
                     <p class="text-tertiary text-base max-w-2xl mx-auto leading-relaxed">
