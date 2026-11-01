@@ -14,9 +14,13 @@
         'caption' => $item->caption ?? '',
     ])->values();
 
-    $routeMapUrl = !empty($trek->map_image)
+    $hasRouteFile = !empty($trek->map_image);
+    $isRouteImage = $hasRouteFile && (bool) preg_match('/\.(jpe?g|png|webp|gif|svg)(\?.*)?$/i', $trek->map_image);
+    $routeFileExt = $hasRouteFile ? strtoupper(pathinfo($trek->map_image, PATHINFO_EXTENSION)) : null;
+    $routeMapUrl = $hasRouteFile
         ? Storage::disk('public')->url($trek->map_image)
         : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyHCn2xRyd59q6a9HpjHnszI6fBUVWaBPwT-VLxgVKbM77YFgu2UR0NTB0od3jHwgTTdMOZ53kQ6Oog7m8W9nOKP5YEVlTiy7KhwhejYYHOewqU2Yi-scwEgOxx-Hpj9XnVzT-3--RwEHasR8fczE0VnrhkxG1_zw8USkGgUTvlY4dT7GsAXmhv73TcyCwOhgCG5-bIr9zfhKYPxqjmjdEi6QftoW4c-nla3fKx61i_XtksWe_eGXH';
+    $bgRouteMapUrl = $isRouteImage ? $routeMapUrl : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAyHCn2xRyd59q6a9HpjHnszI6fBUVWaBPwT-VLxgVKbM77YFgu2UR0NTB0od3jHwgTTdMOZ53kQ6Oog7m8W9nOKP5YEVlTiy7KhwhejYYHOewqU2Yi-scwEgOxx-Hpj9XnVzT-3--RwEHasR8fczE0VnrhkxG1_zw8USkGgUTvlY4dT7GsAXmhv73TcyCwOhgCG5-bIr9zfhKYPxqjmjdEi6QftoW4c-nla3fKx61i_XtksWe_eGXH';
 
     // Calculate dynamic elevation profile from features itinerary
     $elevationPoints = collect();
@@ -1321,35 +1325,30 @@
                 <div
                     class="p-space-md relative flex min-h-[22rem] sm:min-h-[26rem] w-full items-end rounded-xl bg-cover bg-center shadow-inner overflow-hidden group"
                     data-location="{{ $trek->title }}"
-                    style="background-image: url('{{ $routeMapUrl }}');"
+                    style="background-image: url('{{ $bgRouteMapUrl }}');"
                 >
                     <div class="bg-ridge-deep/90 p-space-md text-summit-white space-y-space-2xs max-w-md rounded-lg shadow-md backdrop-blur-md">
-                        <div class="gap-space-2xs text-primary-container font-badge-caption text-badge-caption flex items-center font-bold uppercase">
-                            <x-lucide-map-pin class="size-[16px]" />
-                            {{ !empty($trek->map_image) ? 'Expedition Route Map Active' : 'Interactive Waypoint Preview' }}
-                        </div>
-                        <div class="font-headline-sm text-headline-sm">
-                            @if (!empty($trek->start_point) && !empty($trek->end_point))
-                                {{ $trek->start_point }} • {{ $trek->end_point }}
-                            @elseif (!empty($trek->maximum_altitude))
-                                High Alpine Route • {{ $trek->maximum_altitude }}
-                            @else
-                                {{ $trek->title }}
-                            @endif
-                        </div>
-                        <p class="font-body-sm text-body-sm text-mist-slate">
-                            Full GPX track coordinates and detailed topographical checkpoints delivered to confirmed trekkers for Garmin Fenix / Apple Watch offline navigation.
-                        </p>
-                        @if (!empty($trek->map_image))
-                            <div class="pt-2">
-                                <a 
-                                    href="{{ $routeMapUrl }}" 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-container hover:underline uppercase tracking-wider"
-                                >
-                                    <x-lucide-external-link class="size-3.5" /> Open Full Resolution Map
-                                </a>
+                        @if ($hasRouteFile)
+                            <div class="flex flex-wrap items-center gap-3">
+                                @if ($isRouteImage)
+                                    <a 
+                                        href="{{ $routeMapUrl }}" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-container hover:underline uppercase tracking-wider"
+                                    >
+                                        <x-lucide-external-link class="size-3.5" /> Open Full Resolution Map
+                                    </a>
+                                @else
+                                    <a 
+                                        href="{{ $routeMapUrl }}" 
+                                        target="_blank" 
+                                        download
+                                        class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-container hover:underline uppercase tracking-wider bg-white/10 px-3 py-1.5 rounded-md hover:bg-white/20 transition-colors"
+                                    >
+                                        <x-lucide-download class="size-3.5" /> Download Route &amp; Waypoints ({{ $routeFileExt }})
+                                    </a>
+                                @endif
                             </div>
                         @endif
                     </div>

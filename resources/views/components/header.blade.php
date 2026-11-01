@@ -167,12 +167,7 @@
 
                                         {{-- Right Content Area: Corresponding services of active child category --}}
                                         <div class="flex-1 p-6 bg-surface overflow-y-auto max-h-[500px]">
-                                            {{-- Top Action: Contact Us button --}}
-                                            <div class="mb-5">
-                                                <a href="{{ route('contact') }}" class="inline-flex items-center px-4 py-2 bg-primary-container hover:bg-amber-flare text-on-primary-fixed text-xs font-semibold rounded-lg shadow-sm transition-colors">
-                                                    Contact Us
-                                                </a>
-                                            </div>
+                                  
 
                                             {{-- Tab Panels: Services of the child category --}}
                                             @foreach($childTabs as $childCat)
