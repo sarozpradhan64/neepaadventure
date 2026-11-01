@@ -8,7 +8,6 @@
                 <div class="max-w-max-content-width mx-auto">
                     <div class="mb-space-xl gap-space-sm flex flex-col justify-between md:flex-row md:items-end">
                         <div>
-                            <span class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">Documentary Spotlight</span>
                             <h2 id="featured-albums" class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
                                 Featured Albums
                             </h2>
@@ -21,6 +20,14 @@
                             <div class="relative h-64 sm:h-80 overflow-hidden">
                                 @if($album->cover_image)
                                     <img src="{{ Storage::url($album->cover_image) }}" alt="{{ $album->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                    <button 
+                                        type="button" 
+                                        onclick="event.preventDefault(); event.stopPropagation(); window.openImageViewer([{ url: '{{ Storage::url($album->cover_image) }}', title: '{{ addslashes($album->title) }} Cover Photo' }])"
+                                        class="absolute top-4 right-4 z-20 size-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:scale-110 hover:bg-black/80 cursor-pointer"
+                                        title="Inspect &amp; Download Cover"
+                                    >
+                                        <x-lucide-maximize-2 class="size-4 text-primary-container" />
+                                    </button>
                                 @else
                                     <div class="h-full w-full bg-surface-container-high flex items-center justify-center">
                                         <x-lucide-image class="size-12 text-surface-dim" />
@@ -51,9 +58,6 @@
                 <div class="max-w-max-content-width mx-auto">
                     <div class="gap-space-md mb-space-xl flex flex-col items-start justify-between sm:flex-row sm:items-center">
                         <div>
-                            <div class="font-badge-caption text-badge-caption text-primary font-bold tracking-widest uppercase">
-                                The Archive
-                            </div>
                             <h2 id="all-albums" class="font-headline-lg text-2xl sm:text-3xl lg:text-headline-lg text-on-surface tracking-tight uppercase">
                                 All Albums
                             </h2>
@@ -66,6 +70,14 @@
                             <div class="relative h-64 sm:h-80 overflow-hidden">
                                 @if($album->cover_image)
                                     <img src="{{ Storage::url($album->cover_image) }}" alt="{{ $album->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                                    <button 
+                                        type="button" 
+                                        onclick="event.preventDefault(); event.stopPropagation(); window.openImageViewer([{ url: '{{ Storage::url($album->cover_image) }}', title: '{{ addslashes($album->title) }} Cover Photo' }])"
+                                        class="absolute top-4 right-4 z-20 size-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm hover:scale-110 hover:bg-black/80 cursor-pointer"
+                                        title="Inspect &amp; Download Cover"
+                                    >
+                                        <x-lucide-maximize-2 class="size-4 text-primary-container" />
+                                    </button>
                                 @else
                                     <div class="h-full w-full bg-surface-container-high flex items-center justify-center">
                                         <x-lucide-image class="size-12 text-surface-dim" />

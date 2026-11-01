@@ -426,4 +426,122 @@ h6,
     box-shadow: 0 0 0 2px rgba(11, 79, 138, 0.25) !important;
 }
 
+/* ==========================================================================
+   ViewerJS — High Alpine Theme & Download Button
+   ========================================================================== */
+.viewer-backdrop {
+    background-color: rgba(9, 21, 33, 0.94) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.viewer-toolbar > ul {
+    background-color: rgba(14, 30, 48, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 9999px !important;
+    padding: 6px 12px !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+
+.viewer-toolbar > ul > li {
+    background-color: transparent !important;
+    border-radius: 9999px !important;
+    transition: background-color 0.15s ease, transform 0.15s ease, color 0.15s ease !important;
+}
+
+.viewer-toolbar > ul > li:hover {
+    background-color: rgba(11, 79, 138, 0.6) !important;
+    transform: scale(1.08) !important;
+}
+
+.viewer-toolbar > ul > li:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px #0B4F8A !important;
+}
+
+/* Hide Flip, Rotate, Play, and 1:1 buttons — Keep only Zoom, Minimize/Reset, Navigation, and Download */
+.viewer-rotate-left,
+.viewer-rotate-right,
+.viewer-flip-horizontal,
+.viewer-flip-vertical,
+.viewer-play,
+.viewer-one-to-one {
+    display: none !important;
+}
+
+/* Custom Download Icon */
+.viewer-download {
+    position: relative !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.viewer-download::before {
+    content: '' !important;
+    display: block !important;
+    width: 15px !important;
+    height: 15px !important;
+    background-color: #ffffff !important;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' y1='15' x2='12' y2='3'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' y1='15' x2='12' y2='3'/%3E%3C/svg%3E") !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+}
+
+.viewer-button {
+    background-color: rgba(14, 30, 48, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 50% !important;
+    transition: background-color 0.15s ease, transform 0.15s ease !important;
+}
+
+.viewer-button:hover {
+    background-color: rgba(11, 79, 138, 0.9) !important;
+    transform: scale(1.05) !important;
+}
+
+.viewer-title {
+    color: #F4F8FC !important;
+    font-family: inherit !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.025em !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+    max-width: 80% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+
+.viewer-navbar {
+    background-color: rgba(9, 21, 33, 0.75) !important;
+    backdrop-filter: blur(8px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.viewer-list > li {
+    border-radius: 0.375rem !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    transition: border-color 0.15s ease, transform 0.15s ease !important;
+}
+
+.viewer-list > li.viewer-active {
+    border-color: #0B4F8A !important;
+    box-shadow: 0 0 0 2px #0B4F8A !important;
+    transform: scale(1.05) !important;
+}
+
+
 

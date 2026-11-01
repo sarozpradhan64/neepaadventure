@@ -131,7 +131,7 @@
             <section class="bg-surface py-space-3xl w-full">
                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
                     <article class="flex min-w-0 flex-col max-w-4xl mx-auto">
-                        <div class="prose prose-slate lg:prose-lg max-w-none text-on-surface-variant prose-headings:font-bold prose-headings:text-on-surface prose-headings:tracking-tight prose-a:text-primary prose-a:font-semibold hover:prose-a:underline prose-strong:text-on-surface prose-blockquote:border-l-primary prose-blockquote:bg-surface-container-low/60 prose-blockquote:rounded-r-xl prose-img:rounded-2xl prose-img:shadow-md mb-space-2xl">
+                        <div data-viewer class="prose prose-slate lg:prose-lg max-w-none text-on-surface-variant prose-headings:font-bold prose-headings:text-on-surface prose-headings:tracking-tight prose-a:text-primary prose-a:font-semibold hover:prose-a:underline prose-strong:text-on-surface prose-blockquote:border-l-primary prose-blockquote:bg-surface-container-low/60 prose-blockquote:rounded-r-xl prose-img:rounded-2xl prose-img:shadow-md prose-img:cursor-pointer mb-space-2xl">
                             {!! $blog->content !!}
                         </div>
 

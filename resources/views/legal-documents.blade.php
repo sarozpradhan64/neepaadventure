@@ -58,7 +58,12 @@
                             <a href="{{ route('legal-document.show', $document->slug) }}" target="_blank" rel="noopener noreferrer" class="group block">
                                 <div class="bg-surface-container-lowest border border-outline/10 shadow-sm rounded-lg overflow-hidden aspect-[3/4] mb-3 relative transition-all duration-300 group-hover:shadow-md group-hover:border-primary/30 group-hover:-translate-y-1">
                                     @if($document->file_path && $isImage)
-                                        <img src="{{ Storage::disk('public')->url($document->file_path) }}" alt="{{ $document->title }}" class="w-full h-full object-cover">
+                                        <div class="relative w-full h-full cursor-pointer" onclick="event.preventDefault(); event.stopPropagation(); window.openImageViewer([{ url: '{{ Storage::disk('public')->url($document->file_path) }}', title: '{{ addslashes($document->title) }}' }])">
+                                            <img src="{{ Storage::disk('public')->url($document->file_path) }}" alt="{{ $document->title }}" class="w-full h-full object-cover">
+                                            <div class="absolute top-2 right-2 z-10 size-7 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm pointer-events-none" title="Zoom &amp; Download">
+                                                <x-lucide-maximize-2 class="size-3.5 text-primary-container" />
+                                            </div>
+                                        </div>
                                     @else
                                         <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-surface-container-low/50">
                                             <x-lucide-file-text class="size-12 text-tertiary mb-3 group-hover:text-primary transition-colors" />

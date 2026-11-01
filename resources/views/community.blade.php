@@ -272,7 +272,7 @@
                         </div>
                     </div>
                     <!-- Project Cards Grid -->
-                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" id="projects-grid">
+                    <div data-viewer class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 cursor-pointer" id="projects-grid">
                         <!-- Project 1 -->
                         <div
                             class="project-item bg-surface-container-lowest flex flex-col overflow-hidden rounded-xl shadow-md transition-all hover:-translate-y-1"

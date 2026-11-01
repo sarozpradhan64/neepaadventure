@@ -9,7 +9,7 @@
                     <div class="gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
                         <!-- Left: Image -->
                         <div class="relative">
-                            <div class="relative overflow-hidden rounded-2xl shadow-xl">
+                            <div class="relative overflow-hidden rounded-2xl shadow-xl cursor-pointer group" onclick="window.openImageViewer([{ url: this.querySelector('img').src, title: 'Khumjung High Valley (3,790m)' }])">
                                 <img
                                     class="h-80 w-full transform object-cover transition-transform duration-700 hover:scale-105 lg:h-96"
                                     alt="Group of trekkers walking on a scenic mountain trail in the Himalayas with a beautiful blue sky."

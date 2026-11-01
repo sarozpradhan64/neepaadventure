@@ -1,3 +1,10 @@
+@php
+    $albumPhotos = $album->items->filter(fn($i) => !empty($i->file_path))->values()->map(fn($i) => [
+        'url' => Storage::url($i->file_path),
+        'title' => $i->title ?? '',
+        'caption' => $i->caption ?? '',
+    ]);
+@endphp
 <x-layouts.app 
     :seo="$album->seoMetadata"
     :title="$album->title"
@@ -5,7 +12,7 @@
     :image="$album->cover_image"
 >
     <x-header />
-    <main class="bg-surface w-full pt-28 pb-20">
+    <main class="bg-surface w-full pt-32 pb-20" x-data="{ albumPhotos: {{ Js::from($albumPhotos) }} }">
         <div class="max-w-max-content-width mx-auto px-gutter-mobile lg:px-gutter-desktop">
             <div class="mb-space-xl gap-space-sm flex flex-col justify-between md:flex-row md:items-end border-b border-surface-container-high pb-8">
                 <div>
@@ -14,7 +21,7 @@
                         {{ $album->title }}
                     </h1>
                     @if($album->description)
-                    <div class="text-body-md text-surface-dim mt-4 max-w-3xl prose prose-invert">
+                    <div class="text-body-md mt-4 max-w-3xl">
                         {!! $album->description !!}
                     </div>
                     @endif
@@ -43,18 +50,25 @@
             @if($album->items->count() > 0)
             <div id="gallery-container" class="grid-view gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 @foreach($album->items as $item)
-                <div class="gallery-item group bg-surface-container-lowest relative overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30">
+                <div 
+                    class="gallery-item group bg-surface-container-lowest relative overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30 cursor-pointer"
+                    @click="window.openImageViewer(albumPhotos, {{ $loop->index }})"
+                >
                     <div class="relative h-64 sm:h-80 w-full overflow-hidden item-image-container">
                         @if($item->file_path)
-                            <img src="{{ Storage::url($item->file_path) }}" alt="{{ $item->title }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                            <img src="{{ Storage::url($item->file_path) }}" alt="{{ $item->title }}" title="{{ $item->title }}{{ $item->caption ? ' — ' . $item->caption : '' }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                         @else
                             <div class="h-full w-full bg-surface-container-high flex items-center justify-center">
                                 <x-lucide-image class="size-12 text-surface-dim" />
                             </div>
                         @endif
-                        <div class="from-ridge-deep/90 via-ridge-deep/30 absolute inset-0 bg-gradient-to-t to-transparent opacity-90 transition-opacity group-hover:opacity-95 item-scrim"></div>
+                        <div class="from-ridge-deep/90 via-ridge-deep/30 absolute inset-0 bg-gradient-to-t to-transparent opacity-90 transition-opacity group-hover:opacity-95 item-scrim pointer-events-none"></div>
                         
-                        <div class="p-space-md text-summit-white absolute inset-x-0 bottom-0 item-details z-10">
+                        <div class="absolute top-4 right-4 z-20 size-9 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm pointer-events-none" title="Zoom &amp; Download">
+                            <x-lucide-maximize-2 class="size-4 text-primary-container" />
+                        </div>
+
+                        <div class="p-space-md text-summit-white absolute inset-x-0 bottom-0 item-details z-10 pointer-events-none">
                             <h3 class="font-headline-sm text-headline-sm text-summit-white leading-tight font-bold">
                                 {{ $item->title }}
                             </h3>

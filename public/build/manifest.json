@@ -60,7 +60,7 @@
     "src": "node_modules/@fontsource-variable/manrope/files/manrope-vietnamese-wght-normal.woff2"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CbwbX2W3.css",
+    "file": "assets/app-De9Zu_u-.css",
     "name": "app",
     "names": [
       "app.css"
@@ -79,12 +79,12 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-DLSbkaE2.js",
+    "file": "assets/app-DOwlqwbx.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-CQldhOvC.css"
+      "assets/app-BytBQmaX.css"
     ]
   }
 }

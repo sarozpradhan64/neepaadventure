@@ -191,17 +191,7 @@
 @endphp
     <main class="bg-surface w-full pt-28 pb-20 lg:pb-0" x-data="{
         bookingModalOpen: false,
-        galleryOpen: false,
-        activeGalleryIndex: 0,
         galleryPhotos: {{ Js::from($galleryJson) }},
-        prevGalleryPhoto() {
-            if (!this.galleryPhotos || this.galleryPhotos.length === 0) return;
-            this.activeGalleryIndex = (this.activeGalleryIndex - 1 + this.galleryPhotos.length) % this.galleryPhotos.length;
-        },
-        nextGalleryPhoto() {
-            if (!this.galleryPhotos || this.galleryPhotos.length === 0) return;
-            this.activeGalleryIndex = (this.activeGalleryIndex + 1) % this.galleryPhotos.length;
-        },
         selectedDeparture: '{{ $departures->isNotEmpty() ? $departures->first()->id : 'custom' }}',
         selectedDepartureLabel: '{{ $departures->isNotEmpty() ? ($departures->first()->start_date?->format('M d, Y') . ' – ' . $departures->first()->end_date?->format('M d, Y')) : 'Custom / Flexible Dates' }}',
         trekkersCount: 1,
@@ -348,7 +338,7 @@
                             <div class="gap-space-sm pt-space-xs grid grid-cols-1 sm:grid-cols-3">
                                 @if($totalPhotos > 0)
                                     <!-- Image 1: Main Large -->
-                                    <div class="group relative h-56 sm:h-72 overflow-hidden rounded-xl shadow-md sm:col-span-2 cursor-pointer" @click="activeGalleryIndex = 0; galleryOpen = true">
+                                    <div class="group relative h-56 sm:h-72 overflow-hidden rounded-xl shadow-md sm:col-span-2 cursor-pointer" @click="window.openImageViewer(galleryPhotos, 0)">
                                         <img
                                             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                             src="{{ Storage::disk('public')->url($galleryItems[0]->file_path) }}"
@@ -364,7 +354,7 @@
                                     <div class="gap-space-sm flex h-40 sm:h-72 flex-row sm:flex-col">
                                         <!-- Image 2 -->
                                         @if($totalPhotos >= 2)
-                                            <div class="group relative w-1/2 sm:w-full h-full sm:h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="activeGalleryIndex = 1; galleryOpen = true">
+                                            <div class="group relative w-1/2 sm:w-full h-full sm:h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="window.openImageViewer(galleryPhotos, 1)">
                                                 <img
                                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                     src="{{ Storage::disk('public')->url($galleryItems[1]->file_path) }}"
@@ -382,7 +372,7 @@
 
                                         <!-- Image 3 (with +N card overlay if > 3 photos) -->
                                         @if($totalPhotos >= 3)
-                                            <div class="group relative w-1/2 sm:w-full h-full sm:h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="activeGalleryIndex = 2; galleryOpen = true">
+                                            <div class="group relative w-1/2 sm:w-full h-full sm:h-1/2 overflow-hidden rounded-xl shadow-md cursor-pointer" @click="window.openImageViewer(galleryPhotos, 2)">
                                                 <img
                                                     class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                     src="{{ Storage::disk('public')->url($galleryItems[2]->file_path) }}"
@@ -407,7 +397,7 @@
                                     </div>
                                 @elseif($trek->featured_image)
                                     <!-- Fallback: Service Featured Image -->
-                                    <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-3">
+                                    <div class="group relative h-72 overflow-hidden rounded-xl shadow-md sm:col-span-3 cursor-pointer" @click="window.openImageViewer('{{ Storage::disk('public')->url($trek->featured_image) }}')">
                                         <img
                                             class="h-full w-full object-cover"
                                             src="{{ Storage::disk('public')->url($trek->featured_image) }}"
@@ -1323,22 +1313,30 @@
                     @endif
                 </div>
                 <div
-                    class="p-space-md relative flex min-h-[22rem] sm:min-h-[26rem] w-full items-end rounded-xl bg-cover bg-center shadow-inner overflow-hidden group"
+                    class="p-space-md relative flex min-h-[22rem] sm:min-h-[26rem] w-full items-end rounded-xl bg-cover bg-center shadow-inner overflow-hidden group {{ $isRouteImage ? 'cursor-pointer' : '' }}"
                     data-location="{{ $trek->title }}"
                     style="background-image: url('{{ $bgRouteMapUrl }}');"
+                    @if ($isRouteImage)
+                        @click="window.openImageViewer([{ url: '{{ $routeMapUrl }}', title: '{{ addslashes($trek->title) }} Route &amp; Waypoints Map' }])"
+                    @endif
                 >
-                    <div class="bg-ridge-deep/90 p-space-md text-summit-white space-y-space-2xs max-w-md rounded-lg shadow-md backdrop-blur-md">
+                    @if ($isRouteImage)
+                        <div class="absolute top-4 right-4 z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 text-white text-xs font-medium backdrop-blur-md opacity-90 group-hover:opacity-100 transition-opacity pointer-events-none">
+                            <x-lucide-maximize-2 class="size-3.5 text-primary-container" />
+                            <span>Click to Inspect / Download</span>
+                        </div>
+                    @endif
+                    <div class="bg-ridge-deep/90 p-space-md text-summit-white space-y-space-2xs max-w-md rounded-lg shadow-md backdrop-blur-md" @click.stop>
                         @if ($hasRouteFile)
                             <div class="flex flex-wrap items-center gap-3">
                                 @if ($isRouteImage)
-                                    <a 
-                                        href="{{ $routeMapUrl }}" 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-container hover:underline uppercase tracking-wider"
+                                    <button 
+                                        type="button"
+                                        @click.stop="window.openImageViewer([{ url: '{{ $routeMapUrl }}', title: '{{ addslashes($trek->title) }} Route &amp; Waypoints Map' }])"
+                                        class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-container hover:underline uppercase tracking-wider cursor-pointer"
                                     >
-                                        <x-lucide-external-link class="size-3.5" /> Open Full Resolution Map
-                                    </a>
+                                        <x-lucide-maximize-2 class="size-3.5" /> Open Full Resolution Map
+                                    </button>
                                 @else
                                     <a 
                                         href="{{ $routeMapUrl }}" 
@@ -1723,100 +1721,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Interactive Gallery Lightbox Modal -->
-        <template x-if="galleryPhotos && galleryPhotos.length > 0">
-            <div 
-                x-cloak
-                x-show="galleryOpen"
-                @keydown.escape.window="galleryOpen = false"
-                @keydown.arrow-left.window="if (galleryOpen) prevGalleryPhoto()"
-                @keydown.arrow-right.window="if (galleryOpen) nextGalleryPhoto()"
-                class="fixed inset-0 z-50 flex flex-col justify-between overflow-hidden bg-black/95 text-white backdrop-blur-md"
-                role="dialog"
-                aria-modal="true"
-                aria-label="Expedition Photo Gallery"
-            >
-                <!-- Top Toolbar -->
-                <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 z-10 bg-black/40">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-bold tracking-widest uppercase text-primary-container px-3 py-1 rounded-full bg-white/10 border border-white/10">
-                            Expedition Gallery
-                        </span>
-                        <span class="text-sm text-white/70 font-mono">
-                            <span x-text="activeGalleryIndex + 1"></span> / <span x-text="galleryPhotos.length"></span>
-                        </span>
-                    </div>
-                    <button 
-                        type="button"
-                        @click="galleryOpen = false"
-                        class="p-2 rounded-full hover:bg-white/15 text-white/80 hover:text-white transition-colors cursor-pointer"
-                        aria-label="Close Gallery"
-                    >
-                        <x-lucide-x class="size-6" />
-                    </button>
-                </div>
-
-                <!-- Main Image Stage with Navigation Buttons -->
-                <div class="relative flex-1 flex items-center justify-center p-4 sm:p-8 min-h-0">
-                    <!-- Previous Button -->
-                    <button 
-                        type="button"
-                        x-show="galleryPhotos.length > 1"
-                        @click="prevGalleryPhoto()"
-                        class="absolute left-4 z-10 p-3 rounded-full bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/10 transition-transform active:scale-95 cursor-pointer backdrop-blur-sm"
-                        aria-label="Previous Photo"
-                    >
-                        <x-lucide-chevron-left class="size-6" />
-                    </button>
-
-                    <!-- Active Image Display -->
-                    <div class="relative max-h-full max-w-full flex flex-col items-center justify-center">
-                        <img 
-                            :src="galleryPhotos[activeGalleryIndex]?.url" 
-                            :alt="galleryPhotos[activeGalleryIndex]?.title || '{{ $trek->title }}'" 
-                            class="max-h-[68vh] max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300"
-                        />
-                        <div 
-                            x-show="galleryPhotos[activeGalleryIndex]?.caption || galleryPhotos[activeGalleryIndex]?.title" 
-                            class="mt-3 text-center max-w-2xl px-4"
-                        >
-                            <p 
-                                class="text-sm sm:text-base font-medium text-white/90" 
-                                x-text="galleryPhotos[activeGalleryIndex]?.caption || galleryPhotos[activeGalleryIndex]?.title"
-                            ></p>
-                        </div>
-                    </div>
-
-                    <!-- Next Button -->
-                    <button 
-                        type="button"
-                        x-show="galleryPhotos.length > 1"
-                        @click="nextGalleryPhoto()"
-                        class="absolute right-4 z-10 p-3 rounded-full bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/10 transition-transform active:scale-95 cursor-pointer backdrop-blur-sm"
-                        aria-label="Next Photo"
-                    >
-                        <x-lucide-chevron-right class="size-6" />
-                    </button>
-                </div>
-
-                <!-- Bottom Thumbnails Strip -->
-                <div class="px-6 py-4 border-t border-white/10 bg-black/40 overflow-x-auto">
-                    <div class="flex items-center gap-2 mx-auto justify-center min-w-max">
-                        <template x-for="(photo, idx) in galleryPhotos" :key="idx">
-                            <button
-                                type="button"
-                                @click="activeGalleryIndex = idx"
-                                :class="activeGalleryIndex === idx ? 'ring-2 ring-primary scale-105 opacity-100' : 'opacity-50 hover:opacity-80'"
-                                class="relative h-14 w-20 rounded-md overflow-hidden transition-all shrink-0 cursor-pointer border border-white/10"
-                            >
-                                <img :src="photo.url" :alt="photo.title" class="h-full w-full object-cover" />
-                            </button>
-                        </template>
-                    </div>
-                </div>
-            </div>
-        </template>
 
         <!-- Mobile Sticky Bottom Booking CTA Bar -->
         <div class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-surface-container-lowest/95 backdrop-blur-xl border-t border-outline/15 px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] flex items-center justify-between gap-3">

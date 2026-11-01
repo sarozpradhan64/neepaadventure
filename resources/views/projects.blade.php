@@ -40,9 +40,12 @@
                         @forelse ($projects as $project)
                             <div class="project-item bg-surface-container-lowest flex flex-col overflow-hidden rounded-2xl shadow-sm border border-outline/10 transition-all hover:shadow-xl hover:-translate-y-1"
                                 data-category="{{ $project->category->slug ?? '' }}">
-                                <div class="relative h-56 w-full">
-                                    <img class="h-full w-full object-cover" alt="{{ $project->title }}"
+                                <div class="relative h-56 w-full cursor-pointer overflow-hidden group" onclick="window.openImageViewer([{ url: '{{ $project->featured_image ? asset('storage/' . $project->featured_image) : asset('images/placeholder.jpg') }}', title: '{{ addslashes($project->title) }}' }])">
+                                    <img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" alt="{{ $project->title }}"
                                         src="{{ $project->featured_image ? asset('storage/' . $project->featured_image) : asset('images/placeholder.jpg') }}" />
+                                    <div class="absolute top-3 right-3 z-10 size-7 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm pointer-events-none" title="Zoom &amp; Download">
+                                        <x-lucide-maximize-2 class="size-3.5 text-primary-container" />
+                                    </div>
                                     <span
                                         class="bg-primary-container text-on-primary-fixed font-badge-caption text-badge-caption px-space-sm py-space-2xs absolute top-3 left-3 flex items-center gap-1 rounded-md font-bold tracking-wider uppercase">
                                         Team {{ $project->nation }} &bull; {{ $project->team_size }}

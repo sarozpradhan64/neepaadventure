@@ -51,11 +51,13 @@
                     {{-- Left: Portrait Photo (Sticky on desktop) --}}
                     <div class="lg:col-span-4 xl:col-span-4 flex justify-center lg:justify-start lg:sticky lg:top-28">
                         <div class="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-full">
-                            <div class="overflow-hidden rounded-2xl aspect-[4/5] bg-surface-container-low shadow-md border border-outline/10 relative group">
+                            <div class="overflow-hidden rounded-2xl aspect-[4/5] bg-surface-container-low shadow-md border border-outline/10 relative group cursor-pointer" onclick="window.openImageViewer([{ url: '{{ $memberImage }}', title: '{{ addslashes($member->name) }}' }])">
                                 <img src="{{ $memberImage }}" 
                                      alt="{{ $member->name }}" 
                                      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                      
+                                <div class="absolute top-3 right-3 z-10 size-8 rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm pointer-events-none" title="Zoom &amp; Download Portrait">
+                                    <x-lucide-maximize-2 class="size-4 text-primary-container" />
+                                </div>
                             </div>
                         </div>
                     </div>
