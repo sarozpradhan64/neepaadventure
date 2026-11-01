@@ -1326,8 +1326,8 @@
                             <span>Click to Inspect / Download</span>
                         </div>
                     @endif
+                    @if ($hasRouteFile)
                     <div class="bg-ridge-deep/90 p-space-md text-summit-white space-y-space-2xs max-w-md rounded-lg shadow-md backdrop-blur-md" @click.stop>
-                        @if ($hasRouteFile)
                             <div class="flex flex-wrap items-center gap-3">
                                 @if ($isRouteImage)
                                     <button 
@@ -1348,8 +1348,8 @@
                                     </a>
                                 @endif
                             </div>
+                        </div>
                         @endif
-                    </div>
                 </div>
             </div>
         </section>

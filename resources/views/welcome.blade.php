@@ -585,8 +585,6 @@
                                                     href="{{ route('about') }}#team-leaders">
                                                     Meet All {{ $totalGuides > 0 ? $totalGuides : 24 }} Guides
                                                 </a>
-                                                <span class="font-body-sm text-body-sm text-tertiary">Or request a specific sardar for
-                                                    private groups.</span>
                                             </div>
                                         </div>
                                     </div>
