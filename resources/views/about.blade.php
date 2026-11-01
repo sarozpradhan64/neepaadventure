@@ -25,14 +25,16 @@
                             @endphp
                             @if($founder)
                             <div class="bg-surface-container-lowest p-space-2xs relative -mt-12 ml-auto w-3/4 overflow-hidden rounded-2xl shadow-2xl border border-outline/10">
-                                <img
-                                    class="h-52 w-full rounded-xl object-cover"
-                                    alt="{{ $founder->name }}"
-                                    src="{{ $founder->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($founder->image) : 'https://placehold.co/600x800' }}"
-                                />
+                                <a href="{{ route('team.show', $founder->slug ?? $founder->id) }}" class="block overflow-hidden rounded-xl">
+                                    <img
+                                        class="h-52 w-full object-cover hover:scale-105 transition-transform duration-500"
+                                        alt="{{ $founder->name }}"
+                                        src="{{ $founder->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($founder->image) : 'https://placehold.co/600x800' }}"
+                                    />
+                                </a>
                                 <div class="p-space-sm bg-surface-container-lowest">
                                     <div class="font-label-md text-label-md text-on-surface font-bold">
-                                        {{ $founder->name }}
+                                        <a href="{{ route('team.show', $founder->slug ?? $founder->id) }}" class="hover:text-primary transition-colors">{{ $founder->name }}</a>
                                     </div>
                                     <div class="font-body-sm text-body-sm text-tertiary">
                                         {{ $founder->designation ?? 'Founder' }}
@@ -228,12 +230,14 @@
                         @forelse($featuredGuides as $guide)
                         <div class="bg-surface-container-lowest group overflow-hidden rounded-2xl shadow-sm border border-outline/10 transition-all hover:shadow-lg">
                             <div class="relative h-64 overflow-hidden">
-                                <img
-                                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    alt="{{ $guide->name }}"
-                                    src="{{ $guide->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($guide->image) : 'https://placehold.co/600x800' }}"
-                                />
-                                <div class="from-on-surface/90 p-space-md absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent">
+                                <a href="{{ route('team.show', $guide->slug ?? $guide->id) }}" class="block h-full w-full">
+                                    <img
+                                        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                        alt="{{ $guide->name }}"
+                                        src="{{ $guide->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($guide->image) : 'https://placehold.co/600x800' }}"
+                                    />
+                                </a>
+                                <div class="from-on-surface/90 p-space-md absolute inset-x-0 bottom-0 bg-gradient-to-t to-transparent pointer-events-none">
                                     <span class="text-primary-container font-badge-caption text-badge-caption uppercase">
                                         {{ $guide->department ?? 'Trek Leader' }}
                                     </span>
@@ -247,8 +251,8 @@
                             </div>
                             <div class="p-space-lg space-y-space-sm">
                                 <div>
-                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">
-                                        {{ $guide->name }}
+                                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
+                                        <a href="{{ route('team.show', $guide->slug ?? $guide->id) }}">{{ $guide->name }}</a>
                                     </h3>
                                     <p class="font-label-sm text-label-sm text-primary font-semibold">
                                         {{ $guide->designation ?? $guide->role ?? '' }}
@@ -256,6 +260,13 @@
                                 </div>
                                 <div class="font-body-sm text-body-sm text-tertiary leading-relaxed line-clamp-3">
                                     {!! strip_tags($guide->bio) !!}
+                                </div>
+                                <div class="pt-1">
+                                    <a href="{{ route('team.show', $guide->slug ?? $guide->id) }}" 
+                                       class="inline-flex items-center gap-1.5 text-xs font-bold text-on-surface group-hover:text-primary transition-colors">
+                                        <span>View Profile</span>
+                                        <x-lucide-arrow-right class="size-3.5 group-hover:translate-x-1 transition-transform" />
+                                    </a>
                                 </div>
                                 @php
                                     $guideFb = $guide->facebook_url ?? $guide->facebook_link ?? null;

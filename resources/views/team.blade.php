@@ -54,7 +54,7 @@
                                 $bio = $member->bio ?? $member->description ?? null;
                             @endphp
                             <div class="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm border border-outline/10 hover:shadow-xl hover:border-primary/30 transition-all duration-300 group flex flex-col items-center text-center">
-                                <div class="overflow-hidden rounded-xl w-full aspect-[4/5] mb-space-md relative bg-surface-container-low">
+                                <a href="{{ route('team.show', $member->slug ?? $member->id) }}" class="overflow-hidden rounded-xl w-full aspect-[4/5] mb-space-md relative bg-surface-container-low block">
                                     <img src="{{ $member->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($member->image) : 'https://placehold.co/400x500?text=' . urlencode($member->name) }}" 
                                          alt="{{ $member->name }}" 
                                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -64,13 +64,23 @@
                                             Guide
                                         </div>
                                     @endif
-                                </div>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">{{ $member->name }}</h3>
+                                </a>
+                                <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold group-hover:text-primary transition-colors">
+                                    <a href="{{ route('team.show', $member->slug ?? $member->id) }}">{{ $member->name }}</a>
+                                </h3>
                                 <p class="font-body-sm text-body-sm text-primary font-semibold mt-space-2xs mb-space-sm">{{ $member->designation ?? $member->role ?? 'Team Member' }}</p>
                                 
                                 @if($bio)
-                                    <p class="font-body-sm text-body-sm text-tertiary line-clamp-3 px-space-2xs mb-space-md leading-relaxed">{!! strip_tags($bio) !!}</p>
+                                    <p class="font-body-sm text-body-sm text-tertiary line-clamp-3 px-space-2xs mb-space-sm leading-relaxed">{!! strip_tags($bio) !!}</p>
                                 @endif
+
+                                <div class="mb-space-sm">
+                                    <a href="{{ route('team.show', $member->slug ?? $member->id) }}" 
+                                       class="inline-flex items-center justify-center gap-1.5 text-xs font-bold text-on-surface group-hover:text-primary transition-colors">
+                                        <span>View Profile</span>
+                                        <x-lucide-arrow-right class="size-3.5 group-hover:translate-x-1 transition-transform" />
+                                    </a>
+                                </div>
                                 
                                 @if($hasSocials)
                                     <div class="mt-auto pt-space-sm border-t border-outline/10 flex flex-wrap items-center justify-center gap-2 w-full">

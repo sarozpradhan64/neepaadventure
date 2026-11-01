@@ -451,12 +451,14 @@
                                         @endphp
                                         <div class="relative lg:col-span-6">
                                             @if($featuredGuide)
-                                                <div class="bg-ridge-deep relative overflow-hidden rounded-2xl shadow-2xl">
-                                                    <img alt="{{ $featuredGuide->name }}"
-                                                        class="h-auto max-h-[580px] w-full object-cover"
-                                                        src="{{ $featuredGuide->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($featuredGuide->image) : 'https://placehold.co/600x800' }}" />
+                                                <div class="bg-ridge-deep relative overflow-hidden rounded-2xl shadow-2xl group">
+                                                    <a href="{{ route('team.show', $featuredGuide->slug ?? $featuredGuide->id) }}" class="block">
+                                                        <img alt="{{ $featuredGuide->name }}"
+                                                            class="h-auto max-h-[580px] w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                            src="{{ $featuredGuide->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($featuredGuide->image) : 'https://placehold.co/600x800' }}" />
+                                                    </a>
                                                     <div
-                                                        class="from-ridge-deep absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-90">
+                                                        class="from-ridge-deep absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-90 pointer-events-none">
                                                     </div>
                                                     <div class="text-summit-white absolute right-6 bottom-6 left-6">
                                                         <span
@@ -464,11 +466,20 @@
                                                             {{ $featuredGuide->designation ?? $featuredGuide->role ?? 'Trek Leader' }}
                                                         </span>
                                                         <h3 class="font-headline-md text-headline-md text-summit-white mt-2 font-bold">
-                                                            {{ $featuredGuide->name }}
+                                                            <a href="{{ route('team.show', $featuredGuide->slug ?? $featuredGuide->id) }}" class="hover:text-primary transition-colors">
+                                                                {{ $featuredGuide->name }}
+                                                            </a>
                                                         </h3>
-                                                        <p class="font-body-sm text-body-sm text-surface-container-high mt-1 opacity-90">
+                                                        <p class="font-body-sm text-body-sm text-surface-container-high mt-1 opacity-90 line-clamp-2">
                                                             {!! strip_tags($featuredGuide->bio) !!}
                                                         </p>
+                                                        <div class="mt-3">
+                                                            <a href="{{ route('team.show', $featuredGuide->slug ?? $featuredGuide->id) }}" 
+                                                               class="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-amber-flare transition-colors">
+                                                                <span>View Full Profile</span>
+                                                                <x-lucide-arrow-right class="size-3.5" />
+                                                            </a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             @else

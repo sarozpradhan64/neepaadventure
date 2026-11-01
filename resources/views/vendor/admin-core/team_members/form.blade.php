@@ -58,6 +58,29 @@
 
                             <div class="grid grid-cols-2 gap-4">
                                 <x-ui.field>
+                                    <x-ui.field-label for="slug">Slug (URL)</x-ui.field-label>
+                                    <x-ui.input
+                                        id="slug"
+                                        name="slug"
+                                        placeholder="e.g. krishna-prasad-dahal (auto-generated if empty)"
+                                        value="{{ old('slug', $teamMember->slug ?? '') }}"
+                                    />
+                                    <x-ui.field-error name="slug" />
+                                </x-ui.field>
+                                <x-ui.field>
+                                    <x-ui.field-label for="department">Department</x-ui.field-label>
+                                    <x-ui.input
+                                        id="department"
+                                        name="department"
+                                        placeholder="e.g. Field Operations & Safety"
+                                        value="{{ old('department', $teamMember->department ?? '') }}"
+                                    />
+                                    <x-ui.field-error name="department" />
+                                </x-ui.field>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <x-ui.field>
                                     <x-ui.field-label for="email">Email</x-ui.field-label>
                                     <x-ui.input
                                         id="email"
@@ -83,8 +106,7 @@
 
                             <x-ui.field>
                                 <x-ui.field-label for="bio">Bio</x-ui.field-label>
-                                <x-ui.rich-text-editor name="bio">
-                                    {!! old('bio', $teamMember->bio ?? '') !!}</x-ui.rich-text-editor>
+                                <x-ui.rich-text-editor name="bio" :value="old('bio', $teamMember->bio ?? '')" />
                                 <x-ui.field-error name="bio" />
                             </x-ui.field>
                         </x-ui.card-content>

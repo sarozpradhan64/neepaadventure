@@ -48,6 +48,10 @@
     
     // Extract the merged classes into a string so we can safely use them in Alpine's :class binding
     $baseClasses = $attributes->twMerge('border-input bg-background focus-within:border-ring focus-within:ring-ring/50 w-full overflow-hidden rounded-md border shadow-xs transition-[color,box-shadow] focus-within:ring-[3px]')->get('class');
+
+    $initialValue = (isset($value) && $value !== '')
+        ? $value
+        : (isset($slot) && trim((string) $slot) !== '' ? (string) $slot : '');
 @endphp
 
 <div
@@ -299,7 +303,7 @@
         class="empty:before:text-muted-foreground prose prose-sm max-w-none px-3 py-3 outline-none empty:before:pointer-events-none empty:before:content-[attr(data-placeholder)]"
         :class="fullscreen ? 'flex-1 overflow-y-auto max-h-none h-full' : 'min-h-40'"
     >
-        {!! $value !!}
+        {!! $initialValue !!}
     </div>
 
     {{-- Accessible name for the textbox; visually hidden (it duplicates the placeholder intent). --}}
@@ -315,6 +319,6 @@
         class="hidden"
         aria-hidden="true"
         tabindex="-1"
-    >{!! $value !!}</textarea>
+    >{!! $initialValue !!}</textarea>
     @endif
 </div>
