@@ -47,9 +47,11 @@
 
                 @if ($rating)
                     <span class="text-primary flex items-center gap-1 font-semibold">
-                        <x-lucide-star class="size-[16px]" />
-                        {{ $rating }}
-                        @if ($reviews) ({{ $reviews }}+) @endif
+                        <x-lucide-star class="size-[16px] fill-current text-amber-500" />
+                        {{ number_format((float) $rating, 1) }}
+                        @if ($reviews)
+                            <span class="font-normal text-tertiary">({{ Str::endsWith((string) $reviews, '+') ? $reviews : $reviews }})</span>
+                        @endif
                     </span>
                 @endif
             </div>
