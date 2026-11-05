@@ -36,13 +36,6 @@
 
                         <span class="text-on-surface font-semibold">{{ $category->name }}</span>
                     </nav>
-
-                    <div class="gap-space-md flex items-center">
-                        <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-semibold uppercase tracking-wider">
-                            <span class="bg-primary h-2 w-2 animate-pulse rounded-full"></span>
-                            2025/2026 Season Open
-                        </span>
-                     </div>
                 </div>
             </section>
 
@@ -118,7 +111,7 @@
 
                     <div class="flex items-center gap-3">
                         <span class="text-xs font-semibold text-tertiary uppercase tracking-wider">
-                            Showing {{ $services->count() }} {{ Str::plural('route', $services->count()) }}
+                            Showing {{ $services->count() }} {{ Str::plural('service', $services->count()) }}
                         </span>
                         @if(request('search'))
                             <a href="{{ route('services.category', $category->slug) }}" 
@@ -138,7 +131,7 @@
                             <div class="bg-surface-container-high w-16 h-16 rounded-2xl flex items-center justify-center mx-auto text-tertiary">
                                 <x-lucide-compass class="size-8 text-primary" />
                             </div>
-                            <h2 id="no-routes-found" class="text-headline-md font-bold text-on-surface">No Routes Found in {{ $category->name }}</h2>
+                            <h2 id="no-routes-found" class="text-headline-md font-bold text-on-surface">No Services Found in {{ $category->name }}</h2>
                             <p class="text-body-md text-tertiary">
                                 @if(request('search'))
                                     No services matched "{{ request('search') }}". Try searching with different keywords or clear your search filter.

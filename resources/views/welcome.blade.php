@@ -62,7 +62,7 @@
                     </p>
 
                     <!-- Interactive Floating Trip Search Bar (Single Input as Original) -->
-                    <div class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-[0_12px_45px_rgba(0,0,0,0.4)] rounded-2xl p-2 sm:p-2.5 text-left mb-6 sm:mb-8 relative z-20 border border-outline/10">
+                    <div class="w-full max-w-3xl mx-auto bg-surface-container-lowest shadow-[0_12px_45px_rgba(0,0,0,0.4)] md:rounded-full rounded-2xl p-2 sm:p-2.5 text-left mb-6 sm:mb-8 relative z-20 border border-outline/10">
                         <form action="{{ $searchAction }}" method="GET" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
                             <div class="relative flex-1">
                                 <x-lucide-search class="absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 text-tertiary size-[18px] sm:size-[20px]" />
@@ -70,29 +70,15 @@
                                     class="w-full h-11 sm:h-13 pl-10 sm:pl-12 pr-4 bg-transparent font-body-md text-sm sm:text-body-md text-on-surface focus:outline-none focus:ring-0 border-none placeholder-tertiary">
                             </div>
                             <button type="submit"
-                                class="h-11 sm:h-13 px-6 sm:px-7 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs sm:text-label-md font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0 cursor-pointer">
+                                class="h-11 sm:h-13 px-6 sm:px-7 bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-md text-xs sm:text-label-md font-bold uppercase tracking-wider md:rounded-full rounded-2xl transition-all flex items-center justify-center gap-space-xs shadow-md active:scale-95 shrink-0 cursor-pointer">
                                 <x-lucide-compass class="size-[16px]" />
                                 <span>Explore</span>
                             </button>
                         </form>
                     </div>
 
-                    <!-- Quick Action CTAs -->
-                    <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10">
-                        <a href="{{ route('services.category', 'trekking') }}"
-                            class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-bold text-xs sm:text-sm tracking-wider uppercase shadow-lg hover:shadow-xl transition-all active:scale-95">
-                            <x-lucide-compass class="size-4" />
-                            <span>Explore Treks</span>
-                        </a>
-                        <a href="{{ route('plan-your-trek') }}"
-                            class="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-white/10 hover:bg-white/20 text-summit-white border border-white/25 backdrop-blur-md font-semibold text-xs sm:text-sm tracking-wider uppercase shadow-md transition-all active:scale-95">
-                            <x-lucide-calendar class="size-4 text-primary-container" />
-                            <span>Plan Your Adventure</span>
-                        </a>
-                    </div>
-
                     <!-- Trust Proof Badges -->
-                    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3.5 relative z-20 px-2">
+                    <div class="mt-12 flex flex-wrap items-center justify-center gap-2 sm:gap-3.5 relative z-20 px-2">
                         @foreach($heroStats as $index => $stat)
                             @php
                                 $icon = !empty($stat['icon']) ? $stat['icon'] : $statIcons[$index % count($statIcons)];
@@ -100,7 +86,7 @@
                                 $label = trim($stat['label'] ?? '');
                             @endphp
                             @if($label)
-                            <div class="flex items-center gap-2 sm:gap-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 px-3.5 py-2 sm:px-4 sm:py-2.5 backdrop-blur-md transition-all shadow-sm">
+                            <div class="flex items-center gap-2 sm:gap-2.5 rounded-xl bg-white/10 hover:bg-white/15 px-3.5 py-2 sm:px-4 sm:py-2.5 backdrop-blur-md transition-all shadow-sm">
                                 @svg('lucide-'.$icon, 'text-primary-container size-3.5 sm:size-4 shrink-0')
                                 <div class="flex items-baseline gap-1 sm:gap-1.5 text-xs sm:text-sm">
                                     @if($value)

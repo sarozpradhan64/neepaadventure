@@ -58,7 +58,7 @@
 
             <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary mb-space-xs leading-tight transition-colors">
                 <a href="{{ $href }}">
-                    {{ $title }}
+                    {!! $title !!}
                 </a>
             </h3>
 
