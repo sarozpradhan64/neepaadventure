@@ -14,13 +14,6 @@
                         <x-lucide-chevron-right class="size-[14px]" />
                         <span class="text-on-surface font-semibold">Travel Guides &amp; Journal</span>
                     </nav>
-                    <div class="gap-space-md flex items-center">
-                        <span class="font-badge-caption text-badge-caption bg-surface-container-highest text-tertiary inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-semibold uppercase tracking-wider">
-                            <span class="bg-primary h-2 w-2 rounded-full animate-pulse"></span>
-                            FIELD NOTES &amp; ALPINISM
-                        </span>
-                        <span class="text-tertiary hidden lg:inline">Route Guides &bull; Sherpa Insights &bull; Permits</span>
-                    </div>
                 </div>
             </section>
 
