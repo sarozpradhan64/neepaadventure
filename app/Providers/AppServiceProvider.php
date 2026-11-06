@@ -40,25 +40,34 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view): void {
-            $data = [
-                'contact' => ContactInformation::cached(),
-                'socials' => SocialLink::cached(),
-                'websiteSettings' => WebsiteSetting::cached(),
-                'navLegalDocuments' => LegalDocument::cached(),
-                'navMenus' => Menu::cachedTree(),
-            ];
-
-            $currentData = $view->getData();
-
-            if (! array_key_exists('affiliations', $currentData)) {
-                $data['affiliations'] = Affiliation::cached();
+            // Avoid querying database when rendering error views (prevents cascading 500s/connection crashes)
+            if (str_starts_with($view->getName(), 'errors::') || str_starts_with($view->getName(), 'errors.') || str_contains($view->getName(), 'errors/')) {
+                return;
             }
 
-            if (! array_key_exists('paymentMethods', $currentData)) {
-                $data['paymentMethods'] = PaymentMethod::cached();
-            }
+            try {
+                $data = [
+                    'contact' => ContactInformation::cached(),
+                    'socials' => SocialLink::cached(),
+                    'websiteSettings' => WebsiteSetting::cached(),
+                    'navLegalDocuments' => LegalDocument::cached(),
+                    'navMenus' => Menu::cachedTree(),
+                ];
 
-            $view->with($data);
+                $currentData = $view->getData();
+
+                if (! array_key_exists('affiliations', $currentData)) {
+                    $data['affiliations'] = Affiliation::cached();
+                }
+
+                if (! array_key_exists('paymentMethods', $currentData)) {
+                    $data['paymentMethods'] = PaymentMethod::cached();
+                }
+
+                $view->with($data);
+            } catch (\Throwable) {
+                // Fail gracefully so error pages can render even if MySQL connection is exhausted
+            }
         });
 
         TeamMember::saving(function ($member) {
