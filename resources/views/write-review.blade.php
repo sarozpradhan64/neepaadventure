@@ -124,9 +124,12 @@
                             generalErrorEl.classList.add('hidden');
                             
                             // Loading state
-                            submitBtn.disabled = true;
-                            submitBtn.querySelector('span').innerText = 'Submitting...';
-                            submitBtn.classList.add('opacity-75');
+                            if (window.setButtonLoading) {
+                                window.setButtonLoading(submitBtn, true, 'Submitting Review...');
+                            } else {
+                                submitBtn.disabled = true;
+                                submitBtn.classList.add('opacity-75');
+                            }
                             
                             try {
                                 const formData = new FormData(form);
@@ -173,9 +176,12 @@
                                 generalErrorEl.innerText = 'Network error. Please try again.';
                                 generalErrorEl.classList.remove('hidden');
                             } finally {
-                                submitBtn.disabled = false;
-                                submitBtn.classList.remove('opacity-75');
-                                submitBtn.querySelector('span').innerText = 'Submit Review';
+                                if (window.setButtonLoading) {
+                                    window.setButtonLoading(submitBtn, false);
+                                } else {
+                                    submitBtn.disabled = false;
+                                    submitBtn.classList.remove('opacity-75');
+                                }
                             }
                         });
                     </script>

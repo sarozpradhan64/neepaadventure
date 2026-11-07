@@ -42,6 +42,9 @@
 </head>
 
 <body class="bg-surface font-body-md text-body-md text-on-surface">
+    <!-- Subtle Top Page Navigation Progress Line -->
+    <div id="page-loader-bar" aria-hidden="true"></div>
+
     {{ $slot }}
 
     <script>

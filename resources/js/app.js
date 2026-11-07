@@ -3,6 +3,7 @@ import Alpine from "alpinejs";
 import { registerBlatUI } from "./blatui-core.js";
 import Sortable from "sortablejs";
 import "./viewer.js";
+import "./animations.js";
 
 window.Sortable = Sortable;
 

@@ -114,9 +114,9 @@
                             We believe ethical operations and top-tier mountain safety are inseparable disciplines.
                         </p>
                     </div>
-                    <div class="gap-space-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                    <div class="gap-space-md grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 stagger-children reveal-on-scroll">
                         <!-- Pillar 1 -->
-                        <div class="bg-surface-container-lowest p-space-xl flex flex-col justify-between rounded-2xl shadow-sm border border-outline/10 transition-shadow hover:shadow-md">
+                        <div class="bg-surface-container-lowest card-lift p-space-xl flex flex-col justify-between rounded-2xl shadow-sm border border-outline/10 transition-shadow hover:shadow-md">
                             <div class="space-y-space-md">
                                 <div class="bg-primary-container/20 text-primary flex h-12 w-12 items-center justify-center rounded-xl">
                                     <x-lucide-mountain-snow class="size-[28px]" />
@@ -218,7 +218,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 stagger-children reveal-on-scroll">
                         @php
                             $featuredGuides = \Blaze\AdminCore\Models\TeamMember::where('status', true)
                                 ->where('is_guide', true)
@@ -228,7 +228,7 @@
                         @endphp
                         
                         @forelse($featuredGuides as $guide)
-                        <div class="bg-surface-container-lowest group overflow-hidden rounded-2xl shadow-sm border border-outline/10 transition-all hover:shadow-lg">
+                        <div class="bg-surface-container-lowest card-lift group overflow-hidden rounded-2xl shadow-sm border border-outline/10 transition-all hover:shadow-lg">
                             <div class="relative h-64 overflow-hidden">
                                 <a href="{{ route('team.show', $guide->slug ?? $guide->id) }}" class="block h-full w-full">
                                     <img

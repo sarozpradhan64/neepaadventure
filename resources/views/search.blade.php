@@ -132,9 +132,9 @@
                             </div>
                         </div>
                     @else
-                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 stagger-children reveal-on-scroll">
                             @foreach($services as $trek)
-                                <article class="group bg-surface-container-lowest flex flex-col justify-between overflow-hidden rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-outline/10">
+                                <article class="group card-lift bg-surface-container-lowest flex flex-col justify-between overflow-hidden rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 border border-outline/10">
                                     <div>
                                         {{-- Card Image --}}
                                         <a href="{{ $trek->url }}" class="bg-surface-dim relative block h-64 w-full overflow-hidden">

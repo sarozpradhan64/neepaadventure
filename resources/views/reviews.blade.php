@@ -79,9 +79,9 @@
                 </div>
 
                 {{-- Reviews Grid --}}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-xl stagger-children reveal-on-scroll">
                     @forelse ($reviews as $review)
-                        <div class="bg-surface-container-lowest p-space-xl rounded-2xl shadow-sm border border-outline/10 hover:shadow-md transition-shadow flex flex-col justify-between">
+                        <div class="bg-surface-container-lowest card-lift p-space-xl rounded-2xl shadow-sm border border-outline/10 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                             <div>
                                 {{-- Stars & Date --}}
                                 <div class="mb-space-md flex items-center justify-between">

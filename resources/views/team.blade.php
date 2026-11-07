@@ -30,7 +30,7 @@
         <section class="py-space-3xl px-gutter-mobile lg:px-gutter-desktop bg-surface w-full">
             <div class="max-w-max-content-width mx-auto">
                 @if($teamMembers->isNotEmpty())
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-xl">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-space-xl stagger-children reveal-on-scroll">
                         @php
                             $formatUrl = function (?string $url): ?string {
                                 if (! $url) return null;
@@ -53,7 +53,7 @@
                                 $hasSocials = $facebook || $instagram || $linkedin || $twitter || $email || $phone;
                                 $bio = $member->bio ?? $member->description ?? null;
                             @endphp
-                            <div class="bg-surface-container-lowest p-space-md rounded-2xl shadow-sm border border-outline/10 hover:shadow-xl hover:border-primary/30 transition-all duration-300 group flex flex-col items-center text-center">
+                            <div class="bg-surface-container-lowest card-lift p-space-md rounded-2xl shadow-sm border border-outline/10 hover:shadow-xl hover:border-primary/30 transition-all duration-300 group flex flex-col items-center text-center">
                                 <a href="{{ route('team.show', $member->slug ?? $member->id) }}" class="overflow-hidden rounded-xl w-full aspect-[4/5] mb-space-md relative bg-surface-container-low block">
                                     <img src="{{ $member->image ? \Illuminate\Support\Facades\Storage::disk('public')->url($member->image) : 'https://placehold.co/400x500?text=' . urlencode($member->name) }}" 
                                          alt="{{ $member->name }}" 

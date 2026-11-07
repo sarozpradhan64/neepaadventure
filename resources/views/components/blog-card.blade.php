@@ -9,13 +9,14 @@
     'date',
 ])
 
-<article class="bg-surface-container-lowest flex flex-col overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all hover:shadow-md hover:border-primary/30">
-    <div class="relative h-48 w-full">
+<article class="bg-surface-container-lowest group flex flex-col overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 card-lift hover:shadow-xl hover:border-primary/30">
+    <div class="relative h-48 w-full overflow-hidden bg-surface-container">
         @if($image)
             <img
-                class="h-full w-full object-cover"
+                class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 alt="{{ $imageAlt ?: $title }}"
                 src="{{ $image }}"
+                loading="lazy"
             />
         @else
             <div class="bg-surface-variant flex h-full w-full items-center justify-center">

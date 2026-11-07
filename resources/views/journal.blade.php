@@ -170,9 +170,9 @@
                     </div>
 
                     <!-- Articles Grid -->
-                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 stagger-children reveal-on-scroll">
                         @forelse ($blogs as $post)
-                            <article class="bg-surface-container-lowest flex flex-col overflow-hidden rounded-2xl border border-outline/10 hover:border-primary/30 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                            <article class="bg-surface-container-lowest flex flex-col overflow-hidden rounded-2xl border border-outline/10 hover:border-primary/30 shadow-sm card-lift hover:shadow-xl transition-all duration-300 group">
                                 <div class="relative h-52 w-full overflow-hidden bg-surface-container">
                                     @if ($post->featured_image)
                                         <img
@@ -331,8 +331,12 @@
                                     const errorEl = document.getElementById('journal-newsletter-error');
                                     const successEl = document.getElementById('journal-newsletter-success');
 
-                                    submitBtn.disabled = true;
-                                    submitBtn.innerText = 'WAIT...';
+                                    if (window.setButtonLoading) {
+                                        window.setButtonLoading(submitBtn, true, 'Subscribing...');
+                                    } else {
+                                        submitBtn.disabled = true;
+                                        submitBtn.innerText = 'Subscribing...';
+                                    }
                                     errorEl.classList.add('hidden');
                                     successEl.classList.add('hidden');
 
@@ -365,8 +369,12 @@
                                         errorEl.innerText = 'Network error. Please try again.';
                                         errorEl.classList.remove('hidden');
                                     } finally {
-                                        submitBtn.disabled = false;
-                                        submitBtn.innerText = 'SUBSCRIBE';
+                                        if (window.setButtonLoading) {
+                                            window.setButtonLoading(submitBtn, false);
+                                        } else {
+                                            submitBtn.disabled = false;
+                                            submitBtn.innerText = 'Subscribe';
+                                        }
                                     }
                                 });
                             </script>

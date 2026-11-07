@@ -372,8 +372,12 @@
             const errorEl = document.getElementById('newsletter-error');
             const successEl = document.getElementById('newsletter-success');
             
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span>Wait...</span>';
+            if (window.setButtonLoading) {
+                window.setButtonLoading(submitBtn, true, 'Subscribing...');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Subscribing...</span>';
+            }
             errorEl.classList.add('hidden');
             successEl.classList.add('hidden');
             
@@ -406,8 +410,12 @@
                 errorEl.innerText = 'Network error. Please try again.';
                 errorEl.classList.remove('hidden');
             } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span>Subscribe to Newsletter</span> <svg class="size-3.5 inline ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>';
+                if (window.setButtonLoading) {
+                    window.setButtonLoading(submitBtn, false);
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Subscribe to Newsletter</span> <svg class="size-3.5 inline ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>';
+                }
             }
         });
     </script>

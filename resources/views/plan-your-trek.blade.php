@@ -240,26 +240,20 @@
             const alertBox = document.getElementById('form-alert');
             const alertMsg = document.getElementById('form-message');
             const submitBtn = document.getElementById('submit-btn');
-            const submitText = document.getElementById('submit-text');
 
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
 
                 // Set loading state
-                submitBtn.disabled = true;
-                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
-                submitText.textContent = 'Submitting...';
+                if (window.setButtonLoading) {
+                    window.setButtonLoading(submitBtn, true, 'Submitting Inquiry...');
+                } else {
+                    submitBtn.disabled = true;
+                }
 
                 // Hide previous alerts
                 alertBox.classList.add('hidden');
-                alertBox.classList.remove(
-                    'bg-green-100',
-                    'border-green-400',
-                    'text-green-700',
-                    'bg-red-100',
-                    'border-red-400',
-                    'text-red-700',
-                );
+                alertBox.className = 'relative mb-4 hidden rounded-xl px-4 py-3 border transition-all';
 
                 fetch(form.action, {
                     method: 'POST',
@@ -274,27 +268,31 @@
                     })
                     .then(({ status, body }) => {
                         alertBox.classList.remove('hidden');
+                        alertBox.classList.add('reveal-fade', 'is-revealed');
                         if (status === 200 || status === 201 || body.success) {
-                            alertBox.classList.add('bg-green-100', 'border', 'border-green-400', 'text-green-700');
+                            alertBox.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-800');
                             alertMsg.textContent = body.message || 'Your inquiry has been submitted successfully.';
                             form.reset();
                         } else {
-                            alertBox.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
+                            alertBox.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-800');
                             alertMsg.textContent = body.message || 'Something went wrong. Please check your inputs.';
                         }
                     })
                     .catch((error) => {
                         alertBox.classList.remove('hidden');
-                        alertBox.classList.add('bg-red-100', 'border', 'border-red-400', 'text-red-700');
+                        alertBox.classList.add('reveal-fade', 'is-revealed', 'bg-rose-50', 'border-rose-300', 'text-rose-800');
                         alertMsg.textContent = 'A network error occurred. Please try again.';
                     })
                     .finally(() => {
                         // Reset loading state
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-                        submitText.textContent = 'Submit Inquiry';
+                        if (window.setButtonLoading) {
+                            window.setButtonLoading(submitBtn, false);
+                        } else {
+                            submitBtn.disabled = false;
+                        }
                     });
             });
         });
+    </script>
     </script>
 </x-layouts.app>

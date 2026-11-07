@@ -41,7 +41,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('careers.submit', $job->slug) }}" method="POST" enctype="multipart/form-data" class="gap-space-md flex flex-col">
+                <form id="career-apply-form" action="{{ route('careers.submit', $job->slug) }}" method="POST" enctype="multipart/form-data" class="gap-space-md flex flex-col">
                     @csrf
                     
                     <div class="gap-space-md grid grid-cols-1 sm:grid-cols-2">
@@ -195,12 +195,21 @@
                     </div>
 
                     <div class="pt-space-sm flex justify-end">
-                        <button type="submit" class="py-space-sm px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-lg text-label-lg gap-space-xs flex items-center justify-center rounded-lg font-bold tracking-wider uppercase shadow-md transition-all">
+                        <button id="career-submit-btn" type="submit" class="py-space-sm px-space-lg bg-primary-container hover:bg-amber-flare text-on-primary-fixed font-label-lg text-label-lg gap-space-xs flex items-center justify-center rounded-lg font-bold tracking-wider uppercase shadow-md transition-all cursor-pointer">
                             <x-lucide-send class="size-4" />
                             <span>Submit Application</span>
                         </button>
                     </div>
                 </form>
+
+                <script>
+                    document.getElementById('career-apply-form')?.addEventListener('submit', function() {
+                        const btn = document.getElementById('career-submit-btn');
+                        if (window.setButtonLoading) {
+                            window.setButtonLoading(btn, true, 'Submitting Application...');
+                        }
+                    });
+                </script>
             </div>
         </div>
     </main>

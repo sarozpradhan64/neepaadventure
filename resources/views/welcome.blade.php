@@ -123,7 +123,7 @@
                             @endphp
                             <section class="bg-surface-container-lowest py-space-2xl md:py-space-3xl w-full">
                                 <div class="max-w-max-content-width px-gutter-mobile lg:px-gutter-desktop mx-auto">
-                                    <div class="gap-space-xl lg:gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2">
+                                    <div class="gap-space-xl lg:gap-space-2xl grid grid-cols-1 items-center lg:grid-cols-2 reveal-on-scroll">
                                         <!-- Image Side -->
                                         <div class="relative w-full rounded-2xl overflow-hidden shadow-lg h-[280px] sm:h-[380px] lg:h-[550px]">
                                             <img src="{{ $whoImage }}" alt="{{ $whoTitle }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
@@ -211,7 +211,7 @@
                                         @endif
                                     </div>
                                     <!-- 4-Card Trek Grid for Curated Services -->
-                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 stagger-children reveal-on-scroll">
                                         @foreach($curatedServices as $trek)
                                             @php
                                                 $badgeClass = $loop->index % 4 === 0 ? 'bg-primary-container text-on-primary-fixed' : 
@@ -327,7 +327,7 @@
                                             Kathmandu &amp; Khumbu trek family.
                                         </p>
                                     </div>
-                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 stagger-children reveal-on-scroll">
                                         <!-- Feature 1 -->
                                         <div
                                             class="bg-surface-container-lowest p-space-xl group flex flex-col justify-between rounded-2xl border border-outline/10 shadow-sm transition-all hover:shadow-md">
@@ -593,7 +593,7 @@
                                             </h2>
                                         </div>
                                     </div>
-                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-3">
+                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-3 stagger-children reveal-on-scroll">
                                         @if(isset($testimonials) && $testimonials->isNotEmpty())
                                             @foreach($testimonials->take(3) as $testimonial)
                                                 <div class="bg-primary/20 p-space-lg flex flex-col justify-between rounded-2xl border border-summit-white/10 shadow-sm">
@@ -744,7 +744,7 @@
                                     </div>
 
                                     <!-- Blog Cards Grid -->
-                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 stagger-children reveal-on-scroll">
                                         @foreach($latestBlogs->take(3) as $post)
                                             <x-blog-card
                                                 :title="$post->title"

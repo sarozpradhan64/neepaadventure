@@ -14,11 +14,11 @@
     'href' => '#',
 ])
 
-<div class="bg-surface-container-lowest group flex flex-col overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40">
+<div class="bg-surface-container-lowest group flex flex-col overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 card-lift hover:shadow-xl hover:border-primary/40">
     <!-- Card Image & Badges -->
-    <a href="{{ $href }}" class="relative block h-60 w-full overflow-hidden">
+    <a href="{{ $href }}" class="relative block h-60 w-full overflow-hidden bg-surface-container">
         <div
-            class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+            class="h-full w-full bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
             data-alt="{{ $imageAlt }}"
             style="background-image: url('{{ $image }}')"
         ></div>

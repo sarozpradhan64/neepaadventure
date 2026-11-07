@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <!-- Main Cards Container -->
-                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" id="trek-cards-grid">
+                    <div class="gap-space-lg grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 stagger-children reveal-on-scroll" id="trek-cards-grid">
                         @foreach ($treks as $trek)
                             @php
                                 $region = 'other';
@@ -218,7 +218,7 @@
                                 }
                             @endphp
                             <article
-                                class="trek-card group bg-surface-container-lowest flex flex-col justify-between overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40"
+                                class="trek-card card-lift group bg-surface-container-lowest flex flex-col justify-between overflow-hidden rounded-2xl border border-outline/10 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/40"
                                 data-altitude="{{ (int) filter_var($trek->maximum_altitude, FILTER_SANITIZE_NUMBER_INT) }}"
                                 data-difficulty="{{ strtolower($trek->difficulty_level ?? '') }}"
                                 data-season="{{ strtolower($trek->best_season ?? '') }}"
@@ -602,7 +602,16 @@
                             const matchesSeason = (activeSeason === 'all' || cardSeason.includes(activeSeason));
 
                             if (matchesSearch && matchesRegion && matchesDuration && matchesAltitude && matchesDifficulty && matchesSeason) {
-                                card.style.display = 'flex';
+                                if (card.style.display === 'none') {
+                                    card.style.display = 'flex';
+                                    card.style.opacity = '0';
+                                    card.style.transform = 'translateY(8px)';
+                                    requestAnimationFrame(() => {
+                                        card.style.transition = 'opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)';
+                                        card.style.opacity = '1';
+                                        card.style.transform = 'translateY(0)';
+                                    });
+                                }
                                 visibleCount++;
                             } else {
                                 card.style.display = 'none';
